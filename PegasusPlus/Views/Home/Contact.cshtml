@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Επικοινωνία";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>@ViewBag.Title.</h1>
+    <p></p><p></p><br />
+    <h2>@ViewBag.Message</h2>
+
+    @(Html.Kendo().TabStrip()
+        .Name("ContactsTabStrip")
+        .Navigatable(true)
+        .Items(items =>
+        {
+            items.Add()
+                .Text("Τηλέφωνα")
+                .Selected(true)
+                .Content(@<text>
+                    <p class="sansserif"></p>
+                    <p class="sansserif">
+                        <span class="sansserif">Υποστήριξη πολιτών - Ωράριο: 07:00 πμ έως 03:30 μμ</span>
+                    </p>
+                    <span>210 9989 721 - Ιωάννα Κολορίζα</span><br />
+                    <span>210 9989 666 - Ιωάννης Παϊδούσης</span><br />
+                    <span>210 9989 701 - Αικατερίνη Γκιόκα</span><br />
+                    <p></p>
+                </text>)
+                .ContentHtmlAttributes(new { style = "min-height: 200px" });
+            items.Add()
+                .Text("Email")
+                .Content(@<text>
+                    <p class="sansserif"></p>
+                    <p class="sansserif">
+                        <span class="sansserif">Υποστήριξη μέσω E-mail:</span>
+                    </p>
+                    <p></p>
+                    <p class="sansserif">
+                        <span><a href="mailto:a2.pegasus@oaed.gr">a2.pegasus@oaed.gr</a></span><br />
+                    </p>
+                    <p></p>
+                    <p class="sansserif" style="font-weight:bold">
+                        Τυχόν ερωτήματα μέσω email για να απαντηθούν απαιτούνται : Ονοματεπώνυμο, ΑΦΜ, Τηλέφωνα επικοινωνίας.
+                    </p>
+                    <p class="sansserif" style="font-weight:bold">
+                        Ειδικότερα για την ανάκτηση κωδικών απαιτείται συνημμένο αντίγραφο Δελτίου Ταυτότητας σε μορφή pdf.
+                    </p>
+                </text>)
+                .ContentHtmlAttributes(new { style = "min-height: 200px" });
+            items.Add()
+                .Text("Διεύθυνση")
+                .Content(@<text>
+                    <table>
+                        <tr>
+                            <td width="300">
+                                <p></p><br />
+                                <p class="sansserif" style="text-shadow:1px 1px 2px blue; font-size:22px">
+                                    Διοίκηση Ο.Α.Ε.Δ.
+                                </p>
+                                <p></p><br />
+                                <p class="sansserif" style="text-shadow:1px 1px 2px blue; font-size:larger">
+                                    Εθν. Αντιστάσεως 8
+                                </p>
+                                <p class="sansserif" style="text-shadow:1px 1px 2px blue; font-size:larger">
+                                    Τ.Κ. 17456
+                                </p>
+                                <p class="sansserif" style="text-shadow:1px 1px 2px blue; font-size:larger">
+                                    ΑΛΙΜΟΣ, ΑΤΤΙΚΗ
+                                </p>
+                            </td>
+                            <td>
+                                <p style="margin:5px">
+                                    <img style="border:1px solid blue" src="~/Images/other/oaed-map.jpg" height="400" width="500" />
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+
+                </text>)
+                .ContentHtmlAttributes(new { style = "min-height: 200px" });
+        })
+    )
+
+    <p></p><p></p>
+
+</div>
+
+<p></p><p></p>
+
+@section footer {
+    <footer class="text-center d-flex align-items-center mt-2" style="min-height:100px;">
+        <table width:50% style="margin:auto">
+            <tr>
+                <td width="5%" align="left"><img src="~/images/metro/oaed-logo.png" height="60" width="74" /></td>
+                <td align="center">
+                    <font color="#000080" size="3" style="font-weight:600">Διεύθυνση Αρχικής Επαγγελματικής Εκπαίδευσης και Κατάρτισης</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" align="left"></td>
+                <td align="center">
+                    <font color="#000080" size="2">@DateTime.Now.Year, Μελέτη-Ανάπτυξη: Δρ. Γεώργιος Κυριακάκης, Επιστημονικός Συνεργάτης: Ελευθέριος Κυριακάκης (PhD)</font>
+                </td>
+            </tr>
+        </table>
+    </footer>
+}

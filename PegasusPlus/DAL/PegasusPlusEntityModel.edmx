@@ -1,0 +1,1443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PegasusPlusDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APP_STATUS">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_VALUE" Type="bit" />
+          <Property Name="LOCAL_TEST" Type="bit" />
+          <Property Name="STATUS_MESSAGE" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Prokirixis">
+          <Key>
+            <PropertyRef Name="ProkirixiID" />
+          </Key>
+          <Property Name="ProkirixiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Protocol" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fek" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolYear" Type="int" />
+          <Property Name="DateStart" Type="date" />
+          <Property Name="DateEnd" Type="date" />
+          <Property Name="Dioikitis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Admin" Type="bit" />
+          <Property Name="UserView" Type="bit" />
+          <Property Name="Enstaseis" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProkirixisEidikotites">
+          <Key>
+            <PropertyRef Name="PSE_ID" />
+          </Key>
+          <Property Name="PSE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProkirixiID" Type="int" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="EidikotitaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysAnergia">
+          <Key>
+            <PropertyRef Name="AnergiaID" />
+          </Key>
+          <Property Name="AnergiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnergiaText" Type="nvarchar" MaxLength="20" />
+          <Property Name="AnergiaMoria" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="SysApoklismoi">
+          <Key>
+            <PropertyRef Name="ApoklismosID" />
+          </Key>
+          <Property Name="ApoklismosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApoklismosText" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SysBasicEducation">
+          <Key>
+            <PropertyRef Name="EducationID" />
+          </Key>
+          <Property Name="EducationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EducationText" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SysComputerAsep">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+          </Key>
+          <Property Name="CertificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificateText" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SysEidikotites">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EidikotitaCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EidikotitaName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EidikotitaUnified" Type="nvarchar" MaxLength="150" />
+          <Property Name="KladosUnified" Type="int" />
+          <Property Name="EidikotitaKladosID" Type="int" />
+          <Property Name="EidikotitaGroupID" Type="int" />
+        </EntityType>
+        <EntityType Name="SysEidikotitesGroups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupText" Type="nvarchar" MaxLength="150" />
+          <Property Name="Klados" Type="int" />
+        </EntityType>
+        <EntityType Name="SysGenders">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderText" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SysKlados">
+          <Key>
+            <PropertyRef Name="KladosID" />
+          </Key>
+          <Property Name="KladosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KladosName" Type="nvarchar" MaxLength="10" />
+          <Property Name="KladosCategory" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SysKladosEniaios">
+          <Key>
+            <PropertyRef Name="KladosEniaiosID" />
+          </Key>
+          <Property Name="KladosEniaiosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KladosEniaiosText" Type="nvarchar" MaxLength="150" />
+          <Property Name="Klados" Type="int" />
+        </EntityType>
+        <EntityType Name="SysLanguage">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageText" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SysLanguageLevel">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelText" Type="nvarchar" MaxLength="10" />
+          <Property Name="MoriaFirst" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MoriaSecond" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="SysMScPeriods">
+          <Key>
+            <PropertyRef Name="MScPeriodID" />
+          </Key>
+          <Property Name="MScPeriodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MScPeriodText" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SysNomoi">
+          <Key>
+            <PropertyRef Name="NomosID" />
+          </Key>
+          <Property Name="NomosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomosText" Type="nvarchar" MaxLength="50" />
+          <Property Name="PeriferiaMajorID" Type="int" />
+        </EntityType>
+        <EntityType Name="SysPeriferiakes">
+          <Key>
+            <PropertyRef Name="PeriferiakiID" />
+          </Key>
+          <Property Name="PeriferiakiID" Type="int" Nullable="false" />
+          <Property Name="PeriferiakiName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PeriferiakiShortName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SysPeriferies">
+          <Key>
+            <PropertyRef Name="PeriferiaID" />
+          </Key>
+          <Property Name="PeriferiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PeriferiaName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SysPeriferiesMajor">
+          <Key>
+            <PropertyRef Name="PeriferiaMajorID" />
+          </Key>
+          <Property Name="PeriferiaMajorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PeriferiaMajor" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SysProkirixiStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusText" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SysSchools">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
+          <Property Name="SchoolEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolTypeID" Type="int" />
+          <Property Name="SchoolPeriferiaID" Type="int" />
+          <Property Name="SchoolPeriferiakiID" Type="int" />
+        </EntityType>
+        <EntityType Name="SysSchoolYears">
+          <Key>
+            <PropertyRef Name="SchoolYearID" />
+          </Key>
+          <Property Name="SchoolYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolYearText" Type="nvarchar" MaxLength="9" />
+          <Property Name="DateStart" Type="date" />
+          <Property Name="DateEnd" Type="date" />
+        </EntityType>
+        <EntityType Name="SysTaxFree">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YearText" Type="nvarchar" MaxLength="4" />
+          <Property Name="TaxFree" Type="real" />
+          <Property Name="Nomisma" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SysTeachTypes">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeText" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TAXISNET">
+          <Key>
+            <PropertyRef Name="TAXISNET_ID" />
+          </Key>
+          <Property Name="TAXISNET_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RANDOM_NUMBER" Type="int" />
+          <Property Name="TAXISNET_AFM" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="AFM" />
+          </Key>
+          <Property Name="AFM" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DOY" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADT" Type="nvarchar" MaxLength="20" />
+          <Property Name="AMKA" Type="nvarchar" MaxLength="20" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Birthdate" Type="date" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Periferia" Type="int" />
+        </EntityType>
+        <EntityType Name="UserAdmins">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreateDate" Type="date" />
+        </EntityType>
+        <EntityType Name="UserSchools">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserSchoolID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserTeachers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserAfm" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreateDate" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlEidikotitesSelector' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sqlEidikotitesSelector">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EidikotitaDesc" Type="nvarchar" MaxLength="201" />
+          <Property Name="EidikotitaKladosID" Type="int" />
+          <Property Name="EidikotitaGroupID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlEidikotititesKladosEniaios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sqlEidikotititesKladosEniaios">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EidikotitaPtyxio" Type="nvarchar" MaxLength="201" />
+          <Property Name="KladosUnified" Type="int" />
+          <Property Name="EidikotitaKladosID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlSchoolsPeriferiakesPefireies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sqlSchoolsPeriferiakesPefireies">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="SchoolEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
+          <Property Name="PeriferiakiShortName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PeriferiaName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeacherAccountInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sqlTeacherAccountInfo">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="AFM" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="101" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AFM" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ADT" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserSchool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sqlUserSchool">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
+          <Property Name="SchoolEmail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewEidikotites">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="int" Nullable="false" />
+          <Property Name="EidikotitaDesc" Type="nvarchar" MaxLength="201" />
+          <Property Name="EidikotitaEniaia" Type="nvarchar" MaxLength="201" />
+          <Property Name="EidikotitaCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EidikotitaName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EidikotitaKladosID" Type="int" />
+          <Property Name="EidikotitaGroupID" Type="int" />
+          <Property Name="KladosName" Type="nvarchar" MaxLength="10" />
+          <Property Name="GroupText" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_ProkirixisEidikotites_Prokirixis">
+          <End Role="Prokirixis" Type="Self.Prokirixis" Multiplicity="1" />
+          <End Role="ProkirixisEidikotites" Type="Self.ProkirixisEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prokirixis">
+              <PropertyRef Name="ProkirixiID" />
+            </Principal>
+            <Dependent Role="ProkirixisEidikotites">
+              <PropertyRef Name="ProkirixiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProkirixisEidikotites_SysEidikotites">
+          <End Role="SysEidikotites" Type="Self.SysEidikotites" Multiplicity="1" />
+          <End Role="ProkirixisEidikotites" Type="Self.ProkirixisEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysEidikotites">
+              <PropertyRef Name="EidikotitaID" />
+            </Principal>
+            <Dependent Role="ProkirixisEidikotites">
+              <PropertyRef Name="EidikotitaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysEidikotites_SysKlados">
+          <End Role="SysKlados" Type="Self.SysKlados" Multiplicity="0..1" />
+          <End Role="SysEidikotites" Type="Self.SysEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysKlados">
+              <PropertyRef Name="KladosID" />
+            </Principal>
+            <Dependent Role="SysEidikotites">
+              <PropertyRef Name="EidikotitaKladosID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysEidikotites_SysKladosEniaios">
+          <End Role="SysKladosEniaios" Type="Self.SysKladosEniaios" Multiplicity="0..1" />
+          <End Role="SysEidikotites" Type="Self.SysEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysKladosEniaios">
+              <PropertyRef Name="KladosEniaiosID" />
+            </Principal>
+            <Dependent Role="SysEidikotites">
+              <PropertyRef Name="KladosUnified" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysNomoi_SysPeriferiesMajor">
+          <End Role="SysPeriferiesMajor" Type="Self.SysPeriferiesMajor" Multiplicity="0..1" />
+          <End Role="SysNomoi" Type="Self.SysNomoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysPeriferiesMajor">
+              <PropertyRef Name="PeriferiaMajorID" />
+            </Principal>
+            <Dependent Role="SysNomoi">
+              <PropertyRef Name="PeriferiaMajorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysSchools_SysPeriferiakes">
+          <End Role="SysPeriferiakes" Type="Self.SysPeriferiakes" Multiplicity="0..1" />
+          <End Role="SysSchools" Type="Self.SysSchools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysPeriferiakes">
+              <PropertyRef Name="PeriferiakiID" />
+            </Principal>
+            <Dependent Role="SysSchools">
+              <PropertyRef Name="SchoolPeriferiakiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysSchools_SysPeriferies">
+          <End Role="SysPeriferies" Type="Self.SysPeriferies" Multiplicity="0..1" />
+          <End Role="SysSchools" Type="Self.SysSchools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysPeriferies">
+              <PropertyRef Name="PeriferiaID" />
+            </Principal>
+            <Dependent Role="SysSchools">
+              <PropertyRef Name="SchoolPeriferiaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PegasusPlusDBModelStoreContainer">
+          <EntitySet Name="APP_STATUS" EntityType="Self.APP_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prokirixis" EntityType="Self.Prokirixis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProkirixisEidikotites" EntityType="Self.ProkirixisEidikotites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysAnergia" EntityType="Self.SysAnergia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysApoklismoi" EntityType="Self.SysApoklismoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysBasicEducation" EntityType="Self.SysBasicEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysComputerAsep" EntityType="Self.SysComputerAsep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysEidikotites" EntityType="Self.SysEidikotites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysEidikotitesGroups" EntityType="Self.SysEidikotitesGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysGenders" EntityType="Self.SysGenders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysKlados" EntityType="Self.SysKlados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysKladosEniaios" EntityType="Self.SysKladosEniaios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysLanguage" EntityType="Self.SysLanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysLanguageLevel" EntityType="Self.SysLanguageLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysMScPeriods" EntityType="Self.SysMScPeriods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysNomoi" EntityType="Self.SysNomoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysPeriferiakes" EntityType="Self.SysPeriferiakes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysPeriferies" EntityType="Self.SysPeriferies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysPeriferiesMajor" EntityType="Self.SysPeriferiesMajor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysProkirixiStatus" EntityType="Self.SysProkirixiStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysSchools" EntityType="Self.SysSchools" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysSchoolYears" EntityType="Self.SysSchoolYears" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysTaxFree" EntityType="Self.SysTaxFree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysTeachTypes" EntityType="Self.SysTeachTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAXISNET" EntityType="Self.TAXISNET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAdmins" EntityType="Self.UserAdmins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSchools" EntityType="Self.UserSchools" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTeachers" EntityType="Self.UserTeachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sqlEidikotitesSelector" EntityType="Self.sqlEidikotitesSelector" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sqlEidikotitesSelector].[EidikotitaID] AS [EidikotitaID], 
+    [sqlEidikotitesSelector].[EidikotitaDesc] AS [EidikotitaDesc], 
+    [sqlEidikotitesSelector].[EidikotitaKladosID] AS [EidikotitaKladosID], 
+    [sqlEidikotitesSelector].[EidikotitaGroupID] AS [EidikotitaGroupID]
+    FROM [dbo].[sqlEidikotitesSelector] AS [sqlEidikotitesSelector]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sqlEidikotititesKladosEniaios" EntityType="Self.sqlEidikotititesKladosEniaios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sqlEidikotititesKladosEniaios].[EidikotitaID] AS [EidikotitaID], 
+    [sqlEidikotititesKladosEniaios].[EidikotitaPtyxio] AS [EidikotitaPtyxio], 
+    [sqlEidikotititesKladosEniaios].[KladosUnified] AS [KladosUnified], 
+    [sqlEidikotititesKladosEniaios].[EidikotitaKladosID] AS [EidikotitaKladosID]
+    FROM [dbo].[sqlEidikotititesKladosEniaios] AS [sqlEidikotititesKladosEniaios]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sqlSchoolsPeriferiakesPefireies" EntityType="Self.sqlSchoolsPeriferiakesPefireies" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sqlSchoolsPeriferiakesPefireies].[SchoolID] AS [SchoolID], 
+    [sqlSchoolsPeriferiakesPefireies].[SchoolEmail] AS [SchoolEmail], 
+    [sqlSchoolsPeriferiakesPefireies].[SchoolName] AS [SchoolName], 
+    [sqlSchoolsPeriferiakesPefireies].[PeriferiakiShortName] AS [PeriferiakiShortName], 
+    [sqlSchoolsPeriferiakesPefireies].[PeriferiaName] AS [PeriferiaName]
+    FROM [dbo].[sqlSchoolsPeriferiakesPefireies] AS [sqlSchoolsPeriferiakesPefireies]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sqlTeacherAccountInfo" EntityType="Self.sqlTeacherAccountInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sqlTeacherAccountInfo].[UserID] AS [UserID], 
+    [sqlTeacherAccountInfo].[Username] AS [Username], 
+    [sqlTeacherAccountInfo].[FullName] AS [FullName], 
+    [sqlTeacherAccountInfo].[FatherName] AS [FatherName], 
+    [sqlTeacherAccountInfo].[AFM] AS [AFM], 
+    [sqlTeacherAccountInfo].[ADT] AS [ADT], 
+    [sqlTeacherAccountInfo].[Telephone] AS [Telephone], 
+    [sqlTeacherAccountInfo].[CellPhone] AS [CellPhone], 
+    [sqlTeacherAccountInfo].[Email] AS [Email]
+    FROM [dbo].[sqlTeacherAccountInfo] AS [sqlTeacherAccountInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sqlUserSchool" EntityType="Self.sqlUserSchool" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sqlUserSchool].[UserID] AS [UserID], 
+    [sqlUserSchool].[Username] AS [Username], 
+    [sqlUserSchool].[Password] AS [Password], 
+    [sqlUserSchool].[SchoolName] AS [SchoolName], 
+    [sqlUserSchool].[SchoolEmail] AS [SchoolEmail]
+    FROM [dbo].[sqlUserSchool] AS [sqlUserSchool]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewEidikotites" EntityType="Self.viewEidikotites" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewEidikotites].[EidikotitaID] AS [EidikotitaID], 
+    [viewEidikotites].[EidikotitaDesc] AS [EidikotitaDesc], 
+    [viewEidikotites].[EidikotitaEniaia] AS [EidikotitaEniaia], 
+    [viewEidikotites].[EidikotitaCode] AS [EidikotitaCode], 
+    [viewEidikotites].[EidikotitaName] AS [EidikotitaName], 
+    [viewEidikotites].[EidikotitaKladosID] AS [EidikotitaKladosID], 
+    [viewEidikotites].[EidikotitaGroupID] AS [EidikotitaGroupID], 
+    [viewEidikotites].[KladosName] AS [KladosName], 
+    [viewEidikotites].[GroupText] AS [GroupText]
+    FROM [dbo].[viewEidikotites] AS [viewEidikotites]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ProkirixisEidikotites_Prokirixis" Association="Self.FK_ProkirixisEidikotites_Prokirixis">
+            <End Role="Prokirixis" EntitySet="Prokirixis" />
+            <End Role="ProkirixisEidikotites" EntitySet="ProkirixisEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProkirixisEidikotites_SysEidikotites" Association="Self.FK_ProkirixisEidikotites_SysEidikotites">
+            <End Role="SysEidikotites" EntitySet="SysEidikotites" />
+            <End Role="ProkirixisEidikotites" EntitySet="ProkirixisEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysEidikotites_SysKlados" Association="Self.FK_SysEidikotites_SysKlados">
+            <End Role="SysKlados" EntitySet="SysKlados" />
+            <End Role="SysEidikotites" EntitySet="SysEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysEidikotites_SysKladosEniaios" Association="Self.FK_SysEidikotites_SysKladosEniaios">
+            <End Role="SysKladosEniaios" EntitySet="SysKladosEniaios" />
+            <End Role="SysEidikotites" EntitySet="SysEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysNomoi_SysPeriferiesMajor" Association="Self.FK_SysNomoi_SysPeriferiesMajor">
+            <End Role="SysPeriferiesMajor" EntitySet="SysPeriferiesMajor" />
+            <End Role="SysNomoi" EntitySet="SysNomoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysSchools_SysPeriferiakes" Association="Self.FK_SysSchools_SysPeriferiakes">
+            <End Role="SysPeriferiakes" EntitySet="SysPeriferiakes" />
+            <End Role="SysSchools" EntitySet="SysSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysSchools_SysPeriferies" Association="Self.FK_SysSchools_SysPeriferies">
+            <End Role="SysPeriferies" EntitySet="SysPeriferies" />
+            <End Role="SysSchools" EntitySet="SysSchools" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PegasusPlusDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="APP_STATUS">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_VALUE" Type="Boolean" />
+          <Property Name="LOCAL_TEST" Type="Boolean" />
+          <Property Name="STATUS_MESSAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Prokirixis">
+          <Key>
+            <PropertyRef Name="ProkirixiID" />
+          </Key>
+          <Property Name="ProkirixiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Protocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolYear" Type="Int32" />
+          <Property Name="DateStart" Type="DateTime" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Precision="0" />
+          <Property Name="Dioikitis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int16" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Admin" Type="Boolean" />
+          <Property Name="UserView" Type="Boolean" />
+          <Property Name="Enstaseis" Type="Boolean" />
+          <NavigationProperty Name="ProkirixisEidikotites" Relationship="Self.FK_ProkirixisEidikotites_Prokirixis" FromRole="Prokirixis" ToRole="ProkirixisEidikotites" />
+        </EntityType>
+        <EntityType Name="ProkirixisEidikotites">
+          <Key>
+            <PropertyRef Name="PSE_ID" />
+          </Key>
+          <Property Name="PSE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProkirixiID" Type="Int32" Nullable="false" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="EidikotitaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prokirixis" Relationship="Self.FK_ProkirixisEidikotites_Prokirixis" FromRole="ProkirixisEidikotites" ToRole="Prokirixis" />
+          <NavigationProperty Name="SysEidikotites" Relationship="Self.FK_ProkirixisEidikotites_SysEidikotites" FromRole="ProkirixisEidikotites" ToRole="SysEidikotites" />
+        </EntityType>
+        <EntityType Name="SysAnergia">
+          <Key>
+            <PropertyRef Name="AnergiaID" />
+          </Key>
+          <Property Name="AnergiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnergiaText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AnergiaMoria" Type="Decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="SysApoklismoi">
+          <Key>
+            <PropertyRef Name="ApoklismosID" />
+          </Key>
+          <Property Name="ApoklismosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApoklismosText" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysBasicEducation">
+          <Key>
+            <PropertyRef Name="EducationID" />
+          </Key>
+          <Property Name="EducationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EducationText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysComputerAsep">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+          </Key>
+          <Property Name="CertificateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificateText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysEidikotites">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EidikotitaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaUnified" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KladosUnified" Type="Int32" />
+          <Property Name="EidikotitaKladosID" Type="Int32" />
+          <Property Name="EidikotitaGroupID" Type="Int32" />
+          <NavigationProperty Name="ProkirixisEidikotites" Relationship="Self.FK_ProkirixisEidikotites_SysEidikotites" FromRole="SysEidikotites" ToRole="ProkirixisEidikotites" />
+          <NavigationProperty Name="SysKlados" Relationship="Self.FK_SysEidikotites_SysKlados" FromRole="SysEidikotites" ToRole="SysKlados" />
+          <NavigationProperty Name="SysKladosEniaios" Relationship="Self.FK_SysEidikotites_SysKladosEniaios" FromRole="SysEidikotites" ToRole="SysKladosEniaios" />
+        </EntityType>
+        <EntityType Name="SysEidikotitesGroups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Klados" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SysGenders">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysKlados">
+          <Key>
+            <PropertyRef Name="KladosID" />
+          </Key>
+          <Property Name="KladosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KladosName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="KladosCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SysEidikotites" Relationship="Self.FK_SysEidikotites_SysKlados" FromRole="SysKlados" ToRole="SysEidikotites" />
+        </EntityType>
+        <EntityType Name="SysKladosEniaios">
+          <Key>
+            <PropertyRef Name="KladosEniaiosID" />
+          </Key>
+          <Property Name="KladosEniaiosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KladosEniaiosText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Klados" Type="Int32" />
+          <NavigationProperty Name="SysEidikotites" Relationship="Self.FK_SysEidikotites_SysKladosEniaios" FromRole="SysKladosEniaios" ToRole="SysEidikotites" />
+        </EntityType>
+        <EntityType Name="SysLanguage">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysLanguageLevel">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MoriaFirst" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MoriaSecond" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="SysMScPeriods">
+          <Key>
+            <PropertyRef Name="MScPeriodID" />
+          </Key>
+          <Property Name="MScPeriodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MScPeriodText" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysPeriferiakes">
+          <Key>
+            <PropertyRef Name="PeriferiakiID" />
+          </Key>
+          <Property Name="PeriferiakiID" Type="Int32" Nullable="false" />
+          <Property Name="PeriferiakiName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PeriferiakiShortName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SysSchools" Relationship="Self.FK_SysSchools_SysPeriferiakes" FromRole="SysPeriferiakes" ToRole="SysSchools" />
+        </EntityType>
+        <EntityType Name="SysPeriferies">
+          <Key>
+            <PropertyRef Name="PeriferiaID" />
+          </Key>
+          <Property Name="PeriferiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PeriferiaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SysSchools" Relationship="Self.FK_SysSchools_SysPeriferies" FromRole="SysPeriferies" ToRole="SysSchools" />
+        </EntityType>
+        <EntityType Name="SysProkirixiStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysSchools">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolTypeID" Type="Int32" />
+          <Property Name="SchoolPeriferiaID" Type="Int32" />
+          <Property Name="SchoolPeriferiakiID" Type="Int32" />
+          <NavigationProperty Name="SysPeriferiakes" Relationship="Self.FK_SysSchools_SysPeriferiakes" FromRole="SysSchools" ToRole="SysPeriferiakes" />
+          <NavigationProperty Name="SysPeriferies" Relationship="Self.FK_SysSchools_SysPeriferies" FromRole="SysSchools" ToRole="SysPeriferies" />
+        </EntityType>
+        <EntityType Name="SysSchoolYears">
+          <Key>
+            <PropertyRef Name="SchoolYearID" />
+          </Key>
+          <Property Name="SchoolYearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolYearText" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="DateStart" Type="DateTime" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="SysTaxFree">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YearText" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="TaxFree" Type="Single" />
+          <Property Name="Nomisma" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysTeachTypes">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TAXISNET">
+          <Key>
+            <PropertyRef Name="TAXISNET_ID" />
+          </Key>
+          <Property Name="TAXISNET_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RANDOM_NUMBER" Type="Int32" />
+          <Property Name="TAXISNET_AFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="AFM" />
+          </Key>
+          <Property Name="AFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AMKA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Birthdate" Type="DateTime" Precision="0" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Periferia" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserAdmins">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="UserSchools">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserSchoolID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserTeachers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserAfm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="sqlEidikotitesSelector">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EidikotitaDesc" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaKladosID" Type="Int32" />
+          <Property Name="EidikotitaGroupID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sqlEidikotititesKladosEniaios">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EidikotitaPtyxio" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="KladosUnified" Type="Int32" />
+          <Property Name="EidikotitaKladosID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sqlSchoolsPeriferiakesPefireies">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="SchoolEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PeriferiakiShortName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PeriferiaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sqlTeacherAccountInfo">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="AFM" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ADT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sqlUserSchool">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ProkirixisEidikotites_Prokirixis">
+          <End Role="Prokirixis" Type="Self.Prokirixis" Multiplicity="1" />
+          <End Role="ProkirixisEidikotites" Type="Self.ProkirixisEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prokirixis">
+              <PropertyRef Name="ProkirixiID" />
+            </Principal>
+            <Dependent Role="ProkirixisEidikotites">
+              <PropertyRef Name="ProkirixiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProkirixisEidikotites_SysEidikotites">
+          <End Role="SysEidikotites" Type="Self.SysEidikotites" Multiplicity="1" />
+          <End Role="ProkirixisEidikotites" Type="Self.ProkirixisEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysEidikotites">
+              <PropertyRef Name="EidikotitaID" />
+            </Principal>
+            <Dependent Role="ProkirixisEidikotites">
+              <PropertyRef Name="EidikotitaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysEidikotites_SysKlados">
+          <End Role="SysKlados" Type="Self.SysKlados" Multiplicity="0..1" />
+          <End Role="SysEidikotites" Type="Self.SysEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysKlados">
+              <PropertyRef Name="KladosID" />
+            </Principal>
+            <Dependent Role="SysEidikotites">
+              <PropertyRef Name="EidikotitaKladosID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysEidikotites_SysKladosEniaios">
+          <End Role="SysKladosEniaios" Type="Self.SysKladosEniaios" Multiplicity="0..1" />
+          <End Role="SysEidikotites" Type="Self.SysEidikotites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysKladosEniaios">
+              <PropertyRef Name="KladosEniaiosID" />
+            </Principal>
+            <Dependent Role="SysEidikotites">
+              <PropertyRef Name="KladosUnified" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysSchools_SysPeriferiakes">
+          <End Role="SysPeriferiakes" Type="Self.SysPeriferiakes" Multiplicity="0..1" />
+          <End Role="SysSchools" Type="Self.SysSchools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysPeriferiakes">
+              <PropertyRef Name="PeriferiakiID" />
+            </Principal>
+            <Dependent Role="SysSchools">
+              <PropertyRef Name="SchoolPeriferiakiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysSchools_SysPeriferies">
+          <End Role="SysPeriferies" Type="Self.SysPeriferies" Multiplicity="0..1" />
+          <End Role="SysSchools" Type="Self.SysSchools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysPeriferies">
+              <PropertyRef Name="PeriferiaID" />
+            </Principal>
+            <Dependent Role="SysSchools">
+              <PropertyRef Name="SchoolPeriferiaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PegasusPlusDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APP_STATUS" EntityType="Self.APP_STATUS" />
+          <EntitySet Name="Prokirixis" EntityType="Self.Prokirixis" />
+          <EntitySet Name="ProkirixisEidikotites" EntityType="Self.ProkirixisEidikotites" />
+          <EntitySet Name="SysAnergia" EntityType="Self.SysAnergia" />
+          <EntitySet Name="SysApoklismoi" EntityType="Self.SysApoklismoi" />
+          <EntitySet Name="SysBasicEducation" EntityType="Self.SysBasicEducation" />
+          <EntitySet Name="SysComputerAsep" EntityType="Self.SysComputerAsep" />
+          <EntitySet Name="SysEidikotites" EntityType="Self.SysEidikotites" />
+          <EntitySet Name="SysEidikotitesGroups" EntityType="Self.SysEidikotitesGroups" />
+          <EntitySet Name="SysGenders" EntityType="Self.SysGenders" />
+          <EntitySet Name="SysKlados" EntityType="Self.SysKlados" />
+          <EntitySet Name="SysKladosEniaios" EntityType="Self.SysKladosEniaios" />
+          <EntitySet Name="SysLanguage" EntityType="Self.SysLanguage" />
+          <EntitySet Name="SysLanguageLevel" EntityType="Self.SysLanguageLevel" />
+          <EntitySet Name="SysMScPeriods" EntityType="Self.SysMScPeriods" />
+          <EntitySet Name="SysPeriferiakes" EntityType="Self.SysPeriferiakes" />
+          <EntitySet Name="SysPeriferies" EntityType="Self.SysPeriferies" />
+          <EntitySet Name="SysProkirixiStatus" EntityType="Self.SysProkirixiStatus" />
+          <EntitySet Name="SysSchools" EntityType="Self.SysSchools" />
+          <EntitySet Name="SysSchoolYears" EntityType="Self.SysSchoolYears" />
+          <EntitySet Name="SysTaxFree" EntityType="Self.SysTaxFree" />
+          <EntitySet Name="SysTeachTypes" EntityType="Self.SysTeachTypes" />
+          <EntitySet Name="TAXISNET" EntityType="Self.TAXISNET" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <EntitySet Name="UserAdmins" EntityType="Self.UserAdmins" />
+          <EntitySet Name="UserSchools" EntityType="Self.UserSchools" />
+          <EntitySet Name="UserTeachers" EntityType="Self.UserTeachers" />
+          <EntitySet Name="sqlEidikotitesSelector" EntityType="Self.sqlEidikotitesSelector" />
+          <EntitySet Name="sqlEidikotititesKladosEniaios" EntityType="Self.sqlEidikotititesKladosEniaios" />
+          <EntitySet Name="sqlSchoolsPeriferiakesPefireies" EntityType="Self.sqlSchoolsPeriferiakesPefireies" />
+          <EntitySet Name="sqlTeacherAccountInfo" EntityType="Self.sqlTeacherAccountInfo" />
+          <EntitySet Name="sqlUserSchool" EntityType="Self.sqlUserSchool" />
+          <AssociationSet Name="FK_ProkirixisEidikotites_Prokirixis" Association="Self.FK_ProkirixisEidikotites_Prokirixis">
+            <End Role="Prokirixis" EntitySet="Prokirixis" />
+            <End Role="ProkirixisEidikotites" EntitySet="ProkirixisEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProkirixisEidikotites_SysEidikotites" Association="Self.FK_ProkirixisEidikotites_SysEidikotites">
+            <End Role="SysEidikotites" EntitySet="SysEidikotites" />
+            <End Role="ProkirixisEidikotites" EntitySet="ProkirixisEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysEidikotites_SysKlados" Association="Self.FK_SysEidikotites_SysKlados">
+            <End Role="SysKlados" EntitySet="SysKlados" />
+            <End Role="SysEidikotites" EntitySet="SysEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysEidikotites_SysKladosEniaios" Association="Self.FK_SysEidikotites_SysKladosEniaios">
+            <End Role="SysKladosEniaios" EntitySet="SysKladosEniaios" />
+            <End Role="SysEidikotites" EntitySet="SysEidikotites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysSchools_SysPeriferiakes" Association="Self.FK_SysSchools_SysPeriferiakes">
+            <End Role="SysPeriferiakes" EntitySet="SysPeriferiakes" />
+            <End Role="SysSchools" EntitySet="SysSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysSchools_SysPeriferies" Association="Self.FK_SysSchools_SysPeriferies">
+            <End Role="SysPeriferies" EntitySet="SysPeriferies" />
+            <End Role="SysSchools" EntitySet="SysSchools" />
+          </AssociationSet>
+          <EntitySet Name="viewEidikotites" EntityType="PegasusPlusDBModel.viewEidikotites" />
+          <EntitySet Name="SysNomoi" EntityType="PegasusPlusDBModel.SysNomoi" />
+          <EntitySet Name="SysPeriferiesMajor" EntityType="PegasusPlusDBModel.SysPeriferiesMajor" />
+          <AssociationSet Name="FK_SysNomoi_SysPeriferiesMajor" Association="PegasusPlusDBModel.FK_SysNomoi_SysPeriferiesMajor">
+            <End Role="SysPeriferiesMajor" EntitySet="SysPeriferiesMajor" />
+            <End Role="SysNomoi" EntitySet="SysNomoi" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="viewEidikotites">
+          <Key>
+            <PropertyRef Name="EidikotitaID" />
+          </Key>
+          <Property Name="EidikotitaID" Type="Int32" Nullable="false" />
+          <Property Name="EidikotitaDesc" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaEniaia" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EidikotitaKladosID" Type="Int32" />
+          <Property Name="EidikotitaGroupID" Type="Int32" />
+          <Property Name="KladosName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GroupText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysNomoi">
+          <Key>
+            <PropertyRef Name="NomosID" />
+          </Key>
+          <Property Name="NomosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomosText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PeriferiaMajorID" Type="Int32" />
+          <NavigationProperty Name="SysPeriferiesMajor" Relationship="PegasusPlusDBModel.FK_SysNomoi_SysPeriferiesMajor" FromRole="SysNomoi" ToRole="SysPeriferiesMajor" />
+        </EntityType>
+        <EntityType Name="SysPeriferiesMajor">
+          <Key>
+            <PropertyRef Name="PeriferiaMajorID" />
+          </Key>
+          <Property Name="PeriferiaMajorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PeriferiaMajor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SysNomoi" Relationship="PegasusPlusDBModel.FK_SysNomoi_SysPeriferiesMajor" FromRole="SysPeriferiesMajor" ToRole="SysNomoi" />
+        </EntityType>
+        <Association Name="FK_SysNomoi_SysPeriferiesMajor">
+          <End Type="PegasusPlusDBModel.SysPeriferiesMajor" Role="SysPeriferiesMajor" Multiplicity="0..1" />
+          <End Type="PegasusPlusDBModel.SysNomoi" Role="SysNomoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysPeriferiesMajor">
+              <PropertyRef Name="PeriferiaMajorID" />
+            </Principal>
+            <Dependent Role="SysNomoi">
+              <PropertyRef Name="PeriferiaMajorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PegasusPlusDBModelStoreContainer" CdmEntityContainer="PegasusPlusDBEntities">
+          <EntitySetMapping Name="APP_STATUS">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.APP_STATUS">
+              <MappingFragment StoreEntitySet="APP_STATUS">
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="STATUS_VALUE" ColumnName="STATUS_VALUE" />
+                <ScalarProperty Name="LOCAL_TEST" ColumnName="LOCAL_TEST" />
+                <ScalarProperty Name="STATUS_MESSAGE" ColumnName="STATUS_MESSAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prokirixis">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.Prokirixis">
+              <MappingFragment StoreEntitySet="Prokirixis">
+                <ScalarProperty Name="ProkirixiID" ColumnName="ProkirixiID" />
+                <ScalarProperty Name="Protocol" ColumnName="Protocol" />
+                <ScalarProperty Name="Fek" ColumnName="Fek" />
+                <ScalarProperty Name="SchoolYear" ColumnName="SchoolYear" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="Dioikitis" ColumnName="Dioikitis" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="UserView" ColumnName="UserView" />
+                <ScalarProperty Name="Enstaseis" ColumnName="Enstaseis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProkirixisEidikotites">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.ProkirixisEidikotites">
+              <MappingFragment StoreEntitySet="ProkirixisEidikotites">
+                <ScalarProperty Name="PSE_ID" ColumnName="PSE_ID" />
+                <ScalarProperty Name="ProkirixiID" ColumnName="ProkirixiID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysAnergia">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysAnergia">
+              <MappingFragment StoreEntitySet="SysAnergia">
+                <ScalarProperty Name="AnergiaID" ColumnName="AnergiaID" />
+                <ScalarProperty Name="AnergiaText" ColumnName="AnergiaText" />
+                <ScalarProperty Name="AnergiaMoria" ColumnName="AnergiaMoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysApoklismoi">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysApoklismoi">
+              <MappingFragment StoreEntitySet="SysApoklismoi">
+                <ScalarProperty Name="ApoklismosID" ColumnName="ApoklismosID" />
+                <ScalarProperty Name="ApoklismosText" ColumnName="ApoklismosText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysBasicEducation">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysBasicEducation">
+              <MappingFragment StoreEntitySet="SysBasicEducation">
+                <ScalarProperty Name="EducationID" ColumnName="EducationID" />
+                <ScalarProperty Name="EducationText" ColumnName="EducationText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysComputerAsep">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysComputerAsep">
+              <MappingFragment StoreEntitySet="SysComputerAsep">
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="CertificateText" ColumnName="CertificateText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysEidikotites">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysEidikotites">
+              <MappingFragment StoreEntitySet="SysEidikotites">
+                <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+                <ScalarProperty Name="EidikotitaCode" ColumnName="EidikotitaCode" />
+                <ScalarProperty Name="EidikotitaName" ColumnName="EidikotitaName" />
+                <ScalarProperty Name="EidikotitaUnified" ColumnName="EidikotitaUnified" />
+                <ScalarProperty Name="KladosUnified" ColumnName="KladosUnified" />
+                <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+                <ScalarProperty Name="EidikotitaGroupID" ColumnName="EidikotitaGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysEidikotitesGroups">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysEidikotitesGroups">
+              <MappingFragment StoreEntitySet="SysEidikotitesGroups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupText" ColumnName="GroupText" />
+                <ScalarProperty Name="Klados" ColumnName="Klados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysGenders">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysGenders">
+              <MappingFragment StoreEntitySet="SysGenders">
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="GenderText" ColumnName="GenderText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysKlados">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysKlados">
+              <MappingFragment StoreEntitySet="SysKlados">
+                <ScalarProperty Name="KladosID" ColumnName="KladosID" />
+                <ScalarProperty Name="KladosName" ColumnName="KladosName" />
+                <ScalarProperty Name="KladosCategory" ColumnName="KladosCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysKladosEniaios">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysKladosEniaios">
+              <MappingFragment StoreEntitySet="SysKladosEniaios">
+                <ScalarProperty Name="KladosEniaiosID" ColumnName="KladosEniaiosID" />
+                <ScalarProperty Name="KladosEniaiosText" ColumnName="KladosEniaiosText" />
+                <ScalarProperty Name="Klados" ColumnName="Klados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysLanguage">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysLanguage">
+              <MappingFragment StoreEntitySet="SysLanguage">
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="LanguageText" ColumnName="LanguageText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysLanguageLevel">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysLanguageLevel">
+              <MappingFragment StoreEntitySet="SysLanguageLevel">
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="LevelText" ColumnName="LevelText" />
+                <ScalarProperty Name="MoriaFirst" ColumnName="MoriaFirst" />
+                <ScalarProperty Name="MoriaSecond" ColumnName="MoriaSecond" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysMScPeriods">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysMScPeriods">
+              <MappingFragment StoreEntitySet="SysMScPeriods">
+                <ScalarProperty Name="MScPeriodID" ColumnName="MScPeriodID" />
+                <ScalarProperty Name="MScPeriodText" ColumnName="MScPeriodText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysPeriferiakes">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysPeriferiakes">
+              <MappingFragment StoreEntitySet="SysPeriferiakes">
+                <ScalarProperty Name="PeriferiakiID" ColumnName="PeriferiakiID" />
+                <ScalarProperty Name="PeriferiakiName" ColumnName="PeriferiakiName" />
+                <ScalarProperty Name="PeriferiakiShortName" ColumnName="PeriferiakiShortName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysPeriferies">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysPeriferies">
+              <MappingFragment StoreEntitySet="SysPeriferies">
+                <ScalarProperty Name="PeriferiaID" ColumnName="PeriferiaID" />
+                <ScalarProperty Name="PeriferiaName" ColumnName="PeriferiaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysProkirixiStatus">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysProkirixiStatus">
+              <MappingFragment StoreEntitySet="SysProkirixiStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusText" ColumnName="StatusText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysSchools">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysSchools">
+              <MappingFragment StoreEntitySet="SysSchools">
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+                <ScalarProperty Name="SchoolTypeID" ColumnName="SchoolTypeID" />
+                <ScalarProperty Name="SchoolPeriferiaID" ColumnName="SchoolPeriferiaID" />
+                <ScalarProperty Name="SchoolPeriferiakiID" ColumnName="SchoolPeriferiakiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysSchoolYears">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysSchoolYears">
+              <MappingFragment StoreEntitySet="SysSchoolYears">
+                <ScalarProperty Name="SchoolYearID" ColumnName="SchoolYearID" />
+                <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysTaxFree">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysTaxFree">
+              <MappingFragment StoreEntitySet="SysTaxFree">
+                <ScalarProperty Name="YearID" ColumnName="YearID" />
+                <ScalarProperty Name="YearText" ColumnName="YearText" />
+                <ScalarProperty Name="TaxFree" ColumnName="TaxFree" />
+                <ScalarProperty Name="Nomisma" ColumnName="Nomisma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysTeachTypes">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysTeachTypes">
+              <MappingFragment StoreEntitySet="SysTeachTypes">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeText" ColumnName="TypeText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAXISNET">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.TAXISNET">
+              <MappingFragment StoreEntitySet="TAXISNET">
+                <ScalarProperty Name="TAXISNET_ID" ColumnName="TAXISNET_ID" />
+                <ScalarProperty Name="RANDOM_NUMBER" ColumnName="RANDOM_NUMBER" />
+                <ScalarProperty Name="TAXISNET_AFM" ColumnName="TAXISNET_AFM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.Teachers">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="AFM" ColumnName="AFM" />
+                <ScalarProperty Name="DOY" ColumnName="DOY" />
+                <ScalarProperty Name="ADT" ColumnName="ADT" />
+                <ScalarProperty Name="AMKA" ColumnName="AMKA" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Periferia" ColumnName="Periferia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAdmins">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.UserAdmins">
+              <MappingFragment StoreEntitySet="UserAdmins">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSchools">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.UserSchools">
+              <MappingFragment StoreEntitySet="UserSchools">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserSchoolID" ColumnName="UserSchoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTeachers">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.UserTeachers">
+              <MappingFragment StoreEntitySet="UserTeachers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserAfm" ColumnName="UserAfm" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sqlEidikotitesSelector">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlEidikotitesSelector">
+              <MappingFragment StoreEntitySet="sqlEidikotitesSelector">
+                <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+                <ScalarProperty Name="EidikotitaDesc" ColumnName="EidikotitaDesc" />
+                <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+                <ScalarProperty Name="EidikotitaGroupID" ColumnName="EidikotitaGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sqlEidikotititesKladosEniaios">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlEidikotititesKladosEniaios">
+              <MappingFragment StoreEntitySet="sqlEidikotititesKladosEniaios">
+                <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+                <ScalarProperty Name="EidikotitaPtyxio" ColumnName="EidikotitaPtyxio" />
+                <ScalarProperty Name="KladosUnified" ColumnName="KladosUnified" />
+                <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sqlSchoolsPeriferiakesPefireies">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlSchoolsPeriferiakesPefireies">
+              <MappingFragment StoreEntitySet="sqlSchoolsPeriferiakesPefireies">
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="PeriferiakiShortName" ColumnName="PeriferiakiShortName" />
+                <ScalarProperty Name="PeriferiaName" ColumnName="PeriferiaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sqlTeacherAccountInfo">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlTeacherAccountInfo">
+              <MappingFragment StoreEntitySet="sqlTeacherAccountInfo">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="AFM" ColumnName="AFM" />
+                <ScalarProperty Name="ADT" ColumnName="ADT" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sqlUserSchool">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlUserSchool">
+              <MappingFragment StoreEntitySet="sqlUserSchool">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewEidikotites">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.viewEidikotites">
+              <MappingFragment StoreEntitySet="viewEidikotites">
+                <ScalarProperty Name="GroupText" ColumnName="GroupText" />
+                <ScalarProperty Name="KladosName" ColumnName="KladosName" />
+                <ScalarProperty Name="EidikotitaGroupID" ColumnName="EidikotitaGroupID" />
+                <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+                <ScalarProperty Name="EidikotitaName" ColumnName="EidikotitaName" />
+                <ScalarProperty Name="EidikotitaCode" ColumnName="EidikotitaCode" />
+                <ScalarProperty Name="EidikotitaEniaia" ColumnName="EidikotitaEniaia" />
+                <ScalarProperty Name="EidikotitaDesc" ColumnName="EidikotitaDesc" />
+                <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysNomoi">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysNomoi">
+              <MappingFragment StoreEntitySet="SysNomoi">
+                <ScalarProperty Name="PeriferiaMajorID" ColumnName="PeriferiaMajorID" />
+                <ScalarProperty Name="NomosText" ColumnName="NomosText" />
+                <ScalarProperty Name="NomosID" ColumnName="NomosID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysPeriferiesMajor">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.SysPeriferiesMajor">
+              <MappingFragment StoreEntitySet="SysPeriferiesMajor">
+                <ScalarProperty Name="PeriferiaMajor" ColumnName="PeriferiaMajor" />
+                <ScalarProperty Name="PeriferiaMajorID" ColumnName="PeriferiaMajorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Πληροφορίες";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container k-floatwrap">
+    <h1>@ViewBag.Title</h1><p></p><p></p><br />
+    <h3>@ViewBag.Message</h3>
+
+    <div style="float: left">
+        <!-- Info area -->
+        <article>
+            <p></p>
+            <p class="sansserif" style="font-weight:bold">
+                Οι βασικές λειτουργίες της εφαρμογής Pegasus είναι οι εξής:
+            </p>
+            <p class="sansserif">
+                1. Ηλεκτρονική υποβολή αιτήσεων πρόσληψης από τους υποψήφιους εκπαιδευτικούς του ΟΑΕΔ.
+            </p>
+            <p class="sansserif">
+                2. Δημιουργία ηλεκτρονικού μητρώου εκπαιδευτικών.
+            </p>
+            <p class="sansserif">
+                3. Online μοριοποίηση των εκπαιδευτικών από τις επιτροπές (Α'/βάθμια, Β'/βάθμια).
+            </p>
+            <p class="sansserif">
+                4. Δημιουργία ηλεκτρονικού μητρώου εκπαιδευτικών.
+            </p>
+            <p class="sansserif">
+                5. Online (αυτόματη) ενημέρωση ενημέρωση των ενδιαφερομένων για την πορεία της διαδικασίας αξιολόγησης.
+            </p>
+            <p class="sansserif">
+                6. Δημιουργία και προβολή τελικών πινάκων αξιολόγησης.
+            </p>
+            <p></p>
+        </article>
+        <!-- /Info area -->
+    </div>
+
+</div>
+<p></p><p></p>
+
+@section footer {
+    <footer class="text-center d-flex align-items-center mt-2" style="min-height:100px;">
+        <table width:50% style="margin:auto">
+            <tr>
+                <td width="5%" align="left"><img src="~/images/metro/oaed-logo.png" height="60" width="74" /></td>
+                <td align="center">
+                    <font color="#000080" size="3" style="font-weight:600">Διεύθυνση Αρχικής Επαγγελματικής Εκπαίδευσης και Κατάρτισης</font>
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" align="left"></td>
+                <td align="center">
+                    <font color="#000080" size="2">@DateTime.Now.Year, Μελέτη-Ανάπτυξη: Δρ. Γεώργιος Κυριακάκης, Επιστημονικός Συνεργάτης: Ελευθέριος Κυριακάκης (PhD)</font>
+                </td>
+            </tr>
+        </table>
+    </footer>
+}

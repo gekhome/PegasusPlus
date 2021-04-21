@@ -1,0 +1,122 @@
+﻿@using PegasusPlus.DAL
+@using PegasusPlus.Models
+
+@{
+    ViewBag.Title = "Προκηρύξεις";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header" style="margin:5px 30px 5px 30px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+        <font style="color:#292929;float:left;font-family:'Segoe UI'">Διαχείριση Προκηρύξεων</font>
+    </span>
+    <span style="margin:5px 10px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">@Html.ActionLink("Επιστροφή", "Index", "Admin", null, new { @class = "btn btn-warning", style = "font-size:14px" })</span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Ανανέωση</button>
+</div>
+
+<div class="body-content mt-4" style="margin:10px 30px 5px 30px">
+    @(Html.Kendo().Grid<ProkirixisViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.ForeignKey(f => f.SchoolYear, (IEnumerable<SysSchoolYears>)ViewData["SchoolYears"], "SchoolYearID", "SchoolYearText").Width(20);
+            columns.Bound(m => m.Protocol).Width(25);
+            columns.Bound(m => m.Fek).Width(25);
+            columns.Bound(m => m.Dioikitis).Width(36);
+            columns.Bound(m => m.DateStart).Width(24);
+            columns.Bound(m => m.DateEnd).Width(22);
+            columns.ForeignKey(f => f.Status, (IEnumerable<SysProkirixiStatus>)ViewData["Status"], "StatusID", "StatusText").Width(20);
+            columns.Bound(m => m.Active).Width(16).ClientTemplate("<input type='checkbox' #= Active ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
+            columns.Bound(m => m.Admin).Width(16).ClientTemplate("<input type='checkbox' #= Admin ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
+            columns.Bound(m => m.UserView).Width(16).ClientTemplate("<input type='checkbox' #= UserView ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
+            columns.Bound(m => m.Enstaseis).Width(16).ClientTemplate("<input type='checkbox' #= Enstaseis ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
+            columns.Command(command => command.Destroy()).Width(20);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+            toolBar.Save();
+            toolBar.Excel();
+            toolBar.Pdf();
+        })
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Filterable()
+        .Navigatable()
+        .Editable(editable => editable.Mode(GridEditMode.InCell).CreateAt(GridInsertRowPosition.Top))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(450))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .Batch(true)
+        .PageSize(40)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.ProkirixiID);
+            model.Field(p => p.SchoolYear).DefaultValue(ViewData["DefaultSchoolYear"]);
+            model.Field(p => p.Status).DefaultValue(1);
+            model.Field(p => p.Active).DefaultValue(false);
+            model.Field(p => p.Admin).DefaultValue(false);
+            model.Field(p => p.UserView).DefaultValue(false);
+            model.Field(p => p.Enstaseis).DefaultValue(false);
+        })
+        .Create(create => create.Action("Prokirixis_Create", "Tools"))
+        .Read(read => read.Action("Prokirixis_Read", "Tools"))
+        .Update(update => update.Action("Prokirixis_Update", "Tools"))
+        .Destroy(destroy => destroy.Action("Prokirixis_Delete", "Tools"))
+        .Events(events => events.Error("error_handler"))
+    ) @* datasource*@
+    )
+</div>
+
+<script id="checkbox-events" type="text/javascript">
+
+    // Date: 16-11-2018
+    // THIS IS IT! It works for any number of checkbox columns
+    // in batch editing mode of the grid.
+    // Solution link: https://stackoverflow.com/questions/17889049/adding-bindeable-checkbox-column-to-grid
+
+    $(function () {
+        $('#Grid').on('click', '.chkbx', function () {
+            var checked = $(this).is(':checked');
+            var grid = $('#Grid').data().kendoGrid;
+
+            grid.closeCell();
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            var col = $(this).closest('td');
+
+            grid.editCell(col);
+            dataItem.set(grid.columns[col.index()].field, checked);
+            grid.closeCell(col);
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#Grid").data("kendoGrid").dataSource.read();
+        }
+    }
+
+</script>

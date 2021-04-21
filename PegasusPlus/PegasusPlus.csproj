@@ -1,0 +1,1881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F669ED89-5621-4B73-B3D8-87486AF4C0FC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PegasusPlus</RootNamespace>
+    <AssemblyName>PegasusPlus</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <ApplicationInsightsResourceId />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\lib\KENDOUIMVC\2016.1.112.545\Kendo.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Kendo.Mvc.resources">
+      <HintPath>..\lib\KENDOUIMVC\2016.1.112.545\el-GR\Kendo.Mvc.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Reporting, Version=10.0.16.113, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.OpenXmlRendering, Version=10.0.16.113, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.Service, Version=10.0.16.113, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.Services.WebApi, Version=10.0.16.113, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=10.0.16.113, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.ReportViewer.Mvc, Version=10.0.16.113, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BPM\Common.cs" />
+    <Compile Include="BPM\Kerberos.cs" />
+    <Compile Include="Controllers\DataControllers\AdminController.cs" />
+    <Compile Include="Controllers\DataControllers\ToolsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\UserControllers\UserAdminsController.cs" />
+    <Compile Include="DAL\APP_STATUS.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PegasusPlusEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PegasusPlusEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PegasusPlusEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PegasusPlusEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PegasusPlusEntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Prokirixis.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ProkirixisEidikotites.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Security\AdminPrincipal.cs" />
+    <Compile Include="DAL\Security\BaseViewPage.cs" />
+    <Compile Include="DAL\Security\CustomAuthorizeAttribute.cs" />
+    <Compile Include="DAL\Security\CustomPrincipal.cs" />
+    <Compile Include="DAL\Security\SchoolPrincipal.cs" />
+    <Compile Include="DAL\sqlEidikotitesSelector.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlEidikotititesKladosEniaios.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlSchoolsPeriferiakesPefireies.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlTeacherAccountInfo.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlUserSchool.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysAnergia.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysApoklismoi.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysBasicEducation.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysComputerAsep.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysEidikotites.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysEidikotitesGroups.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysGenders.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysKlados.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysKladosEniaios.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysLanguage.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysLanguageLevel.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysMScPeriods.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysNomoi.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysPeriferiakes.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysPeriferies.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysPeriferiesMajor.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysProkirixiStatus.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysSchools.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysSchoolYears.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysTaxFree.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysTeachTypes.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TAXISNET.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Teachers.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserAdmins.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserSchools.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UserTeachers.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\viewEidikotites.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\NotificationExtensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EidikotitesViewModel.cs" />
+    <Compile Include="Models\ProkirixisViewModel.cs" />
+    <Compile Include="Models\SysViewModel.cs" />
+    <Compile Include="Models\UserTeacherViewModel.cs" />
+    <Compile Include="Models\UserSchoolViewModel.cs" />
+    <Compile Include="Models\UserAdminViewModel.cs" />
+    <Compile Include="Notification\AjaxMessagesFilter.cs" />
+    <Compile Include="Notification\BaseController.cs" />
+    <Compile Include="Notification\ControllerExtensions.cs" />
+    <Compile Include="Notification\HtmlHelperExtensions.cs" />
+    <Compile Include="Notification\MessageType.cs" />
+    <Compile Include="Notification\NotificationEnumeration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\A2Logo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\A2Logo.Designer.cs">
+      <DependentUpon>A2Logo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\EidikotitesProkirixis.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\EidikotitesProkirixis.Designer.cs">
+      <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\Eidikotites.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\Eidikotites.Designer.cs">
+      <DependentUpon>Eidikotites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\GroupsEidikotites.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\GroupsEidikotites.Designer.cs">
+      <DependentUpon>GroupsEidikotites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\SchoolAccounts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\SchoolAccounts.Designer.cs">
+      <DependentUpon>SchoolAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\TaxFreeList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\TaxFreeList.Designer.cs">
+      <DependentUpon>TaxFreeList.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Clock\coolclock.js" />
+    <Content Include="Clock\excanvas.js" />
+    <Content Include="Clock\moreskins.js" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\Images\fail.gif" />
+    <Content Include="Content\Images\info-icon.png" />
+    <Content Include="Content\Images\info.png" />
+    <Content Include="Content\Images\ok.gif" />
+    <Content Include="Content\Images\warn.gif" />
+    <Content Include="Content\mvcNotify.css" />
+    <Content Include="Content\Suite.css" />
+    <Content Include="DAL\PegasusPlusEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PegasusPlusEntityModel.edmx</DependentUpon>
+      <LastGenOutput>PegasusPlusEntityModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL\PegasusPlusEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PegasusPlusEntityModel.edmx</DependentUpon>
+      <LastGenOutput>PegasusPlusEntityModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Images\200.png" />
+    <Content Include="Images\menu\doc-add-active.png" />
+    <Content Include="Images\menu\doc-add.png" />
+    <Content Include="Images\menu\doc-copy-active.png" />
+    <Content Include="Images\menu\doc-copy.png" />
+    <Content Include="Images\menu\doc-edit-active.png" />
+    <Content Include="Images\menu\doc-edit.png" />
+    <Content Include="Images\menu\doc-upload-active.png" />
+    <Content Include="Images\menu\doc-upload.png" />
+    <Content Include="Images\menu\person-active.png" />
+    <Content Include="Images\menu\person.png" />
+    <Content Include="Images\menu\results-active.png" />
+    <Content Include="Images\menu\results.png" />
+    <Content Include="Images\metro\add_user.png" />
+    <Content Include="Images\metro\administrative_tools.png" />
+    <Content Include="Images\metro\aitisi-edit1.png" />
+    <Content Include="Images\metro\aitisi-edit2.png" />
+    <Content Include="Images\metro\arrow-left01-blue.png" />
+    <Content Include="Images\metro\arrow-left01.png" />
+    <Content Include="Images\metro\arrow-right01-blue.png" />
+    <Content Include="Images\metro\arrow-right01.png" />
+    <Content Include="Images\metro\blue-admin.png" />
+    <Content Include="Images\metro\blue-people.png" />
+    <Content Include="Images\metro\blue-school-user.png" />
+    <Content Include="Images\metro\blue-school.png" />
+    <Content Include="Images\metro\blue-teacher.gif" />
+    <Content Include="Images\metro\check-icon.png" />
+    <Content Include="Images\metro\custom_content.png" />
+    <Content Include="Images\metro\doc-add-blue.png" />
+    <Content Include="Images\metro\doc-add.png" />
+    <Content Include="Images\metro\doc-edit.png" />
+    <Content Include="Images\metro\doc-upload.png" />
+    <Content Include="Images\metro\document-copies.png" />
+    <Content Include="Images\metro\document-icon4-blue.png" />
+    <Content Include="Images\metro\document-write.png" />
+    <Content Include="Images\metro\Education.png" />
+    <Content Include="Images\metro\error-general.png" />
+    <Content Include="Images\metro\Error-icon.png" />
+    <Content Include="Images\metro\error-image.png" />
+    <Content Include="Images\metro\ETHNOS.GIF" />
+    <Content Include="Images\metro\Evaluation.png" />
+    <Content Include="Images\metro\evaluation1.png" />
+    <Content Include="Images\metro\evaluation2.png" />
+    <Content Include="Images\metro\folder.png" />
+    <Content Include="Images\metro\Folders-OS-Documents-Library-Metro-icon.png" />
+    <Content Include="Images\metro\Folders-OS-Help-Metro-icon.png" />
+    <Content Include="Images\metro\Folders-OS-Info-Metro-icon.png" />
+    <Content Include="Images\metro\folder_PNG8765.png" />
+    <Content Include="Images\metro\help-icon01.png" />
+    <Content Include="Images\metro\information-icon-blue.png" />
+    <Content Include="Images\metro\live-mail.png" />
+    <Content Include="Images\metro\logo-oaed2.gif" />
+    <Content Include="Images\metro\oaed-logo-transparent.PNG" />
+    <Content Include="Images\metro\oaed-logo.png" />
+    <Content Include="Images\metro\orderedList0.png" />
+    <Content Include="Images\metro\orderedList1.png" />
+    <Content Include="Images\metro\orderedList2.png" />
+    <Content Include="Images\metro\orderedList3.png" />
+    <Content Include="Images\metro\orderedList4.png" />
+    <Content Include="Images\metro\orderedList5.png" />
+    <Content Include="Images\metro\orderedList6.png" />
+    <Content Include="Images\metro\orderedList7.png" />
+    <Content Include="Images\metro\orderedList8.png" />
+    <Content Include="Images\metro\orderedList9.png" />
+    <Content Include="Images\metro\pegasus.ico" />
+    <Content Include="Images\metro\pegasus.png" />
+    <Content Include="Images\metro\pegasus01.png" />
+    <Content Include="Images\metro\pegasus02.png" />
+    <Content Include="Images\metro\person-data.png" />
+    <Content Include="Images\metro\person01.png" />
+    <Content Include="Images\metro\project-evaluation.png" />
+    <Content Include="Images\metro\sad2-white.png" />
+    <Content Include="Images\metro\sales-team.png" />
+    <Content Include="Images\metro\school-metro-01.png" />
+    <Content Include="Images\metro\sign-up-icon.png" />
+    <Content Include="Images\metro\task02.png" />
+    <Content Include="Images\metro\teach-metro-02.png" />
+    <Content Include="Images\metro\teacher-education01.png" />
+    <Content Include="Images\metro\teacher-education02.png" />
+    <Content Include="Images\metro\teacher-follow01.png" />
+    <Content Include="Images\metro\teacher-help01.png" />
+    <Content Include="Images\metro\teacher-jobs01.png" />
+    <Content Include="Images\metro\teacher-jobs02.png" />
+    <Content Include="Images\metro\teacher-jobs03.png" />
+    <Content Include="Images\metro\teacher-person01.png" />
+    <Content Include="Images\metro\teacher-person02.png" />
+    <Content Include="Images\metro\teaching-icon-blue-150x150.png" />
+    <Content Include="Images\metro\user-login-white.png" />
+    <Content Include="Images\metro\users.png" />
+    <Content Include="Images\metro\user_metro.png" />
+    <Content Include="Images\metro\user_security-white.png" />
+    <Content Include="Images\metro\user_shield-blue.png" />
+    <Content Include="Images\metro\webform.png" />
+    <Content Include="Images\metro\Windows-icon %281%29.png" />
+    <Content Include="Images\metro\work-metro-01.png" />
+    <Content Include="Images\metro\worklod.png" />
+    <Content Include="Images\other\01-panel.png" />
+    <Content Include="Images\other\01-user.png" />
+    <Content Include="Images\other\ajax-loading.gif" />
+    <Content Include="Images\other\envelope.png" />
+    <Content Include="Images\other\error-icon.png" />
+    <Content Include="Images\other\file-select.jpg" />
+    <Content Include="Images\other\file-upload.jpg" />
+    <Content Include="Images\other\login-user.png" />
+    <Content Include="Images\other\maintenance-color.png" />
+    <Content Include="Images\other\maintenance-white.png" />
+    <Content Include="Images\other\maintenance-white2.png" />
+    <Content Include="Images\other\oaed-map.jpg" />
+    <Content Include="Images\other\progress.gif" />
+    <Content Include="Images\other\progress2.gif" />
+    <Content Include="Images\other\progress3.gif" />
+    <Content Include="Images\other\progress4.gif" />
+    <Content Include="Images\other\success-icon.png" />
+    <Content Include="Images\phone\appbar.acorn.png" />
+    <Content Include="Images\phone\appbar.add.png" />
+    <Content Include="Images\phone\appbar.adobe.acrobat.png" />
+    <Content Include="Images\phone\appbar.adobe.aftereffects.png" />
+    <Content Include="Images\phone\appbar.adobe.audition.png" />
+    <Content Include="Images\phone\appbar.adobe.bridge.png" />
+    <Content Include="Images\phone\appbar.adobe.dreamweaver.png" />
+    <Content Include="Images\phone\appbar.adobe.encore.png" />
+    <Content Include="Images\phone\appbar.adobe.fireworks.png" />
+    <Content Include="Images\phone\appbar.adobe.flash.png" />
+    <Content Include="Images\phone\appbar.adobe.flashbuilder.png" />
+    <Content Include="Images\phone\appbar.adobe.illustrator.png" />
+    <Content Include="Images\phone\appbar.adobe.indesign.png" />
+    <Content Include="Images\phone\appbar.adobe.lightroom.png" />
+    <Content Include="Images\phone\appbar.adobe.photoshop.png" />
+    <Content Include="Images\phone\appbar.adobe.prelude.png" />
+    <Content Include="Images\phone\appbar.adobe.premierpro.png" />
+    <Content Include="Images\phone\appbar.adobe.speedgrade.png" />
+    <Content Include="Images\phone\appbar.alert.png" />
+    <Content Include="Images\phone\appbar.alien.png" />
+    <Content Include="Images\phone\appbar.align.center.png" />
+    <Content Include="Images\phone\appbar.align.justify.png" />
+    <Content Include="Images\phone\appbar.align.left.png" />
+    <Content Include="Images\phone\appbar.align.right.png" />
+    <Content Include="Images\phone\appbar.anchor.png" />
+    <Content Include="Images\phone\appbar.app.favorite.png" />
+    <Content Include="Images\phone\appbar.app.minus.png" />
+    <Content Include="Images\phone\appbar.app.plus.png" />
+    <Content Include="Images\phone\appbar.app.png" />
+    <Content Include="Images\phone\appbar.app.remove.png" />
+    <Content Include="Images\phone\appbar.arcade.button.png" />
+    <Content Include="Images\phone\appbar.archive.png" />
+    <Content Include="Images\phone\appbar.arrow.collapsed.png" />
+    <Content Include="Images\phone\appbar.arrow.corner.up.right.png" />
+    <Content Include="Images\phone\appbar.arrow.down.png" />
+    <Content Include="Images\phone\appbar.arrow.down.up.png" />
+    <Content Include="Images\phone\appbar.arrow.expand.png" />
+    <Content Include="Images\phone\appbar.arrow.left.png" />
+    <Content Include="Images\phone\appbar.arrow.left.right.png" />
+    <Content Include="Images\phone\appbar.arrow.right.left.png" />
+    <Content Include="Images\phone\appbar.arrow.right.png" />
+    <Content Include="Images\phone\appbar.arrow.up.down.png" />
+    <Content Include="Images\phone\appbar.arrow.up.png" />
+    <Content Include="Images\phone\appbar.at.png" />
+    <Content Include="Images\phone\appbar.axis.three.png" />
+    <Content Include="Images\phone\appbar.baby.png" />
+    <Content Include="Images\phone\appbar.barcode.png" />
+    <Content Include="Images\phone\appbar.base.png" />
+    <Content Include="Images\phone\appbar.base.select.png" />
+    <Content Include="Images\phone\appbar.bath.png" />
+    <Content Include="Images\phone\appbar.battery.0.png" />
+    <Content Include="Images\phone\appbar.battery.1.png" />
+    <Content Include="Images\phone\appbar.battery.2.png" />
+    <Content Include="Images\phone\appbar.battery.3.png" />
+    <Content Include="Images\phone\appbar.bed.png" />
+    <Content Include="Images\phone\appbar.beer.guinness.png" />
+    <Content Include="Images\phone\appbar.beer.png" />
+    <Content Include="Images\phone\appbar.billboard.png" />
+    <Content Include="Images\phone\appbar.bing.png" />
+    <Content Include="Images\phone\appbar.book.contact.png" />
+    <Content Include="Images\phone\appbar.book.hardcover.open.png" />
+    <Content Include="Images\phone\appbar.book.hardcover.open.writing.png" />
+    <Content Include="Images\phone\appbar.book.open.information.png" />
+    <Content Include="Images\phone\appbar.book.open.png" />
+    <Content Include="Images\phone\appbar.book.open.text.png" />
+    <Content Include="Images\phone\appbar.book.perspective.help.png" />
+    <Content Include="Images\phone\appbar.book.perspective.png" />
+    <Content Include="Images\phone\appbar.book.png" />
+    <Content Include="Images\phone\appbar.book.side.png" />
+    <Content Include="Images\phone\appbar.border.all.png" />
+    <Content Include="Images\phone\appbar.border.bottom.png" />
+    <Content Include="Images\phone\appbar.border.horizontal.png" />
+    <Content Include="Images\phone\appbar.border.inner.png" />
+    <Content Include="Images\phone\appbar.border.left.png" />
+    <Content Include="Images\phone\appbar.border.none.png" />
+    <Content Include="Images\phone\appbar.border.outside.png" />
+    <Content Include="Images\phone\appbar.border.right.png" />
+    <Content Include="Images\phone\appbar.border.top.png" />
+    <Content Include="Images\phone\appbar.border.vertical.png" />
+    <Content Include="Images\phone\appbar.box.layered.png" />
+    <Content Include="Images\phone\appbar.box.png" />
+    <Content Include="Images\phone\appbar.box.unfolded.png" />
+    <Content Include="Images\phone\appbar.browser.chrome.png" />
+    <Content Include="Images\phone\appbar.browser.ie.png" />
+    <Content Include="Images\phone\appbar.browser.png" />
+    <Content Include="Images\phone\appbar.browser.wire.png" />
+    <Content Include="Images\phone\appbar.bug.png" />
+    <Content Include="Images\phone\appbar.bug.remove.png" />
+    <Content Include="Images\phone\appbar.cabinet.files.png" />
+    <Content Include="Images\phone\appbar.cabinet.files.variant.png" />
+    <Content Include="Images\phone\appbar.cabinet.in.png" />
+    <Content Include="Images\phone\appbar.cabinet.out.png" />
+    <Content Include="Images\phone\appbar.cabinet.png" />
+    <Content Include="Images\phone\appbar.cabinet.variant.png" />
+    <Content Include="Images\phone\appbar.calculator.png" />
+    <Content Include="Images\phone\appbar.calendar.14.png" />
+    <Content Include="Images\phone\appbar.calendar.31.png" />
+    <Content Include="Images\phone\appbar.calendar.day.png" />
+    <Content Include="Images\phone\appbar.calendar.dollar.png" />
+    <Content Include="Images\phone\appbar.calendar.month.png" />
+    <Content Include="Images\phone\appbar.calendar.png" />
+    <Content Include="Images\phone\appbar.calendar.range.png" />
+    <Content Include="Images\phone\appbar.calendar.week.png" />
+    <Content Include="Images\phone\appbar.calendar.year.png" />
+    <Content Include="Images\phone\appbar.camera.flash.auto.png" />
+    <Content Include="Images\phone\appbar.camera.flash.auto.selected.png" />
+    <Content Include="Images\phone\appbar.camera.flash.off.png" />
+    <Content Include="Images\phone\appbar.camera.flash.off.selected.png" />
+    <Content Include="Images\phone\appbar.camera.flash.png" />
+    <Content Include="Images\phone\appbar.camera.flash.selected.png" />
+    <Content Include="Images\phone\appbar.camera.png" />
+    <Content Include="Images\phone\appbar.camera.send.png" />
+    <Content Include="Images\phone\appbar.camera.switch.invert.png" />
+    <Content Include="Images\phone\appbar.camera.switch.png" />
+    <Content Include="Images\phone\appbar.cancel.png" />
+    <Content Include="Images\phone\appbar.candy.cane.png" />
+    <Content Include="Images\phone\appbar.card.1.png" />
+    <Content Include="Images\phone\appbar.card.2.png" />
+    <Content Include="Images\phone\appbar.card.3.png" />
+    <Content Include="Images\phone\appbar.card.4.png" />
+    <Content Include="Images\phone\appbar.card.5.png" />
+    <Content Include="Images\phone\appbar.card.6.png" />
+    <Content Include="Images\phone\appbar.card.7.png" />
+    <Content Include="Images\phone\appbar.card.8.png" />
+    <Content Include="Images\phone\appbar.card.9.png" />
+    <Content Include="Images\phone\appbar.card.png" />
+    <Content Include="Images\phone\appbar.cards.club.png" />
+    <Content Include="Images\phone\appbar.cards.diamond.png" />
+    <Content Include="Images\phone\appbar.cards.heart.png" />
+    <Content Include="Images\phone\appbar.cards.spade.png" />
+    <Content Include="Images\phone\appbar.cart.png" />
+    <Content Include="Images\phone\appbar.cd.eject.png" />
+    <Content Include="Images\phone\appbar.cd.png" />
+    <Content Include="Images\phone\appbar.cell.align.png" />
+    <Content Include="Images\phone\appbar.cell.column.delete.png" />
+    <Content Include="Images\phone\appbar.cell.down.png" />
+    <Content Include="Images\phone\appbar.cell.function.png" />
+    <Content Include="Images\phone\appbar.cell.insert.above.png" />
+    <Content Include="Images\phone\appbar.cell.insert.below.png" />
+    <Content Include="Images\phone\appbar.cell.merge.png" />
+    <Content Include="Images\phone\appbar.cell.row.delete.png" />
+    <Content Include="Images\phone\appbar.cell.up.png" />
+    <Content Include="Images\phone\appbar.chat.png" />
+    <Content Include="Images\phone\appbar.check.png" />
+    <Content Include="Images\phone\appbar.checkmark.cross.png" />
+    <Content Include="Images\phone\appbar.checkmark.pencil.png" />
+    <Content Include="Images\phone\appbar.checkmark.pencil.top.png" />
+    <Content Include="Images\phone\appbar.checkmark.png" />
+    <Content Include="Images\phone\appbar.checkmark.thick.png" />
+    <Content Include="Images\phone\appbar.checkmark.thick.unchecked.png" />
+    <Content Include="Images\phone\appbar.checkmark.uncrossed.png" />
+    <Content Include="Images\phone\appbar.chess.bishop.png" />
+    <Content Include="Images\phone\appbar.chess.horse.png" />
+    <Content Include="Images\phone\appbar.chess.king.png" />
+    <Content Include="Images\phone\appbar.chess.pawn.png" />
+    <Content Include="Images\phone\appbar.chess.queen.png" />
+    <Content Include="Images\phone\appbar.chess.rook.png" />
+    <Content Include="Images\phone\appbar.chevron.down.png" />
+    <Content Include="Images\phone\appbar.chevron.left.png" />
+    <Content Include="Images\phone\appbar.chevron.right.png" />
+    <Content Include="Images\phone\appbar.chevron.up.png" />
+    <Content Include="Images\phone\appbar.chromakey.png" />
+    <Content Include="Images\phone\appbar.church.png" />
+    <Content Include="Images\phone\appbar.city.chicago.png" />
+    <Content Include="Images\phone\appbar.city.png" />
+    <Content Include="Images\phone\appbar.city.sanfrancisco.png" />
+    <Content Include="Images\phone\appbar.city.seattle.png" />
+    <Content Include="Images\phone\appbar.clean.png" />
+    <Content Include="Images\phone\appbar.clear.inverse.png" />
+    <Content Include="Images\phone\appbar.clear.inverse.reflect.horizontal.png" />
+    <Content Include="Images\phone\appbar.clear.png" />
+    <Content Include="Images\phone\appbar.clear.reflect.horizontal.png" />
+    <Content Include="Images\phone\appbar.clipboard.paper.check.png" />
+    <Content Include="Images\phone\appbar.clipboard.paper.png" />
+    <Content Include="Images\phone\appbar.clipboard.paste.png" />
+    <Content Include="Images\phone\appbar.clipboard.png" />
+    <Content Include="Images\phone\appbar.clipboard.variant.edit.png" />
+    <Content Include="Images\phone\appbar.clipboard.variant.png" />
+    <Content Include="Images\phone\appbar.clipboard.variant.text.png" />
+    <Content Include="Images\phone\appbar.clock.png" />
+    <Content Include="Images\phone\appbar.close.png" />
+    <Content Include="Images\phone\appbar.closedcaption.off.png" />
+    <Content Include="Images\phone\appbar.closedcaption.png" />
+    <Content Include="Images\phone\appbar.clothes.shirt.png" />
+    <Content Include="Images\phone\appbar.clothes.tie.png" />
+    <Content Include="Images\phone\appbar.cloud.add.png" />
+    <Content Include="Images\phone\appbar.cloud.delete.png" />
+    <Content Include="Images\phone\appbar.cloud.download.png" />
+    <Content Include="Images\phone\appbar.cloud.pause.png" />
+    <Content Include="Images\phone\appbar.cloud.play.png" />
+    <Content Include="Images\phone\appbar.cloud.png" />
+    <Content Include="Images\phone\appbar.cloud.upload.png" />
+    <Content Include="Images\phone\appbar.cloudirc.png" />
+    <Content Include="Images\phone\appbar.cog.png" />
+    <Content Include="Images\phone\appbar.cogs.png" />
+    <Content Include="Images\phone\appbar.column.one.png" />
+    <Content Include="Images\phone\appbar.column.three.png" />
+    <Content Include="Images\phone\appbar.column.two.png" />
+    <Content Include="Images\phone\appbar.companioncube.png" />
+    <Content Include="Images\phone\appbar.cone.diagonal.png" />
+    <Content Include="Images\phone\appbar.cone.png" />
+    <Content Include="Images\phone\appbar.confirm.yes.no.png" />
+    <Content Include="Images\phone\appbar.connect.png" />
+    <Content Include="Images\phone\appbar.connection.1x.png" />
+    <Content Include="Images\phone\appbar.connection.3g.png" />
+    <Content Include="Images\phone\appbar.connection.4g.png" />
+    <Content Include="Images\phone\appbar.connection.bluetooth.png" />
+    <Content Include="Images\phone\appbar.connection.ev.png" />
+    <Content Include="Images\phone\appbar.connection.quality.extremelylow.png" />
+    <Content Include="Images\phone\appbar.connection.quality.high.png" />
+    <Content Include="Images\phone\appbar.connection.quality.low.png" />
+    <Content Include="Images\phone\appbar.connection.quality.medium.png" />
+    <Content Include="Images\phone\appbar.connection.quality.veryhigh.png" />
+    <Content Include="Images\phone\appbar.connection.quality.verylow.png" />
+    <Content Include="Images\phone\appbar.connection.wifi.png" />
+    <Content Include="Images\phone\appbar.console.png" />
+    <Content Include="Images\phone\appbar.contrast.png" />
+    <Content Include="Images\phone\appbar.control.eject.png" />
+    <Content Include="Images\phone\appbar.control.fastforward.png" />
+    <Content Include="Images\phone\appbar.control.guide.png" />
+    <Content Include="Images\phone\appbar.control.pause.png" />
+    <Content Include="Images\phone\appbar.control.play.live.png" />
+    <Content Include="Images\phone\appbar.control.play.png" />
+    <Content Include="Images\phone\appbar.control.resume.png" />
+    <Content Include="Images\phone\appbar.control.rewind.png" />
+    <Content Include="Images\phone\appbar.control.stop.png" />
+    <Content Include="Images\phone\appbar.controller.snes.png" />
+    <Content Include="Images\phone\appbar.controller.xbox.png" />
+    <Content Include="Images\phone\appbar.copyright.png" />
+    <Content Include="Images\phone\appbar.corner.png" />
+    <Content Include="Images\phone\appbar.coupon.png" />
+    <Content Include="Images\phone\appbar.creativecommons.png" />
+    <Content Include="Images\phone\appbar.creditcard.png" />
+    <Content Include="Images\phone\appbar.crop.png" />
+    <Content Include="Images\phone\appbar.crosshair.png" />
+    <Content Include="Images\phone\appbar.crown.png" />
+    <Content Include="Images\phone\appbar.cup.empty.png" />
+    <Content Include="Images\phone\appbar.cup.full.png" />
+    <Content Include="Images\phone\appbar.cup.half.png" />
+    <Content Include="Images\phone\appbar.cup.paper.png" />
+    <Content Include="Images\phone\appbar.cup.png" />
+    <Content Include="Images\phone\appbar.cupcake.png" />
+    <Content Include="Images\phone\appbar.currency.cent.png" />
+    <Content Include="Images\phone\appbar.currency.dollar.free.png" />
+    <Content Include="Images\phone\appbar.currency.dollar.png" />
+    <Content Include="Images\phone\appbar.currency.euro.png" />
+    <Content Include="Images\phone\appbar.currency.grivna.png" />
+    <Content Include="Images\phone\appbar.currency.pound.png" />
+    <Content Include="Images\phone\appbar.currency.rubles.png" />
+    <Content Include="Images\phone\appbar.currency.rupee.png" />
+    <Content Include="Images\phone\appbar.currency.yen.png" />
+    <Content Include="Images\phone\appbar.cursor.default.outline.png" />
+    <Content Include="Images\phone\appbar.cursor.default.png" />
+    <Content Include="Images\phone\appbar.cursor.default.transform.horizontal.png" />
+    <Content Include="Images\phone\appbar.cursor.hand.png" />
+    <Content Include="Images\phone\appbar.cursor.move.png" />
+    <Content Include="Images\phone\appbar.cusor.pointer.png" />
+    <Content Include="Images\phone\appbar.database.png" />
+    <Content Include="Images\phone\appbar.debug.restart.png" />
+    <Content Include="Images\phone\appbar.debug.step.into.png" />
+    <Content Include="Images\phone\appbar.debug.step.out.png" />
+    <Content Include="Images\phone\appbar.debug.step.over.png" />
+    <Content Include="Images\phone\appbar.debug.stop.png" />
+    <Content Include="Images\phone\appbar.deeplink.png" />
+    <Content Include="Images\phone\appbar.deeplink.round.png" />
+    <Content Include="Images\phone\appbar.delete.png" />
+    <Content Include="Images\phone\appbar.devcenter.png" />
+    <Content Include="Images\phone\appbar.diagram.png" />
+    <Content Include="Images\phone\appbar.dial.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.box.height.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.box.width.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.line.height.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.line.height.short.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.line.height.thick.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.line.width.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.line.width.short.png" />
+    <Content Include="Images\phone\appbar.dimension.arrow.line.width.thick.png" />
+    <Content Include="Images\phone\appbar.dimension.box.height.png" />
+    <Content Include="Images\phone\appbar.dimension.box.width.png" />
+    <Content Include="Images\phone\appbar.dimension.line.height.png" />
+    <Content Include="Images\phone\appbar.dimension.line.height.short.png" />
+    <Content Include="Images\phone\appbar.dimension.line.width.png" />
+    <Content Include="Images\phone\appbar.dimension.line.width.short.png" />
+    <Content Include="Images\phone\appbar.directions.png" />
+    <Content Include="Images\phone\appbar.disconnect.png" />
+    <Content Include="Images\phone\appbar.disk.download.png" />
+    <Content Include="Images\phone\appbar.disk.png" />
+    <Content Include="Images\phone\appbar.dnd.png" />
+    <Content Include="Images\phone\appbar.door.enter.png" />
+    <Content Include="Images\phone\appbar.door.leave.png" />
+    <Content Include="Images\phone\appbar.door.lock.closed.png" />
+    <Content Include="Images\phone\appbar.door.lock.open.png" />
+    <Content Include="Images\phone\appbar.download.png" />
+    <Content Include="Images\phone\appbar.draw.brush.png" />
+    <Content Include="Images\phone\appbar.draw.brush.reflection.png" />
+    <Content Include="Images\phone\appbar.draw.button.png" />
+    <Content Include="Images\phone\appbar.draw.marker.png" />
+    <Content Include="Images\phone\appbar.draw.marker.reflection.png" />
+    <Content Include="Images\phone\appbar.draw.paintbrush.png" />
+    <Content Include="Images\phone\appbar.draw.pen.add.png" />
+    <Content Include="Images\phone\appbar.draw.pen.minus.png" />
+    <Content Include="Images\phone\appbar.draw.pen.png" />
+    <Content Include="Images\phone\appbar.draw.pen.reflection.png" />
+    <Content Include="Images\phone\appbar.draw.pencil.png" />
+    <Content Include="Images\phone\appbar.draw.pencil.reflection.png" />
+    <Content Include="Images\phone\appbar.dropper.png" />
+    <Content Include="Images\phone\appbar.edit.png" />
+    <Content Include="Images\phone\appbar.elevator.down.png" />
+    <Content Include="Images\phone\appbar.elevator.up.png" />
+    <Content Include="Images\phone\appbar.email.gmail.png" />
+    <Content Include="Images\phone\appbar.email.hardedge.png" />
+    <Content Include="Images\phone\appbar.email.minimal.png" />
+    <Content Include="Images\phone\appbar.email.outlook.png" />
+    <Content Include="Images\phone\appbar.email.png" />
+    <Content Include="Images\phone\appbar.email.yahoo.png" />
+    <Content Include="Images\phone\appbar.eye.hide.png" />
+    <Content Include="Images\phone\appbar.eye.png" />
+    <Content Include="Images\phone\appbar.facebook.connect.png" />
+    <Content Include="Images\phone\appbar.facebook.disconnect.png" />
+    <Content Include="Images\phone\appbar.fan.box.png" />
+    <Content Include="Images\phone\appbar.ferry.png" />
+    <Content Include="Images\phone\appbar.film.live.png" />
+    <Content Include="Images\phone\appbar.film.png" />
+    <Content Include="Images\phone\appbar.film.select.png" />
+    <Content Include="Images\phone\appbar.filter.alphabetical.png" />
+    <Content Include="Images\phone\appbar.filter.png" />
+    <Content Include="Images\phone\appbar.finder.png" />
+    <Content Include="Images\phone\appbar.fingerprint.png" />
+    <Content Include="Images\phone\appbar.flag.bear.png" />
+    <Content Include="Images\phone\appbar.flag.png" />
+    <Content Include="Images\phone\appbar.flag.texas.png" />
+    <Content Include="Images\phone\appbar.flag.wavy.png" />
+    <Content Include="Images\phone\appbar.folder.ellipsis.png" />
+    <Content Include="Images\phone\appbar.folder.lock.png" />
+    <Content Include="Images\phone\appbar.folder.open.png" />
+    <Content Include="Images\phone\appbar.folder.people.png" />
+    <Content Include="Images\phone\appbar.folder.png" />
+    <Content Include="Images\phone\appbar.folder.puzzle.png" />
+    <Content Include="Images\phone\appbar.folder.star.png" />
+    <Content Include="Images\phone\appbar.food.apple.png" />
+    <Content Include="Images\phone\appbar.food.png" />
+    <Content Include="Images\phone\appbar.food.silverware.cross.png" />
+    <Content Include="Images\phone\appbar.food.silverware.png" />
+    <Content Include="Images\phone\appbar.foot.png" />
+    <Content Include="Images\phone\appbar.forklift.load.png" />
+    <Content Include="Images\phone\appbar.forklift.png" />
+    <Content Include="Images\phone\appbar.form.basic.png" />
+    <Content Include="Images\phone\appbar.form.editable.png" />
+    <Content Include="Images\phone\appbar.forrst.png" />
+    <Content Include="Images\phone\appbar.forsale.png" />
+    <Content Include="Images\phone\appbar.fullscreen.box.png" />
+    <Content Include="Images\phone\appbar.fullscreen.png" />
+    <Content Include="Images\phone\appbar.futurama.bender.png" />
+    <Content Include="Images\phone\appbar.futurama.fry.png" />
+    <Content Include="Images\phone\appbar.gas.png" />
+    <Content Include="Images\phone\appbar.gauge.0.png" />
+    <Content Include="Images\phone\appbar.gauge.100.png" />
+    <Content Include="Images\phone\appbar.gauge.25.png" />
+    <Content Include="Images\phone\appbar.gauge.50.png" />
+    <Content Include="Images\phone\appbar.gauge.75.png" />
+    <Content Include="Images\phone\appbar.gender.both.png" />
+    <Content Include="Images\phone\appbar.gender.female.png" />
+    <Content Include="Images\phone\appbar.gender.male.png" />
+    <Content Include="Images\phone\appbar.gift.png" />
+    <Content Include="Images\phone\appbar.globe.png" />
+    <Content Include="Images\phone\appbar.globe.wire.png" />
+    <Content Include="Images\phone\appbar.google.png" />
+    <Content Include="Images\phone\appbar.googleplus.png" />
+    <Content Include="Images\phone\appbar.grade.a.minus.png" />
+    <Content Include="Images\phone\appbar.grade.a.plus.png" />
+    <Content Include="Images\phone\appbar.grade.a.png" />
+    <Content Include="Images\phone\appbar.grade.b.minus.png" />
+    <Content Include="Images\phone\appbar.grade.b.plus.png" />
+    <Content Include="Images\phone\appbar.grade.b.png" />
+    <Content Include="Images\phone\appbar.grade.c.minus.png" />
+    <Content Include="Images\phone\appbar.grade.c.plus.png" />
+    <Content Include="Images\phone\appbar.grade.c.png" />
+    <Content Include="Images\phone\appbar.grade.d.minus.png" />
+    <Content Include="Images\phone\appbar.grade.d.plus.png" />
+    <Content Include="Images\phone\appbar.grade.d.png" />
+    <Content Include="Images\phone\appbar.grade.e.png" />
+    <Content Include="Images\phone\appbar.grade.f.png" />
+    <Content Include="Images\phone\appbar.graph.bar.png" />
+    <Content Include="Images\phone\appbar.graph.boxplot.png" />
+    <Content Include="Images\phone\appbar.graph.histogram.description.png" />
+    <Content Include="Images\phone\appbar.graph.histogram.png" />
+    <Content Include="Images\phone\appbar.graph.line.down.png" />
+    <Content Include="Images\phone\appbar.graph.line.png" />
+    <Content Include="Images\phone\appbar.graph.line.up.png" />
+    <Content Include="Images\phone\appbar.greek.sigma.lowercase.png" />
+    <Content Include="Images\phone\appbar.greek.sigma.uppercase.png" />
+    <Content Include="Images\phone\appbar.grid.png" />
+    <Content Include="Images\phone\appbar.group.add.png" />
+    <Content Include="Images\phone\appbar.group.delete.png" />
+    <Content Include="Images\phone\appbar.group.minus.png" />
+    <Content Include="Images\phone\appbar.group.png" />
+    <Content Include="Images\phone\appbar.handicap.in.png" />
+    <Content Include="Images\phone\appbar.handicap.out.png" />
+    <Content Include="Images\phone\appbar.handicap.png" />
+    <Content Include="Images\phone\appbar.hardware.cpu.png" />
+    <Content Include="Images\phone\appbar.hardware.headphones.bluetooth.png" />
+    <Content Include="Images\phone\appbar.hardware.headphones.png" />
+    <Content Include="Images\phone\appbar.hardware.headset.png" />
+    <Content Include="Images\phone\appbar.hardware.mouse.png" />
+    <Content Include="Images\phone\appbar.heart.break.png" />
+    <Content Include="Images\phone\appbar.heart.cross.png" />
+    <Content Include="Images\phone\appbar.heart.outline.png" />
+    <Content Include="Images\phone\appbar.heart.png" />
+    <Content Include="Images\phone\appbar.home.garage.arrow.close.png" />
+    <Content Include="Images\phone\appbar.home.garage.arrow.open.png" />
+    <Content Include="Images\phone\appbar.home.garage.open.png" />
+    <Content Include="Images\phone\appbar.home.garage.png" />
+    <Content Include="Images\phone\appbar.home.gps.png" />
+    <Content Include="Images\phone\appbar.home.location.pin.png" />
+    <Content Include="Images\phone\appbar.home.location.round.png" />
+    <Content Include="Images\phone\appbar.home.people.none.png" />
+    <Content Include="Images\phone\appbar.home.people.png" />
+    <Content Include="Images\phone\appbar.home.png" />
+    <Content Include="Images\phone\appbar.home.question.png" />
+    <Content Include="Images\phone\appbar.home.variant.enter.png" />
+    <Content Include="Images\phone\appbar.home.variant.leave.png" />
+    <Content Include="Images\phone\appbar.home.variant.png" />
+    <Content Include="Images\phone\appbar.hourglass.png" />
+    <Content Include="Images\phone\appbar.icecream.bar.png" />
+    <Content Include="Images\phone\appbar.ie.png" />
+    <Content Include="Images\phone\appbar.image.ants.png" />
+    <Content Include="Images\phone\appbar.image.export.png" />
+    <Content Include="Images\phone\appbar.image.focus.png" />
+    <Content Include="Images\phone\appbar.image.gallery.png" />
+    <Content Include="Images\phone\appbar.image.hdr.png" />
+    <Content Include="Images\phone\appbar.image.multiple.png" />
+    <Content Include="Images\phone\appbar.image.png" />
+    <Content Include="Images\phone\appbar.image.redeye.png" />
+    <Content Include="Images\phone\appbar.image.select.png" />
+    <Content Include="Images\phone\appbar.inbox.in.png" />
+    <Content Include="Images\phone\appbar.inbox.out.png" />
+    <Content Include="Images\phone\appbar.inbox.png" />
+    <Content Include="Images\phone\appbar.infinite.png" />
+    <Content Include="Images\phone\appbar.information.circle.png" />
+    <Content Include="Images\phone\appbar.information.png" />
+    <Content Include="Images\phone\appbar.input.down.png" />
+    <Content Include="Images\phone\appbar.input.keyboard.down.png" />
+    <Content Include="Images\phone\appbar.input.keyboard.png" />
+    <Content Include="Images\phone\appbar.input.pen.down.png" />
+    <Content Include="Images\phone\appbar.input.pen.png" />
+    <Content Include="Images\phone\appbar.input.png" />
+    <Content Include="Images\phone\appbar.input.question.png" />
+    <Content Include="Images\phone\appbar.interface.button.png" />
+    <Content Include="Images\phone\appbar.interface.dropdown.png" />
+    <Content Include="Images\phone\appbar.interface.list.png" />
+    <Content Include="Images\phone\appbar.interface.password.png" />
+    <Content Include="Images\phone\appbar.interface.textbox.png" />
+    <Content Include="Images\phone\appbar.iphone.png" />
+    <Content Include="Images\phone\appbar.journal.png" />
+    <Content Include="Images\phone\appbar.key.old.png" />
+    <Content Include="Images\phone\appbar.key.png" />
+    <Content Include="Images\phone\appbar.lamp.desk.png" />
+    <Content Include="Images\phone\appbar.lamp.desk.variant.png" />
+    <Content Include="Images\phone\appbar.lamp.png" />
+    <Content Include="Images\phone\appbar.lamp.variant.png" />
+    <Content Include="Images\phone\appbar.language.csharp.png" />
+    <Content Include="Images\phone\appbar.language.java.png" />
+    <Content Include="Images\phone\appbar.language.java.text.png" />
+    <Content Include="Images\phone\appbar.language.python.png" />
+    <Content Include="Images\phone\appbar.language.python.text.png" />
+    <Content Include="Images\phone\appbar.laptop.png" />
+    <Content Include="Images\phone\appbar.lavalamp.png" />
+    <Content Include="Images\phone\appbar.layer.add.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.bringforward.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.bringtofront.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.sendbackward.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.sendtoback.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.solid.bringforward.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.solid.bringtofront.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.solid.sendbackward.png" />
+    <Content Include="Images\phone\appbar.layer.arrange.solid.sendtoback.png" />
+    <Content Include="Images\phone\appbar.layer.delete.png" />
+    <Content Include="Images\phone\appbar.layer.down.png" />
+    <Content Include="Images\phone\appbar.layer.minus.png" />
+    <Content Include="Images\phone\appbar.layer.perspective.up.png" />
+    <Content Include="Images\phone\appbar.layer.png" />
+    <Content Include="Images\phone\appbar.layer.thick.png" />
+    <Content Include="Images\phone\appbar.layer.up.png" />
+    <Content Include="Images\phone\appbar.layout.body.png" />
+    <Content Include="Images\phone\appbar.layout.collapse.left.png" />
+    <Content Include="Images\phone\appbar.layout.collapse.left.variant.png" />
+    <Content Include="Images\phone\appbar.layout.collapse.right.png" />
+    <Content Include="Images\phone\appbar.layout.collapse.right.variant.png" />
+    <Content Include="Images\phone\appbar.layout.expand.left.png" />
+    <Content Include="Images\phone\appbar.layout.expand.left.variant.png" />
+    <Content Include="Images\phone\appbar.layout.expand.right.png" />
+    <Content Include="Images\phone\appbar.layout.expand.right.variant.png" />
+    <Content Include="Images\phone\appbar.layout.header.png" />
+    <Content Include="Images\phone\appbar.layout.png" />
+    <Content Include="Images\phone\appbar.layout.sidebar.png" />
+    <Content Include="Images\phone\appbar.leaderboard.png" />
+    <Content Include="Images\phone\appbar.lifesaver.png" />
+    <Content Include="Images\phone\appbar.lightbulb.coil.png" />
+    <Content Include="Images\phone\appbar.lightbulb.hue.on.png" />
+    <Content Include="Images\phone\appbar.lightbulb.hue.png" />
+    <Content Include="Images\phone\appbar.lightbulb.png" />
+    <Content Include="Images\phone\appbar.lightning.png" />
+    <Content Include="Images\phone\appbar.lines.horizontal.4.png" />
+    <Content Include="Images\phone\appbar.link.png" />
+    <Content Include="Images\phone\appbar.linkedin.png" />
+    <Content Include="Images\phone\appbar.list.add.above.png" />
+    <Content Include="Images\phone\appbar.list.add.below.png" />
+    <Content Include="Images\phone\appbar.list.add.png" />
+    <Content Include="Images\phone\appbar.list.check.png" />
+    <Content Include="Images\phone\appbar.list.create.png" />
+    <Content Include="Images\phone\appbar.list.delete.inline.png" />
+    <Content Include="Images\phone\appbar.list.delete.png" />
+    <Content Include="Images\phone\appbar.list.gear.png" />
+    <Content Include="Images\phone\appbar.list.hidden.png" />
+    <Content Include="Images\phone\appbar.list.merge.png" />
+    <Content Include="Images\phone\appbar.list.one.png" />
+    <Content Include="Images\phone\appbar.list.png" />
+    <Content Include="Images\phone\appbar.list.reorder.down.png" />
+    <Content Include="Images\phone\appbar.list.reorder.png" />
+    <Content Include="Images\phone\appbar.list.reorder.up.png" />
+    <Content Include="Images\phone\appbar.list.select.png" />
+    <Content Include="Images\phone\appbar.list.star.png" />
+    <Content Include="Images\phone\appbar.list.two.png" />
+    <Content Include="Images\phone\appbar.location.add.png" />
+    <Content Include="Images\phone\appbar.location.circle.png" />
+    <Content Include="Images\phone\appbar.location.delete.png" />
+    <Content Include="Images\phone\appbar.location.foursquare.png" />
+    <Content Include="Images\phone\appbar.location.minus.png" />
+    <Content Include="Images\phone\appbar.location.png" />
+    <Content Include="Images\phone\appbar.location.round.png" />
+    <Content Include="Images\phone\appbar.lock.png" />
+    <Content Include="Images\phone\appbar.logic.and.add.png" />
+    <Content Include="Images\phone\appbar.logic.and.png" />
+    <Content Include="Images\phone\appbar.logic.or.add.png" />
+    <Content Include="Images\phone\appbar.logic.or.png" />
+    <Content Include="Images\phone\appbar.loop.png" />
+    <Content Include="Images\phone\appbar.magnify.add.png" />
+    <Content Include="Images\phone\appbar.magnify.minus.png" />
+    <Content Include="Images\phone\appbar.magnify.png" />
+    <Content Include="Images\phone\appbar.man.sensor.png" />
+    <Content Include="Images\phone\appbar.man.suitcase.fast.png" />
+    <Content Include="Images\phone\appbar.man.suitcase.png" />
+    <Content Include="Images\phone\appbar.man.suitcase.run.png" />
+    <Content Include="Images\phone\appbar.man.walk.png" />
+    <Content Include="Images\phone\appbar.map.aerial.highway.png" />
+    <Content Include="Images\phone\appbar.map.aerial.png" />
+    <Content Include="Images\phone\appbar.map.folds.png" />
+    <Content Include="Images\phone\appbar.map.gps.png" />
+    <Content Include="Images\phone\appbar.map.location.add.png" />
+    <Content Include="Images\phone\appbar.map.location.png" />
+    <Content Include="Images\phone\appbar.map.png" />
+    <Content Include="Images\phone\appbar.map.satellite.png" />
+    <Content Include="Images\phone\appbar.map.treasure.png" />
+    <Content Include="Images\phone\appbar.marketplace.old.png" />
+    <Content Include="Images\phone\appbar.marketplace.png" />
+    <Content Include="Images\phone\appbar.markup.png" />
+    <Content Include="Images\phone\appbar.martini.png" />
+    <Content Include="Images\phone\appbar.marvel.avengers.png" />
+    <Content Include="Images\phone\appbar.marvel.captainamerica.png" />
+    <Content Include="Images\phone\appbar.marvel.ironman.mask.png" />
+    <Content Include="Images\phone\appbar.marvel.ironman.png" />
+    <Content Include="Images\phone\appbar.marvel.shield.png" />
+    <Content Include="Images\phone\appbar.marvel.shield.variant.png" />
+    <Content Include="Images\phone\appbar.measure.celcius.png" />
+    <Content Include="Images\phone\appbar.measure.centimeter.png" />
+    <Content Include="Images\phone\appbar.measure.farenheit.png" />
+    <Content Include="Images\phone\appbar.measure.foot.png" />
+    <Content Include="Images\phone\appbar.measure.inch.png" />
+    <Content Include="Images\phone\appbar.measure.kilometer.png" />
+    <Content Include="Images\phone\appbar.measure.meter.png" />
+    <Content Include="Images\phone\appbar.measure.mile.png" />
+    <Content Include="Images\phone\appbar.medical.pill.broken.png" />
+    <Content Include="Images\phone\appbar.medical.pill.png" />
+    <Content Include="Images\phone\appbar.medical.pulse.png" />
+    <Content Include="Images\phone\appbar.message.png" />
+    <Content Include="Images\phone\appbar.message.profanity.png" />
+    <Content Include="Images\phone\appbar.message.send.png" />
+    <Content Include="Images\phone\appbar.message.smiley.png" />
+    <Content Include="Images\phone\appbar.microphone.png" />
+    <Content Include="Images\phone\appbar.microsoft.tag.png" />
+    <Content Include="Images\phone\appbar.minecraft.civcraft.png" />
+    <Content Include="Images\phone\appbar.minus.png" />
+    <Content Include="Images\phone\appbar.money.png" />
+    <Content Include="Images\phone\appbar.monitor.add.png" />
+    <Content Include="Images\phone\appbar.monitor.delete.png" />
+    <Content Include="Images\phone\appbar.monitor.film.png" />
+    <Content Include="Images\phone\appbar.monitor.identify.png" />
+    <Content Include="Images\phone\appbar.monitor.minus.png" />
+    <Content Include="Images\phone\appbar.monitor.play.png" />
+    <Content Include="Images\phone\appbar.monitor.png" />
+    <Content Include="Images\phone\appbar.monitor.to.png" />
+    <Content Include="Images\phone\appbar.mono.png" />
+    <Content Include="Images\phone\appbar.moon.first.quarter.png" />
+    <Content Include="Images\phone\appbar.moon.full.png" />
+    <Content Include="Images\phone\appbar.moon.new.png" />
+    <Content Include="Images\phone\appbar.moon.png" />
+    <Content Include="Images\phone\appbar.moon.sleep.png" />
+    <Content Include="Images\phone\appbar.moon.third.quarter.png" />
+    <Content Include="Images\phone\appbar.moon.waning.crescent.png" />
+    <Content Include="Images\phone\appbar.moon.waning.gibbous.png" />
+    <Content Include="Images\phone\appbar.moon.waxing.crescent.png" />
+    <Content Include="Images\phone\appbar.moon.waxing.gibbous.png" />
+    <Content Include="Images\phone\appbar.movie.clapper.png" />
+    <Content Include="Images\phone\appbar.movie.clapper.select.png" />
+    <Content Include="Images\phone\appbar.movie.clapper.solid.png" />
+    <Content Include="Images\phone\appbar.movie.clapper.solid.select.png" />
+    <Content Include="Images\phone\appbar.music.live.png" />
+    <Content Include="Images\phone\appbar.music.png" />
+    <Content Include="Images\phone\appbar.music.select.png" />
+    <Content Include="Images\phone\appbar.music.wifi.png" />
+    <Content Include="Images\phone\appbar.navigate.next.png" />
+    <Content Include="Images\phone\appbar.navigate.previous.png" />
+    <Content Include="Images\phone\appbar.network.disconnect.png" />
+    <Content Include="Images\phone\appbar.network.png" />
+    <Content Include="Images\phone\appbar.network.port.disconnect.png" />
+    <Content Include="Images\phone\appbar.network.port.png" />
+    <Content Include="Images\phone\appbar.new.png" />
+    <Content Include="Images\phone\appbar.new.window.png" />
+    <Content Include="Images\phone\appbar.newspaper.png" />
+    <Content Include="Images\phone\appbar.nfc.png" />
+    <Content Include="Images\phone\appbar.noentry.png" />
+    <Content Include="Images\phone\appbar.notification.above.multiple.png" />
+    <Content Include="Images\phone\appbar.notification.above.png" />
+    <Content Include="Images\phone\appbar.notification.multiple.png" />
+    <Content Include="Images\phone\appbar.notification.png" />
+    <Content Include="Images\phone\appbar.notification.star.png" />
+    <Content Include="Images\phone\appbar.nyan.png" />
+    <Content Include="Images\phone\appbar.office.365.png" />
+    <Content Include="Images\phone\appbar.office.access.png" />
+    <Content Include="Images\phone\appbar.office.excel.png" />
+    <Content Include="Images\phone\appbar.office.infopath.png" />
+    <Content Include="Images\phone\appbar.office.lync.png" />
+    <Content Include="Images\phone\appbar.office.onenote.png" />
+    <Content Include="Images\phone\appbar.office.outlook.png" />
+    <Content Include="Images\phone\appbar.office.png" />
+    <Content Include="Images\phone\appbar.office.powerpoint.png" />
+    <Content Include="Images\phone\appbar.office.project.png" />
+    <Content Include="Images\phone\appbar.office.publisher.png" />
+    <Content Include="Images\phone\appbar.office.sharepoint.png" />
+    <Content Include="Images\phone\appbar.office.visio.png" />
+    <Content Include="Images\phone\appbar.office.word.png" />
+    <Content Include="Images\phone\appbar.opacity.png" />
+    <Content Include="Images\phone\appbar.os.android.png" />
+    <Content Include="Images\phone\appbar.os.arm.png" />
+    <Content Include="Images\phone\appbar.os.blackberry.png" />
+    <Content Include="Images\phone\appbar.os.chromium.png" />
+    <Content Include="Images\phone\appbar.os.gnome.png" />
+    <Content Include="Images\phone\appbar.os.ios.png" />
+    <Content Include="Images\phone\appbar.os.ubuntu.png" />
+    <Content Include="Images\phone\appbar.os.windows.8.png" />
+    <Content Include="Images\phone\appbar.os.windows.png" />
+    <Content Include="Images\phone\appbar.os.windows.rt.png" />
+    <Content Include="Images\phone\appbar.os.windowsphone.png" />
+    <Content Include="Images\phone\appbar.os.windowsphone.round.png" />
+    <Content Include="Images\phone\appbar.os.x64.png" />
+    <Content Include="Images\phone\appbar.os.x86.png" />
+    <Content Include="Images\phone\appbar.outlet.png" />
+    <Content Include="Images\phone\appbar.page.0.png" />
+    <Content Include="Images\phone\appbar.page.1.png" />
+    <Content Include="Images\phone\appbar.page.2.png" />
+    <Content Include="Images\phone\appbar.page.3.png" />
+    <Content Include="Images\phone\appbar.page.4.png" />
+    <Content Include="Images\phone\appbar.page.5.png" />
+    <Content Include="Images\phone\appbar.page.6.png" />
+    <Content Include="Images\phone\appbar.page.7.png" />
+    <Content Include="Images\phone\appbar.page.8.png" />
+    <Content Include="Images\phone\appbar.page.9.png" />
+    <Content Include="Images\phone\appbar.page.add.png" />
+    <Content Include="Images\phone\appbar.page.arrow.png" />
+    <Content Include="Images\phone\appbar.page.bold.png" />
+    <Content Include="Images\phone\appbar.page.break.png" />
+    <Content Include="Images\phone\appbar.page.check.png" />
+    <Content Include="Images\phone\appbar.page.code.png" />
+    <Content Include="Images\phone\appbar.page.copy.png" />
+    <Content Include="Images\phone\appbar.page.corner.bookmark.png" />
+    <Content Include="Images\phone\appbar.page.corner.break.png" />
+    <Content Include="Images\phone\appbar.page.corner.cells.png" />
+    <Content Include="Images\phone\appbar.page.corner.folded.grid.png" />
+    <Content Include="Images\phone\appbar.page.corner.folded.png" />
+    <Content Include="Images\phone\appbar.page.corner.folded.text.png" />
+    <Content Include="Images\phone\appbar.page.corner.grid.png" />
+    <Content Include="Images\phone\appbar.page.corner.png" />
+    <Content Include="Images\phone\appbar.page.corner.text.break.png" />
+    <Content Include="Images\phone\appbar.page.corner.text.png" />
+    <Content Include="Images\phone\appbar.page.cross.png" />
+    <Content Include="Images\phone\appbar.page.delete.png" />
+    <Content Include="Images\phone\appbar.page.download.png" />
+    <Content Include="Images\phone\appbar.page.duplicate.png" />
+    <Content Include="Images\phone\appbar.page.edit.png" />
+    <Content Include="Images\phone\appbar.page.excel.png" />
+    <Content Include="Images\phone\appbar.page.file.gif.png" />
+    <Content Include="Images\phone\appbar.page.file.gif.tag.png" />
+    <Content Include="Images\phone\appbar.page.file.pdf.png" />
+    <Content Include="Images\phone\appbar.page.file.pdf.tag.png" />
+    <Content Include="Images\phone\appbar.page.heart.png" />
+    <Content Include="Images\phone\appbar.page.heartbreak.png" />
+    <Content Include="Images\phone\appbar.page.hidden.png" />
+    <Content Include="Images\phone\appbar.page.image.png" />
+    <Content Include="Images\phone\appbar.page.jpg.png" />
+    <Content Include="Images\phone\appbar.page.location.add.png" />
+    <Content Include="Images\phone\appbar.page.location.png" />
+    <Content Include="Images\phone\appbar.page.minus.png" />
+    <Content Include="Images\phone\appbar.page.multiple.png" />
+    <Content Include="Images\phone\appbar.page.music.png" />
+    <Content Include="Images\phone\appbar.page.new.png" />
+    <Content Include="Images\phone\appbar.page.onenote.png" />
+    <Content Include="Images\phone\appbar.page.pdf.png" />
+    <Content Include="Images\phone\appbar.page.png" />
+    <Content Include="Images\phone\appbar.page.png.png" />
+    <Content Include="Images\phone\appbar.page.powerpoint.png" />
+    <Content Include="Images\phone\appbar.page.question.png" />
+    <Content Include="Images\phone\appbar.page.search.png" />
+    <Content Include="Images\phone\appbar.page.select.png" />
+    <Content Include="Images\phone\appbar.page.small.png" />
+    <Content Include="Images\phone\appbar.page.solid.add.png" />
+    <Content Include="Images\phone\appbar.page.solid.png" />
+    <Content Include="Images\phone\appbar.page.text.png" />
+    <Content Include="Images\phone\appbar.page.upload.png" />
+    <Content Include="Images\phone\appbar.page.word.png" />
+    <Content Include="Images\phone\appbar.page.xml.png" />
+    <Content Include="Images\phone\appbar.palmtree.png" />
+    <Content Include="Images\phone\appbar.palmtree.variant.png" />
+    <Content Include="Images\phone\appbar.paper.png" />
+    <Content Include="Images\phone\appbar.paperclip.png" />
+    <Content Include="Images\phone\appbar.paperclip.rotated.png" />
+    <Content Include="Images\phone\appbar.paw.png" />
+    <Content Include="Images\phone\appbar.paypal.png" />
+    <Content Include="Images\phone\appbar.people.arrow.left.png" />
+    <Content Include="Images\phone\appbar.people.arrow.right.png" />
+    <Content Include="Images\phone\appbar.people.checkbox.png" />
+    <Content Include="Images\phone\appbar.people.down.png" />
+    <Content Include="Images\phone\appbar.people.left.png" />
+    <Content Include="Images\phone\appbar.people.magnify.png" />
+    <Content Include="Images\phone\appbar.people.multiple.magnify.png" />
+    <Content Include="Images\phone\appbar.people.multiple.png" />
+    <Content Include="Images\phone\appbar.people.png" />
+    <Content Include="Images\phone\appbar.people.profile.png" />
+    <Content Include="Images\phone\appbar.people.right.png" />
+    <Content Include="Images\phone\appbar.people.sensor.png" />
+    <Content Include="Images\phone\appbar.people.sensor.variant.png" />
+    <Content Include="Images\phone\appbar.people.status.png" />
+    <Content Include="Images\phone\appbar.people.up.png" />
+    <Content Include="Images\phone\appbar.percent.off.png" />
+    <Content Include="Images\phone\appbar.phone.hangup.png" />
+    <Content Include="Images\phone\appbar.phone.png" />
+    <Content Include="Images\phone\appbar.phone.voicemail.png" />
+    <Content Include="Images\phone\appbar.pie.png" />
+    <Content Include="Images\phone\appbar.pie.quarter.png" />
+    <Content Include="Images\phone\appbar.pin.png" />
+    <Content Include="Images\phone\appbar.pin.remove.png" />
+    <Content Include="Images\phone\appbar.places.png" />
+    <Content Include="Images\phone\appbar.plane.png" />
+    <Content Include="Images\phone\appbar.plane.rotated.135.png" />
+    <Content Include="Images\phone\appbar.plane.rotated.45.png" />
+    <Content Include="Images\phone\appbar.plant.png" />
+    <Content Include="Images\phone\appbar.pokeball.png" />
+    <Content Include="Images\phone\appbar.potion.png" />
+    <Content Include="Images\phone\appbar.power.png" />
+    <Content Include="Images\phone\appbar.printer.blank.png" />
+    <Content Include="Images\phone\appbar.printer.png" />
+    <Content Include="Images\phone\appbar.printer.text.png" />
+    <Content Include="Images\phone\appbar.projector.png" />
+    <Content Include="Images\phone\appbar.projector.screen.png" />
+    <Content Include="Images\phone\appbar.protractor.png" />
+    <Content Include="Images\phone\appbar.puzzle.png" />
+    <Content Include="Images\phone\appbar.puzzle.round.png" />
+    <Content Include="Images\phone\appbar.qr.png" />
+    <Content Include="Images\phone\appbar.question.png" />
+    <Content Include="Images\phone\appbar.quill.png" />
+    <Content Include="Images\phone\appbar.quote.left.png" />
+    <Content Include="Images\phone\appbar.quote.right.png" />
+    <Content Include="Images\phone\appbar.radar.png" />
+    <Content Include="Images\phone\appbar.radar.screen.png" />
+    <Content Include="Images\phone\appbar.radioactive.png" />
+    <Content Include="Images\phone\appbar.redo.curve.png" />
+    <Content Include="Images\phone\appbar.redo.png" />
+    <Content Include="Images\phone\appbar.redo.point.png" />
+    <Content Include="Images\phone\appbar.refresh.clockwise.down.png" />
+    <Content Include="Images\phone\appbar.refresh.clockwise.up.png" />
+    <Content Include="Images\phone\appbar.refresh.counterclockwise.down.png" />
+    <Content Include="Images\phone\appbar.refresh.counterclockwise.up.png" />
+    <Content Include="Images\phone\appbar.refresh.png" />
+    <Content Include="Images\phone\appbar.repeat.png" />
+    <Content Include="Images\phone\appbar.reply.calendar.png" />
+    <Content Include="Images\phone\appbar.reply.email.png" />
+    <Content Include="Images\phone\appbar.reply.people.png" />
+    <Content Include="Images\phone\appbar.reset.png" />
+    <Content Include="Images\phone\appbar.return.png" />
+    <Content Include="Images\phone\appbar.ribbon.png" />
+    <Content Include="Images\phone\appbar.ribbon.wave.png" />
+    <Content Include="Images\phone\appbar.ring.png" />
+    <Content Include="Images\phone\appbar.rss.png" />
+    <Content Include="Images\phone\appbar.ruler.png" />
+    <Content Include="Images\phone\appbar.sailboat.png" />
+    <Content Include="Images\phone\appbar.save.png" />
+    <Content Include="Images\phone\appbar.scale.png" />
+    <Content Include="Images\phone\appbar.scale.unbalanced.png" />
+    <Content Include="Images\phone\appbar.scrabble.a.png" />
+    <Content Include="Images\phone\appbar.scrabble.b.png" />
+    <Content Include="Images\phone\appbar.scrabble.c.png" />
+    <Content Include="Images\phone\appbar.scrabble.d.png" />
+    <Content Include="Images\phone\appbar.scrabble.e.png" />
+    <Content Include="Images\phone\appbar.scrabble.f.png" />
+    <Content Include="Images\phone\appbar.scrabble.g.png" />
+    <Content Include="Images\phone\appbar.scrabble.h.png" />
+    <Content Include="Images\phone\appbar.scrabble.i.png" />
+    <Content Include="Images\phone\appbar.scrabble.j.png" />
+    <Content Include="Images\phone\appbar.scrabble.k.png" />
+    <Content Include="Images\phone\appbar.scrabble.l.png" />
+    <Content Include="Images\phone\appbar.scrabble.m.png" />
+    <Content Include="Images\phone\appbar.scrabble.n.png" />
+    <Content Include="Images\phone\appbar.scrabble.o.png" />
+    <Content Include="Images\phone\appbar.scrabble.p.png" />
+    <Content Include="Images\phone\appbar.scrabble.q.png" />
+    <Content Include="Images\phone\appbar.scrabble.r.png" />
+    <Content Include="Images\phone\appbar.scrabble.s.png" />
+    <Content Include="Images\phone\appbar.scrabble.t.png" />
+    <Content Include="Images\phone\appbar.scrabble.u.png" />
+    <Content Include="Images\phone\appbar.scrabble.v.png" />
+    <Content Include="Images\phone\appbar.scrabble.w.png" />
+    <Content Include="Images\phone\appbar.scrabble.x.png" />
+    <Content Include="Images\phone\appbar.scrabble.y.png" />
+    <Content Include="Images\phone\appbar.scrabble.z.png" />
+    <Content Include="Images\phone\appbar.sd.micro.png" />
+    <Content Include="Images\phone\appbar.sd.png" />
+    <Content Include="Images\phone\appbar.section.collapse.all.png" />
+    <Content Include="Images\phone\appbar.section.collapse.png" />
+    <Content Include="Images\phone\appbar.section.expand.all.png" />
+    <Content Include="Images\phone\appbar.section.expand.png" />
+    <Content Include="Images\phone\appbar.settings.png" />
+    <Content Include="Images\phone\appbar.share.open.png" />
+    <Content Include="Images\phone\appbar.share.png" />
+    <Content Include="Images\phone\appbar.shield.alert.png" />
+    <Content Include="Images\phone\appbar.shield.png" />
+    <Content Include="Images\phone\appbar.shopping.png" />
+    <Content Include="Images\phone\appbar.shotglass.png" />
+    <Content Include="Images\phone\appbar.shuffle.png" />
+    <Content Include="Images\phone\appbar.sidebar.left.collapse.png" />
+    <Content Include="Images\phone\appbar.sidebar.left.expand.png" />
+    <Content Include="Images\phone\appbar.sidebar.right.collapse.png" />
+    <Content Include="Images\phone\appbar.sidebar.right.expand.png" />
+    <Content Include="Images\phone\appbar.sign.caution.png" />
+    <Content Include="Images\phone\appbar.sign.interstate.75.png" />
+    <Content Include="Images\phone\appbar.sign.interstate.94.png" />
+    <Content Include="Images\phone\appbar.sign.interstate.95.png" />
+    <Content Include="Images\phone\appbar.sign.interstate.png" />
+    <Content Include="Images\phone\appbar.sign.stop.png" />
+    <Content Include="Images\phone\appbar.simcard.micro.png" />
+    <Content Include="Images\phone\appbar.simcard.png" />
+    <Content Include="Images\phone\appbar.skydrive.download.png" />
+    <Content Include="Images\phone\appbar.skydrive.png" />
+    <Content Include="Images\phone\appbar.skydrive.upload.png" />
+    <Content Include="Images\phone\appbar.sleep.png" />
+    <Content Include="Images\phone\appbar.slice.png" />
+    <Content Include="Images\phone\appbar.smiley.angry.png" />
+    <Content Include="Images\phone\appbar.smiley.cry.png" />
+    <Content Include="Images\phone\appbar.smiley.frown.png" />
+    <Content Include="Images\phone\appbar.smiley.glasses.png" />
+    <Content Include="Images\phone\appbar.smiley.grin.png" />
+    <Content Include="Images\phone\appbar.smiley.grumpy.png" />
+    <Content Include="Images\phone\appbar.smiley.happy.png" />
+    <Content Include="Images\phone\appbar.smiley.kiki.png" />
+    <Content Include="Images\phone\appbar.smiley.squint.png" />
+    <Content Include="Images\phone\appbar.smiley.tounge.png" />
+    <Content Include="Images\phone\appbar.smiley.what.png" />
+    <Content Include="Images\phone\appbar.snowflake.png" />
+    <Content Include="Images\phone\appbar.social.aim.png" />
+    <Content Include="Images\phone\appbar.social.aim.variant.png" />
+    <Content Include="Images\phone\appbar.social.amazon.appstore.png" />
+    <Content Include="Images\phone\appbar.social.amazon.png" />
+    <Content Include="Images\phone\appbar.social.apple.appstore.png" />
+    <Content Include="Images\phone\appbar.social.apple.mobileme.png" />
+    <Content Include="Images\phone\appbar.social.apple.png" />
+    <Content Include="Images\phone\appbar.social.appnet.png" />
+    <Content Include="Images\phone\appbar.social.artcom.png" />
+    <Content Include="Images\phone\appbar.social.arto.png" />
+    <Content Include="Images\phone\appbar.social.aws.png" />
+    <Content Include="Images\phone\appbar.social.baidu.png" />
+    <Content Include="Images\phone\appbar.social.basecamp.png" />
+    <Content Include="Images\phone\appbar.social.bebo.png" />
+    <Content Include="Images\phone\appbar.social.behance.png" />
+    <Content Include="Images\phone\appbar.social.blogger.png" />
+    <Content Include="Images\phone\appbar.social.cloudapp.png" />
+    <Content Include="Images\phone\appbar.social.coding4fun.png" />
+    <Content Include="Images\phone\appbar.social.delicious.png" />
+    <Content Include="Images\phone\appbar.social.deviantart.png" />
+    <Content Include="Images\phone\appbar.social.digg.png" />
+    <Content Include="Images\phone\appbar.social.digg.variant.png" />
+    <Content Include="Images\phone\appbar.social.disqus.png" />
+    <Content Include="Images\phone\appbar.social.dribbble.png" />
+    <Content Include="Images\phone\appbar.social.dropbox.download.png" />
+    <Content Include="Images\phone\appbar.social.dropbox.png" />
+    <Content Include="Images\phone\appbar.social.dropbox.upload.png" />
+    <Content Include="Images\phone\appbar.social.drupal.png" />
+    <Content Include="Images\phone\appbar.social.engadget.png" />
+    <Content Include="Images\phone\appbar.social.etsy.png" />
+    <Content Include="Images\phone\appbar.social.evernote.png" />
+    <Content Include="Images\phone\appbar.social.facebook.heart.break.png" />
+    <Content Include="Images\phone\appbar.social.facebook.heart.png" />
+    <Content Include="Images\phone\appbar.social.facebook.png" />
+    <Content Include="Images\phone\appbar.social.facebook.variant.png" />
+    <Content Include="Images\phone\appbar.social.foursquare.png" />
+    <Content Include="Images\phone\appbar.social.gdgt.png" />
+    <Content Include="Images\phone\appbar.social.github.octocat.png" />
+    <Content Include="Images\phone\appbar.social.github.octocat.solid.png" />
+    <Content Include="Images\phone\appbar.social.github.png" />
+    <Content Include="Images\phone\appbar.social.grooveshark.png" />
+    <Content Include="Images\phone\appbar.social.indiegogo.png" />
+    <Content Include="Images\phone\appbar.social.jira.png" />
+    <Content Include="Images\phone\appbar.social.kickstarter.png" />
+    <Content Include="Images\phone\appbar.social.lastfm.png" />
+    <Content Include="Images\phone\appbar.social.linkedin.png" />
+    <Content Include="Images\phone\appbar.social.linkedin.variant.png" />
+    <Content Include="Images\phone\appbar.social.openid.png" />
+    <Content Include="Images\phone\appbar.social.picasa.png" />
+    <Content Include="Images\phone\appbar.social.pinterest.png" />
+    <Content Include="Images\phone\appbar.social.playstation.png" />
+    <Content Include="Images\phone\appbar.social.rdio.png" />
+    <Content Include="Images\phone\appbar.social.reddit.png" />
+    <Content Include="Images\phone\appbar.social.sharethis.png" />
+    <Content Include="Images\phone\appbar.social.skype.png" />
+    <Content Include="Images\phone\appbar.social.slashdot.png" />
+    <Content Include="Images\phone\appbar.social.soundcloud.png" />
+    <Content Include="Images\phone\appbar.social.spotify.png" />
+    <Content Include="Images\phone\appbar.social.stackoverflow.png" />
+    <Content Include="Images\phone\appbar.social.theverge.png" />
+    <Content Include="Images\phone\appbar.social.tumblr.png" />
+    <Content Include="Images\phone\appbar.social.twitter.retweet.png" />
+    <Content Include="Images\phone\appbar.social.vimeo.png" />
+    <Content Include="Images\phone\appbar.social.wikipedia.png" />
+    <Content Include="Images\phone\appbar.social.wordpress.png" />
+    <Content Include="Images\phone\appbar.social.wordpress.variant.png" />
+    <Content Include="Images\phone\appbar.social.yahoo.png" />
+    <Content Include="Images\phone\appbar.social.ycombinator.png" />
+    <Content Include="Images\phone\appbar.social.yelp.png" />
+    <Content Include="Images\phone\appbar.social.zappos.png" />
+    <Content Include="Images\phone\appbar.sort.alphabetical.ascending.png" />
+    <Content Include="Images\phone\appbar.sort.alphabetical.descending.png" />
+    <Content Include="Images\phone\appbar.sort.alphabetical.png" />
+    <Content Include="Images\phone\appbar.sort.numeric.ascending.png" />
+    <Content Include="Images\phone\appbar.sort.numeric.descending.png" />
+    <Content Include="Images\phone\appbar.sort.numeric.png" />
+    <Content Include="Images\phone\appbar.sort.png" />
+    <Content Include="Images\phone\appbar.sound.0.png" />
+    <Content Include="Images\phone\appbar.sound.1.png" />
+    <Content Include="Images\phone\appbar.sound.2.png" />
+    <Content Include="Images\phone\appbar.sound.3.png" />
+    <Content Include="Images\phone\appbar.sound.left.right.png" />
+    <Content Include="Images\phone\appbar.sound.mute.png" />
+    <Content Include="Images\phone\appbar.sound.stereo.png" />
+    <Content Include="Images\phone\appbar.sound.stereo.stack.png" />
+    <Content Include="Images\phone\appbar.source.fork.png" />
+    <Content Include="Images\phone\appbar.source.pull.png" />
+    <Content Include="Images\phone\appbar.speakerphone.png" />
+    <Content Include="Images\phone\appbar.sport.football.png" />
+    <Content Include="Images\phone\appbar.stairs.down.png" />
+    <Content Include="Images\phone\appbar.stairs.down.reflect.horizontal.png" />
+    <Content Include="Images\phone\appbar.stairs.up.png" />
+    <Content Include="Images\phone\appbar.stairs.up.reflect.horizontal.png" />
+    <Content Include="Images\phone\appbar.stamp.at.png" />
+    <Content Include="Images\phone\appbar.stamp.empty.png" />
+    <Content Include="Images\phone\appbar.stamp.png" />
+    <Content Include="Images\phone\appbar.star.add.png" />
+    <Content Include="Images\phone\appbar.star.delete.png" />
+    <Content Include="Images\phone\appbar.star.invincible.png" />
+    <Content Include="Images\phone\appbar.star.minus.png" />
+    <Content Include="Images\phone\appbar.star.png" />
+    <Content Include="Images\phone\appbar.star.remove.png" />
+    <Content Include="Images\phone\appbar.starwars.jedi.png" />
+    <Content Include="Images\phone\appbar.starwars.rebel.png" />
+    <Content Include="Images\phone\appbar.starwars.sith.png" />
+    <Content Include="Images\phone\appbar.steam.png" />
+    <Content Include="Images\phone\appbar.stock.down.png" />
+    <Content Include="Images\phone\appbar.stock.png" />
+    <Content Include="Images\phone\appbar.stock.up.png" />
+    <Content Include="Images\phone\appbar.stocking.png" />
+    <Content Include="Images\phone\appbar.stop.png" />
+    <Content Include="Images\phone\appbar.store.png" />
+    <Content Include="Images\phone\appbar.stream.png" />
+    <Content Include="Images\phone\appbar.suitcase.png" />
+    <Content Include="Images\phone\appbar.switch.off.png" />
+    <Content Include="Images\phone\appbar.table.add.png" />
+    <Content Include="Images\phone\appbar.table.delete.png" />
+    <Content Include="Images\phone\appbar.table.png" />
+    <Content Include="Images\phone\appbar.table.select.png" />
+    <Content Include="Images\phone\appbar.table.unselect.png" />
+    <Content Include="Images\phone\appbar.tag.label.png" />
+    <Content Include="Images\phone\appbar.tag.png" />
+    <Content Include="Images\phone\appbar.tardis.png" />
+    <Content Include="Images\phone\appbar.text.align.center.png" />
+    <Content Include="Images\phone\appbar.text.align.justify.png" />
+    <Content Include="Images\phone\appbar.text.align.left.png" />
+    <Content Include="Images\phone\appbar.text.align.right.png" />
+    <Content Include="Images\phone\appbar.text.bold.png" />
+    <Content Include="Images\phone\appbar.text.italic.png" />
+    <Content Include="Images\phone\appbar.text.overline.png" />
+    <Content Include="Images\phone\appbar.text.sans.png" />
+    <Content Include="Images\phone\appbar.text.script.png" />
+    <Content Include="Images\phone\appbar.text.serif.png" />
+    <Content Include="Images\phone\appbar.text.size.down.png" />
+    <Content Include="Images\phone\appbar.text.size.minus.png" />
+    <Content Include="Images\phone\appbar.text.size.plus.png" />
+    <Content Include="Images\phone\appbar.text.size.png" />
+    <Content Include="Images\phone\appbar.text.size.up.png" />
+    <Content Include="Images\phone\appbar.text.strikethrough.png" />
+    <Content Include="Images\phone\appbar.text.underline.png" />
+    <Content Include="Images\phone\appbar.thermometer.celcius.png" />
+    <Content Include="Images\phone\appbar.thermometer.digital.png" />
+    <Content Include="Images\phone\appbar.thermometer.fahrenheit.png" />
+    <Content Include="Images\phone\appbar.thermometer.honeywell.png" />
+    <Content Include="Images\phone\appbar.thermometer.kelvin.png" />
+    <Content Include="Images\phone\appbar.thermometer.png" />
+    <Content Include="Images\phone\appbar.thermometer.signs.png" />
+    <Content Include="Images\phone\appbar.thumb.up.add.png" />
+    <Content Include="Images\phone\appbar.thumb.up.delete.png" />
+    <Content Include="Images\phone\appbar.thumb.up.minus.png" />
+    <Content Include="Images\phone\appbar.thumbs.down.png" />
+    <Content Include="Images\phone\appbar.thumbs.up.png" />
+    <Content Include="Images\phone\appbar.ticket.png" />
+    <Content Include="Images\phone\appbar.tiles.four.png" />
+    <Content Include="Images\phone\appbar.tiles.minus.png" />
+    <Content Include="Images\phone\appbar.tiles.nine.png" />
+    <Content Include="Images\phone\appbar.tiles.plus.png" />
+    <Content Include="Images\phone\appbar.tiles.sixteen.png" />
+    <Content Include="Images\phone\appbar.timer.1.png" />
+    <Content Include="Images\phone\appbar.timer.2.png" />
+    <Content Include="Images\phone\appbar.timer.3.png" />
+    <Content Include="Images\phone\appbar.timer.4.png" />
+    <Content Include="Images\phone\appbar.timer.5.png" />
+    <Content Include="Images\phone\appbar.timer.alert.png" />
+    <Content Include="Images\phone\appbar.timer.check.png" />
+    <Content Include="Images\phone\appbar.timer.forward.png" />
+    <Content Include="Images\phone\appbar.timer.pause.png" />
+    <Content Include="Images\phone\appbar.timer.play.png" />
+    <Content Include="Images\phone\appbar.timer.png" />
+    <Content Include="Images\phone\appbar.timer.record.png" />
+    <Content Include="Images\phone\appbar.timer.rewind.png" />
+    <Content Include="Images\phone\appbar.timer.stop.png" />
+    <Content Include="Images\phone\appbar.tools.png" />
+    <Content Include="Images\phone\appbar.tournament.bracket.down.png" />
+    <Content Include="Images\phone\appbar.tournament.bracket.left.png" />
+    <Content Include="Images\phone\appbar.tournament.bracket.png" />
+    <Content Include="Images\phone\appbar.tournament.bracket.right.png" />
+    <Content Include="Images\phone\appbar.tournament.bracket.up.png" />
+    <Content Include="Images\phone\appbar.tower.png" />
+    <Content Include="Images\phone\appbar.train.png" />
+    <Content Include="Images\phone\appbar.train.track.png" />
+    <Content Include="Images\phone\appbar.train.tunnel.png" />
+    <Content Include="Images\phone\appbar.transform.flip.horizontal.png" />
+    <Content Include="Images\phone\appbar.transform.flip.vertical.png" />
+    <Content Include="Images\phone\appbar.transform.rotate.clockwise.png" />
+    <Content Include="Images\phone\appbar.transform.rotate.counterclockwise.png" />
+    <Content Include="Images\phone\appbar.transform.rotate.left.png" />
+    <Content Include="Images\phone\appbar.transform.rotate.right.png" />
+    <Content Include="Images\phone\appbar.transit.arrive.png" />
+    <Content Include="Images\phone\appbar.transit.bus.png" />
+    <Content Include="Images\phone\appbar.transit.car.accident.png" />
+    <Content Include="Images\phone\appbar.transit.car.png" />
+    <Content Include="Images\phone\appbar.transit.congestion.png" />
+    <Content Include="Images\phone\appbar.transit.connection.departure.png" />
+    <Content Include="Images\phone\appbar.transit.connection.png" />
+    <Content Include="Images\phone\appbar.transit.construction.png" />
+    <Content Include="Images\phone\appbar.transit.depart.png" />
+    <Content Include="Images\phone\appbar.transit.distance.from.png" />
+    <Content Include="Images\phone\appbar.transit.distance.to.png" />
+    <Content Include="Images\phone\appbar.transit.hazard.png" />
+    <Content Include="Images\phone\appbar.tree.leaf.png" />
+    <Content Include="Images\phone\appbar.tree.leaf.three.png" />
+    <Content Include="Images\phone\appbar.tree.pine.png" />
+    <Content Include="Images\phone\appbar.tree.png" />
+    <Content Include="Images\phone\appbar.trophy.png" />
+    <Content Include="Images\phone\appbar.truck.png" />
+    <Content Include="Images\phone\appbar.tux.png" />
+    <Content Include="Images\phone\appbar.tv.news.png" />
+    <Content Include="Images\phone\appbar.tv.png" />
+    <Content Include="Images\phone\appbar.tv.remote.png" />
+    <Content Include="Images\phone\appbar.tv.syfy.png" />
+    <Content Include="Images\phone\appbar.twitter.bird.png" />
+    <Content Include="Images\phone\appbar.twitter.png" />
+    <Content Include="Images\phone\appbar.undo.curve.png" />
+    <Content Include="Images\phone\appbar.undo.png" />
+    <Content Include="Images\phone\appbar.undo.point.png" />
+    <Content Include="Images\phone\appbar.unlock.keyhole.png" />
+    <Content Include="Images\phone\appbar.unlock.png" />
+    <Content Include="Images\phone\appbar.upload.png" />
+    <Content Include="Images\phone\appbar.usb.drive.png" />
+    <Content Include="Images\phone\appbar.usb.png" />
+    <Content Include="Images\phone\appbar.user.add.png" />
+    <Content Include="Images\phone\appbar.user.delete.png" />
+    <Content Include="Images\phone\appbar.user.minus.png" />
+    <Content Include="Images\phone\appbar.user.png" />
+    <Content Include="Images\phone\appbar.user.tie.png" />
+    <Content Include="Images\phone\appbar.uservoice.png" />
+    <Content Include="Images\phone\appbar.vector.circle.png" />
+    <Content Include="Images\phone\appbar.vector.group.png" />
+    <Content Include="Images\phone\appbar.vector.group.removed.png" />
+    <Content Include="Images\phone\appbar.vector.line.curve.png" />
+    <Content Include="Images\phone\appbar.vector.line.png" />
+    <Content Include="Images\phone\appbar.vector.line.spline.png" />
+    <Content Include="Images\phone\appbar.vector.pen.add.png" />
+    <Content Include="Images\phone\appbar.vector.pen.convert.png" />
+    <Content Include="Images\phone\appbar.vector.pen.minus.png" />
+    <Content Include="Images\phone\appbar.vector.pen.png" />
+    <Content Include="Images\phone\appbar.vector.polygon.png" />
+    <Content Include="Images\phone\appbar.vector.rectangle.png" />
+    <Content Include="Images\phone\appbar.vector.star.png" />
+    <Content Include="Images\phone\appbar.video.gallery.png" />
+    <Content Include="Images\phone\appbar.video.highdefinition.png" />
+    <Content Include="Images\phone\appbar.video.png" />
+    <Content Include="Images\phone\appbar.video.send.png" />
+    <Content Include="Images\phone\appbar.video.standarddefinition.png" />
+    <Content Include="Images\phone\appbar.vip.lowercase.png" />
+    <Content Include="Images\phone\appbar.vip.png" />
+    <Content Include="Images\phone\appbar.visualstudio.news.png" />
+    <Content Include="Images\phone\appbar.visualstudio.png" />
+    <Content Include="Images\phone\appbar.warning.circle.png" />
+    <Content Include="Images\phone\appbar.warning.png" />
+    <Content Include="Images\phone\appbar.water.droplet.alert.png" />
+    <Content Include="Images\phone\appbar.water.droplet.png" />
+    <Content Include="Images\phone\appbar.water.droplet.reflection.png" />
+    <Content Include="Images\phone\appbar.weather.chance.png" />
+    <Content Include="Images\phone\appbar.weather.overcast.png" />
+    <Content Include="Images\phone\appbar.weather.rain.png" />
+    <Content Include="Images\phone\appbar.weather.snow.png" />
+    <Content Include="Images\phone\appbar.weather.station.png" />
+    <Content Include="Images\phone\appbar.weather.sun.png" />
+    <Content Include="Images\phone\appbar.weather.sun.rise.png" />
+    <Content Include="Images\phone\appbar.weather.sun.set.png" />
+    <Content Include="Images\phone\appbar.weather.symbol.png" />
+    <Content Include="Images\phone\appbar.weather.thunder.png" />
+    <Content Include="Images\phone\appbar.webcam.png" />
+    <Content Include="Images\phone\appbar.window.casement.closed.png" />
+    <Content Include="Images\phone\appbar.window.casement.png" />
+    <Content Include="Images\phone\appbar.window.closed.png" />
+    <Content Include="Images\phone\appbar.window.png" />
+    <Content Include="Images\phone\appbar.window.simple.png" />
+    <Content Include="Images\phone\appbar.windowsphone.png" />
+    <Content Include="Images\phone\appbar.xbox.png" />
+    <Content Include="Images\phone\appbar.youtube.play.png" />
+    <Content Include="Images\phone\appbar.youtube.png" />
+    <Content Include="Images\phone\appbar.zune.png" />
+    <Content Include="Images\slide1a.jpg" />
+    <Content Include="Images\slide3.jpg" />
+    <Content Include="Images\slide2.jpg" />
+    <Content Include="Images\slide1.jpg" />
+    <Content Include="Images\upload\default.png" />
+    <Content Include="Images\upload\doc.png" />
+    <Content Include="Images\upload\jpg.png" />
+    <Content Include="Images\upload\mdb.png" />
+    <Content Include="Images\upload\pdf.png" />
+    <Content Include="Images\upload\txt.png" />
+    <Content Include="Images\upload\xls.png" />
+    <Content Include="Images\upload\zip.png" />
+    <Content Include="packages.config" />
+    <Content Include="ReportViewer\js\kendo.subset.2015.3.930.min.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer-10.0.16.113.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer-10.0.16.113.min.js" />
+    <Content Include="ReportViewer\templates\telerikReportViewerTemplate.html" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="DAL\PegasusPlusEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PegasusPlusEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DAL\PegasusPlusEntityModel.edmx.diagram">
+      <DependentUpon>PegasusPlusEntityModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="ReportViewer\resources.el-GR.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\custom\jspCustom.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
+    <Content Include="Scripts\messagebox\messagebox.css" />
+    <Content Include="Scripts\messagebox\messagebox.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\mvcNotify.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AppStatusOff.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ErrorConnect.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\ErrorData.cshtml" />
+    <Content Include="Views\UserAdmins\Error.cshtml" />
+    <Content Include="Views\UserAdmins\Login.cshtml" />
+    <Content Include="Views\UserAdmins\Login2.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\UserAdmins\AdminAccounts.cshtml" />
+    <Content Include="Views\Tools\SchoolAccounts.cshtml" />
+    <Content Include="Views\Tools\TeacherAccounts.cshtml" />
+    <Content Include="Views\Tools\SchoolYearsList.cshtml" />
+    <Content Include="Views\Tools\ApokleismoiList.cshtml" />
+    <Content Include="Views\Tools\TaxfreeList.cshtml" />
+    <Content Include="Views\Tools\TaxFreeIncomePrint.cshtml" />
+    <Content Include="Views\Shared\_PrintLayout.cshtml" />
+    <Content Include="Views\Tools\SchoolAccountsPrint.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\Tools\EidikotitesList.cshtml" />
+    <Content Include="Views\Tools\KladosUnifiedList.cshtml" />
+    <Content Include="Views\Tools\EidikotitesGroupsList.cshtml" />
+    <Content Include="Views\Tools\EidikotitesPrint.cshtml" />
+    <Content Include="Views\Tools\GroupsEidikotitesPrint.cshtml" />
+    <Content Include="Views\Tools\ProkirixisList.cshtml" />
+    <Content Include="Views\Tools\EidikotitesProkirixisSetup.cshtml" />
+    <Content Include="Views\Tools\EidikotitesProkirixisBrowse.cshtml" />
+    <Content Include="Views\Tools\EidikotitesProkirixiPrint.cshtml" />
+    <Content Include="Views\Tools\PeriferiesNomoi.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Reports\Pinakes\" />
+    <Folder Include="Reports\Statistics\" />
+    <Folder Include="Views\UserSchools\" />
+    <Folder Include="Views\UserTeachers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\A2Logo.resx">
+      <DependentUpon>A2Logo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\EidikotitesProkirixis.resx">
+      <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\Eidikotites.resx">
+      <DependentUpon>Eidikotites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\GroupsEidikotites.resx">
+      <DependentUpon>GroupsEidikotites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\SchoolAccounts.resx">
+      <DependentUpon>SchoolAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\TaxFreeList.resx">
+      <DependentUpon>TaxFreeList.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>20652</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:20652/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties UseCdnSupport="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

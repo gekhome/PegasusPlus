@@ -1,0 +1,138 @@
+﻿@using PegasusPlus.Models
+
+@{
+    ViewBag.Title = "ApokleismoiList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>*@
+
+<style>
+    input[type=file] {
+    width:90px;
+    color:transparent;
+}
+
+.btn-rmv1,
+.btn-rmv2 {
+  display: none;
+}
+
+.rmv {
+  cursor: pointer;
+  /*color: #fff;
+  border-radius: 100px;
+  border: 1px solid #fff;*/
+  display: inline-block;*/
+  /*background: rgba(255, 0, 0, 1);
+  margin: -5px -10px;*/
+}
+
+/*.rmv:hover {
+  background: rgba(255, 0, 0, 0.5);*/
+}
+</style>
+
+
+<div class="page-header" style="margin:5px 30px 5px 50px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+        <font style="color:#292929;float:left;font-family:'Segoe UI'">Αιτίες Αποκλεισμού</font>
+    </span>
+    <span style="margin:5px 15px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">@Html.ActionLink("Επιστροφή", "Index", "Admin", null, new { @class = "btn btn-warning", style = "font-size:14px" })</span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Ανανέωση</button>
+</div>
+
+<div class="body-content mt-4" style="margin:10px 30px 5px 30px">
+    @(Html.Kendo().Grid<ApoklismoiViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.ApoklismosText).Width(120);
+            columns.Command(command => command.Destroy()).Width(28);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+            toolBar.Save();
+            toolBar.Pdf();
+            toolBar.Excel();
+        })
+        .HtmlAttributes(new { style = "font-size:16px" })
+        .Navigatable()
+        .Filterable()
+        .Editable(editable => editable.Mode(GridEditMode.InCell).CreateAt(GridInsertRowPosition.Top))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(400))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .Batch(true)
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.ApoklismosID);
+        })
+        .Create(create => create.Action("Apokleismos_Create", "Tools"))
+        .Read(read => read.Action("Apokleismos_Read", "Tools"))
+        .Update(update => update.Action("Apokleismos_Update", "Tools"))
+        .Destroy(destroy => destroy.Action("Apokleismos_Destroy", "Tools"))
+        ) @* datasource*@
+    )
+</div>
+
+<div class="container body-content mt-4">
+    <div style="margin-bottom:4px">
+        <label>Πεδίο 1 για επισύναψη αρχείου</label>
+    </div>
+    <div>
+        <input type='file' id="field1" onchange="pressed1()" style="display:none;">
+        <label class="btn btn-outline-dark" for="field1" id="fileLabel1" style="cursor:pointer" title="Ανέβασμα αρχείου">
+            <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+        </label>
+        <label id="filename"></label>
+        <label class="btn btn-outline-danger btn-rmv1" id="removeFile1" style="margin-left:5px;margin-right:5px"><i class="fa fa-times" aria-hidden="true"></i></label>
+        <label class="btn btn-outline-dark btn-rmv1" id="preview" style="cursor:pointer" onclick="preview()"><i class="fa fa-eye" aria-hidden="true"></i></label>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+</script>
+
+<script type="text/javascript">
+    window.pressed1 = function () {
+        var a = document.getElementById('field1');
+        if (a.value == "") {
+            fileLabel1.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filename.innerHTML += " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv1').addClass('rmv');
+        }
+    };
+
+    $("#removeFile1").click(function (e) {
+        e.preventDefault();
+        $("#field1").val("");
+        fileLabel1.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filename.innerHTML = "";
+        $('.btn-rmv1').removeClass('rmv');
+    });
+
+    function preview() {
+        var a = document.getElementById('field1');
+        alert(a.value);
+        window.open(a.value, "width=500,height=500,top=100,left=500");
+    }
+</script>

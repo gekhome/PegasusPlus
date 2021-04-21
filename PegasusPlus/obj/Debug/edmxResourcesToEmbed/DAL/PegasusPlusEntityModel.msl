@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PegasusPlusDBModelStoreContainer" CdmEntityContainer="PegasusPlusDBEntities">
+    <EntitySetMapping Name="APP_STATUS">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.APP_STATUS">
+        <MappingFragment StoreEntitySet="APP_STATUS">
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="STATUS_VALUE" ColumnName="STATUS_VALUE" />
+          <ScalarProperty Name="LOCAL_TEST" ColumnName="LOCAL_TEST" />
+          <ScalarProperty Name="STATUS_MESSAGE" ColumnName="STATUS_MESSAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prokirixis">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.Prokirixis">
+        <MappingFragment StoreEntitySet="Prokirixis">
+          <ScalarProperty Name="ProkirixiID" ColumnName="ProkirixiID" />
+          <ScalarProperty Name="Protocol" ColumnName="Protocol" />
+          <ScalarProperty Name="Fek" ColumnName="Fek" />
+          <ScalarProperty Name="SchoolYear" ColumnName="SchoolYear" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="Dioikitis" ColumnName="Dioikitis" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="UserView" ColumnName="UserView" />
+          <ScalarProperty Name="Enstaseis" ColumnName="Enstaseis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProkirixisEidikotites">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.ProkirixisEidikotites">
+        <MappingFragment StoreEntitySet="ProkirixisEidikotites">
+          <ScalarProperty Name="PSE_ID" ColumnName="PSE_ID" />
+          <ScalarProperty Name="ProkirixiID" ColumnName="ProkirixiID" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysAnergia">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysAnergia">
+        <MappingFragment StoreEntitySet="SysAnergia">
+          <ScalarProperty Name="AnergiaID" ColumnName="AnergiaID" />
+          <ScalarProperty Name="AnergiaText" ColumnName="AnergiaText" />
+          <ScalarProperty Name="AnergiaMoria" ColumnName="AnergiaMoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysApoklismoi">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysApoklismoi">
+        <MappingFragment StoreEntitySet="SysApoklismoi">
+          <ScalarProperty Name="ApoklismosID" ColumnName="ApoklismosID" />
+          <ScalarProperty Name="ApoklismosText" ColumnName="ApoklismosText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysBasicEducation">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysBasicEducation">
+        <MappingFragment StoreEntitySet="SysBasicEducation">
+          <ScalarProperty Name="EducationID" ColumnName="EducationID" />
+          <ScalarProperty Name="EducationText" ColumnName="EducationText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysComputerAsep">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysComputerAsep">
+        <MappingFragment StoreEntitySet="SysComputerAsep">
+          <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+          <ScalarProperty Name="CertificateText" ColumnName="CertificateText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysEidikotites">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysEidikotites">
+        <MappingFragment StoreEntitySet="SysEidikotites">
+          <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+          <ScalarProperty Name="EidikotitaCode" ColumnName="EidikotitaCode" />
+          <ScalarProperty Name="EidikotitaName" ColumnName="EidikotitaName" />
+          <ScalarProperty Name="EidikotitaUnified" ColumnName="EidikotitaUnified" />
+          <ScalarProperty Name="KladosUnified" ColumnName="KladosUnified" />
+          <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+          <ScalarProperty Name="EidikotitaGroupID" ColumnName="EidikotitaGroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysEidikotitesGroups">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysEidikotitesGroups">
+        <MappingFragment StoreEntitySet="SysEidikotitesGroups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupText" ColumnName="GroupText" />
+          <ScalarProperty Name="Klados" ColumnName="Klados" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysGenders">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysGenders">
+        <MappingFragment StoreEntitySet="SysGenders">
+          <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+          <ScalarProperty Name="GenderText" ColumnName="GenderText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysKlados">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysKlados">
+        <MappingFragment StoreEntitySet="SysKlados">
+          <ScalarProperty Name="KladosID" ColumnName="KladosID" />
+          <ScalarProperty Name="KladosName" ColumnName="KladosName" />
+          <ScalarProperty Name="KladosCategory" ColumnName="KladosCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysKladosEniaios">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysKladosEniaios">
+        <MappingFragment StoreEntitySet="SysKladosEniaios">
+          <ScalarProperty Name="KladosEniaiosID" ColumnName="KladosEniaiosID" />
+          <ScalarProperty Name="KladosEniaiosText" ColumnName="KladosEniaiosText" />
+          <ScalarProperty Name="Klados" ColumnName="Klados" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysLanguage">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysLanguage">
+        <MappingFragment StoreEntitySet="SysLanguage">
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="LanguageText" ColumnName="LanguageText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysLanguageLevel">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysLanguageLevel">
+        <MappingFragment StoreEntitySet="SysLanguageLevel">
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+          <ScalarProperty Name="LevelText" ColumnName="LevelText" />
+          <ScalarProperty Name="MoriaFirst" ColumnName="MoriaFirst" />
+          <ScalarProperty Name="MoriaSecond" ColumnName="MoriaSecond" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysMScPeriods">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysMScPeriods">
+        <MappingFragment StoreEntitySet="SysMScPeriods">
+          <ScalarProperty Name="MScPeriodID" ColumnName="MScPeriodID" />
+          <ScalarProperty Name="MScPeriodText" ColumnName="MScPeriodText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysPeriferiakes">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysPeriferiakes">
+        <MappingFragment StoreEntitySet="SysPeriferiakes">
+          <ScalarProperty Name="PeriferiakiID" ColumnName="PeriferiakiID" />
+          <ScalarProperty Name="PeriferiakiName" ColumnName="PeriferiakiName" />
+          <ScalarProperty Name="PeriferiakiShortName" ColumnName="PeriferiakiShortName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysPeriferies">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysPeriferies">
+        <MappingFragment StoreEntitySet="SysPeriferies">
+          <ScalarProperty Name="PeriferiaID" ColumnName="PeriferiaID" />
+          <ScalarProperty Name="PeriferiaName" ColumnName="PeriferiaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysProkirixiStatus">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysProkirixiStatus">
+        <MappingFragment StoreEntitySet="SysProkirixiStatus">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="StatusText" ColumnName="StatusText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysSchools">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysSchools">
+        <MappingFragment StoreEntitySet="SysSchools">
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+          <ScalarProperty Name="SchoolTypeID" ColumnName="SchoolTypeID" />
+          <ScalarProperty Name="SchoolPeriferiaID" ColumnName="SchoolPeriferiaID" />
+          <ScalarProperty Name="SchoolPeriferiakiID" ColumnName="SchoolPeriferiakiID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysSchoolYears">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysSchoolYears">
+        <MappingFragment StoreEntitySet="SysSchoolYears">
+          <ScalarProperty Name="SchoolYearID" ColumnName="SchoolYearID" />
+          <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysTaxFree">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysTaxFree">
+        <MappingFragment StoreEntitySet="SysTaxFree">
+          <ScalarProperty Name="YearID" ColumnName="YearID" />
+          <ScalarProperty Name="YearText" ColumnName="YearText" />
+          <ScalarProperty Name="TaxFree" ColumnName="TaxFree" />
+          <ScalarProperty Name="Nomisma" ColumnName="Nomisma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysTeachTypes">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysTeachTypes">
+        <MappingFragment StoreEntitySet="SysTeachTypes">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="TypeText" ColumnName="TypeText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAXISNET">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.TAXISNET">
+        <MappingFragment StoreEntitySet="TAXISNET">
+          <ScalarProperty Name="TAXISNET_ID" ColumnName="TAXISNET_ID" />
+          <ScalarProperty Name="RANDOM_NUMBER" ColumnName="RANDOM_NUMBER" />
+          <ScalarProperty Name="TAXISNET_AFM" ColumnName="TAXISNET_AFM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.Teachers">
+        <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="AFM" ColumnName="AFM" />
+          <ScalarProperty Name="DOY" ColumnName="DOY" />
+          <ScalarProperty Name="ADT" ColumnName="ADT" />
+          <ScalarProperty Name="AMKA" ColumnName="AMKA" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Periferia" ColumnName="Periferia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAdmins">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.UserAdmins">
+        <MappingFragment StoreEntitySet="UserAdmins">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSchools">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.UserSchools">
+        <MappingFragment StoreEntitySet="UserSchools">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserSchoolID" ColumnName="UserSchoolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTeachers">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.UserTeachers">
+        <MappingFragment StoreEntitySet="UserTeachers">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserAfm" ColumnName="UserAfm" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sqlEidikotitesSelector">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlEidikotitesSelector">
+        <MappingFragment StoreEntitySet="sqlEidikotitesSelector">
+          <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+          <ScalarProperty Name="EidikotitaDesc" ColumnName="EidikotitaDesc" />
+          <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+          <ScalarProperty Name="EidikotitaGroupID" ColumnName="EidikotitaGroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sqlEidikotititesKladosEniaios">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlEidikotititesKladosEniaios">
+        <MappingFragment StoreEntitySet="sqlEidikotititesKladosEniaios">
+          <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+          <ScalarProperty Name="EidikotitaPtyxio" ColumnName="EidikotitaPtyxio" />
+          <ScalarProperty Name="KladosUnified" ColumnName="KladosUnified" />
+          <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sqlSchoolsPeriferiakesPefireies">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlSchoolsPeriferiakesPefireies">
+        <MappingFragment StoreEntitySet="sqlSchoolsPeriferiakesPefireies">
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="PeriferiakiShortName" ColumnName="PeriferiakiShortName" />
+          <ScalarProperty Name="PeriferiaName" ColumnName="PeriferiaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sqlTeacherAccountInfo">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlTeacherAccountInfo">
+        <MappingFragment StoreEntitySet="sqlTeacherAccountInfo">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="AFM" ColumnName="AFM" />
+          <ScalarProperty Name="ADT" ColumnName="ADT" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sqlUserSchool">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlUserSchool">
+        <MappingFragment StoreEntitySet="sqlUserSchool">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="SchoolEmail" ColumnName="SchoolEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewEidikotites">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.viewEidikotites">
+        <MappingFragment StoreEntitySet="viewEidikotites">
+          <ScalarProperty Name="GroupText" ColumnName="GroupText" />
+          <ScalarProperty Name="KladosName" ColumnName="KladosName" />
+          <ScalarProperty Name="EidikotitaGroupID" ColumnName="EidikotitaGroupID" />
+          <ScalarProperty Name="EidikotitaKladosID" ColumnName="EidikotitaKladosID" />
+          <ScalarProperty Name="EidikotitaName" ColumnName="EidikotitaName" />
+          <ScalarProperty Name="EidikotitaCode" ColumnName="EidikotitaCode" />
+          <ScalarProperty Name="EidikotitaEniaia" ColumnName="EidikotitaEniaia" />
+          <ScalarProperty Name="EidikotitaDesc" ColumnName="EidikotitaDesc" />
+          <ScalarProperty Name="EidikotitaID" ColumnName="EidikotitaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysNomoi">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysNomoi">
+        <MappingFragment StoreEntitySet="SysNomoi">
+          <ScalarProperty Name="PeriferiaMajorID" ColumnName="PeriferiaMajorID" />
+          <ScalarProperty Name="NomosText" ColumnName="NomosText" />
+          <ScalarProperty Name="NomosID" ColumnName="NomosID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysPeriferiesMajor">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysPeriferiesMajor">
+        <MappingFragment StoreEntitySet="SysPeriferiesMajor">
+          <ScalarProperty Name="PeriferiaMajor" ColumnName="PeriferiaMajor" />
+          <ScalarProperty Name="PeriferiaMajorID" ColumnName="PeriferiaMajorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
