@@ -1,7 +1,7 @@
 ----------------------
 ## PEGASUS+ Project
 ### Date: 21/04/2021
-###_Authors:_
+_Authors:_
 ####  Georgios Kyriakakis
 ####  Lefteris Kyriakakis
 ----------------------
