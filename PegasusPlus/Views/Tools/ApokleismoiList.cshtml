@@ -23,7 +23,7 @@
   /*color: #fff;
   border-radius: 100px;
   border: 1px solid #fff;*/
-  display: inline-block;*/
+  display: inline-block;
   /*background: rgba(255, 0, 0, 1);
   margin: -5px -10px;*/
 }
@@ -94,8 +94,12 @@
             <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
         </label>
         <label id="filename"></label>
-        <label class="btn btn-outline-danger btn-rmv1" id="removeFile1" style="margin-left:5px;margin-right:5px"><i class="fa fa-times" aria-hidden="true"></i></label>
-        <label class="btn btn-outline-dark btn-rmv1" id="preview" style="cursor:pointer" onclick="preview()"><i class="fa fa-eye" aria-hidden="true"></i></label>
+        <label class="btn btn-outline-danger btn-rmv1" id="removeFile1" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </label>
+        <label class="btn btn-outline-dark btn-rmv1" id="preview" style="cursor:pointer" onclick="preview()" title="Προβολή αρχείου">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+        </label>
     </div>
 </div>
 
