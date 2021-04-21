@@ -1,9 +1,9 @@
 ----------------------
 ## PEGASUS+ Project
-Date: 21/04/2021
-Authors:
-  Georgios Kyriakakis
-  Lefteris Kyriakakis
+### Date: 21/04/2021
+###_Authors:_
+####  Georgios Kyriakakis
+####  Lefteris Kyriakakis
 ----------------------
 
 Αναβάθμιση του αρχικού Pegasus σύμφωνα με το νέο κανονισμό αιτήσεων και μοριοποίησης
