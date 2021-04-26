@@ -48,7 +48,6 @@ namespace PegasusPlus.DAL
         public virtual DbSet<SysTaxFree> SysTaxFree { get; set; }
         public virtual DbSet<SysTeachTypes> SysTeachTypes { get; set; }
         public virtual DbSet<TAXISNET> TAXISNET { get; set; }
-        public virtual DbSet<Teachers> Teachers { get; set; }
         public virtual DbSet<UserAdmins> UserAdmins { get; set; }
         public virtual DbSet<UserSchools> UserSchools { get; set; }
         public virtual DbSet<UserTeachers> UserTeachers { get; set; }
@@ -60,5 +59,10 @@ namespace PegasusPlus.DAL
         public virtual DbSet<viewEidikotites> viewEidikotites { get; set; }
         public virtual DbSet<SysNomoi> SysNomoi { get; set; }
         public virtual DbSet<SysPeriferiesMajor> SysPeriferiesMajor { get; set; }
+        public virtual DbSet<sqlUserTeacherSelect> sqlUserTeacherSelect { get; set; }
+        public virtual DbSet<Teachers> Teachers { get; set; }
+        public virtual DbSet<SysFamilyStatus> SysFamilyStatus { get; set; }
+        public virtual DbSet<SysIdiotita> SysIdiotita { get; set; }
+        public virtual DbSet<TeachersUploads> TeachersUploads { get; set; }
     }
 }

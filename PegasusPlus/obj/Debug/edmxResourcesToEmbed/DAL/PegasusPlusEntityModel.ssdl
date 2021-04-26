@@ -84,12 +84,26 @@
     <Property Name="GroupText" Type="nvarchar" MaxLength="150" />
     <Property Name="Klados" Type="int" />
   </EntityType>
+  <EntityType Name="SysFamilyStatus">
+    <Key>
+      <PropertyRef Name="FamilyStatusID" />
+    </Key>
+    <Property Name="FamilyStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FamilyStatusText" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="SysGenders">
     <Key>
       <PropertyRef Name="GenderID" />
     </Key>
     <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="GenderText" Type="nvarchar" MaxLength="20" />
+    <Property Name="GenderText" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SysIdiotita">
+    <Key>
+      <PropertyRef Name="IdiotitaID" />
+    </Key>
+    <Property Name="IdiotitaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdiotitaText" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="SysKlados">
     <Key>
@@ -216,22 +230,55 @@
       <PropertyRef Name="AFM" />
     </Key>
     <Property Name="AFM" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="AFM_FILENAME" Type="nvarchar" MaxLength="255" />
     <Property Name="DOY" Type="nvarchar" MaxLength="50" />
-    <Property Name="ADT" Type="nvarchar" MaxLength="20" />
-    <Property Name="AMKA" Type="nvarchar" MaxLength="20" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-    <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
-    <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ADT" Type="nvarchar" MaxLength="50" />
+    <Property Name="ADT_FILENAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="150" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="150" />
+    <Property Name="MotherName" Type="nvarchar" MaxLength="150" />
     <Property Name="Gender" Type="int" />
+    <Property Name="FamilyStatus" Type="int" />
+    <Property Name="Children" Type="int" />
     <Property Name="Birthdate" Type="date" />
+    <Property Name="Nomos" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
     <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
     <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="Address" Type="nvarchar" MaxLength="100" />
-    <Property Name="City" Type="nvarchar" MaxLength="50" />
-    <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
-    <Property Name="Periferia" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Epagelma" Type="nvarchar" MaxLength="255" />
+    <Property Name="Idiotita" Type="int" />
+    <Property Name="AMKA" Type="nvarchar" MaxLength="50" />
+    <Property Name="AMKA_FILENAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="AMA" Type="nvarchar" MaxLength="50" />
+    <Property Name="AMA_FILENAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="InsuranceMain" Type="nvarchar" MaxLength="150" />
+    <Property Name="InsuranceFirstYear" Type="int" />
+    <Property Name="SocialTriteknos" Type="bit" />
+    <Property Name="SocialPolyteknos" Type="bit" />
+    <Property Name="SocialSingleParent" Type="bit" />
+    <Property Name="SocialAmea" Type="bit" />
+    <Property Name="SocialAnergos" Type="int" />
+    <Property Name="AnergiaCardExpireDate" Type="date" />
+    <Property Name="SocialTriteknosFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="SocialPolyteknosFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="SocialSingleParentFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="SocialAmeaFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="SocialAnergosFilename" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="TeachersUploads">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Extension" Type="nvarchar" MaxLength="10" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="UserAdmins">
     <Key>
@@ -325,6 +372,17 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserSchool' does not have a p
     <Property Name="Password" Type="nvarchar" MaxLength="20" />
     <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
     <Property Name="SchoolEmail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserTeacherSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlUserTeacherSelect">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserAfm" Type="nvarchar" MaxLength="10" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="101" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -436,7 +494,9 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     <EntitySet Name="SysComputerAsep" EntityType="Self.SysComputerAsep" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysEidikotites" EntityType="Self.SysEidikotites" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysEidikotitesGroups" EntityType="Self.SysEidikotitesGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysFamilyStatus" EntityType="Self.SysFamilyStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysGenders" EntityType="Self.SysGenders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysIdiotita" EntityType="Self.SysIdiotita" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysKlados" EntityType="Self.SysKlados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysKladosEniaios" EntityType="Self.SysKladosEniaios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysLanguage" EntityType="Self.SysLanguage" Schema="dbo" store:Type="Tables" />
@@ -453,6 +513,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     <EntitySet Name="SysTeachTypes" EntityType="Self.SysTeachTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TAXISNET" EntityType="Self.TAXISNET" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeachersUploads" EntityType="Self.TeachersUploads" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAdmins" EntityType="Self.UserAdmins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserSchools" EntityType="Self.UserSchools" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTeachers" EntityType="Self.UserTeachers" Schema="dbo" store:Type="Tables" />
@@ -502,6 +563,14 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     [sqlUserSchool].[SchoolName] AS [SchoolName], 
     [sqlUserSchool].[SchoolEmail] AS [SchoolEmail]
     FROM [dbo].[sqlUserSchool] AS [sqlUserSchool]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sqlUserTeacherSelect" EntityType="Self.sqlUserTeacherSelect" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlUserTeacherSelect].[UserID] AS [UserID], 
+    [sqlUserTeacherSelect].[UserAfm] AS [UserAfm], 
+    [sqlUserTeacherSelect].[CreateDate] AS [CreateDate], 
+    [sqlUserTeacherSelect].[FullName] AS [FullName]
+    FROM [dbo].[sqlUserTeacherSelect] AS [sqlUserTeacherSelect]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="viewEidikotites" EntityType="Self.viewEidikotites" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

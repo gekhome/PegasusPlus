@@ -220,29 +220,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Teachers">
-      <EntityTypeMapping TypeName="PegasusPlusDBModel.Teachers">
-        <MappingFragment StoreEntitySet="Teachers">
-          <ScalarProperty Name="AFM" ColumnName="AFM" />
-          <ScalarProperty Name="DOY" ColumnName="DOY" />
-          <ScalarProperty Name="ADT" ColumnName="ADT" />
-          <ScalarProperty Name="AMKA" ColumnName="AMKA" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
-          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
-          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
-          <ScalarProperty Name="Periferia" ColumnName="Periferia" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserAdmins">
       <EntityTypeMapping TypeName="PegasusPlusDBModel.UserAdmins">
         <MappingFragment StoreEntitySet="UserAdmins">
@@ -362,6 +339,89 @@
         <MappingFragment StoreEntitySet="SysPeriferiesMajor">
           <ScalarProperty Name="PeriferiaMajor" ColumnName="PeriferiaMajor" />
           <ScalarProperty Name="PeriferiaMajorID" ColumnName="PeriferiaMajorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sqlUserTeacherSelect">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.sqlUserTeacherSelect">
+        <MappingFragment StoreEntitySet="sqlUserTeacherSelect">
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserAfm" ColumnName="UserAfm" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.Teachers">
+        <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="SocialAnergosFilename" ColumnName="SocialAnergosFilename" />
+          <ScalarProperty Name="SocialAmeaFilename" ColumnName="SocialAmeaFilename" />
+          <ScalarProperty Name="SocialSingleParentFilename" ColumnName="SocialSingleParentFilename" />
+          <ScalarProperty Name="SocialPolyteknosFilename" ColumnName="SocialPolyteknosFilename" />
+          <ScalarProperty Name="SocialTriteknosFilename" ColumnName="SocialTriteknosFilename" />
+          <ScalarProperty Name="AnergiaCardExpireDate" ColumnName="AnergiaCardExpireDate" />
+          <ScalarProperty Name="SocialAnergos" ColumnName="SocialAnergos" />
+          <ScalarProperty Name="SocialAmea" ColumnName="SocialAmea" />
+          <ScalarProperty Name="SocialSingleParent" ColumnName="SocialSingleParent" />
+          <ScalarProperty Name="SocialPolyteknos" ColumnName="SocialPolyteknos" />
+          <ScalarProperty Name="SocialTriteknos" ColumnName="SocialTriteknos" />
+          <ScalarProperty Name="InsuranceFirstYear" ColumnName="InsuranceFirstYear" />
+          <ScalarProperty Name="InsuranceMain" ColumnName="InsuranceMain" />
+          <ScalarProperty Name="AMA_FILENAME" ColumnName="AMA_FILENAME" />
+          <ScalarProperty Name="AMA" ColumnName="AMA" />
+          <ScalarProperty Name="AMKA_FILENAME" ColumnName="AMKA_FILENAME" />
+          <ScalarProperty Name="AMKA" ColumnName="AMKA" />
+          <ScalarProperty Name="Idiotita" ColumnName="Idiotita" />
+          <ScalarProperty Name="Epagelma" ColumnName="Epagelma" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Nomos" ColumnName="Nomos" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="FamilyStatus" ColumnName="FamilyStatus" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ADT_FILENAME" ColumnName="ADT_FILENAME" />
+          <ScalarProperty Name="ADT" ColumnName="ADT" />
+          <ScalarProperty Name="DOY" ColumnName="DOY" />
+          <ScalarProperty Name="AFM_FILENAME" ColumnName="AFM_FILENAME" />
+          <ScalarProperty Name="AFM" ColumnName="AFM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysFamilyStatus">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysFamilyStatus">
+        <MappingFragment StoreEntitySet="SysFamilyStatus">
+          <ScalarProperty Name="FamilyStatusText" ColumnName="FamilyStatusText" />
+          <ScalarProperty Name="FamilyStatusID" ColumnName="FamilyStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysIdiotita">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.SysIdiotita">
+        <MappingFragment StoreEntitySet="SysIdiotita">
+          <ScalarProperty Name="IdiotitaText" ColumnName="IdiotitaText" />
+          <ScalarProperty Name="IdiotitaID" ColumnName="IdiotitaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeachersUploads">
+      <EntityTypeMapping TypeName="PegasusPlusDBModel.TeachersUploads">
+        <MappingFragment StoreEntitySet="TeachersUploads">
+          <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+          <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

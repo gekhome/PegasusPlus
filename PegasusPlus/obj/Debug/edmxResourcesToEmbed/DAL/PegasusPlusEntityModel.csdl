@@ -95,7 +95,7 @@
       <PropertyRef Name="GenderID" />
     </Key>
     <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="GenderText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="GenderText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="SysKlados">
     <Key>
@@ -207,28 +207,6 @@
     <Property Name="TAXISNET_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RANDOM_NUMBER" Type="Int32" />
     <Property Name="TAXISNET_AFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Teachers">
-    <Key>
-      <PropertyRef Name="AFM" />
-    </Key>
-    <Property Name="AFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DOY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ADT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="AMKA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Gender" Type="Int32" />
-    <Property Name="Birthdate" Type="DateTime" Precision="0" />
-    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Periferia" Type="Int32" />
   </EntityType>
   <EntityType Name="UserAdmins">
     <Key>
@@ -409,7 +387,6 @@
     <EntitySet Name="SysTaxFree" EntityType="Self.SysTaxFree" />
     <EntitySet Name="SysTeachTypes" EntityType="Self.SysTeachTypes" />
     <EntitySet Name="TAXISNET" EntityType="Self.TAXISNET" />
-    <EntitySet Name="Teachers" EntityType="Self.Teachers" />
     <EntitySet Name="UserAdmins" EntityType="Self.UserAdmins" />
     <EntitySet Name="UserSchools" EntityType="Self.UserSchools" />
     <EntitySet Name="UserTeachers" EntityType="Self.UserTeachers" />
@@ -449,6 +426,11 @@
       <End Role="SysPeriferiesMajor" EntitySet="SysPeriferiesMajor" />
       <End Role="SysNomoi" EntitySet="SysNomoi" />
     </AssociationSet>
+    <EntitySet Name="sqlUserTeacherSelect" EntityType="PegasusPlusDBModel.sqlUserTeacherSelect" />
+    <EntitySet Name="Teachers" EntityType="PegasusPlusDBModel.Teachers" />
+    <EntitySet Name="SysFamilyStatus" EntityType="PegasusPlusDBModel.SysFamilyStatus" />
+    <EntitySet Name="SysIdiotita" EntityType="PegasusPlusDBModel.SysIdiotita" />
+    <EntitySet Name="TeachersUploads" EntityType="PegasusPlusDBModel.TeachersUploads" />
   </EntityContainer>
   <EntityType Name="viewEidikotites">
     <Key>
@@ -493,4 +475,82 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="sqlUserTeacherSelect">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserAfm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="AFM" />
+    </Key>
+    <Property Name="AFM" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AFM_FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DOY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ADT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ADT_FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="FamilyStatus" Type="Int32" />
+    <Property Name="Children" Type="Int32" />
+    <Property Name="Birthdate" Type="DateTime" Precision="0" />
+    <Property Name="Nomos" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Epagelma" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Idiotita" Type="Int32" />
+    <Property Name="AMKA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AMKA_FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AMA_FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="InsuranceMain" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="InsuranceFirstYear" Type="Int32" />
+    <Property Name="SocialTriteknos" Type="Boolean" />
+    <Property Name="SocialPolyteknos" Type="Boolean" />
+    <Property Name="SocialSingleParent" Type="Boolean" />
+    <Property Name="SocialAmea" Type="Boolean" />
+    <Property Name="SocialAnergos" Type="Int32" />
+    <Property Name="AnergiaCardExpireDate" Type="DateTime" Precision="0" />
+    <Property Name="SocialTriteknosFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SocialPolyteknosFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SocialSingleParentFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SocialAmeaFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SocialAnergosFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SysFamilyStatus">
+    <Key>
+      <PropertyRef Name="FamilyStatusID" />
+    </Key>
+    <Property Name="FamilyStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FamilyStatusText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SysIdiotita">
+    <Key>
+      <PropertyRef Name="IdiotitaID" />
+    </Key>
+    <Property Name="IdiotitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdiotitaText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TeachersUploads">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

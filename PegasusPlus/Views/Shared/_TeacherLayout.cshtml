@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Αρχική</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://kendo.cdn.telerik.com/2016.1.112/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2016.1.112/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/messagebox/messagebox.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/mvcNotify.css")" rel="stylesheet" type="text/css" />
+
+    <link rel="icon" href="@Url.Content("~/content/favicon.ico")" />
+
+    <script src="https://kendo.cdn.telerik.com/2016.1.112/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2016.1.112/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2016.1.112/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2016.1.112/js/kendo.aspnetmvc.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2016.1.112/js/cultures/kendo.culture.el-GR.min.js"></script>
+
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/messagebox/messagebox.js")"></script>
+    <script src="@Url.Content("~/Scripts/custom/jspCustom.js")"></script>
+    <script src="@Url.Content("~/Scripts/mvcNotify.js")" type="text/javascript"></script>
+
+    <script>
+        kendo.culture("el-GR");
+    </script>
+    <!-- mvcNotify script -->
+    <script type="text/javascript">
+        //Set autoclear of messages. Don't put this into $(document).ready.
+        //mvcNotify.autoClearTimeout = 0; //don't autoclear any types
+        mvcNotify.autoClearTimeout = 8000; //Unit of milliseconds. Requires mvcNotify.typesToAutoClear to be set to something (default behavior).
+    </script>
+
+    <!-- Clock scripts -->
+    <script src="@Url.Content("~/Clock/coolclock.js")"></script>
+    <script src="@Url.Content("~/Clock/moreskins.js")"></script>
+    <script src="@Url.Content("~/Clock/excanvas.js")"></script>
+
+    <style>
+        .nava:link {
+            color: lightgray;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nava:visited {
+            color: whitesmoke;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nava:hover {
+            color: whitesmoke;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nava:active {
+            color: whitesmoke;
+            background-color: transparent;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body class="k-content" style="background-color:whitesmoke">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="max-height:50px;">
+        @Html.ActionLink("Pegasus+", "Index", "Home", null, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText" style="margin-left:40px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <div class="nav-link">@Html.ActionLink("Αρχική", "Index", "Home", new { @class = "nava" })</div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">@Html.ActionLink("Περιγραφή", "About", "Home", new { @class = "nava" })</div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">@Html.ActionLink("Επικοινωνία", "Contact", "Home", new { @class = "nava" })</div>
+                </li>
+            </ul>
+            <div class="nav navbar-text navbar-right" style="float:right;color:white;vertical-align:middle;font-size:14px">
+                Χρήστης: @Html.Raw((string)ViewBag.loggedUser)
+                <input type="button" class="btn btn-danger" style="font-size:12px" value="Αποσύνδεση" onclick="location.href='@Url.Action("Logout", "Home" )'" />
+            </div>
+        </div>
+    </nav>
+
+    <nav style="background-color: #4f81bd;max-height:62px;margin-bottom:10px">
+        <div class="row">
+            <div class="col-md-1">
+                <img src="~/images/metro/pegasus.png" height="54" width="54">
+            </div>
+            <div class="col-md-10">
+                <p class="header" style="margin-top:2px;font-size:38px;color:white; font-weight:bold">P e g a s u s +</p>
+            </div>
+            <span class="col-md-1" style="float:right;">
+                <canvas style="float:right" id="clockid" class="CoolClock:swissRail:30:0"></canvas>
+            </span>
+        </div>
+    </nav>
+
+    <div id="responsive-panel" class="navbar navbar-dark bg-light">
+        @(Html.Kendo().Menu()
+            .Name("Menu")
+            .HtmlAttributes(new { style = "width:100%" })
+            .Items(items =>
+            {
+            items.Add().Text("Στοιχεία Αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.cabinet.files.png"))
+            .Items(children =>
+            {
+                children.Add().Text("1. Προσωπικά στοιχεία").ImageUrl(Url.Content("~/Images/phone/appbar.user.png")).Action("TeacherEdit", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Προσωπικά, οικονομικά και εργασιακά στοιχεία" });
+                children.Add().Text("2. Υποβολή νέας αίτησης").ImageUrl(Url.Content("~/Images/phone/appbar.page.text.png")).Action("Index", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Καταχώρηση και υποβολή νέας αίτησης για την τρέχουσα προκήρυξη" });
+                children.Add().Text("3. Διαχείριση αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.list.gear.png")).Action("Index", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Επεξεργασία καταχωρημένων αιτήσεων και ΙΕΚ προτίμησης" });
+                children.Add().Text("4. Πρωτότυπες αιτήσεις").ImageUrl(Url.Content("~/Images/phone/appbar.page.copy.png")).Action("Index", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Αντίγραφα των πρωτότυπων αιτήσεων, όπως υποβλήθηκαν" });
+            });
+                items.Add().Text("Προϋπηρεσίες").ImageUrl(Url.Content("~/Images/phone/appbar.book.open.text.png"))
+                    .Items(Children =>
+            {
+                Children.Add().Text("1. Διδακτική εμπειρία").ImageUrl(Url.Content("~/Images/phone/appbar.book.list.png")).Action("Index", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Καταχώρηση διδακτικών προϋπηρεσιών και ανέβασμα δικαιολογητικών" });
+                Children.Add().Text("2. Επαγγελματική εμπειρία").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("Index", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Καταχώρηση επαγγελματικών προϋπηρεσιών και ανέβασμα δικαιολογητικών" });
+                Children.Add().Text("3. Ελεύθερο επάγγελμα").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("Index", "Teachers")
+                    .LinkHtmlAttributes(new { title = "Καταχώρηση εμπειρίας από ελεύθερο επαγγελμα και ανέβασμα δικαιολογητικών" });
+            });
+                items.Add().Text("Αξιολόγηση").ImageUrl(Url.Content("~/Images/phone/appbar.checkmark.pencil.png")).Action("Index", "Teachers")
+                        .LinkHtmlAttributes(new { title = "Ενημέρωση για τα αποτελέσματα της διαδικασίας αξιολόγησης" });
+                items.Add().Text("Ενστάσεις").ImageUrl(Url.Content("~/Images/phone/appbar.people.checkbox.png")).Action("Index", "Teachers")
+                        .LinkHtmlAttributes(new { title = "Υποβολή ένστασης με ανέβασμα του εντύπου ένστασης" });
+            })
+        )
+    </div>
+
+    <main>
+        <div class="container-fluid">
+            @Html.Partial("_Notifications")
+            @RenderBody()
+            @RenderSection("footer", required: false)
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+</body>
+</html>

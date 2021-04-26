@@ -1,0 +1,99 @@
+﻿@model PegasusPlus.Models.TeacherViewModel
+
+@{
+    ViewBag.Title = "Επεξεργασία εκπαιδευτή";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<style>
+    .control-label {
+        font-family: 'Segoe UI';
+        white-space: pre-line;
+    }
+
+    .page-header {
+        border-bottom: 2px solid #4F81BD;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+    }
+
+    .k-textbox {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+        .k-textbox:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+</style>
+
+
+@using (Html.BeginForm("TeacherCreate", "Teachers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="page-header">
+        <div style="margin:5px 60px 5px 40px">
+            <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+                <font style="color:#292929;">Προσωπικά στοιχεία εκπαιδευτικού</font>
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                @Html.ActionLink("Επιστροφή", "Index", null, new { @class = "btn btn-warning", style = "font-size:16px" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                @Html.ActionLink("Εκτύπωση", "TeacherPrint", "Teachers", new { AFM = Model.AFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                <input id="buttonClientSide" style="font-family:'Segoe UI';font-size:16px" type="submit" value="Αποθήκευση" class="btn btn-success" />
+            </span>
+        </div>
+    </div>
+
+    <div class="body-content mt-3" style="margin-left:60px;margin-right:60px">
+        @(Html.Kendo().PanelBar()
+        .Name("IntroPanelBar")
+        .Items(items =>
+        {
+            items.Add()
+                .Text("ΕΝΟΤΗΤΑ 1 - ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ ")
+                .Selected(true)
+                .Expanded(true)
+                .Content(
+                @<text>
+                    <h4>Θέση φόρμας εδώ</h4>
+                </text>);
+            items.Add()
+                .Text("ΕΝΟΤΗΤΑ 2 - ΟΙΚΟΝΟΜΙΚΑ ΣΤΟΙΧΕΙΑ")
+                .Content(
+                @<text>
+                    <h4>Θέση φόρμας εδώ</h4>
+                </text>);
+            items.Add()
+                .Text("ΕΝΟΤΗΤΑ 3 - ΚΟΙΝΩΝΙΚΑ ΣΤΟΙΧΕΙΑ")
+                .Content(
+                @<text>
+                    <h4>Θέση φόρμας εδώ</h4>
+                </text>);
+        })
+        )
+    </div>
+}
+
+

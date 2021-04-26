@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://kendo.cdn.telerik.com/2016.1.112/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2016.1.112/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+    <link rel="icon" href="@Url.Content("~/content/favicon.ico")" />
+
+	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/kendo.aspnetmvc.min.js"></script>
+	<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+
+    <!-- Clock scripts -->
+    <script src="@Url.Content("~/Clock/coolclock.js")"></script>
+    <script src="@Url.Content("~/Clock/moreskins.js")"></script>
+    <script src="@Url.Content("~/Clock/excanvas.js")"></script>
+
+    <style>
+        .nava:link {
+            color: lightgray;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nava:visited {
+            color: whitesmoke;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nava:hover {
+            color: whitesmoke;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nava:active {
+            color: whitesmoke;
+            background-color: transparent;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body class="k-content" style="background-color:whitesmoke">
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="max-height:54px;">
+        @Html.ActionLink("Pegasus+", "Index", "Home", null, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText" style="margin-left:40px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <div class="nav-link">@Html.ActionLink("Αρχική", "Index", "Home", new { @class="nava" })</div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">@Html.ActionLink("Περιγραφή", "About", "Home", new { @class = "nava" })</div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">@Html.ActionLink("Επικοινωνία", "Contact", "Home", new { @class = "nava" })</div>
+                </li>
+            </ul>
+            <div class="nav navbar-text navbar-right" style="float:right;color:white;vertical-align:middle;font-size:14px">
+                Χρήστης: @Html.Raw((string)ViewBag.loggedUser)
+                <input type="button" class="btn btn-danger" style="font-size:12px" value="Αποσύνδεση" onclick="location.href='@Url.Action("Logout", "Home" )'" />
+            </div>
+        </div>
+    </nav>
+
+    <nav style="background-color: #4f81bd;max-height:62px;margin-bottom:10px">
+        <div class="row">
+            <div class="col-md-1">
+                <img src="~/images/metro/pegasus.png" height="54" width="54">
+            </div>
+            <div class="col-md-10">
+                <p class="header" style="margin-top:2px;font-size:38px;color:white; font-weight:bold">P e g a s u s +</p>
+            </div>
+            <span class="col-md-1" style="float:right;">
+                <canvas style="float:right" id="clockid" class="CoolClock:swissRail:30:0"></canvas>
+            </span>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container-fluid">
+            @RenderBody()
+            @RenderSection("footer", required: false)
+        </div>
+    </main>
+
+</body>
+</html>

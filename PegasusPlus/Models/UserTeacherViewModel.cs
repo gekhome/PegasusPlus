@@ -60,4 +60,20 @@ namespace PegasusPlus.Models
         public string Email { get; set; }
     }
 
+    public class UserTeacherSelectViewModel
+    {
+        public int UserID { get; set; }
+
+        [Display(Name = "ΑΦΜ")]
+        public string UserAfm { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "Ημ/νία εγγραφής")]
+        public DateTime? CreateDate { get; set; }
+
+        [Display(Name = "Ονοματεπώνυμο")]
+        public string FullName { get; set; }
+
+    }
 }

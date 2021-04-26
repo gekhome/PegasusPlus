@@ -28,7 +28,6 @@
         <EntityTypeShape EntityType="PegasusPlusDBModel.SysTaxFree" Width="1.5" PointX="11.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.SysTeachTypes" Width="1.5" PointX="11.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.TAXISNET" Width="1.5" PointX="0.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PegasusPlusDBModel.Teachers" Width="1.5" PointX="0.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.UserAdmins" Width="1.5" PointX="13.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.UserSchools" Width="1.5" PointX="13.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.UserTeachers" Width="1.5" PointX="13.75" PointY="2.875" IsExpanded="true" />
@@ -47,6 +46,11 @@
         <EntityTypeShape EntityType="PegasusPlusDBModel.SysNomoi" Width="1.5" PointX="5.625" PointY="9.125" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.SysPeriferiesMajor" Width="1.625" PointX="7.625" PointY="9.125" />
         <AssociationConnector Association="PegasusPlusDBModel.FK_SysNomoi_SysPeriferiesMajor" />
+        <EntityTypeShape EntityType="PegasusPlusDBModel.sqlUserTeacherSelect" Width="2" PointX="2.875" PointY="9.625" />
+        <EntityTypeShape EntityType="PegasusPlusDBModel.Teachers" Width="2.125" PointX="0.5" PointY="6.5" />
+        <EntityTypeShape EntityType="PegasusPlusDBModel.SysFamilyStatus" Width="1.5" PointX="7.75" PointY="11.125" />
+        <EntityTypeShape EntityType="PegasusPlusDBModel.SysIdiotita" Width="1.5" PointX="5.625" PointY="11.125" />
+        <EntityTypeShape EntityType="PegasusPlusDBModel.TeachersUploads" Width="1.875" PointX="3" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

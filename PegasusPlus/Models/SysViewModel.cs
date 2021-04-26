@@ -201,6 +201,26 @@ namespace PegasusPlus.Models
         public string PeriferiaMajor { get; set; }
     }
 
+    public class FamilyStatusViewModel
+    {
+        public int FamilyStatusID { get; set; }
+
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
+        [Display(Name = "Οικογενειακή κατάσταση")]
+        public string FamilyStatusText { get; set; }
+    }
+
+    public class IdiotitaViewModel
+    {
+        public int IdiotitaID { get; set; }
+
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
+        [Display(Name = "Ιδιότητα υποψήφιου")]
+        public string IdiotitaText { get; set; }
+    }
+
 
     #region REPORTS PARAMETERS
 

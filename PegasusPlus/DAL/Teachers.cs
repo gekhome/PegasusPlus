@@ -15,21 +15,43 @@ namespace PegasusPlus.DAL
     public partial class Teachers
     {
         public string AFM { get; set; }
+        public string AFM_FILENAME { get; set; }
         public string DOY { get; set; }
         public string ADT { get; set; }
-        public string AMKA { get; set; }
+        public string ADT_FILENAME { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
         public Nullable<int> Gender { get; set; }
+        public Nullable<int> FamilyStatus { get; set; }
+        public Nullable<int> Children { get; set; }
         public Nullable<System.DateTime> Birthdate { get; set; }
+        public Nullable<int> Nomos { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public string PostCode { get; set; }
         public string Telephone { get; set; }
         public string CellPhone { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string PostCode { get; set; }
-        public Nullable<int> Periferia { get; set; }
+        public string Epagelma { get; set; }
+        public Nullable<int> Idiotita { get; set; }
+        public string AMKA { get; set; }
+        public string AMKA_FILENAME { get; set; }
+        public string AMA { get; set; }
+        public string AMA_FILENAME { get; set; }
+        public string InsuranceMain { get; set; }
+        public Nullable<int> InsuranceFirstYear { get; set; }
+        public Nullable<bool> SocialTriteknos { get; set; }
+        public Nullable<bool> SocialPolyteknos { get; set; }
+        public Nullable<bool> SocialSingleParent { get; set; }
+        public Nullable<bool> SocialAmea { get; set; }
+        public Nullable<int> SocialAnergos { get; set; }
+        public Nullable<System.DateTime> AnergiaCardExpireDate { get; set; }
+        public string SocialTriteknosFilename { get; set; }
+        public string SocialPolyteknosFilename { get; set; }
+        public string SocialSingleParentFilename { get; set; }
+        public string SocialAmeaFilename { get; set; }
+        public string SocialAnergosFilename { get; set; }
     }
 }
