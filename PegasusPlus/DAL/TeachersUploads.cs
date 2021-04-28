@@ -17,7 +17,7 @@ namespace PegasusPlus.DAL
         public int UploadFileID { get; set; }
         public string TeacherAFM { get; set; }
         public string FileName { get; set; }
-        public string Extension { get; set; }
+        public string FilePath { get; set; }
         public string Description { get; set; }
         public string SchoolYearText { get; set; }
     }

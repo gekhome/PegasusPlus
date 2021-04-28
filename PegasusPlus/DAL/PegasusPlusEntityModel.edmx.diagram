@@ -50,7 +50,7 @@
         <EntityTypeShape EntityType="PegasusPlusDBModel.Teachers" Width="2.125" PointX="0.5" PointY="6.5" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.SysFamilyStatus" Width="1.5" PointX="7.75" PointY="11.125" />
         <EntityTypeShape EntityType="PegasusPlusDBModel.SysIdiotita" Width="1.5" PointX="5.625" PointY="11.125" />
-        <EntityTypeShape EntityType="PegasusPlusDBModel.TeachersUploads" Width="1.875" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="PegasusPlusDBModel.TeachersUploads" Width="2" PointX="2.875" PointY="11.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

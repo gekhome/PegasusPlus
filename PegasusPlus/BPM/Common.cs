@@ -434,7 +434,7 @@ namespace PegasusPlus.BPM
             var file = value as HttpPostedFileBase;
             if (file == null)
             {
-                return false;
+                return true;
             }
             return file.ContentLength <= _maxFileSize;
         }

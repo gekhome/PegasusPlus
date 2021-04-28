@@ -281,7 +281,7 @@
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Extension" Type="nvarchar" MaxLength="10" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
         </EntityType>
@@ -387,7 +387,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserTeacherSelect' does not h
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="UserAfm" Type="nvarchar" MaxLength="10" />
           <Property Name="CreateDate" Type="date" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="101" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="301" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1105,7 +1105,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="UserAfm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="0" />
-          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
@@ -1172,7 +1172,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -1599,7 +1599,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
               <MappingFragment StoreEntitySet="TeachersUploads">
                 <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
                 <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />

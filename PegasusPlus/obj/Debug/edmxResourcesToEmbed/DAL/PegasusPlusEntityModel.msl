@@ -418,7 +418,7 @@
         <MappingFragment StoreEntitySet="TeachersUploads">
           <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
           <ScalarProperty Name="FileName" ColumnName="FileName" />
           <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
           <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />

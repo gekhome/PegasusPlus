@@ -1816,6 +1816,7 @@
     <Content Include="Views\Shared\_TeacherLayout.cshtml" />
     <Content Include="Views\Teachers\TeacherCreate.cshtml" />
     <Content Include="Views\Teachers\TeacherEdit.cshtml" />
+    <Content Include="Views\Teachers\TeacherUploads.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -1825,8 +1826,8 @@
     <Content Include="Images\heroAccent.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\UploadFiles\Aitiseis\" />
-    <Folder Include="App_Data\UploadFiles\Personal\" />
+    <Folder Include="App_Data\FilesExprerience\" />
+    <Folder Include="App_Data\FilesPersonal\" />
     <Folder Include="Reports\Pinakes\" />
     <Folder Include="Reports\Statistics\" />
     <Folder Include="Views\UserSchools\" />

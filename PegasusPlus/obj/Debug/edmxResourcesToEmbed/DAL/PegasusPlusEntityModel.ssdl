@@ -276,7 +276,7 @@
     <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
     <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-    <Property Name="Extension" Type="nvarchar" MaxLength="10" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
   </EntityType>
@@ -382,7 +382,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserTeacherSelect' does not h
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="UserAfm" Type="nvarchar" MaxLength="10" />
     <Property Name="CreateDate" Type="date" />
-    <Property Name="FullName" Type="nvarchar" MaxLength="101" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="301" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->

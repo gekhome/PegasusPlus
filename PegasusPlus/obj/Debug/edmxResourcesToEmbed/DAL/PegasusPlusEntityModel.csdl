@@ -482,7 +482,7 @@
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="UserAfm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="CreateDate" Type="DateTime" Precision="0" />
-    <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Teachers">
     <Key>
@@ -549,7 +549,7 @@
     <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>

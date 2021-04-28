@@ -38,7 +38,6 @@ namespace PegasusPlus.Controllers.DataControllers
             return View();
         }
 
-        [HttpPost]
         public ActionResult SchoolYear_Read([DataSourceRequest] DataSourceRequest request)
         {
             var data = GetSchoolYearsFromDB();

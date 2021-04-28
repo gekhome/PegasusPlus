@@ -1,12 +1,19 @@
 ﻿@{
     ViewBag.Title = "Pegasus";
-    ViewBag.appTest = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string currentYear = DateTime.Today.Year.ToString();
 }
 
 <link href="@Url.Content("~/Content/Suite.css")" rel="stylesheet" type="text/css" />
 
 
 <style>
+    .page-header {
+        border-bottom: 1px solid #D3D3D3;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+    }
+
     div.polaroid {
         background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -58,28 +65,28 @@
             transition: 0.5s;
         }
 
-            .button span:after {
-                content: '\00bb';
-                position: absolute;
-                opacity: 0;
-                top: 0;
-                right: -20px;
-                transition: 0.5s;
-            }
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
 
         .button:hover span {
             padding-right: 20px;
             color: white;
         }
 
-            .button:hover span:after {
-                opacity: 1;
-                right: 0;
-                color: white;
-            }
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+            color: white;
+        }
 </style>
 
-<div id="carouselIndicators" class="carousel slide container" data-ride="carousel">
+@*<div id="carouselIndicators" class="carousel slide container" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselIndicators" data-slide-to="1"></li>
@@ -113,198 +120,208 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>*@
 
-<div class="container mt-3">
+@*<div class="container">
+    <h2>Καλώς ήλθατε!</h2>
+    <h2>Μητρώο Αιτήσεων και Μοριοποίησης Ωρομισθίων Εκπαιδευτικών ΙΕΚ-ΟΑΕΔ</h2>
+</div>*@
+
+<div class="container mt-4">
+    <h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:24px;color:dimgray;font-weight:500" class="mb-2">Καλώς ήλθατε</h1>
+    <label style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:20px;font-weight:500;color:dimgray" class="mb-3">
+        Μητρώο αιτήσεων και μοριοποίησης ωρομισθίων εκπαιδευτικών Ι.Ε.Κ. - Ο.Α.Ε.Δ.
+    </label>
+
     @(Html.Kendo().PanelBar()
     .Name("IntroPanelBar")
     .Items(items =>
     {
-        items.Add()
-            .Text("Ηλεκτρονική αίτηση και Μοριοποίηση ωρομισθίων εκπαιδευτικών ΙΕΚ-ΟΑΕΔ")
-            .Selected(true)
-            .Expanded(true)
-            .Content(@<text>
-                <div id="page">
-                    <div class="suites">
-                        <div class="suite-column" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-right:40px">
-                            <table class="rcorners">
-                                <tr>
-                                    <td>
-                                        <h5 style="color:black">Είσοδος υποψήφιων<br />εκπαιδευτικών</h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button class="button" style="vertical-align:middle;float:none;font-family:'Segoe UI';">
-                                            @if (ViewBag.appTest == true)
-                                            {
-                                                <span>@Html.ActionLink("Είσοδος δοκιμών", "Login2", "UserAdmins", null, new { @class = "nava", style = "width:180px" })</span>
-                                            }
-                                            else
-                                            {
-                                                <span>@Html.ActionLink("Είσοδος", "TaxisNetLogin", "UserTeachers", null, new { @class = "nava", style = "width:180px" })</span>
-                                            }
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="suite-column" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-right:40px">
-                            <table class="rcorners">
-                                <tr>
-                                    <td>
-                                        <h5 style="color:black">Είσοδος σχολείων<br />& επιτροπών</h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button class="button" style="vertical-align:middle;float:none;font-family:'Segoe UI';">
-                                            <span>@Html.ActionLink("Είσοδος", "Login", "UserSchools", null, new { @class = "nava", style = "width:180px" })</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="suite-column" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-right:20px">
-                            <table class="rcorners">
-                                <tr>
-                                    <td>
-                                        <h5 style="color:black">Είσοδος<br />διαχειριστών</h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button class="button" style="vertical-align:middle;float:none;font-family:'Segoe UI';">
-                                            <span>@Html.ActionLink("Είσοδος", "Login", "UserAdmins", null, new { @class = "nava", style = "width:180px" })</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+    items.Add()
+        .Text("Είσοδος στην Εφαρμογή")
+        .Selected(true)
+        .Expanded(true)
+        .Content(@<text>
+            <div id="page">
+                <div class="suites">
+                    <div class="suite-column" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-right:40px">
+                        <table class="rcorners">
+                            <tr>
+                                <td>
+                                    <h5 style="color:black">Είσοδος<br />εκπαιδευτικών</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="button" style="vertical-align:middle;float:none;font-family:'Segoe UI';">
+                                        @if (ViewBag.appTest == true)
+                                        {
+                                        <span>@Html.ActionLink("Είσοδος δοκιμών", "Login2", "UserAdmins", null, new { @class = "nava", style = "width:180px" })</span>
+                                        }
+                                        else
+                                        {
+                                        <span>@Html.ActionLink("Είσοδος", "TaxisNetLogin", "UserTeachers", null, new { @class = "nava", style = "width:180px" })</span>
+                                        }
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="suite-column" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-right:40px">
+                        <table class="rcorners">
+                            <tr>
+                                <td>
+                                    <h5 style="color:black">Είσοδος <br/>σχολείων</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="button" style="vertical-align:middle;float:none;font-family:'Segoe UI';">
+                                        <span>@Html.ActionLink("Είσοδος", "Login", "UserSchools", null, new { @class = "nava", style = "width:180px" })</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="suite-column" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-right:20px">
+                        <table class="rcorners">
+                            <tr>
+                                <td>
+                                    <h5 style="color:black">Είσοδος<br />διαχειριστών</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="button" style="vertical-align:middle;float:none;font-family:'Segoe UI';">
+                                        <span>@Html.ActionLink("Είσοδος", "Login", "UserAdmins", null, new { @class = "nava", style = "width:180px" })</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-            </text>);
-        items.Add()
-            .Text("Χρήσιμες συμβουλές")
-            .Content(@<text>
-                <div style="margin-left:6px;margin-right:6px">
-                    <p class="sansserif"></p>
-                    <p class="sansserif" style="font-size:medium">
-                        <span>
-                            <font style="font-family:'Segoe UI';font-size:large">
-                                Τι κάνω για να υποβάλω την Ηλεκτρονική Αίτηση;
-                            </font>
-                        </span>
-                        <br />
-                    <p class="sansserif">
-                        <img src="~/Images/metro/orderedList1.png" />
-                        Στην εφαρμογή κάνετε είσοδο με τα στοιχεία λογαριασμού σας του TAXISnet.
-                    </p>
-                    <p class="sansserif">
-                        <img src="~/Images/metro/orderedList2.png" />
-                        Στη συνέχεια, στην καρτέλα εισόδου της εφαρμογής απλά πατάτε 'Είσοδος'.
-                    </p>
-                    <p class="sansserif">
-                        <img src="~/Images/metro/orderedList3.png" />
-                        Επιλέγετε πρώτα 'Προσωπικά στοιχεία'. Στη φόρμα που ανοίγει συμπληρώνετε τα
-                        στοιχεία που ζητούνται. Πατάτε 'Αποθήκευση' και επιστρέφετε στην κεντρική
-                        σελίδα.
-                    </p>
-                    <p class="sansserif">
-                        <img src="~/Images/metro/orderedList4.png" />
-                        Επιλέγετε 'Υποβολή Νέας Αίτησης'μόνο για δημιουργήσετε μια νέα Αίτηση. Στη φόρμα που ανοίγει συμπληρώνετε τα
-                        στοιχεία που ζητούνται΄.Πατάτε 'Αποθήκευση' και μετά 'Επιστροφή' για να επιστρέψετε στη σελίδα εργασιών.
-                    </p>
-                    <p class="sansserif">
-                        <img src="~/Images/metro/orderedList5.png" />
-                        Αφού έχετε δημιουργήσει μία ή περισσότερες αιτήσεις, επιλέγετε 'Διαχείριση Αιτήσεων'.<br />
-                        Εδώ, ορίζετε σε ποιές άλλες Σχολικές Μονάδες θέλετε να αξιολογηθείτε. Με το πλήκτρο 'Επεξεργασία'
-                        μπορείτε να κάνετε μεταβολές στοιχείων των αιτήσεών σας και να τις εκτυπώσετε.
-                    </p>
-                    <p />
-                    <p class="sansserif">
-                        ΣΗΜΑΝΤΙΚΗ ΔΙΕΥΚΡΙΝΙΣΗ
-                    </p>
-                    <p class="sansserif">
-                        <font style="font-weight:bold">
-                            Από την ημέρα που καταχωρήσετε την αίτησή σας και μέχρι την ημερομηνία λήξης
-                            της προθεσμίας υποβολής αιτήσεων, μπορείτε να κάνετε, όσες φορές θέλετε, αλλαγές
-                            στα καταχωρημένα στοιχεία και εκτυπώσεις. Συνεπώς, έχετε σχετική άνεση χρόνου για
-                            διορθώσεις και γενικά όποιες αλλαγές κρίνετε σκόπιμες. ΤΙΠΟΤΑ ΔΕΝ ΚΛΕΙΔΩΝΕΙ μέχρι
-                            τη λήξη προθεσμίας υποβολής των αιτήσεων, οπότε συντάξετε τις Αιτήσεις σας προσεκτικά
-                            και χωρίς άγχος.
+            </div>
+        </text>);
+    items.Add()
+        .Text("Χρήσιμες συμβουλές")
+        .Content(@<text>
+            <div style="margin-left:6px;margin-right:6px">
+                <p class="sansserif"></p>
+                <p class="sansserif" style="font-size:medium">
+                    <span>
+                        <font style="font-family:'Segoe UI';font-size:large">
+                            Τι κάνω για να υποβάλω την Ηλεκτρονική Αίτηση;
                         </font>
-                    </p>
-                    <p class="sansserif">
-                        <font style="font-weight:bold;font-style:italic">
-                            Όλες οι αιτήσεις θα κλειδωθούν την ημερομηνία και ώρα που αναφέρεται στην Ανακοίνωση.
-                        </font>
-                    </p>
-                    <p class="sansserif">
-                        Σας ευχόμαστε ΚΑΛΗ ΕΠΙΤΥΧΙΑ!
-                    </p>
-                </div>
-            </text>);
-        items.Add()
-            .Text("Ανακοινώσεις")
-            .Content(@<text>
-                <div style="margin-left:6px;margin-right:6px">
-                    <p></p>
-                    <p class="sansserif">
-                        <img src="~/Images/phone/appbar.card.1.png" width="42" height="42" />
-                        Η πρόσβαση στις Ηλεκτρονικές Υπηρεσίες του ΟΑΕΔ απαιτεί σύγχρονα προγράμματα πλοήγησης (browsers) για την ασφάλεια των προσωπικών
-                        δεδομένων και των πληροφοριακών συστημάτων. Αν αντιμετωπίζετε πρόβλημα πρόσβασης στις Ηλεκτρονικές Υπηρεσίες του ΟΑΕΔ, θα πρέπει
-                        να κατεβάσετε και να εγκαταστήσετε την πιο πρόσφατη έκδοση ενός από τους δωρεάν περιηγητές Google Chrome ή Mozilla Firefox.
-                        Για τον σκοπό αυτό επισκεφθείτε μια από τις παρακάτω ιστοσελίδες και ακολουθείστε τις οδηγίες που σας παρέχουν.<br />
-                        Για το Google Chrome: <a href="https://www.google.com/chrome/browser/desktop" target="_blank"><b>https://www.google.com/chrome/browser/desktop</b></a><br />
-                        Για το Mozilla Firefox: <a href="https://www.mozilla.org/el/firefox/new" target="_blank"><b>https://www.mozilla.org/el/firefox/new</b></a>
-                    </p>
-                    <p class="sansserif">
-                        <img src="~/Images/phone/appbar.card.2.png" width="42" height="42" />
-                        Η τρέχουσα Προκήρυξη είναι ανοικτή για τους υποψηφίους εκπαιδευτικούς από <b>../../2021 ώρα 08:00 έως ../../2021 ώρα 23:59</b>.<br />
-                    </p>
-                    <p></p>
-                    <p class="sansserif">
-                        <img src="~/Images/phone/appbar.card.3.png" width="42" height="42" />
-                        Οι υποψήφιοι μπορούν να ενημερώνονται για τα αναλυτικά μόρια στην επιλογή "Αποτελέσματα Αξιολόγησης",<br />
-                        <font style="margin-left:42px">που βρίσκεται στην κεντρική σελίδα του κάθε υποψηφίου εκπαιδευτικού.</font>
-                    </p>
-                    <p class="sansserif">
-                        <img src="~/Images/phone/appbar.card.4.png" width="42" height="42" />
-                        Υποστήριξη υποψηφίων εκπαιδευτικών (βλ. "Επικοινωνία")
-                        <ul>
-                            <li>
-                                Τα email μηνύματα που αποστέλλονται σε άλλη διεύθυνση εκτός της αναφερόμενης παραπάνω δεν θα απαντώνται.
-                            </li>
-                            <li>
-                                Email μηνύματα τα οποία είναι γραμμένα σε greeklish θα διαγράφονται χωρίς ανάγνωση και συνεπώς δεν θα απαντώνται.
-                            </li>
-                            <li>
-                                Τυχόν ερωτήματα μέσω email για να απαντηθούν απαιτούνται : Ονοματεπώνυμο, ΑΦΜ, Τηλέφωνα επικοινωνίας.
-                            </li>
-                            <li>
-                                Ειδικότερα για την ανάκτηση κωδικών απαιτείται συνημμένο αντίγραφο Δελτίου Ταυτότητας σε μορφή pdf.
-                            </li>
-                        </ul>
-                    </p>
-                </div>
-            </text>);
+                    </span>
+                    <br />
+                <p class="sansserif">
+                    <img src="~/Images/metro/orderedList1.png" />
+                    Στην εφαρμογή κάνετε είσοδο με τα στοιχεία λογαριασμού σας του TAXISnet.
+                </p>
+                <p class="sansserif">
+                    <img src="~/Images/metro/orderedList2.png" />
+                    Στη συνέχεια, στην καρτέλα εισόδου της εφαρμογής απλά πατάτε 'Είσοδος'.
+                </p>
+                <p class="sansserif">
+                    <img src="~/Images/metro/orderedList3.png" />
+                    Επιλέγετε πρώτα 'Προσωπικά στοιχεία'. Στη φόρμα που ανοίγει συμπληρώνετε τα
+                    στοιχεία που ζητούνται. Πατάτε 'Αποθήκευση' και επιστρέφετε στην κεντρική
+                    σελίδα.
+                </p>
+                <p class="sansserif">
+                    <img src="~/Images/metro/orderedList4.png" />
+                    Επιλέγετε 'Υποβολή Νέας Αίτησης'μόνο για δημιουργήσετε μια νέα Αίτηση. Στη φόρμα που ανοίγει συμπληρώνετε τα
+                    στοιχεία που ζητούνται΄.Πατάτε 'Αποθήκευση' και μετά 'Επιστροφή' για να επιστρέψετε στη σελίδα εργασιών.
+                </p>
+                <p class="sansserif">
+                    <img src="~/Images/metro/orderedList5.png" />
+                    Αφού έχετε δημιουργήσει μία ή περισσότερες αιτήσεις, επιλέγετε 'Διαχείριση Αιτήσεων'.<br />
+                    Εδώ, ορίζετε σε ποιές άλλες Σχολικές Μονάδες θέλετε να αξιολογηθείτε. Με το πλήκτρο 'Επεξεργασία'
+                    μπορείτε να κάνετε μεταβολές στοιχείων των αιτήσεών σας και να τις εκτυπώσετε.
+                </p>
+                <p />
+                <p class="sansserif">
+                    ΣΗΜΑΝΤΙΚΗ ΔΙΕΥΚΡΙΝΙΣΗ
+                </p>
+                <p class="sansserif">
+                    <font style="font-weight:bold">
+                        Από την ημέρα που καταχωρήσετε την αίτησή σας και μέχρι την ημερομηνία λήξης
+                        της προθεσμίας υποβολής αιτήσεων, μπορείτε να κάνετε, όσες φορές θέλετε, αλλαγές
+                        στα καταχωρημένα στοιχεία και εκτυπώσεις. Συνεπώς, έχετε σχετική άνεση χρόνου για
+                        διορθώσεις και γενικά όποιες αλλαγές κρίνετε σκόπιμες. ΤΙΠΟΤΑ ΔΕΝ ΚΛΕΙΔΩΝΕΙ μέχρι
+                        τη λήξη προθεσμίας υποβολής των αιτήσεων, οπότε συντάξετε τις Αιτήσεις σας προσεκτικά
+                        και χωρίς άγχος.
+                    </font>
+                </p>
+                <p class="sansserif">
+                    <font style="font-weight:bold;font-style:italic">
+                        Όλες οι αιτήσεις θα κλειδωθούν την ημερομηνία και ώρα που αναφέρεται στην Ανακοίνωση.
+                    </font>
+                </p>
+                <p class="sansserif">
+                    Σας ευχόμαστε ΚΑΛΗ ΕΠΙΤΥΧΙΑ!
+                </p>
+            </div>
+        </text>);
+    items.Add()
+        .Text("Ανακοινώσεις")
+        .Content(@<text>
+            <div style="margin-left:6px;margin-right:6px">
+                <p></p>
+                <p class="sansserif">
+                    <img src="~/Images/phone/appbar.card.1.png" width="42" height="42" />
+                    Η πρόσβαση στις Ηλεκτρονικές Υπηρεσίες του ΟΑΕΔ απαιτεί σύγχρονα προγράμματα πλοήγησης (browsers) για την ασφάλεια των προσωπικών
+                    δεδομένων και των πληροφοριακών συστημάτων. Αν αντιμετωπίζετε πρόβλημα πρόσβασης στις Ηλεκτρονικές Υπηρεσίες του ΟΑΕΔ, θα πρέπει
+                    να κατεβάσετε και να εγκαταστήσετε την πιο πρόσφατη έκδοση ενός από τους δωρεάν περιηγητές Google Chrome ή Mozilla Firefox.
+                    Για τον σκοπό αυτό επισκεφθείτε μια από τις παρακάτω ιστοσελίδες και ακολουθείστε τις οδηγίες που σας παρέχουν.<br />
+                    Για το Google Chrome: <a href="https://www.google.com/chrome/browser/desktop" target="_blank"><b>https://www.google.com/chrome/browser/desktop</b></a><br />
+                    Για το Mozilla Firefox: <a href="https://www.mozilla.org/el/firefox/new" target="_blank"><b>https://www.mozilla.org/el/firefox/new</b></a>
+                </p>
+                <p class="sansserif">
+                    <img src="~/Images/phone/appbar.card.2.png" width="42" height="42" />
+                    Η τρέχουσα Προκήρυξη είναι ανοικτή για τους υποψηφίους εκπαιδευτικούς από <b>../../2021 ώρα 08:00 έως ../../2021 ώρα 23:59</b>.<br />
+                </p>
+                <p></p>
+                <p class="sansserif">
+                    <img src="~/Images/phone/appbar.card.3.png" width="42" height="42" />
+                    Οι υποψήφιοι μπορούν να ενημερώνονται για τα αναλυτικά μόρια στην επιλογή "Αποτελέσματα Αξιολόγησης",<br />
+                    <font style="margin-left:42px">που βρίσκεται στην κεντρική σελίδα του κάθε υποψηφίου εκπαιδευτικού.</font>
+                </p>
+                <p class="sansserif">
+                    <img src="~/Images/phone/appbar.card.4.png" width="42" height="42" />
+                    Υποστήριξη υποψηφίων εκπαιδευτικών (βλ. "Επικοινωνία")
+                    <ul>
+                        <li>
+                            Τα email μηνύματα που αποστέλλονται σε άλλη διεύθυνση εκτός της αναφερόμενης παραπάνω δεν θα απαντώνται.
+                        </li>
+                        <li>
+                            Email μηνύματα τα οποία είναι γραμμένα σε greeklish θα διαγράφονται χωρίς ανάγνωση και συνεπώς δεν θα απαντώνται.
+                        </li>
+                        <li>
+                            Τυχόν ερωτήματα μέσω email για να απαντηθούν απαιτούνται : Ονοματεπώνυμο, ΑΦΜ, Τηλέφωνα επικοινωνίας.
+                        </li>
+                        <li>
+                            Ειδικότερα για την ανάκτηση κωδικών απαιτείται συνημμένο αντίγραφο Δελτίου Ταυτότητας σε μορφή pdf.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </text>);
     })
     )
 </div>
@@ -315,7 +332,7 @@
             <tr>
                 <td width="10%" align="left"><img src="~/images/metro/oaed-logo.png" height="60" width="74" /></td>
                 <td align="center">
-                    <font color="#000080" size="4" style="font-weight:600"> 2015-@DateTime.Now.Year, Διεύθυνση Αρχικής Επαγγελματικής Εκπαίδευσης και Κατάρτισης</font>
+                    <font color="#000080" size="4" style="font-weight:600">&nbsp;&nbsp; 2015-@currentYear, Διεύθυνση Αρχικής Επαγγελματικής Εκπαίδευσης και Κατάρτισης</font>
                 </td>
             </tr>
             <tr>

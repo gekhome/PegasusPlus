@@ -18,23 +18,23 @@ namespace PegasusPlus.Models
         [Display(Name = "Αρχείο για ΑΦΜ")]
         public string AFM_FILENAME { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε αρχείο για ΑΦΜ πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για ΑΦΜ *")]
         public HttpPostedFileBase FileAFM { get; set; }
 
         [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
         [RegularExpression(@"^[ΆΈΊΉΌΎΏΑ-Ω]+[ ΆΈΊΉΌΎΏΑ-Ω.'ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
-        [Display(Name = "Δ.Ο.Υ.")]
+        [Display(Name = "Δ.Ο.Υ. *")]
         public string DOY { get; set; }
 
-        [Display(Name = "Α.Δ.Τ.")]
+        [Display(Name = "Α.Δ.Τ. *")]
         public string ADT { get; set; }
 
         [Display(Name = "Αρχείο για ΑΔΤ")]
         public string ADT_FILENAME { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για ΑΔΤ πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για ΑΔΤ *")]
         public HttpPostedFileBase FileADT { get; set; }
 
         [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
@@ -127,11 +127,10 @@ namespace PegasusPlus.Models
         [Display(Name = "Αρχείο για ΑΜΚΑ")]
         public string AMKA_FILENAME { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για ΑΜΚΑ πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για ΑΜΚΑ *")]
         public HttpPostedFileBase FileAMKA { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
         [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
         [Display(Name = "Αριθμός μητρώου ασφάλισης *")]
         public string AMA { get; set; }
@@ -139,11 +138,10 @@ namespace PegasusPlus.Models
         [Display(Name = "Αρχείο για ΑΜΑ")]
         public string AMA_FILENAME { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για ΑΜΑ πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για ΑΜΑ *")]
         public HttpPostedFileBase FileAMA { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
         [StringLength(150, ErrorMessage = "Πρέπει να είναι μέχρι 150 χαρακτήρες.")]
         [Display(Name = "Ασφάλιση κύριας θέσης *")]
         public string InsuranceMain { get; set; }
@@ -173,36 +171,36 @@ namespace PegasusPlus.Models
         [Display(Name = "Αρχείο για τρίτεκνη")]
         public string SocialTriteknosFilename { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για τρίτεκνη πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για τρίτεκνη")]
         public HttpPostedFileBase FileTriteknos { get; set; }
 
         [Display(Name = "Αρχείο για πολύτεκνη")]
         public string SocialPolyteknosFilename { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για πολύτεκνη πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για πολύτεκνη")]
         public HttpPostedFileBase FilePolyteknos { get; set; }
 
         [Display(Name = "Αρχείο για μονογονεϊκή")]
         public string SocialSingleParentFilename { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για μονογονεϊκή πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για μονογονεϊκή")]
         public HttpPostedFileBase FileSingleParent { get; set; }
 
         [Display(Name = "Αρχείο για ΑΜΕΑ")]
         public string SocialAmeaFilename { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για ΑΜΕΑ πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για ΑΜΕΑ")]
         public HttpPostedFileBase FileAMEA { get; set; }
 
         [Display(Name = "Αρχείο για ανεργία")]
         public string SocialAnergosFilename { get; set; }
 
-        [Required(ErrorMessage = "Πρέπει να επιλέξετε βεβαίωση για ανεργία πριν την υποβολή της φόρμας.")]
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
+        [Display(Name = "Επιλογή αρχείου για ανεργία")]
         public HttpPostedFileBase FileAnergia { get; set; }
 
         public TeacherViewModel() { }
@@ -263,7 +261,7 @@ namespace PegasusPlus.Models
         public string FileName { get; set; }
 
         [Display(Name = "Επέκταση")]
-        public string Extension { get; set; }
+        public string FilePath { get; set; }
 
         [Display(Name = "Περιγραφή αρχείου")]
         public string Description { get; set; }

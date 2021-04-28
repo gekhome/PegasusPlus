@@ -70,6 +70,14 @@ p .k-button {
     text-align:left;
 }
 
+.smartShortText {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    -o-text-overflow: ellipsis;
+}
+
 /* #endregion */
 @media (max-width: 767px) {
     #responsive-panel {
