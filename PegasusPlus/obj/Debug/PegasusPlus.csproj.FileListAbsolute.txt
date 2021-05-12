@@ -97,4 +97,6 @@ F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\bin\Telerik.Reporting.OpenXmlRende
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\bin\Telerik.Reporting.OpenXmlRendering.xml
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.GroupsEidikotites.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.EidikotitesProkirixis.resources
-F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.csprojResolveAssemblyReference.cache
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiResults.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.TeacherData.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.TeachersEidikotita.resources

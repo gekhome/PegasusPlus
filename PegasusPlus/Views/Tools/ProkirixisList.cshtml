@@ -22,15 +22,15 @@
             columns.ForeignKey(f => f.SchoolYear, (IEnumerable<SysSchoolYears>)ViewData["SchoolYears"], "SchoolYearID", "SchoolYearText").Width(20);
             columns.Bound(m => m.Protocol).Width(25);
             columns.Bound(m => m.Fek).Width(25);
-            columns.Bound(m => m.Dioikitis).Width(36);
-            columns.Bound(m => m.DateStart).Width(24);
-            columns.Bound(m => m.DateEnd).Width(22);
-            columns.ForeignKey(f => f.Status, (IEnumerable<SysProkirixiStatus>)ViewData["Status"], "StatusID", "StatusText").Width(20);
+            columns.Bound(m => m.Dioikitis).Width(35);
+            columns.Bound(m => m.DateStart).Width(22).Filterable(false);
+            columns.Bound(m => m.DateEnd).Width(22).Filterable(false);
+            columns.ForeignKey(f => f.Status, (IEnumerable<SysProkirixiStatus>)ViewData["Status"], "StatusID", "StatusText").Width(20).Filterable(false);
             columns.Bound(m => m.Active).Width(16).ClientTemplate("<input type='checkbox' #= Active ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
             columns.Bound(m => m.Admin).Width(16).ClientTemplate("<input type='checkbox' #= Admin ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
             columns.Bound(m => m.UserView).Width(16).ClientTemplate("<input type='checkbox' #= UserView ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
             columns.Bound(m => m.Enstaseis).Width(16).ClientTemplate("<input type='checkbox' #= Enstaseis ? checked='checked' : '' # class='chkbx' ></input>").Filterable(false);
-            columns.Command(command => command.Destroy()).Width(20);
+            columns.Command(command => command.Destroy()).Width(24);
         })
         .ToolBar(toolBar =>
         {

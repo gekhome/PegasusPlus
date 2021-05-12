@@ -1,0 +1,162 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+@{
+    ViewBag.Title = "Ανεβασμένα αρχεία";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    string teacherAfm = ViewData["teacherAFM"].ToString();
+}
+
+<style>
+    .page-header {
+        border-bottom: 1px solid #D3D3D3;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+    }
+</style>
+
+<div class="page-header mb-3">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Αρχεία προσωπικών στοιχείων και στοιχείων αιτήσεων</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+            <a class="btn btn-warning" , style="font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Κλείσιμο καρτέλας</a>
+        </span>
+    </div>
+</div>
+
+
+<div class="body-content mt-4" style="margin:10px 30px 5px 30px;">
+    @(Html.Kendo().Grid<TeacherUploadViewModel>()
+        .Name("Grid")
+        .AutoBind(true)
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Filterable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .Scrollable(scr => scr.Height(460))
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.UploadFileID).Hidden();
+            columns.Bound(c => c.FilePath).Hidden();
+            columns.Bound(c => c.TeacherAFM).Hidden();
+            columns.Bound(c => c.FileName).Width(60);
+            columns.Bound(c => c.Description).Width(40);
+            columns.Bound(c => c.SchoolYearText).Width(16);
+            columns.Command(command => { command.Custom("\u13EB" +" Προβολή").Click("showPDF"); }).Width(34);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+                "<a class=\"k-button k-button-icontext\" href='" + Url.Action("Download", "Admin") + "?file_id=#=UploadFileID#'><span class=\"k-icon k-update\"></span>Κατέβασμα</a>"
+             ).Width(20);
+        })
+        .DataSource(ds => ds
+            .Ajax()
+            .Batch(false)
+            .PageSize(40)
+            .ServerOperation(false)
+            .Model(model =>
+            {
+                model.Id(p => p.UploadFileID);
+            })
+            .Read(read => read.Action("UploadFiles_Read", "Admin", new { afm = teacherAfm }))
+            .Events(events => events.Error("error_handler"))
+        )
+)
+</div>
+
+<div id="dialog" style="display: none">
+</div>
+
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#Grid").data("kendoGrid").dataSource.read();
+        }
+    }
+
+    function showPDF(e) {
+        e.preventDefault();
+        var grid = this;
+        var row = $(e.currentTarget).closest("tr");
+        var data = this.dataItem(row);
+
+        //// NOT USED /////
+        var url = "../App_Data/FilesPersonal/" + data.TeacherAFM + "/";
+
+        filePath = data.FilePath;
+        fileName = data.FileName;
+        $("#dialog").dialog({
+            modal: true,
+            title: fileName,
+            width: 800,
+            height: 600,
+            buttons: {
+                Κλείσιμο: function () {
+                    $(this).dialog('close');
+                }
+            },
+            open: function () {
+                var object = "<object data=\"{FileName}\" type=\"application/pdf\" width=\"800px\" height=\"600px\"></object>";
+                //object += "</object>";
+                object = object.replace(/{FileName}/g, filePath);
+                $("#dialog").html(object);
+            }
+        });
+
+    }
+
+    function deleteRow(e) {
+        e.preventDefault();
+        var grid = this;
+        var row = $(e.currentTarget).closest("tr");
+        var data = this.dataItem(row);
+        var uploadID = data.UploadFileID;
+
+        var text = "Σίγουρα θέλετε να γίνει διαγραφή της εγγραφής;<br/> Θα διαγραφεί και το ανεβασμένο αρχείο στον εξυπηρετητή.";
+        MessageBoxConfirm(text, "Επιβεβαίωση διαγραφής").done(function () {
+            grid.removeRow(row);
+            $.ajax({
+                url: '@Url.Action("UploadFile_Delete", "Teachers")?fileId=' + uploadID,
+                type: 'POST',
+                data: "",
+                contentType: 'application/json; charset=utf-8',
+                success: function (out) {
+                    if (out) MessageBoxAlert(out, "Ειδοποίηση");
+                    RefreshMasterGrid();
+                },
+                error: function () {
+                    MessageBoxAlert("Προέκυψε σφάλμα. Δοκιμάστε πάλι αργότερα.", "Σφάλμα");
+                }
+            });
+        }).fail(function () {
+            return;
+        });
+    }
+
+</script>
+
+

@@ -114,31 +114,31 @@
             .HtmlAttributes(new { style = "width:100%" })
             .Items(items =>
             {
-            items.Add().Text("Στοιχεία Αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.cabinet.files.png"))
-            .Items(children =>
-            {
-                children.Add().Text("1. Προσωπικά στοιχεία").ImageUrl(Url.Content("~/Images/phone/appbar.user.png")).Action("TeacherEdit", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Προσωπικά, οικονομικά και εργασιακά στοιχεία" });
-                children.Add().Text("2. Υποβολή νέας αίτησης").ImageUrl(Url.Content("~/Images/phone/appbar.page.text.png")).Action("Index", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Καταχώρηση και υποβολή νέας αίτησης για την τρέχουσα προκήρυξη" });
-                children.Add().Text("3. Διαχείριση αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.list.gear.png")).Action("Index", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Επεξεργασία καταχωρημένων αιτήσεων και ΙΕΚ προτίμησης" });
-                children.Add().Text("4. Πρωτότυπες αιτήσεις").ImageUrl(Url.Content("~/Images/phone/appbar.page.copy.png")).Action("Index", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Αντίγραφα των πρωτότυπων αιτήσεων, όπως υποβλήθηκαν" });
-            });
+                items.Add().Text("Στοιχεία Αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.cabinet.files.png"))
+                .Items(children =>
+                {
+                    children.Add().Text("1. Προσωπικά στοιχεία").ImageUrl(Url.Content("~/Images/phone/appbar.user.png")).Action("TeacherEdit", "Teachers")
+                        .LinkHtmlAttributes(new { title = "Προσωπικά, οικονομικά και εργασιακά στοιχεία" });
+                    children.Add().Text("2. Υποβολή νέας αίτησης").ImageUrl(Url.Content("~/Images/phone/appbar.page.text.png")).Action("AitisiCreate", "Aitisis")
+                        .LinkHtmlAttributes(new { title = "Καταχώρηση και υποβολή νέας αίτησης για την τρέχουσα προκήρυξη" });
+                    children.Add().Text("3. Στοιχεία επιμόρφωσης").ImageUrl(Url.Content("~/Images/phone/appbar.page.copy.png")).Action("SkillsEdit", "Teachers")
+                        .LinkHtmlAttributes(new { title = "Ξένες γλώσσες, γνώση Η/Υ, επιμορφώσεις και λοιπά στοιχεία" });
+                    children.Add().Text("4. Διαχείριση αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.list.gear.png")).Action("AitisisList", "Aitisis")
+                        .LinkHtmlAttributes(new { title = "Επεξεργασία καταχωρημένων αιτήσεων και ΙΕΚ προτίμησης" });
+                });
                 items.Add().Text("Προϋπηρεσίες").ImageUrl(Url.Content("~/Images/phone/appbar.book.open.text.png"))
                     .Items(Children =>
-            {
-                Children.Add().Text("1. Διδακτική εμπειρία").ImageUrl(Url.Content("~/Images/phone/appbar.book.list.png")).Action("Index", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Καταχώρηση διδακτικών προϋπηρεσιών και ανέβασμα δικαιολογητικών" });
-                Children.Add().Text("2. Επαγγελματική εμπειρία").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("Index", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Καταχώρηση επαγγελματικών προϋπηρεσιών και ανέβασμα δικαιολογητικών" });
-                Children.Add().Text("3. Ελεύθερο επάγγελμα").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("Index", "Teachers")
-                    .LinkHtmlAttributes(new { title = "Καταχώρηση εμπειρίας από ελεύθερο επαγγελμα και ανέβασμα δικαιολογητικών" });
-            });
-                items.Add().Text("Αξιολόγηση").ImageUrl(Url.Content("~/Images/phone/appbar.checkmark.pencil.png")).Action("Index", "Teachers")
+                    {
+                        Children.Add().Text("1. Διδακτική εμπειρία").ImageUrl(Url.Content("~/Images/phone/appbar.book.list.png")).Action("TeachingMain", "Experience")
+                            .LinkHtmlAttributes(new { title = "Καταχώρηση διδακτικών προϋπηρεσιών και ανέβασμα δικαιολογητικών" });
+                        Children.Add().Text("2. Επαγγελματική εμπειρία").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("VocationMain", "Experience")
+                            .LinkHtmlAttributes(new { title = "Καταχώρηση επαγγελματικών προϋπηρεσιών και ανέβασμα δικαιολογητικών" });
+                        Children.Add().Text("3. Ελεύθερο επάγγελμα").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("FreelanceMain", "Experience")
+                            .LinkHtmlAttributes(new { title = "Καταχώρηση εμπειρίας από ελεύθερο επαγγελμα και ανέβασμα δικαιολογητικών" });
+                    });
+                items.Add().Text("Αξιολόγηση").ImageUrl(Url.Content("~/Images/phone/appbar.checkmark.pencil.png")).Action("AitisisResults", "Aitisis")
                         .LinkHtmlAttributes(new { title = "Ενημέρωση για τα αποτελέσματα της διαδικασίας αξιολόγησης" });
-                items.Add().Text("Ενστάσεις").ImageUrl(Url.Content("~/Images/phone/appbar.people.checkbox.png")).Action("Index", "Teachers")
+                items.Add().Text("Ενστάσεις").ImageUrl(Url.Content("~/Images/phone/appbar.user.delete.png")).Action("Enstaseis", "Aitisis")
                         .LinkHtmlAttributes(new { title = "Υποβολή ένστασης με ανέβασμα του εντύπου ένστασης" });
             })
         )

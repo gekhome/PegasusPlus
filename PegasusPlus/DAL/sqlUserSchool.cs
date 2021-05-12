@@ -19,5 +19,6 @@ namespace PegasusPlus.DAL
         public string Password { get; set; }
         public string SchoolName { get; set; }
         public string SchoolEmail { get; set; }
+        public Nullable<int> UserSchoolID { get; set; }
     }
 }

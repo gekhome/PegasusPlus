@@ -22,6 +22,7 @@ namespace PegasusPlus.Controllers.DataControllers
         private int prokirixiId;
         //private bool ViewAllowed;
         private const string UPLOAD_PATH = "~/App_Data/FilesPersonal/";
+        private const string EPIMORFOSI_PATH = "~/App_Data/FilesEpimorfosi/";
 
         private const string UPLOAD_AFM_TEXT = "ΒΕΒΑΙΩΣΗ ΑΦΜ";
         private const string UPLOAD_ADT_TEXT = "ΒΕΒΑΙΩΣΗ ΑΔΤ";
@@ -32,6 +33,14 @@ namespace PegasusPlus.Controllers.DataControllers
         private const string UPLOAD_TRITEKNOS_TEXT = "ΒΕΒΑΙΩΣΗ ΤΡΙΤΕΚΝΗΣ ΟΙΚΟΓΕΝΕΙΑΣ";
         private const string UPLOAD_POLYTEKNOS_TEXT = "ΒΕΒΑΙΩΣΗ ΠΟΛΥΤΕΚΝΗΣ ΟΙΚΟΓΕΝΕΙΑΣ";
         private const string UPLOAD_SINGLEPARENT_TEXT = "ΒΕΒΑΙΩΣΗ ΜΟΝΟΓΟΝΕΪΚΗΣ ΟΙΚΟΓΕΝΕΙΑΣ";
+
+        private const string UPLOAD_PTYXIO2_TEXT = "ΔΕΥΤΕΡΟ ΠΤΥΧΙΟ/ΜΕΤΑΠΤΥΧΙΑΚΟ/ΔΙΔΑΚΤΟΡΙΚΟ";
+        private const string UPLOAD_ANAGNORISI_TEXT = "ΑΝΑΓΝΩΡΙΣΗ ΔΕΥΤΕΡΟΥ ΠΤΥΧΙΟΥ";
+        private const string UPLOAD_LANGUAGE1_TEXT = "ΠΙΣΤΟΠΟΙΗΤΙΚΟ ΠΡΩΤΗΣ ΞΕΝΗΣ ΓΛΩΣΣΑΣ";
+        private const string UPLOAD_LANGUAGE2_TEXT = "ΠΙΣΤΟΠΟΙΗΤΙΚΟ ΔΕΥΤΕΡΗΣ ΞΕΝΗΣ ΓΛΩΣΣΑΣ";
+        private const string UPLOAD_COMPUTER_TEXT = "ΠΙΣΤΟΠΟΙΗΤΙΚΟ ΓΝΩΣΗΣ Η/Υ";
+        private const string UPLOAD_CERTIFIED_TEXT = "ΠΙΣΤΟΠΟΙΗΣΗ ΕΚΠΑΙΔΕΥΤΗ ΕΝΗΛΙΚΩΝ";
+        private const string UPLOAD_N2190_TEXT = "ΒΕΒΑΙΩΣΗ ΠΡΟΣΤΑΤΕΥΟΜΕΝΟΥ Ν.2190";
 
         Common c = new Common();
         Kerberos k = new Kerberos();
@@ -63,6 +72,7 @@ namespace PegasusPlus.Controllers.DataControllers
             return View();
         }
 
+
         #region TEACHER DATA FORM
 
         public ActionResult TeacherCreate()
@@ -77,7 +87,7 @@ namespace PegasusPlus.Controllers.DataControllers
             prokirixiId = c.GetOpenProkirixiID();
             if (prokirixiId == 0)
             {
-                return RedirectToAction("Index", "Teachers");
+                return RedirectToAction("Index", "Teachers", new { notify = "Δεν βρέθηκε ανοικτή προκήρυξη για επεξεργασία." });
             }
 
             if (db.Teachers.Find(loggedTeacher.UserAfm) == null)
@@ -118,14 +128,9 @@ namespace PegasusPlus.Controllers.DataControllers
         public ActionResult TeacherCreate(TeacherViewModel model)
         {
             loggedTeacher = GetLoginTeacher();
-            int prokirixiId = c.GetOpenProkirixiID();
-            if (prokirixiId == 0)
-            {
-                return RedirectToAction("Index", "Teachers");
-            }
 
             if (!SaveUploadedFiles(model))
-                ModelState.AddModelError("", "Ένα ή περισσότερα ανεβασμένα αρχεία δεν έχουν αποδεκτή επέκταση (PDF, DOC, DOCX, ODT)");
+                ModelState.AddModelError("", "Ένα ή περισσότερα ανεβασμένα αρχεία δεν έχουν αποδεκτό τύπο (PDF, DOC, DOCX, ODT)");
 
             if (ModelState.IsValid)
             {
@@ -153,9 +158,6 @@ namespace PegasusPlus.Controllers.DataControllers
                     Email = model.Email,
                     Epagelma = model.Epagelma,
                     Idiotita = model.Idiotita,
-                    //InsuranceMain = model.InsuranceMain,
-                    //InsuranceFirstYear = model.InsuranceFirstYear,
-                    //AnergiaCardExpireDate = model.AnergiaCardExpireDate,
                     SocialTriteknos = model.SocialTriteknos,
                     SocialPolyteknos = model.SocialPolyteknos,
                     SocialSingleParent = model.SocialSingleParent,
@@ -198,14 +200,9 @@ namespace PegasusPlus.Controllers.DataControllers
         public ActionResult TeacherEdit(TeacherViewModel model)
         {
             loggedTeacher = GetLoginTeacher();
-            prokirixiId = c.GetOpenProkirixiID();
-            if (prokirixiId == 0)
-            {
-                return RedirectToAction("Index", "Teachers");
-            }
 
             if (!SaveUploadedFiles(model))
-                ModelState.AddModelError("", "Ένα ή περισσότερα ανεβασμένα αρχεία δεν έχουν αποδεκτή επέκταση (PDF, DOC, DOCX, ODT)");
+                ModelState.AddModelError("", "Ένα ή περισσότερα ανεβασμένα αρχεία δεν έχουν αποδεκτό τύπο (PDF, DOC, DOCX, ODT)");
 
             if (ModelState.IsValid)
             {
@@ -233,9 +230,6 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.Email = model.Email;
                 entity.Epagelma = model.Epagelma;
                 entity.Idiotita = model.Idiotita;
-                //entity.InsuranceMain = model.InsuranceMain;
-                //entity.InsuranceFirstYear = model.InsuranceFirstYear;
-                //entity.AnergiaCardExpireDate = model.AnergiaCardExpireDate;
                 entity.SocialTriteknos = model.SocialTriteknos;
                 entity.SocialPolyteknos = model.SocialPolyteknos;
                 entity.SocialSingleParent = model.SocialSingleParent;
@@ -273,17 +267,6 @@ namespace PegasusPlus.Controllers.DataControllers
             return View(model);
         }
 
-        public bool ValidFileExtension(string extension)
-        {
-            string[] extensions = { ".PDF", ".DOC", ".DOCX", ".ODT" };
-
-            List<string> allowed_extensions = new List<string>(extensions);
-
-            if (allowed_extensions.Contains(extension.ToUpper()))
-                return true;
-            return false;
-        }
-
         public TeacherViewModel GetTeacherDataFromDB(string afm)
         {
             var data = (from d in db.Teachers
@@ -312,14 +295,11 @@ namespace PegasusPlus.Controllers.DataControllers
                             Email = d.Email,
                             Epagelma = d.Epagelma,
                             Idiotita = d.Idiotita,
-                            InsuranceMain = d.InsuranceMain,
-                            InsuranceFirstYear = d.InsuranceFirstYear,
                             SocialTriteknos = d.SocialTriteknos ?? false,
                             SocialPolyteknos = d.SocialPolyteknos ?? false,
                             SocialSingleParent = d.SocialSingleParent ?? false,
                             SocialAmea = d.SocialAmea ?? false,
                             SocialAnergos = d.SocialAnergos,
-                            AnergiaCardExpireDate = d.AnergiaCardExpireDate,
                             ADT_FILENAME = d.ADT_FILENAME,
                             AFM_FILENAME = d.AFM_FILENAME,
                             AMA_FILENAME = d.AMA_FILENAME,
@@ -335,7 +315,8 @@ namespace PegasusPlus.Controllers.DataControllers
 
         #endregion
 
-        #region SAVE UPLOAD FILES
+
+        #region SAVE TEACHER DATA FILES
 
         public bool SaveUploadedFiles(TeacherViewModel model)
         {
@@ -351,7 +332,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName1 = Path.GetFileName(model.FileAFM.FileName);
                 string Extension1 = Path.GetExtension(model.FileAFM.FileName);
-                if (!string.IsNullOrEmpty(FileName1) && ValidFileExtension(Extension1))
+                if (!string.IsNullOrEmpty(FileName1) && k.ValidFileExtension(Extension1))
                 {
                     var physicalPath1 = Path.Combine(Server.MapPath(upload_path), FileName1);
                     model.FileAFM.SaveAs(physicalPath1);
@@ -364,7 +345,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName2 = Path.GetFileName(model.FileADT.FileName);
                 string Extension2 = Path.GetExtension(model.FileADT.FileName);
-                if (!string.IsNullOrEmpty(FileName2) && ValidFileExtension(Extension2))
+                if (!string.IsNullOrEmpty(FileName2) && k.ValidFileExtension(Extension2))
                 {
                     var physicalPath2 = Path.Combine(Server.MapPath(upload_path), FileName2);
                     model.FileADT.SaveAs(physicalPath2);
@@ -377,7 +358,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName3 = Path.GetFileName(model.FileAMKA.FileName);
                 string Extension3 = Path.GetExtension(model.FileAMKA.FileName);
-                if (!string.IsNullOrEmpty(FileName3) && ValidFileExtension(Extension3))
+                if (!string.IsNullOrEmpty(FileName3) && k.ValidFileExtension(Extension3))
                 {
                     var physicalPath3 = Path.Combine(Server.MapPath(upload_path), FileName3);
                     model.FileAMKA.SaveAs(physicalPath3);
@@ -390,7 +371,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName4 = Path.GetFileName(model.FileAMA.FileName);
                 string Extension4 = Path.GetExtension(model.FileAMA.FileName);
-                if (!string.IsNullOrEmpty(FileName4) && ValidFileExtension(Extension4))
+                if (!string.IsNullOrEmpty(FileName4) && k.ValidFileExtension(Extension4))
                 {
                     var physicalPath4 = Path.Combine(Server.MapPath(upload_path), FileName4);
                     model.FileAMA.SaveAs(physicalPath4);
@@ -403,7 +384,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName5 = Path.GetFileName(model.FileTriteknos.FileName);
                 string Extension5 = Path.GetExtension(model.FileTriteknos.FileName);
-                if (!string.IsNullOrEmpty(FileName5) && ValidFileExtension(Extension5))
+                if (!string.IsNullOrEmpty(FileName5) && k.ValidFileExtension(Extension5))
                 {
                     var physicalPath5 = Path.Combine(Server.MapPath(upload_path), FileName5);
                     model.FileTriteknos.SaveAs(physicalPath5);
@@ -416,7 +397,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName6 = Path.GetFileName(model.FilePolyteknos.FileName);
                 string Extension6 = Path.GetExtension(model.FilePolyteknos.FileName);
-                if (!string.IsNullOrEmpty(FileName6) && ValidFileExtension(Extension6))
+                if (!string.IsNullOrEmpty(FileName6) && k.ValidFileExtension(Extension6))
                 {
                     var physicalPath6 = Path.Combine(Server.MapPath(upload_path), FileName6);
                     model.FilePolyteknos.SaveAs(physicalPath6);
@@ -429,7 +410,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName7 = Path.GetFileName(model.FileSingleParent.FileName);
                 string Extension7 = Path.GetExtension(model.FileSingleParent.FileName);
-                if (!string.IsNullOrEmpty(FileName7) && ValidFileExtension(Extension7))
+                if (!string.IsNullOrEmpty(FileName7) && k.ValidFileExtension(Extension7))
                 {
                     var physicalPath7 = Path.Combine(Server.MapPath(upload_path), FileName7);
                     model.FileSingleParent.SaveAs(physicalPath7);
@@ -442,7 +423,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName8 = Path.GetFileName(model.FileAMEA.FileName);
                 string Extension8 = Path.GetExtension(model.FileAMEA.FileName);
-                if (!string.IsNullOrEmpty(FileName8) && ValidFileExtension(Extension8))
+                if (!string.IsNullOrEmpty(FileName8) && k.ValidFileExtension(Extension8))
                 {
                     var physicalPath8 = Path.Combine(Server.MapPath(upload_path), FileName8);
                     model.FileAMEA.SaveAs(physicalPath8);
@@ -455,7 +436,7 @@ namespace PegasusPlus.Controllers.DataControllers
             {
                 string FileName9 = Path.GetFileName(model.FileAnergia.FileName);
                 string Extension9 = Path.GetExtension(model.FileAnergia.FileName);
-                if (!string.IsNullOrEmpty(FileName9) && ValidFileExtension(Extension9))
+                if (!string.IsNullOrEmpty(FileName9) && k.ValidFileExtension(Extension9))
                 {
                     var physicalPath9 = Path.Combine(Server.MapPath(upload_path), FileName9);
                     model.FileAnergia.SaveAs(physicalPath9);
@@ -473,10 +454,10 @@ namespace PegasusPlus.Controllers.DataControllers
             prokirixiId = c.GetOpenProkirixiID();
             int schoolyearId = (int)db.Prokirixis.Find(prokirixiId).SchoolYear;
 
-            var data = (from d in db.TeachersUploads where d.FileName == filename select d).Count();
+            var data = (from d in db.TeacherUploads where d.FileName == filename select d).Count();
             if (data == 0)
             {
-                TeachersUploads entity = new TeachersUploads()
+                TeacherUploads entity = new TeacherUploads()
                 {
                     FileName = filename,
                     FilePath = filepath,
@@ -484,12 +465,347 @@ namespace PegasusPlus.Controllers.DataControllers
                     TeacherAFM = loggedTeacher.UserAfm,
                     SchoolYearText = c.GetSchoolYearText(schoolyearId)
                 };
-                db.TeachersUploads.Add(entity);
+                db.TeacherUploads.Add(entity);
                 db.SaveChanges();
             }
         }
 
         #endregion
+
+
+        #region TEACHER SKILLS FORM
+
+        public ActionResult SkillsCreate()
+        {
+            //check if user is unauthenticated to redirect him
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+                return RedirectToAction("TaxisNetLogin", "UserTeachers");
+            else
+                loggedTeacher = GetLoginTeacher();
+
+            if (c.GetOpenProkirixiID() == 0)
+            {
+                return RedirectToAction("Index", "Teachers", new { notify = "Δεν βρέθηκε ανοικτή προκήρυξη για επεξεργασία." });
+            }
+
+            if (db.Teachers.Find(loggedTeacher.UserAfm) == null)
+            {
+                string msg = "Δεν βρέθηκαν τα στοιχεία εκπαιδευτικού. Πρέπει πρώτα να καταχωρήσετε προσωπικά στοιχεία.";
+                return RedirectToAction("Index", "Teachers", new { notify = msg });
+            }
+            return View(new TeacherSkillsViewModel());
+        }
+
+        public ActionResult SkillsEdit()
+        {
+            //check if user is unauthenticated to redirect him
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+                return RedirectToAction("TaxisNetLogin", "UserTeachers");
+            else
+                loggedTeacher = GetLoginTeacher();
+
+            if (c.GetOpenProkirixiID() == 0)
+            {
+                return RedirectToAction("Index", "Teachers", new { notify = "Δεν βρέθηκε ανοικτή προκήρυξη για επεξεργασία." });
+            }
+
+            if (db.Teachers.Find(loggedTeacher.UserAfm) == null)
+            {
+                string msg = "Δεν βρέθηκαν τα στοιχεία εκπαιδευτικού. Πρέπει πρώτα να καταχωρήσετε προσωπικά στοιχεία.";
+                return RedirectToAction("Index", "Teachers", new { notify = msg });
+            }
+
+            if (db.TeacherSkills.Where(d => d.TeacherAFM == loggedTeacher.UserAfm).FirstOrDefault() == null)
+                return RedirectToAction("SkillsCreate", "Teachers");
+
+            TeacherSkillsViewModel model = GetSkillsModelFromDB(loggedTeacher.UserAfm);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SkillsCreate(TeacherSkillsViewModel model)
+        {
+            loggedTeacher = GetLoginTeacher();
+
+            if (!SaveSkillsUploadedFiles(model))
+                ModelState.AddModelError("", "Ένα ή περισσότερα ανεβασμένα αρχεία δεν έχουν αποδεκτό τύπο (PDF, DOC, DOCX, ODT)");
+
+            if (ModelState.IsValid)
+            {
+                TeacherSkills entity = new TeacherSkills()
+                {
+                    TeacherAFM = loggedTeacher.UserAfm,
+                    Ptyxio2Anagnorisi = model.Ptyxio2Anagnorisi,
+                    Ptyxio2Foreign = model.Ptyxio2Foreign,
+                    Ptyxio2Institution = model.Ptyxio2Institution,
+                    Ptyxio2Titlos = model.Ptyxio2Titlos,
+                    Ptyxio2Type = model.Ptyxio2Type,
+                    Ptyxio2Year = model.Ptyxio2Year,
+                    Language1 = model.Language1,
+                    Language1Level = model.Language1Level,
+                    Language1Titlos = model.Language1Titlos,
+                    Language2 = model.Language2,
+                    Language2Level = model.Language2Level,
+                    Language2Titlos = model.Language2Titlos,
+                    ComputerCertificate = model.ComputerCertificate,
+                    ComputerTitlos = model.ComputerTitlos,
+                    ComputerYear = model.ComputerYear,
+                    CertifiedTrainer = model.CertifiedTrainer,
+                    CertifiedTrainerAM = model.CertifiedTrainerAM,
+                    Epimorfosi = model.Epimorfosi,
+                    EpimorfosiTotalHours = model.EpimorfosiTotalHours,
+                    N2190Protect = model.N2190Protect,
+                    Ptyxio2Filename = model.FilePtyxio2 != null ? Path.GetFileName(model.FilePtyxio2.FileName) : "",
+                    Ptyxio2AnagnorisiFilename = model.FileAnagnorisi != null ? Path.GetFileName(model.FileAnagnorisi.FileName) : "",
+                    Language1Filename = model.FileLanguage1 != null ? Path.GetFileName(model.FileLanguage1.FileName) : "",
+                    Language2Filename = model.FileLanguage2 != null ? Path.GetFileName(model.FileLanguage2.FileName) : "",
+                    ComputerFilename = model.FileComputer != null ? Path.GetFileName(model.FileComputer.FileName) : "",
+                    CertifiedTrainerFilename = model.FileCertified != null ? Path.GetFileName(model.FileCertified.FileName) : "",
+                    N2190ProtectFilename = model.FileN2190 != null ? Path.GetFileName(model.FileN2190.FileName) : "",
+                    OaedPtyxio2Confirm = true,
+                    OaedCertifiedConfirm = true,
+                    OaedComputerConfirm = true,
+                    OaedEpimorfosiConfirm = true,
+                    OaedLanguage1Confirm = true,
+                    OaedLanguage2Confirm = true,
+                    OaedN2190Confirm = model.N2190Protect == true ? true : false
+                };
+                db.TeacherSkills.Add(entity);
+                db.SaveChanges();
+                this.AddNotification("Η αποθήκευση ολοκληρώθηκε με επιτυχία.", NotificationType.SUCCESS);
+                TeacherSkillsViewModel newData = GetSkillsModelFromDB(loggedTeacher.UserAfm);
+                return View(newData);
+            }
+            else
+            {
+                this.AddNotification("Η αποθήκευση απέτυχε λόγω σφαλμάτων καταχώρησης. Δείτε τη σύνοψη στο κάτω μέρος της σελίδας.", NotificationType.ERROR);
+                model.TeacherAFM = loggedTeacher.UserAfm;
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SkillsEdit(TeacherSkillsViewModel model)
+        {
+            loggedTeacher = GetLoginTeacher();
+
+            if (!SaveSkillsUploadedFiles(model))
+                ModelState.AddModelError("", "Ένα ή περισσότερα ανεβασμένα αρχεία δεν έχουν αποδεκτό τύπο (PDF, DOC, DOCX, ODT)");
+
+            if (ModelState.IsValid)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == loggedTeacher.UserAfm).FirstOrDefault();
+
+                entity.TeacherAFM = loggedTeacher.UserAfm;
+                entity.Ptyxio2Anagnorisi = model.Ptyxio2Anagnorisi;
+                entity.Ptyxio2Foreign = model.Ptyxio2Foreign;
+                entity.Ptyxio2Institution = model.Ptyxio2Institution;
+                entity.Ptyxio2Titlos = model.Ptyxio2Titlos;
+                entity.Ptyxio2Type = model.Ptyxio2Type;
+                entity.Ptyxio2Year = model.Ptyxio2Year;
+                entity.Language1 = model.Language1;
+                entity.Language1Level = model.Language1Level;
+                entity.Language1Titlos = model.Language1Titlos;
+                entity.Language2 = model.Language2;
+                entity.Language2Level = model.Language2Level;
+                entity.Language2Titlos = model.Language2Titlos;
+                entity.ComputerCertificate = model.ComputerCertificate;
+                entity.ComputerTitlos = model.ComputerTitlos;
+                entity.ComputerYear = model.ComputerYear;
+                entity.CertifiedTrainer = model.CertifiedTrainer;
+                entity.CertifiedTrainerAM = model.CertifiedTrainerAM;
+                entity.Epimorfosi = model.Epimorfosi;
+                entity.EpimorfosiTotalHours = model.EpimorfosiTotalHours;
+                entity.N2190Protect = model.N2190Protect;
+                entity.Ptyxio2Filename = model.FilePtyxio2 != null ? Path.GetFileName(model.FilePtyxio2.FileName) : GetPtyxio2Filename(loggedTeacher.UserAfm);
+                entity.Ptyxio2AnagnorisiFilename = model.FileAnagnorisi != null ? Path.GetFileName(model.FileAnagnorisi.FileName) : GetPtyxio2AnagnorisiFilename(loggedTeacher.UserAfm);
+                entity.Language1Filename = model.FileLanguage1 != null ? Path.GetFileName(model.FileLanguage1.FileName) : GetLanguage1Filename(loggedTeacher.UserAfm);
+                entity.Language2Filename = model.FileLanguage2 != null ? Path.GetFileName(model.FileLanguage2.FileName) : GetLanguage2Filename(loggedTeacher.UserAfm); ;
+                entity.ComputerFilename = model.FileComputer != null ? Path.GetFileName(model.FileComputer.FileName) : GetComputerFilename(loggedTeacher.UserAfm);
+                entity.CertifiedTrainerFilename = model.FileCertified != null ? Path.GetFileName(model.FileCertified.FileName) : GetCertifiedFilename(loggedTeacher.UserAfm);
+                entity.N2190ProtectFilename = model.FileN2190 != null ? Path.GetFileName(model.FileN2190.FileName) : GetN2190Filename(loggedTeacher.UserAfm);
+                entity.OaedPtyxio2Confirm = true;
+                entity.OaedCertifiedConfirm = true;
+                entity.OaedComputerConfirm = true;
+                entity.OaedEpimorfosiConfirm = true;
+                entity.OaedLanguage1Confirm = true;
+                entity.OaedLanguage2Confirm = true;
+                entity.OaedN2190Confirm = model.N2190Protect == true ? true : false;
+
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+                this.AddNotification("Η αποθήκευση ολοκληρώθηκε με επιτυχία.", NotificationType.SUCCESS);
+                TeacherSkillsViewModel newData = GetSkillsModelFromDB(loggedTeacher.UserAfm);
+                return View(newData);
+            }
+            else
+            {
+                this.AddNotification("Η αποθήκευση απέτυχε λόγω σφαλμάτων καταχώρησης. Δείτε τη σύνοψη στο κάτω μέρος της σελίδας.", NotificationType.ERROR);
+                model.TeacherAFM = loggedTeacher.UserAfm;
+                return View(model);
+            }
+        }
+
+        public TeacherSkillsViewModel GetSkillsModelFromDB(string afm)
+        {
+            var data = (from d in db.TeacherSkills
+                        where d.TeacherAFM == afm
+                        select new TeacherSkillsViewModel
+                        {
+                            SkillsID = d.SkillsID,
+                            TeacherAFM = d.TeacherAFM,
+                            CertifiedTrainer = d.CertifiedTrainer ?? false,
+                            CertifiedTrainerFilename = d.CertifiedTrainerFilename,
+                            CertifiedTrainerAM = d.CertifiedTrainerAM,
+                            ComputerCertificate = d.ComputerCertificate,
+                            ComputerFilename = d.ComputerFilename,
+                            ComputerTitlos = d.ComputerTitlos,
+                            ComputerYear = d.ComputerYear,
+                            Epimorfosi = d.Epimorfosi ?? false,
+                            EpimorfosiTotalHours = d.EpimorfosiTotalHours,
+                            Language1 = d.Language1,
+                            Language1Filename = d.Language1Filename,
+                            Language1Level = d.Language1Level,
+                            Language1Titlos = d.Language1Titlos,
+                            Language2 = d.Language2,
+                            Language2Filename = d.Language2Filename,
+                            Language2Level = d.Language2Level,
+                            Language2Titlos = d.Language2Titlos,
+                            N2190Protect = d.N2190Protect ?? false,
+                            N2190ProtectFilename = d.N2190ProtectFilename,
+                            Ptyxio2Anagnorisi = d.Ptyxio2Anagnorisi ?? false,
+                            Ptyxio2AnagnorisiFilename = d.Ptyxio2AnagnorisiFilename,
+                            Ptyxio2Filename = d.Ptyxio2Filename,
+                            Ptyxio2Foreign = d.Ptyxio2Foreign ?? false,
+                            Ptyxio2Institution = d.Ptyxio2Institution,
+                            Ptyxio2Titlos = d.Ptyxio2Titlos,
+                            Ptyxio2Type = d.Ptyxio2Type,
+                            Ptyxio2Year = d.Ptyxio2Year,
+                            OaedCertifiedConfirm = d.OaedCertifiedConfirm ?? false,
+                            OaedComputerConfirm = d.OaedComputerConfirm ?? false,
+                            OaedEpimorfosiConfirm = d.OaedEpimorfosiConfirm ?? false,
+                            OaedLanguage1Confirm = d.OaedLanguage1Confirm ?? false,
+                            OaedLanguage2Confirm = d.OaedLanguage2Confirm ?? false,
+                            OaedN2190Confirm = d.OaedN2190Confirm ?? false,
+                            OaedPtyxio2Confirm = d.OaedPtyxio2Confirm ?? false
+                        }).FirstOrDefault();
+
+            return data;
+        }
+
+        #endregion
+
+
+        #region SAVE TEACHER SKILLS FILES
+
+        public bool SaveSkillsUploadedFiles(TeacherSkillsViewModel model)
+        {
+            loggedTeacher = GetLoginTeacher();
+            string prefix_afm = loggedTeacher.UserAfm;
+            string upload_path = UPLOAD_PATH + prefix_afm + "/";
+
+            bool exists = Directory.Exists(Server.MapPath(upload_path));
+            if (!exists)
+                Directory.CreateDirectory(Server.MapPath(upload_path));
+
+            if (model.FilePtyxio2 != null)
+            {
+                string FileName1 = Path.GetFileName(model.FilePtyxio2.FileName);
+                string Extension1 = Path.GetExtension(model.FilePtyxio2.FileName);
+                if (!string.IsNullOrEmpty(FileName1) && k.ValidFileExtension(Extension1))
+                {
+                    var physicalPath1 = Path.Combine(Server.MapPath(upload_path), FileName1);
+                    model.FilePtyxio2.SaveAs(physicalPath1);
+                    StoreUploadedFile(FileName1, physicalPath1, UPLOAD_PTYXIO2_TEXT);
+                }
+                else return false;
+            }
+
+            if (model.FileAnagnorisi != null)
+            {
+                string FileName2 = Path.GetFileName(model.FileAnagnorisi.FileName);
+                string Extension2 = Path.GetExtension(model.FileAnagnorisi.FileName);
+                if (!string.IsNullOrEmpty(FileName2) && k.ValidFileExtension(Extension2))
+                {
+                    var physicalPath2 = Path.Combine(Server.MapPath(upload_path), FileName2);
+                    model.FileAnagnorisi.SaveAs(physicalPath2);
+                    StoreUploadedFile(FileName2, physicalPath2, UPLOAD_ANAGNORISI_TEXT);
+                }
+                else return false;
+            }
+
+            if (model.FileLanguage1 != null)
+            {
+                string FileName3 = Path.GetFileName(model.FileLanguage1.FileName);
+                string Extension3 = Path.GetExtension(model.FileLanguage1.FileName);
+                if (!string.IsNullOrEmpty(FileName3) && k.ValidFileExtension(Extension3))
+                {
+                    var physicalPath3 = Path.Combine(Server.MapPath(upload_path), FileName3);
+                    model.FileLanguage1.SaveAs(physicalPath3);
+                    StoreUploadedFile(FileName3, physicalPath3, UPLOAD_LANGUAGE1_TEXT);
+                }
+                else return false;
+            }
+
+            if (model.FileLanguage2 != null)
+            {
+                string FileName4 = Path.GetFileName(model.FileLanguage2.FileName);
+                string Extension4 = Path.GetExtension(model.FileLanguage2.FileName);
+                if (!string.IsNullOrEmpty(FileName4) && k.ValidFileExtension(Extension4))
+                {
+                    var physicalPath4 = Path.Combine(Server.MapPath(upload_path), FileName4);
+                    model.FileLanguage2.SaveAs(physicalPath4);
+                    StoreUploadedFile(FileName4, physicalPath4, UPLOAD_LANGUAGE2_TEXT);
+                }
+                else return false;
+            }
+
+            if (model.FileComputer != null)
+            {
+                string FileName5 = Path.GetFileName(model.FileComputer.FileName);
+                string Extension5 = Path.GetExtension(model.FileComputer.FileName);
+                if (!string.IsNullOrEmpty(FileName5) && k.ValidFileExtension(Extension5))
+                {
+                    var physicalPath5 = Path.Combine(Server.MapPath(upload_path), FileName5);
+                    model.FileComputer.SaveAs(physicalPath5);
+                    StoreUploadedFile(FileName5, physicalPath5, UPLOAD_COMPUTER_TEXT);
+                }
+                else return false;
+            }
+
+            if (model.FileCertified != null)
+            {
+                string FileName6 = Path.GetFileName(model.FileCertified.FileName);
+                string Extension6 = Path.GetExtension(model.FileCertified.FileName);
+                if (!string.IsNullOrEmpty(FileName6) && k.ValidFileExtension(Extension6))
+                {
+                    var physicalPath6 = Path.Combine(Server.MapPath(upload_path), FileName6);
+                    model.FileCertified.SaveAs(physicalPath6);
+                    StoreUploadedFile(FileName6, physicalPath6, UPLOAD_CERTIFIED_TEXT);
+                }
+                else return false;
+            }
+
+            if (model.FileN2190 != null)
+            {
+                string FileName7 = Path.GetFileName(model.FileN2190.FileName);
+                string Extension7 = Path.GetExtension(model.FileN2190.FileName);
+                if (!string.IsNullOrEmpty(FileName7) && k.ValidFileExtension(Extension7))
+                {
+                    var physicalPath7 = Path.Combine(Server.MapPath(upload_path), FileName7);
+                    model.FileN2190.SaveAs(physicalPath7);
+                    StoreUploadedFile(FileName7, physicalPath7, UPLOAD_N2190_TEXT);
+                }
+                else return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
 
         #region GET FILENAME FIELDS FROM DATABASE
 
@@ -565,6 +881,62 @@ namespace PegasusPlus.Controllers.DataControllers
             return "";
         }
 
+        public string GetPtyxio2Filename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.Ptyxio2Filename }).FirstOrDefault();
+            if (data != null)
+                return data.Ptyxio2Filename;
+            return "";
+        }
+
+        public string GetPtyxio2AnagnorisiFilename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.Ptyxio2AnagnorisiFilename }).FirstOrDefault();
+            if (data != null)
+                return data.Ptyxio2AnagnorisiFilename;
+            return "";
+        }
+
+        public string GetLanguage1Filename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.Language1Filename }).FirstOrDefault();
+            if (data != null)
+                return data.Language1Filename;
+            return "";
+        }
+
+        public string GetLanguage2Filename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.Language2Filename }).FirstOrDefault();
+            if (data != null)
+                return data.Language2Filename;
+            return "";
+        }
+
+        public string GetComputerFilename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.ComputerFilename }).FirstOrDefault();
+            if (data != null)
+                return data.ComputerFilename;
+            return "";
+        }
+
+        public string GetCertifiedFilename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.CertifiedTrainerFilename }).FirstOrDefault();
+            if (data != null)
+                return data.CertifiedTrainerFilename;
+            return "";
+        }
+
+        public string GetN2190Filename(string afm)
+        {
+            var data = (from d in db.TeacherSkills where d.TeacherAFM == afm select new { d.N2190ProtectFilename }).FirstOrDefault();
+            if (data != null)
+                return data.N2190ProtectFilename;
+            return "";
+        }
+
         #endregion
 
 
@@ -598,14 +970,14 @@ namespace PegasusPlus.Controllers.DataControllers
             // TODO: ALSO REMOVE UPLOADED FILES FROM SERVER
             if (data != null)
             {
-                TeachersUploads entity = db.TeachersUploads.Find(data.UploadFileID);
+                TeacherUploads entity = db.TeacherUploads.Find(data.UploadFileID);
                 if (entity != null)
                 {
                     // First delete the physical file and then the info record. Important!
                     DeleteUploadedFile(data.UploadFileID);
 
                     db.Entry(entity).State = EntityState.Deleted;
-                    db.TeachersUploads.Remove(entity);
+                    db.TeacherUploads.Remove(entity);
                     db.SaveChanges();
                 }
             }
@@ -617,7 +989,7 @@ namespace PegasusPlus.Controllers.DataControllers
         public ActionResult UploadFile_Delete(int fileId = 0)
         {
             string msg = "";
-            TeachersUploads entity = db.TeachersUploads.Find(fileId);
+            TeacherUploads entity = db.TeacherUploads.Find(fileId);
             if (entity != null)
             {
                 // First delete the physical file and then the info record. Important!
@@ -626,7 +998,7 @@ namespace PegasusPlus.Controllers.DataControllers
                 ClearFilenameField(fileId);
 
                 db.Entry(entity).State = EntityState.Deleted;
-                db.TeachersUploads.Remove(entity);
+                db.TeacherUploads.Remove(entity);
                 db.SaveChanges();
             }
 
@@ -637,7 +1009,7 @@ namespace PegasusPlus.Controllers.DataControllers
         {
             loggedTeacher = GetLoginTeacher();
 
-            var data = (from d in db.TeachersUploads
+            var data = (from d in db.TeacherUploads
                         where d.TeacherAFM == loggedTeacher.UserAfm
                         orderby d.FileName
                         select new TeacherUploadViewModel
@@ -659,7 +1031,7 @@ namespace PegasusPlus.Controllers.DataControllers
             string uploadPath = UPLOAD_PATH + loggedTeacher.UserAfm + "/";
             string filename = "";
 
-            var data = (from d in db.TeachersUploads where d.UploadFileID == fileId select d).FirstOrDefault();
+            var data = (from d in db.TeacherUploads where d.UploadFileID == fileId select d).FirstOrDefault();
             if (data != null)
             {
                 filename = data.FileName;
@@ -674,9 +1046,10 @@ namespace PegasusPlus.Controllers.DataControllers
 
         public void ClearFilenameField(int fileId)
         {
-            var data = (from d in db.TeachersUploads where d.UploadFileID == fileId select new { d.Description, d.TeacherAFM }).FirstOrDefault();
+            var data = (from d in db.TeacherUploads where d.UploadFileID == fileId select new { d.Description, d.TeacherAFM }).FirstOrDefault();
             if (data == null) return;
 
+            // 1. FIELDS FROM TEACHERS TABLE
             if (data.Description == UPLOAD_ADT_TEXT)
             {
                 Teachers entity = db.Teachers.Find(data.TeacherAFM);
@@ -767,6 +1140,77 @@ namespace PegasusPlus.Controllers.DataControllers
                     db.SaveChanges();
                 }
             }
+            // 2. FIELDS FROM SKILLS TABLE
+            else if (data.Description == UPLOAD_PTYXIO2_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.Ptyxio2Filename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else if (data.Description == UPLOAD_ANAGNORISI_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.Ptyxio2AnagnorisiFilename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else if (data.Description == UPLOAD_LANGUAGE1_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.Language1Filename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else if (data.Description == UPLOAD_LANGUAGE2_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.Language2Filename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else if (data.Description == UPLOAD_COMPUTER_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.ComputerFilename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else if (data.Description == UPLOAD_CERTIFIED_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.CertifiedTrainerFilename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else if (data.Description == UPLOAD_N2190_TEXT)
+            {
+                TeacherSkills entity = db.TeacherSkills.Where(d => d.TeacherAFM == data.TeacherAFM).FirstOrDefault();
+                if (entity != null)
+                {
+                    entity.N2190ProtectFilename = "";
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
         }
 
         public FileResult Download(int file_id)
@@ -775,13 +1219,352 @@ namespace PegasusPlus.Controllers.DataControllers
             string physicalPath = UPLOAD_PATH + loggedTeacher.UserAfm + "/";
             string filename = "";
 
-            var fileinfo = (from d in db.TeachersUploads where d.UploadFileID == file_id select d).FirstOrDefault();
+            var fileinfo = (from d in db.TeacherUploads where d.UploadFileID == file_id select d).FirstOrDefault();
             if (fileinfo != null)
             {
                 filename = fileinfo.FileName;
             }
 
             return File(Path.Combine(Server.MapPath(physicalPath), filename), System.Net.Mime.MediaTypeNames.Application.Octet, filename);
+        }
+
+        #endregion
+
+
+        #region ΣΕΛΙΔΑ ΕΠΙΜΟΡΦΩΣΕΩΝ ΜΕ ΔΥΟ ΠΛΕΓΜΑΤΑ
+
+        public ActionResult Epimorfoseis(string notify = null)
+        {
+            //check if user is unauthenticated to redirect him
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+                return RedirectToAction("TaxisNetLogin", "UserTeachers");
+            else
+                loggedTeacher = GetLoginTeacher();
+
+            if (notify != null)
+                this.AddNotification(notify, NotificationType.WARNING);
+
+            return View();
+        }
+
+        public ActionResult Epimorfosi_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var data = GetEpimorfoseisFromDB();
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Epimorfosi_Create([DataSourceRequest] DataSourceRequest request, EpimorfosiViewModel data)
+        {
+            loggedTeacher = GetLoginTeacher();
+            var newdata = new EpimorfosiViewModel();
+
+            if (data != null && ModelState.IsValid)
+            {
+                Epimorfosis entity = new Epimorfosis()
+                {
+                    TeacherAfm = loggedTeacher.UserAfm,
+                    ProkirixiID = c.GetOpenProkirixiID(),
+                    EpimorfosiTitlos = data.EpimorfosiTitlos,
+                    EpimorfosiForeas = data.EpimorfosiForeas,
+                    EpimorfosiDateStart = data.EpimorfosiDateStart,
+                    EpimorfosiDateFinal = data.EpimorfosiDateFinal,
+                    EpimorfosiHours = data.EpimorfosiHours,
+                    EpimorfosiType = data.EpimorfosiType
+                };
+                db.Epimorfosis.Add(entity);
+                db.SaveChanges();
+                data.EpimorfosiID = entity.EpimorfosiID;
+                newdata = RefreshEpimorfosiFromDB(data.EpimorfosiID);
+            }
+            return Json(new[] { newdata }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Epimorfosi_Update([DataSourceRequest] DataSourceRequest request, EpimorfosiViewModel data)
+        {
+            loggedTeacher = GetLoginTeacher();
+            var newdata = new EpimorfosiViewModel();
+
+            if (data != null && ModelState.IsValid)
+            {
+                Epimorfosis entity = db.Epimorfosis.Find(data.EpimorfosiID);
+
+                entity.TeacherAfm = loggedTeacher.UserAfm;
+                entity.ProkirixiID = c.GetOpenProkirixiID();
+
+                entity.EpimorfosiTitlos = data.EpimorfosiTitlos;
+                entity.EpimorfosiForeas = data.EpimorfosiForeas;
+                entity.EpimorfosiDateStart = data.EpimorfosiDateStart;
+                entity.EpimorfosiDateFinal = data.EpimorfosiDateFinal;
+                entity.EpimorfosiHours = data.EpimorfosiHours;
+                entity.EpimorfosiType = data.EpimorfosiType;
+
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+                newdata = RefreshEpimorfosiFromDB(entity.EpimorfosiID);
+            }
+            return Json(new[] { newdata }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Epimorfosi_Destroy([DataSourceRequest] DataSourceRequest request, EpimorfosiViewModel data)
+        {
+            if (data != null)
+            {
+                Epimorfosis entity = db.Epimorfosis.Find(data.EpimorfosiID);
+                if (entity != null)
+                {
+                    if (k.CanDeleteEpimorfosi(data.EpimorfosiID))
+                    {
+                        db.Entry(entity).State = EntityState.Deleted;
+                        db.Epimorfosis.Remove(entity);
+                        db.SaveChanges();
+                    }
+                    else
+                        ModelState.AddModelError("", "Δεν μπορεί να διαγραφεί η εγγραφή διότι έχει συσχετισμένα αρχεία. Διαγράψτε πρώτα τα αρχεία.");
+                }
+            }
+            return Json(new[] { data }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        public EpimorfosiViewModel RefreshEpimorfosiFromDB(int recordId)
+        {
+            loggedTeacher = GetLoginTeacher();
+            var data = (from d in db.Epimorfosis
+                        where d.EpimorfosiID == recordId
+                        select new EpimorfosiViewModel
+                        {
+                            EpimorfosiID = d.EpimorfosiID,
+                            EpimorfosiTitlos = d.EpimorfosiTitlos,
+                            EpimorfosiForeas = d.EpimorfosiForeas,
+                            EpimorfosiHours = d.EpimorfosiHours,
+                            EpimorfosiDateStart = d.EpimorfosiDateStart,
+                            EpimorfosiDateFinal = d.EpimorfosiDateFinal,
+                            EpimorfosiType = d.EpimorfosiType
+                        }).FirstOrDefault();
+
+            return data;
+        }
+
+        public List<EpimorfosiViewModel> GetEpimorfoseisFromDB()
+        {
+            loggedTeacher = GetLoginTeacher();
+            var data = (from d in db.Epimorfosis
+                        where d.TeacherAfm == loggedTeacher.UserAfm
+                        orderby d.EpimorfosiDateStart descending
+                        select new EpimorfosiViewModel
+                        {
+                            EpimorfosiID = d.EpimorfosiID,
+                            EpimorfosiTitlos = d.EpimorfosiTitlos,
+                            EpimorfosiForeas = d.EpimorfosiForeas,
+                            EpimorfosiHours = d.EpimorfosiHours,
+                            EpimorfosiDateStart = d.EpimorfosiDateStart,
+                            EpimorfosiDateFinal = d.EpimorfosiDateFinal,
+                            EpimorfosiType = d.EpimorfosiType
+                        }).ToList();
+
+            return data;
+        }
+
+        #endregion
+
+
+        #region CHILD GRID WITH EPIMORFOSI FILES
+
+        public ActionResult EpimorfosiFiles_Read([DataSourceRequest] DataSourceRequest request, int epimorfosiId = 0)
+        {
+            var data = GetEpimorfosiFilesFromDB(epimorfosiId);
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EpimorfosiFiles_Destroy([DataSourceRequest] DataSourceRequest request, EpimorfosiFileViewModel data)
+        {
+            if (data != null)
+            {
+                EpimorfosiFiles entity = db.EpimorfosiFiles.Find(data.UploadFileID);
+                if (entity != null)
+                {
+                    // First delete the physical file and then the info record. Important!
+                    DeleteEpimorfosiFile(data.UploadFileID);
+
+                    db.Entry(entity).State = EntityState.Deleted;
+                    db.EpimorfosiFiles.Remove(entity);
+                    db.SaveChanges();
+                }
+            }
+            return Json(new[] { data }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<EpimorfosiFileViewModel> GetEpimorfosiFilesFromDB(int epimorfosiId = 0)
+        {
+            var data = (from d in db.EpimorfosiFiles
+                        where d.EpimorfosiID == epimorfosiId
+                        orderby d.Filename
+                        select new EpimorfosiFileViewModel
+                        {
+                            UploadFileID = d.UploadFileID,
+                            Description = d.Description,
+                            Filename = d.Filename,
+                            Filepath = d.Filepath,
+                            EpimorfosiID = d.EpimorfosiID
+                        }).ToList();
+
+            return (data);
+        }
+
+        public void DeleteEpimorfosiFile(int fileId)
+        {
+            loggedTeacher = GetLoginTeacher();
+            string uploadPath = EPIMORFOSI_PATH + loggedTeacher.UserAfm + "/";
+            string filename = "";
+
+            var data = (from d in db.EpimorfosiFiles where d.UploadFileID == fileId select d).FirstOrDefault();
+            if (data != null)
+            {
+                filename = data.Filename;
+                var physicalPath = Path.Combine(Server.MapPath(uploadPath), filename);
+                if (System.IO.File.Exists(physicalPath))
+                {
+                    System.IO.File.Delete(physicalPath);
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region EPIMOFROSI UPLOAD FORM WITH FUNCTIONS
+
+        public ActionResult UploadEpimorfosi(int epimorfosiId, string notify = null)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                ViewBag.loggedUser = "(χωρίς σύνδεση)";
+                return RedirectToAction("TaxisNetLogin", "UserTeachers");
+            }
+            else
+            {
+                loggedTeacher = GetLoginTeacher();
+                if (loggedTeacher == null)
+                    return RedirectToAction("Error", "Teachers", new { notify = "Δεν βρέθηκε εξουσιοδοτημένος χρήστης για το αίτημα." });
+            }
+            if (notify != null)
+                this.AddNotification(notify, NotificationType.WARNING);
+
+            if (!(epimorfosiId > 0))
+            {
+                string msg = "Άκυρος κωδικός επιμόρφωσης. Πρέπει πρώτα να αποθηκεύσετε την εγγραφή επιμόρφωσης και μετά να ανεβάσετε αρχείο.";
+                return RedirectToAction("ErrorData", "Teachers", new { notify = msg });
+            }
+            ViewData["epimorfosiId"] = epimorfosiId;
+
+            return View();
+        }
+
+        public ActionResult Epimorfosi_Upload(IEnumerable<HttpPostedFileBase> files, int epimorfosiId = 0)
+        {
+            loggedTeacher = GetLoginTeacher();
+            string uploadPath = EPIMORFOSI_PATH + loggedTeacher.UserAfm + "/";
+
+            try
+            {
+                if (!Directory.Exists(Server.MapPath(uploadPath)))
+                    Directory.CreateDirectory(Server.MapPath(uploadPath));
+
+                if (files != null)
+                {
+                    foreach (var file in files)
+                    {
+                        // Some browsers send file names with full path. We are only interested in the file name.
+                        if (file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            var fileExtension = Path.GetExtension(fileName);
+                            if (!k.ValidFileExtension(fileExtension))
+                            {
+                                string msg = "Μη επιτρεπόμενος τύπος αρχείου. Δοκιμάστε πάλι.";
+                                return Content(msg);
+                            }
+                            var physicalPath = Path.Combine(Server.MapPath(uploadPath), fileName);
+                            file.SaveAs(physicalPath);
+
+                            EpimorfosiFiles fileDetail = new EpimorfosiFiles()
+                            {
+                                Filename = fileName.Length > 255 ? fileName.Substring(0, 255) : fileName,
+                                Filepath = physicalPath,
+                                Description = "ΠΙΣΤΟΠΟΙΗΤΙΚΟ ΕΠΙΜΟΡΦΩΣΗΣ (" + loggedTeacher.UserAfm + ")",
+                                EpimorfosiID = epimorfosiId
+                            };
+                            db.EpimorfosiFiles.Add(fileDetail);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = "Παρουσιάστηκε σφάλμα στη μεταφόρτωση:<br/>" + ex.Message;
+                return Content(msg);
+            }
+            // Return an empty string to signify success
+            return Content("");
+        }
+
+        public ActionResult Epimorfosi_Remove(string[] fileNames, int epimorfosiId)
+        {
+            // The parameter of the Remove action must be called "fileNames"
+            loggedTeacher = GetLoginTeacher();
+            string uploadPath = EPIMORFOSI_PATH + loggedTeacher.UserAfm + "/";
+
+            if (fileNames != null)
+            {
+                foreach (var fullName in fileNames)
+                {
+                    var fileName = Path.GetFileName(fullName);
+                    var extension = Path.GetExtension(fileName);
+
+                    var physicalPath = Path.Combine(Server.MapPath(uploadPath), fileName);
+                    if (System.IO.File.Exists(physicalPath))
+                    {
+                        System.IO.File.Delete(physicalPath);
+                        DeleteUploadFileRecord(fileName);
+                    }
+                }
+            }
+            // Return an empty string to signify success
+            return Content("");
+        }
+
+        public ActionResult DeleteUploadFileRecord(string filename)
+        {
+            EpimorfosiFiles entity = db.EpimorfosiFiles.Where(d => d.Filename == filename).FirstOrDefault();
+            if (entity != null)
+            {
+                db.Entry(entity).State = EntityState.Deleted;
+                db.EpimorfosiFiles.Remove(entity);
+                db.SaveChanges();
+            }
+            return Content("");
+        }
+
+        public FileResult DownloadEpimorfosiFile(int file_id)
+        {
+            loggedTeacher = GetLoginTeacher();
+            string f = "";
+            string uploadPath = EPIMORFOSI_PATH + loggedTeacher.UserAfm + "/";
+
+            var fileinfo = (from d in db.EpimorfosiFiles where d.UploadFileID == file_id select d).FirstOrDefault();
+            if (fileinfo != null)
+            {
+                f = fileinfo.Filename;
+            }
+            return File(Path.Combine(Server.MapPath(uploadPath), f), System.Net.Mime.MediaTypeNames.Application.Octet, f);
         }
 
         #endregion
@@ -841,6 +1624,55 @@ namespace PegasusPlus.Controllers.DataControllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetPtyxiaTypes()
+        {
+            var data = db.PtyxiaTypes.Select(p => new PtyxiaTypesViewModel
+            {
+                DegreeTypeID = p.DegreeTypeID,
+                DegreeTypeText = p.DegreeTypeText
+            });
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetLanguages(string text)
+        {
+            var data = db.SysLanguage.Select(p => new LanguageViewModel
+            {
+                LanguageID = p.LanguageID,
+                LanguageText = p.LanguageText
+            });
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                data = data.Where(p => p.LanguageText.Contains(text));
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetLanguageLevel()
+        {
+            var data = db.SysLanguageLevel.Select(p => new LanguageLevelViewModel
+            {
+                LevelID = p.LevelID,
+                LevelText = p.LevelText
+            });
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetComputerCertificates(string text)
+        {
+            var data = db.SysComputerAsep.Select(p => new ComputerAsepViewModel
+            {
+                CertificateID = p.CertificateID,
+                CertificateText = p.CertificateText
+            });
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                data = data.Where(p => p.CertificateText.Contains(text));
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
         public UserTeachers GetLoginTeacher()
         {
@@ -861,7 +1693,23 @@ namespace PegasusPlus.Controllers.DataControllers
             return loggedTeacher;
         }
 
-
         #endregion
+
+        public ActionResult Error(string notify = null)
+        {
+            if (notify != null)
+                this.AddNotification(notify, NotificationType.WARNING);
+
+            return View();
+        }
+
+        public ActionResult ErrorData(string notify = null)
+        {
+            if (notify != null)
+                this.AddNotification(notify, NotificationType.WARNING);
+
+            return View();
+        }
+
     }
 }

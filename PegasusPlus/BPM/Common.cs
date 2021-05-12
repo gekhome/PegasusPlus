@@ -242,34 +242,42 @@ namespace PegasusPlus.BPM
 
         #region Protocol Generator
 
-        //public string Get8Digits()
-        //{
-        //    var data = (from d in db.AITISIS orderby d.AITISI_ID descending select d).First();
-        //    int newId = data.AITISI_ID + 1;
+        public string Get6Digits()
+        {
+            int newId = 0;
+            bool aitisisExist = (from d in db.Aitisis select d).Count() > 0;
+            if (aitisisExist)
+            {
+                var data = (from d in db.Aitisis orderby d.AitisisID descending select d).First();
+                newId = data.AitisisID + 1;
+            }
+            else
+            {
+                newId = 1;
+            }
+            return string.Format("{0:000000}", newId);
+        }
 
-        //    return string.Format("{0:00000000}", newId);
-        //}
+        public string GenerateProtocol()
+        {
+            DateTime date1 = DateTime.Now;
+            DateTime dateOnly = date1.Date;
 
-        //public string GenerateProtocol()
-        //{
-        //    DateTime date1 = DateTime.Now;
-        //    DateTime dateOnly = date1.Date;
+            string stDate = string.Format("{0:dd.MM.yyyy}", dateOnly);               //Convert.ToString(dateOnly);
 
-        //    string stDate = string.Format("{0:dd.MM.yyyy}", dateOnly);               //Convert.ToString(dateOnly);
+            string protocol = Get6Digits() + "/" + stDate;
+            return protocol;
+        }
 
-        //    string protocol = Get8Digits() + "/" + stDate;
-        //    return protocol;
-        //}
+        public string GenerateProtocol(DateTime date1)
+        {
+            DateTime dateOnly = date1.Date;
 
-        //public string GenerateProtocol(DateTime date1)
-        //{
-        //    DateTime dateOnly = date1.Date;
+            string stDate = string.Format("{0:dd.MM.yyyy}", dateOnly);               //Convert.ToString(dateOnly);
 
-        //    string stDate = string.Format("{0:dd.MM.yyyy}", dateOnly);               //Convert.ToString(dateOnly);
-
-        //    string protocol = Get8Digits() + "/" + stDate;
-        //    return protocol;
-        //}
+            string protocol = Get6Digits() + "/" + stDate;
+            return protocol;
+        }
 
         #endregion
 

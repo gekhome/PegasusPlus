@@ -45,6 +45,10 @@ namespace PegasusPlus.Reports.Data
             this.eidikotitaDescCaptionTextBox = new Telerik.Reporting.TextBox();
             this.groupTextCaptionTextBox = new Telerik.Reporting.TextBox();
             this.textBox3 = new Telerik.Reporting.TextBox();
+            this.sqlProkirixis = new Telerik.Reporting.SqlDataSource();
+            this.sqlPeriferiakes = new Telerik.Reporting.SqlDataSource();
+            this.sqlSchools = new Telerik.Reporting.SqlDataSource();
+            this.sqlKlados = new Telerik.Reporting.SqlDataSource();
             this.sqlDataSource = new Telerik.Reporting.SqlDataSource();
             this.pageHeader = new Telerik.Reporting.PageHeaderSection();
             this.reportNameTextBox = new Telerik.Reporting.TextBox();
@@ -54,16 +58,12 @@ namespace PegasusPlus.Reports.Data
             this.pageFooter = new Telerik.Reporting.PageFooterSection();
             this.currentTimeTextBox = new Telerik.Reporting.TextBox();
             this.pageInfoTextBox = new Telerik.Reporting.TextBox();
+            this.pictureBox2 = new Telerik.Reporting.PictureBox();
             this.detail = new Telerik.Reporting.DetailSection();
             this.eidikotitaDescDataTextBox = new Telerik.Reporting.TextBox();
             this.groupTextDataTextBox = new Telerik.Reporting.TextBox();
             this.textBox11 = new Telerik.Reporting.TextBox();
             this.shape2 = new Telerik.Reporting.Shape();
-            this.pictureBox2 = new Telerik.Reporting.PictureBox();
-            this.sqlProkirixis = new Telerik.Reporting.SqlDataSource();
-            this.sqlPeriferiakes = new Telerik.Reporting.SqlDataSource();
-            this.sqlSchools = new Telerik.Reporting.SqlDataSource();
-            this.sqlKlados = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // protocolGroupFooterSection
@@ -261,9 +261,36 @@ namespace PegasusPlus.Reports.Data
             this.textBox3.StyleName = "Caption";
             this.textBox3.Value = "Α/Α";
             // 
+            // sqlProkirixis
+            // 
+            this.sqlProkirixis.ConnectionString = "PegasusPlusDBEntities1";
+            this.sqlProkirixis.Name = "sqlProkirixis";
+            this.sqlProkirixis.SelectCommand = "SELECT        ProkirixiID, Protocol\r\nFROM            Prokirixis\r\nORDER BY SchoolY" +
+    "ear DESC";
+            // 
+            // sqlPeriferiakes
+            // 
+            this.sqlPeriferiakes.ConnectionString = "PegasusPlusDBEntities1";
+            this.sqlPeriferiakes.Name = "sqlPeriferiakes";
+            this.sqlPeriferiakes.SelectCommand = "SELECT        PeriferiakiID, PeriferiakiName\r\nFROM            SysPeriferiakes\r\nOR" +
+    "DER BY PeriferiakiName";
+            // 
+            // sqlSchools
+            // 
+            this.sqlSchools.ConnectionString = "PegasusPlusDBEntities1";
+            this.sqlSchools.Name = "sqlSchools";
+            this.sqlSchools.SelectCommand = "SELECT        SchoolID, SchoolName\r\nFROM            SysSchools\r\nORDER BY SchoolNa" +
+    "me";
+            // 
+            // sqlKlados
+            // 
+            this.sqlKlados.ConnectionString = "PegasusPlusDBEntities1";
+            this.sqlKlados.Name = "sqlKlados";
+            this.sqlKlados.SelectCommand = "SELECT        KladosID, KladosName\r\nFROM            SysKlados";
+            // 
             // sqlDataSource
             // 
-            this.sqlDataSource.ConnectionString = "PegasusPlusDBEntities (PegasusPlus)";
+            this.sqlDataSource.ConnectionString = "PegasusPlusDBEntities1";
             this.sqlDataSource.Name = "sqlDataSource";
             this.sqlDataSource.SelectCommand = resources.GetString("sqlDataSource.SelectCommand");
             // 
@@ -340,6 +367,15 @@ namespace PegasusPlus.Reports.Data
             this.pageInfoTextBox.StyleName = "PageInfo";
             this.pageInfoTextBox.Value = "=\"Σελ. \" +PageNumber + \"/\" + PageCount";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916780114173889D), Telerik.Reporting.Drawing.Unit.Cm(0.19989962875843048D));
+            this.pictureBox2.MimeType = "image/png";
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.54708313941955566D), Telerik.Reporting.Drawing.Unit.Cm(0.4999995231628418D));
+            this.pictureBox2.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.Stretch;
+            this.pictureBox2.Value = ((object)(resources.GetObject("pictureBox2.Value")));
+            // 
             // detail
             // 
             this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(0.5999990701675415D);
@@ -389,54 +425,6 @@ namespace PegasusPlus.Reports.Data
             this.shape2.Name = "shape2";
             this.shape2.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(16.739999771118164D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916780114173889D), Telerik.Reporting.Drawing.Unit.Cm(0.19989962875843048D));
-            this.pictureBox2.MimeType = "image/png";
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.54708313941955566D), Telerik.Reporting.Drawing.Unit.Cm(0.4999995231628418D));
-            this.pictureBox2.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.Stretch;
-            this.pictureBox2.Value = ((object)(resources.GetObject("pictureBox2.Value")));
-            // 
-            // sqlProkirixis
-            // 
-            this.sqlProkirixis.ConnectionString = "Data Source=192.168.1.2,1711;Initial Catalog=PegasusPlusDB;Persist Security Info=" +
-    "True;User ID=user;Password=171159;MultipleActiveResultSets=True;Application Name" +
-    "=EntityFramework";
-            this.sqlProkirixis.Name = "sqlProkirixis";
-            this.sqlProkirixis.ProviderName = "System.Data.SqlClient";
-            this.sqlProkirixis.SelectCommand = "SELECT        ProkirixiID, Protocol\r\nFROM            Prokirixis\r\nORDER BY SchoolY" +
-    "ear DESC";
-            // 
-            // sqlPeriferiakes
-            // 
-            this.sqlPeriferiakes.ConnectionString = "Data Source=192.168.1.2,1711;Initial Catalog=PegasusPlusDB;Persist Security Info=" +
-    "True;User ID=user;Password=171159;MultipleActiveResultSets=True;Application Name" +
-    "=EntityFramework";
-            this.sqlPeriferiakes.Name = "sqlPeriferiakes";
-            this.sqlPeriferiakes.ProviderName = "System.Data.SqlClient";
-            this.sqlPeriferiakes.SelectCommand = "SELECT        PeriferiakiID, PeriferiakiName\r\nFROM            SysPeriferiakes\r\nOR" +
-    "DER BY PeriferiakiName";
-            // 
-            // sqlSchools
-            // 
-            this.sqlSchools.ConnectionString = "Data Source=192.168.1.2,1711;Initial Catalog=PegasusPlusDB;Persist Security Info=" +
-    "True;User ID=user;Password=171159;MultipleActiveResultSets=True;Application Name" +
-    "=EntityFramework";
-            this.sqlSchools.Name = "sqlSchools";
-            this.sqlSchools.ProviderName = "System.Data.SqlClient";
-            this.sqlSchools.SelectCommand = "SELECT        SchoolID, SchoolName\r\nFROM            SysSchools\r\nORDER BY SchoolNa" +
-    "me";
-            // 
-            // sqlKlados
-            // 
-            this.sqlKlados.ConnectionString = "Data Source=192.168.1.2,1711;Initial Catalog=PegasusPlusDB;Persist Security Info=" +
-    "True;User ID=user;Password=171159;MultipleActiveResultSets=True;Application Name" +
-    "=EntityFramework";
-            this.sqlKlados.Name = "sqlKlados";
-            this.sqlKlados.ProviderName = "System.Data.SqlClient";
-            this.sqlKlados.SelectCommand = "SELECT        KladosID, KladosName\r\nFROM            SysKlados";
             // 
             // EidikotitesProkirixis
             // 

@@ -16,5 +16,8 @@ namespace PegasusPlus.DAL
     {
         public int TypeID { get; set; }
         public string TypeText { get; set; }
+        public Nullable<decimal> TypeMoria { get; set; }
+        public Nullable<int> TypeMoriaMax { get; set; }
+        public string TypeMoriaInfo { get; set; }
     }
 }

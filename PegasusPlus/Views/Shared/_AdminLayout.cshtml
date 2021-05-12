@@ -114,16 +114,27 @@
             .HtmlAttributes(new { style = "width:100%" })
             .Items(items =>
             {
-                items.Add().Text("Αιτήσεις").ImageUrl(Url.Content("~/Images/phone/appbar.cabinet.files.png"))
+                items.Add().Text("Αιτήσεις").ImageUrl(Url.Content("~/Images/phone/appbar.newspaper.png"))
                 .Items(children =>
                 {
-                    children.Add().Text("Subitem 1");
-                    children.Add().Text("Subitem 2");
-                    children.Add().Text("Subitem 3");
+                    children.Add().Text("Έλεγχος αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.card1.png")).Action("AitiseisAudit", "Admin");
+                    children.Add().Text("Έλεγχος προϋπηρεσιών").ImageUrl(Url.Content("~/Images/phone/appbar.card2.png")).Action("Index", "Admin");
+                    children.Add().Text("Μοριοδότηση αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.card3.png")).Action("Index", "Admin");
                 });
                 items.Add().Text("Πίνακες κατάταξης").ImageUrl(Url.Content("~/Images/phone/appbar.layer.thick.png")).LinkHtmlAttributes(new { title = "Πίνακες χωρίς ονόματα για ανάρτηση" });
                 items.Add().Text("Πίνακες").ImageUrl(Url.Content("~/Images/phone/appbar.list.reorder.down.png")).LinkHtmlAttributes(new { title = "Πίνακες με ονόματα για εσωτερική χρήση" });
-                items.Add().Text("Μητρώα").ImageUrl(Url.Content("~/Images/phone/appbar.people.multiple.magnify.png"));
+                items.Add().Text("Μητρώα").ImageUrl(Url.Content("~/Images/phone/appbar.people.multiple.magnify.png"))
+                .Items(Children =>
+                {
+                    Children.Add().Text("Εκπαιδευτές ανά ειδικότητα").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("TeachersEidikotitaPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Συνολικό μητρώο εκπαιδευτών").ImageUrl(Url.Content("~/Images/phone/appbar.control.guide.png")).Action("TeachersRegistry", "Admin");
+                    Children.Add().Text("Εκπαιδευτές με αιτήσεις").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("TeacherDataPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Μητρώο αιτήσεων - Προβολή").ImageUrl(Url.Content("~/Images/phone/appbar.control.guide.png")).Action("AitiseisList", "Admin");
+                    Children.Add().Text("Μητρώο αιτήσεων - Εκτύπωση").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                });
                 items.Add().Text("Στατιστικά").ImageUrl(Url.Content("~/Images/phone/appbar.graph.histogram.description.png"));
                 items.Add().Text("Προκηρύξεις").ImageUrl(Url.Content("~/Images/phone/appbar.calendar.year.png"))
                 .Items(Children =>

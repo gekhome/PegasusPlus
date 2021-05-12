@@ -1,0 +1,298 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+@model AitisiDataViewModel
+
+@{
+    ViewBag.Title = "Επεξεργασία αίτησης";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<style>
+      .control-label {
+          font-family: 'Segoe UI';
+          white-space: pre-line;
+      }
+
+      .display-label {
+          max-height: 20px;
+          background-color:#EEE;
+          min-width:300px;
+      }
+
+      .page-header {
+          border-bottom: 1px solid #D3D3D3;
+          font-family: 'Segoe UI';
+          font-size: x-large;
+      }
+
+      .k-textbox {
+          display: block;
+          width: 100%;
+          height: 34px;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.428571429;
+          color: #555555;
+          vertical-align: middle;
+          background-color: #ffffff;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      }
+
+        .k-textbox:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+
+</style>
+
+
+@Html.HiddenFor(m => m.AitisisID)
+
+<div class="page-header">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Προβολή αίτησης με μόρια αξιολόγησης</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+            @Html.ActionLink("Επιστροφή", "AitisisResults", "Aitisis", new { @class = "btn btn-warning", style = "font-size:16px" })
+        </span>
+    </div>
+</div>
+
+<div class="body-content mt-2">
+    @(Html.Kendo().PanelBar()
+        .Name("AitisiPanelBar")
+        .Items(items =>
+        {
+            items.Add()
+            .Text("ΣΤΟΙΧΕΙΑ ΑΙΤΗΣΗΣ")
+            .Selected(true)
+            .Expanded(true)
+            .Content(
+                @<text>
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AitisisProtocol, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.AitisisProtocol">@Model.AitisisProtocol</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.TeacherAFM, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.TeacherAFM">@Model.TeacherAFM</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FullName, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.FullName">@Model.FullName</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.KladosEidikotita, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.KladosEidikotita">@Model.KladosEidikotita</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PtyxioTypeText, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.PtyxioTypeText">@Model.PtyxioTypeText</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PtyxioTitlos, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.PtyxioTitlos">@Model.PtyxioTitlos</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscTitlos, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MscTitlos">@Model.MscTitlos</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdTitlos, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.PhdTitlos">@Model.PhdTitlos</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Ptyxio2Titlos, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.Ptyxio2Titlos">@Model.Ptyxio2Titlos</label>
+                        </div>
+                    </div>
+                    <hr class="ml-4 mr-4" />
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Language1Epipedo, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.Language1Epipedo">@Model.Language1Epipedo</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Language2Epipedo, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.Language2Epipedo">@Model.Language2Epipedo</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ComputerTitle, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.ComputerTitle">@Model.ComputerTitle</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.EpimorfosiHours, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.EpimorfosiHours">@Model.EpimorfosiHours</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.CertifiedTrainerAM, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.CertifiedTrainerAM">@Model.CertifiedTrainerAM</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.EpagelmaText, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.EpagelmaText">@Model.EpagelmaText</label>
+                        </div>
+                    </div>
+                    <hr class="ml-4 mr-4" />
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialTriteknosText, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.SocialTriteknosText">@Model.SocialTriteknosText</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialPolyteknosText, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.SocialPolyteknosText">@Model.SocialPolyteknosText</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialSingleParentText, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.SocialSingleParentText">@Model.SocialSingleParentText</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialAmeaText, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.SocialAmeaText">@Model.SocialAmeaText</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AnergiaDiarkeiaText, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.AnergiaDiarkeiaText">@Model.AnergiaDiarkeiaText</label>
+                        </div>
+                    </div>
+                    <hr class="ml-4 mr-4" />
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PeriferiaName, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.PeriferiaName">@Model.PeriferiaName</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SchoolName, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.SchoolName">@Model.SchoolName</label>
+                        </div>
+                    </div>
+                </text>);
+            items.Add()
+            .Text("ΜΟΡΙΑ ΑΙΤΗΣΗΣ")
+            .Content(
+            @<text>
+                <div class="row col-md-12 ml-4 mt-2 mb-1">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaPtyxio, new { @class = "col-form-label col-md-8" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaPtyxio">
+                            @Math.Round(Model.MoriaPtyxio, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaMsc, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaMsc">
+                            @Math.Round(Model.MoriaMsc, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaPhd, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaPhd">
+                            @Math.Round(Model.MoriaPhd, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mt-2 mb-1">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaLanguages, new { @class = "col-form-label col-md-8" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaLanguages">
+                            @Math.Round(Model.MoriaLanguages, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaComputer, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaComputer">
+                            @Math.Round(Model.MoriaComputer, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaEpimorfosi, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaEpimorfosi">
+                            @Math.Round(Model.MoriaEpimorfosi, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mt-2 mb-1">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaTeach, new { @class = "col-form-label col-md-8" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaTeach">
+                            @Math.Round(Model.MoriaTeach, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaWork, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaWork">
+                            @Math.Round(Model.MoriaWork, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaCertified, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaCertified">
+                            @Math.Round(Model.MoriaCertified, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mt-2 mb-3">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaAnergia, new { @class = "col-form-label col-md-8" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaAnergia">
+                            @Math.Round(Model.MoriaAnergia, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaSocial, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaWork">
+                            @Math.Round(Model.MoriaSocial, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MoriaTotal, new { @class = "col-form-label col-md-10" })
+                        <label class="form-control display-label col-md-4 smartShortText" style="font-weight:700" title="@Model.MoriaTotal">
+                            @Math.Round(Model.MoriaTotal, 2, MidpointRounding.AwayFromZero)
+                        </label>
+                    </div>
+                </div>
+            </text>);
+        })
+)
+</div>
+
+<script type="text/javascript">
+
+    function filterKlados() {
+        return {
+            kladosId: $("#Klados").data("kendoDropDownList").value()
+        };
+    }
+
+    function filterPeriferies() {
+        return {
+            eidikotitaId: $("#Eidikotita").data("kendoDropDownList").value()
+        };
+    }
+
+    function filterSchools() {
+        return {
+            periferia: $("#Periferia").data("kendoDropDownList").value(),
+            eidikotita: $("#Eidikotita").data("kendoDropDownList").value()
+        };
+    }
+
+</script>

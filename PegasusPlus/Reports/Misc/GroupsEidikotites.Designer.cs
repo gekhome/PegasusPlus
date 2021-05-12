@@ -164,16 +164,13 @@ namespace PegasusPlus.Reports.Misc
             // 
             // sqlKlados
             // 
-            this.sqlKlados.ConnectionString = "Data Source=192.168.1.2,1711;Initial Catalog=PegasusPlusDB;Persist Security Info=" +
-    "True;User ID=user;Password=171159;MultipleActiveResultSets=True;Application Name" +
-    "=EntityFramework";
+            this.sqlKlados.ConnectionString = "PegasusPlusDBEntities1";
             this.sqlKlados.Name = "sqlKlados";
-            this.sqlKlados.ProviderName = "System.Data.SqlClient";
             this.sqlKlados.SelectCommand = "SELECT        KladosID, KladosName\r\nFROM            SysKlados";
             // 
             // sqlDataSource
             // 
-            this.sqlDataSource.ConnectionString = "PegasusPlusDBEntities (PegasusPlus)";
+            this.sqlDataSource.ConnectionString = "PegasusPlusDBEntities1";
             this.sqlDataSource.Name = "sqlDataSource";
             this.sqlDataSource.SelectCommand = resources.GetString("sqlDataSource.SelectCommand");
             // 

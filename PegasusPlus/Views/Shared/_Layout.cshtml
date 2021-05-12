@@ -101,6 +101,7 @@
 
     <main>
         <div class="container-fluid">
+            @Html.Partial("_Notifications")
             @RenderBody()
             @RenderSection("footer", required: false)
         </div>

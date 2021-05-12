@@ -105,7 +105,7 @@ namespace PegasusPlus.Reports.Misc
             // 
             // sqlDataSource
             // 
-            this.sqlDataSource.ConnectionString = "PegasusPlusDBEntities (PegasusPlus)";
+            this.sqlDataSource.ConnectionString = "PegasusPlusDBEntities1";
             this.sqlDataSource.Name = "sqlDataSource";
             this.sqlDataSource.SelectCommand = resources.GetString("sqlDataSource.SelectCommand");
             // 

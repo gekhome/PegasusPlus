@@ -17,6 +17,8 @@
 	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/jszip.min.js"></script>
 	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/kendo.all.min.js"></script>
 	<script src="https://kendo.cdn.telerik.com/2016.1.112/js/kendo.aspnetmvc.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2016.1.112/js/cultures/kendo.culture.el-GR.min.js"></script>
+
 	<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
 	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
     <script src="@Url.Content("~/Scripts/messagebox/messagebox.js")"></script>
@@ -26,6 +28,10 @@
     <script src="@Url.Content("~/Clock/coolclock.js")"></script>
     <script src="@Url.Content("~/Clock/moreskins.js")"></script>
     <script src="@Url.Content("~/Clock/excanvas.js")"></script>
+
+    <script>
+        kendo.culture("el-GR");
+    </script>
 
     <style>
         .nava:link {
@@ -96,6 +102,7 @@
 
     <main>
         <div class="container-fluid">
+            @Html.Partial("_Notifications")
             @RenderBody()
             @RenderSection("footer", required: false)
         </div>

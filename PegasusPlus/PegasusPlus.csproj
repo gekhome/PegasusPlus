@@ -181,13 +181,41 @@
     <Compile Include="BPM\Common.cs" />
     <Compile Include="BPM\Kerberos.cs" />
     <Compile Include="Controllers\DataControllers\AdminController.cs" />
+    <Compile Include="Controllers\DataControllers\AitisisController.cs" />
+    <Compile Include="Controllers\DataControllers\ExperienceController.cs" />
+    <Compile Include="Controllers\DataControllers\SchoolController.cs" />
     <Compile Include="Controllers\DataControllers\TeachersController.cs" />
     <Compile Include="Controllers\DataControllers\ToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\UserControllers\UserAdminsController.cs" />
+    <Compile Include="Controllers\UserControllers\UserSchoolsController.cs" />
     <Compile Include="Controllers\UserControllers\UserTeachersController.cs" />
+    <Compile Include="DAL\Aitisis.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\AitisiSchools.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\APP_STATUS.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Enstaseis.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EnstaseisFiles.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EpagelmaCategory.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EpimorfosiFiles.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Epimorfosis.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EpimorfosiTypes.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\PegasusPlusEntityModel.Context.cs">
@@ -211,21 +239,48 @@
     <Compile Include="DAL\ProkirixisEidikotites.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\PtyxiaTypes.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\qryFinalTeach.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\qryFinalWork.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Security\AdminPrincipal.cs" />
     <Compile Include="DAL\Security\BaseViewPage.cs" />
     <Compile Include="DAL\Security\CustomAuthorizeAttribute.cs" />
     <Compile Include="DAL\Security\CustomPrincipal.cs" />
     <Compile Include="DAL\Security\SchoolPrincipal.cs" />
+    <Compile Include="DAL\sqlAitisiData.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlAitisiProsonta.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlAitisiSelector.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\sqlEidikotitesSelector.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\sqlEidikotititesKladosEniaios.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\sqlPeriferiesSchools.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\sqlSchoolsPeriferiakesPefireies.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\sqlTeacherAccountInfo.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlTeacherAitiseis.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sqlTeachersRegistry.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\sqlUserSchool.cs">
@@ -291,10 +346,16 @@
     <Compile Include="DAL\SysProkirixiStatus.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\SysPtyxia.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\SysSchools.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\SysSchoolYears.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SysSynafeia.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\SysTaxFree.cs">
@@ -309,7 +370,19 @@
     <Compile Include="DAL\Teachers.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\TeachersUploads.cs">
+    <Compile Include="DAL\TeacherSkills.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TeacherUploads.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UploadsFreelance.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UploadsTeaching.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\UploadsVocation.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\UserAdmins.cs">
@@ -324,10 +397,24 @@
     <Compile Include="DAL\viewEidikotites.cs">
       <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\WorkFreelance.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\WorkTeaching.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\WorkVocation.cs">
+      <DependentUpon>PegasusPlusEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\NotificationExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AitisiDataModel.cs" />
+    <Compile Include="Models\EnstasiViewModel.cs" />
+    <Compile Include="Models\EpimorfosiViewModel.cs" />
+    <Compile Include="Models\AitisiViewModel.cs" />
+    <Compile Include="Models\SkillsViewModel.cs" />
     <Compile Include="Models\TeacherViewModel.cs" />
     <Compile Include="Models\EidikotitesViewModel.cs" />
     <Compile Include="Models\ProkirixisViewModel.cs" />
@@ -335,6 +422,7 @@
     <Compile Include="Models\UserTeacherViewModel.cs" />
     <Compile Include="Models\UserSchoolViewModel.cs" />
     <Compile Include="Models\UserAdminViewModel.cs" />
+    <Compile Include="Models\WorkViewModel.cs" />
     <Compile Include="Notification\AjaxMessagesFilter.cs" />
     <Compile Include="Notification\BaseController.cs" />
     <Compile Include="Notification\ControllerExtensions.cs" />
@@ -353,11 +441,29 @@
     <Compile Include="Reports\A2Logo.Designer.cs">
       <DependentUpon>A2Logo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Data\AitisiResults.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiResults.Designer.cs">
+      <DependentUpon>AitisiResults.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Data\EidikotitesProkirixis.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Data\EidikotitesProkirixis.Designer.cs">
       <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\TeacherData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\TeacherData.Designer.cs">
+      <DependentUpon>TeacherData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\TeachersEidikotita.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\TeachersEidikotita.Designer.cs">
+      <DependentUpon>TeachersEidikotita.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Misc\Eidikotites.cs">
       <SubType>Component</SubType>
@@ -413,7 +519,6 @@
       <LastGenOutput>PegasusPlusEntityModel.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Images\200.png" />
     <Content Include="Images\carousel-slide1.jpg" />
     <Content Include="Images\carousel-slide2.jpg" />
     <Content Include="Images\carousel-slide3.jpg" />
@@ -437,11 +542,6 @@
     <Content Include="Images\metro\arrow-left01.png" />
     <Content Include="Images\metro\arrow-right01-blue.png" />
     <Content Include="Images\metro\arrow-right01.png" />
-    <Content Include="Images\metro\blue-admin.png" />
-    <Content Include="Images\metro\blue-people.png" />
-    <Content Include="Images\metro\blue-school-user.png" />
-    <Content Include="Images\metro\blue-school.png" />
-    <Content Include="Images\metro\blue-teacher.gif" />
     <Content Include="Images\metro\check-icon.png" />
     <Content Include="Images\metro\custom_content.png" />
     <Content Include="Images\metro\doc-add-blue.png" />
@@ -507,10 +607,6 @@
     <Content Include="Images\metro\users.png" />
     <Content Include="Images\metro\user_metro.png" />
     <Content Include="Images\metro\user_security-white.png" />
-    <Content Include="Images\metro\user_shield-blue.png" />
-    <Content Include="Images\metro\webform.png" />
-    <Content Include="Images\metro\Windows-icon %281%29.png" />
-    <Content Include="Images\metro\work-metro-01.png" />
     <Content Include="Images\metro\worklod.png" />
     <Content Include="Images\other\01-panel.png" />
     <Content Include="Images\other\01-user.png" />
@@ -529,31 +625,12 @@
     <Content Include="Images\other\progress3.gif" />
     <Content Include="Images\other\progress4.gif" />
     <Content Include="Images\other\success-icon.png" />
-    <Content Include="Images\phone\appbar.acorn.png" />
     <Content Include="Images\phone\appbar.add.png" />
-    <Content Include="Images\phone\appbar.adobe.acrobat.png" />
-    <Content Include="Images\phone\appbar.adobe.aftereffects.png" />
-    <Content Include="Images\phone\appbar.adobe.audition.png" />
-    <Content Include="Images\phone\appbar.adobe.bridge.png" />
-    <Content Include="Images\phone\appbar.adobe.dreamweaver.png" />
-    <Content Include="Images\phone\appbar.adobe.encore.png" />
-    <Content Include="Images\phone\appbar.adobe.fireworks.png" />
-    <Content Include="Images\phone\appbar.adobe.flash.png" />
-    <Content Include="Images\phone\appbar.adobe.flashbuilder.png" />
-    <Content Include="Images\phone\appbar.adobe.illustrator.png" />
-    <Content Include="Images\phone\appbar.adobe.indesign.png" />
-    <Content Include="Images\phone\appbar.adobe.lightroom.png" />
-    <Content Include="Images\phone\appbar.adobe.photoshop.png" />
-    <Content Include="Images\phone\appbar.adobe.prelude.png" />
-    <Content Include="Images\phone\appbar.adobe.premierpro.png" />
-    <Content Include="Images\phone\appbar.adobe.speedgrade.png" />
     <Content Include="Images\phone\appbar.alert.png" />
-    <Content Include="Images\phone\appbar.alien.png" />
     <Content Include="Images\phone\appbar.align.center.png" />
     <Content Include="Images\phone\appbar.align.justify.png" />
     <Content Include="Images\phone\appbar.align.left.png" />
     <Content Include="Images\phone\appbar.align.right.png" />
-    <Content Include="Images\phone\appbar.anchor.png" />
     <Content Include="Images\phone\appbar.app.favorite.png" />
     <Content Include="Images\phone\appbar.app.minus.png" />
     <Content Include="Images\phone\appbar.app.plus.png" />
@@ -573,21 +650,7 @@
     <Content Include="Images\phone\appbar.arrow.up.down.png" />
     <Content Include="Images\phone\appbar.arrow.up.png" />
     <Content Include="Images\phone\appbar.at.png" />
-    <Content Include="Images\phone\appbar.axis.three.png" />
-    <Content Include="Images\phone\appbar.baby.png" />
-    <Content Include="Images\phone\appbar.barcode.png" />
-    <Content Include="Images\phone\appbar.base.png" />
-    <Content Include="Images\phone\appbar.base.select.png" />
-    <Content Include="Images\phone\appbar.bath.png" />
-    <Content Include="Images\phone\appbar.battery.0.png" />
-    <Content Include="Images\phone\appbar.battery.1.png" />
-    <Content Include="Images\phone\appbar.battery.2.png" />
-    <Content Include="Images\phone\appbar.battery.3.png" />
-    <Content Include="Images\phone\appbar.bed.png" />
-    <Content Include="Images\phone\appbar.beer.guinness.png" />
-    <Content Include="Images\phone\appbar.beer.png" />
     <Content Include="Images\phone\appbar.billboard.png" />
-    <Content Include="Images\phone\appbar.bing.png" />
     <Content Include="Images\phone\appbar.book.contact.png" />
     <Content Include="Images\phone\appbar.book.hardcover.open.png" />
     <Content Include="Images\phone\appbar.book.hardcover.open.writing.png" />
@@ -612,12 +675,8 @@
     <Content Include="Images\phone\appbar.box.layered.png" />
     <Content Include="Images\phone\appbar.box.png" />
     <Content Include="Images\phone\appbar.box.unfolded.png" />
-    <Content Include="Images\phone\appbar.browser.chrome.png" />
-    <Content Include="Images\phone\appbar.browser.ie.png" />
     <Content Include="Images\phone\appbar.browser.png" />
     <Content Include="Images\phone\appbar.browser.wire.png" />
-    <Content Include="Images\phone\appbar.bug.png" />
-    <Content Include="Images\phone\appbar.bug.remove.png" />
     <Content Include="Images\phone\appbar.cabinet.files.png" />
     <Content Include="Images\phone\appbar.cabinet.files.variant.png" />
     <Content Include="Images\phone\appbar.cabinet.in.png" />
@@ -634,21 +693,14 @@
     <Content Include="Images\phone\appbar.calendar.range.png" />
     <Content Include="Images\phone\appbar.calendar.week.png" />
     <Content Include="Images\phone\appbar.calendar.year.png" />
-    <Content Include="Images\phone\appbar.camera.flash.auto.png" />
-    <Content Include="Images\phone\appbar.camera.flash.auto.selected.png" />
-    <Content Include="Images\phone\appbar.camera.flash.off.png" />
-    <Content Include="Images\phone\appbar.camera.flash.off.selected.png" />
-    <Content Include="Images\phone\appbar.camera.flash.png" />
-    <Content Include="Images\phone\appbar.camera.flash.selected.png" />
-    <Content Include="Images\phone\appbar.camera.png" />
-    <Content Include="Images\phone\appbar.camera.send.png" />
-    <Content Include="Images\phone\appbar.camera.switch.invert.png" />
-    <Content Include="Images\phone\appbar.camera.switch.png" />
     <Content Include="Images\phone\appbar.cancel.png" />
-    <Content Include="Images\phone\appbar.candy.cane.png" />
+    <Content Include="Images\phone\appbar.card1.png" />
     <Content Include="Images\phone\appbar.card.1.png" />
+    <Content Include="Images\phone\appbar.card2.png" />
     <Content Include="Images\phone\appbar.card.2.png" />
+    <Content Include="Images\phone\appbar.card3.png" />
     <Content Include="Images\phone\appbar.card.3.png" />
+    <Content Include="Images\phone\appbar.card4.png" />
     <Content Include="Images\phone\appbar.card.4.png" />
     <Content Include="Images\phone\appbar.card.5.png" />
     <Content Include="Images\phone\appbar.card.6.png" />
@@ -656,13 +708,6 @@
     <Content Include="Images\phone\appbar.card.8.png" />
     <Content Include="Images\phone\appbar.card.9.png" />
     <Content Include="Images\phone\appbar.card.png" />
-    <Content Include="Images\phone\appbar.cards.club.png" />
-    <Content Include="Images\phone\appbar.cards.diamond.png" />
-    <Content Include="Images\phone\appbar.cards.heart.png" />
-    <Content Include="Images\phone\appbar.cards.spade.png" />
-    <Content Include="Images\phone\appbar.cart.png" />
-    <Content Include="Images\phone\appbar.cd.eject.png" />
-    <Content Include="Images\phone\appbar.cd.png" />
     <Content Include="Images\phone\appbar.cell.align.png" />
     <Content Include="Images\phone\appbar.cell.column.delete.png" />
     <Content Include="Images\phone\appbar.cell.down.png" />
@@ -681,22 +726,11 @@
     <Content Include="Images\phone\appbar.checkmark.thick.png" />
     <Content Include="Images\phone\appbar.checkmark.thick.unchecked.png" />
     <Content Include="Images\phone\appbar.checkmark.uncrossed.png" />
-    <Content Include="Images\phone\appbar.chess.bishop.png" />
-    <Content Include="Images\phone\appbar.chess.horse.png" />
-    <Content Include="Images\phone\appbar.chess.king.png" />
-    <Content Include="Images\phone\appbar.chess.pawn.png" />
-    <Content Include="Images\phone\appbar.chess.queen.png" />
-    <Content Include="Images\phone\appbar.chess.rook.png" />
     <Content Include="Images\phone\appbar.chevron.down.png" />
     <Content Include="Images\phone\appbar.chevron.left.png" />
     <Content Include="Images\phone\appbar.chevron.right.png" />
     <Content Include="Images\phone\appbar.chevron.up.png" />
     <Content Include="Images\phone\appbar.chromakey.png" />
-    <Content Include="Images\phone\appbar.church.png" />
-    <Content Include="Images\phone\appbar.city.chicago.png" />
-    <Content Include="Images\phone\appbar.city.png" />
-    <Content Include="Images\phone\appbar.city.sanfrancisco.png" />
-    <Content Include="Images\phone\appbar.city.seattle.png" />
     <Content Include="Images\phone\appbar.clean.png" />
     <Content Include="Images\phone\appbar.clear.inverse.png" />
     <Content Include="Images\phone\appbar.clear.inverse.reflect.horizontal.png" />
@@ -711,10 +745,6 @@
     <Content Include="Images\phone\appbar.clipboard.variant.text.png" />
     <Content Include="Images\phone\appbar.clock.png" />
     <Content Include="Images\phone\appbar.close.png" />
-    <Content Include="Images\phone\appbar.closedcaption.off.png" />
-    <Content Include="Images\phone\appbar.closedcaption.png" />
-    <Content Include="Images\phone\appbar.clothes.shirt.png" />
-    <Content Include="Images\phone\appbar.clothes.tie.png" />
     <Content Include="Images\phone\appbar.cloud.add.png" />
     <Content Include="Images\phone\appbar.cloud.delete.png" />
     <Content Include="Images\phone\appbar.cloud.download.png" />
@@ -722,29 +752,21 @@
     <Content Include="Images\phone\appbar.cloud.play.png" />
     <Content Include="Images\phone\appbar.cloud.png" />
     <Content Include="Images\phone\appbar.cloud.upload.png" />
-    <Content Include="Images\phone\appbar.cloudirc.png" />
     <Content Include="Images\phone\appbar.cog.png" />
     <Content Include="Images\phone\appbar.cogs.png" />
     <Content Include="Images\phone\appbar.column.one.png" />
     <Content Include="Images\phone\appbar.column.three.png" />
     <Content Include="Images\phone\appbar.column.two.png" />
-    <Content Include="Images\phone\appbar.companioncube.png" />
     <Content Include="Images\phone\appbar.cone.diagonal.png" />
     <Content Include="Images\phone\appbar.cone.png" />
     <Content Include="Images\phone\appbar.confirm.yes.no.png" />
     <Content Include="Images\phone\appbar.connect.png" />
-    <Content Include="Images\phone\appbar.connection.1x.png" />
-    <Content Include="Images\phone\appbar.connection.3g.png" />
-    <Content Include="Images\phone\appbar.connection.4g.png" />
-    <Content Include="Images\phone\appbar.connection.bluetooth.png" />
-    <Content Include="Images\phone\appbar.connection.ev.png" />
     <Content Include="Images\phone\appbar.connection.quality.extremelylow.png" />
     <Content Include="Images\phone\appbar.connection.quality.high.png" />
     <Content Include="Images\phone\appbar.connection.quality.low.png" />
     <Content Include="Images\phone\appbar.connection.quality.medium.png" />
     <Content Include="Images\phone\appbar.connection.quality.veryhigh.png" />
     <Content Include="Images\phone\appbar.connection.quality.verylow.png" />
-    <Content Include="Images\phone\appbar.connection.wifi.png" />
     <Content Include="Images\phone\appbar.console.png" />
     <Content Include="Images\phone\appbar.contrast.png" />
     <Content Include="Images\phone\appbar.control.eject.png" />
@@ -756,31 +778,14 @@
     <Content Include="Images\phone\appbar.control.resume.png" />
     <Content Include="Images\phone\appbar.control.rewind.png" />
     <Content Include="Images\phone\appbar.control.stop.png" />
-    <Content Include="Images\phone\appbar.controller.snes.png" />
-    <Content Include="Images\phone\appbar.controller.xbox.png" />
     <Content Include="Images\phone\appbar.copyright.png" />
-    <Content Include="Images\phone\appbar.corner.png" />
-    <Content Include="Images\phone\appbar.coupon.png" />
-    <Content Include="Images\phone\appbar.creativecommons.png" />
     <Content Include="Images\phone\appbar.creditcard.png" />
     <Content Include="Images\phone\appbar.crop.png" />
     <Content Include="Images\phone\appbar.crosshair.png" />
-    <Content Include="Images\phone\appbar.crown.png" />
-    <Content Include="Images\phone\appbar.cup.empty.png" />
-    <Content Include="Images\phone\appbar.cup.full.png" />
-    <Content Include="Images\phone\appbar.cup.half.png" />
-    <Content Include="Images\phone\appbar.cup.paper.png" />
-    <Content Include="Images\phone\appbar.cup.png" />
-    <Content Include="Images\phone\appbar.cupcake.png" />
     <Content Include="Images\phone\appbar.currency.cent.png" />
     <Content Include="Images\phone\appbar.currency.dollar.free.png" />
     <Content Include="Images\phone\appbar.currency.dollar.png" />
     <Content Include="Images\phone\appbar.currency.euro.png" />
-    <Content Include="Images\phone\appbar.currency.grivna.png" />
-    <Content Include="Images\phone\appbar.currency.pound.png" />
-    <Content Include="Images\phone\appbar.currency.rubles.png" />
-    <Content Include="Images\phone\appbar.currency.rupee.png" />
-    <Content Include="Images\phone\appbar.currency.yen.png" />
     <Content Include="Images\phone\appbar.cursor.default.outline.png" />
     <Content Include="Images\phone\appbar.cursor.default.png" />
     <Content Include="Images\phone\appbar.cursor.default.transform.horizontal.png" />
@@ -817,18 +822,11 @@
     <Content Include="Images\phone\appbar.disconnect.png" />
     <Content Include="Images\phone\appbar.disk.download.png" />
     <Content Include="Images\phone\appbar.disk.png" />
-    <Content Include="Images\phone\appbar.dnd.png" />
     <Content Include="Images\phone\appbar.door.enter.png" />
     <Content Include="Images\phone\appbar.door.leave.png" />
     <Content Include="Images\phone\appbar.door.lock.closed.png" />
     <Content Include="Images\phone\appbar.door.lock.open.png" />
     <Content Include="Images\phone\appbar.download.png" />
-    <Content Include="Images\phone\appbar.draw.brush.png" />
-    <Content Include="Images\phone\appbar.draw.brush.reflection.png" />
-    <Content Include="Images\phone\appbar.draw.button.png" />
-    <Content Include="Images\phone\appbar.draw.marker.png" />
-    <Content Include="Images\phone\appbar.draw.marker.reflection.png" />
-    <Content Include="Images\phone\appbar.draw.paintbrush.png" />
     <Content Include="Images\phone\appbar.draw.pen.add.png" />
     <Content Include="Images\phone\appbar.draw.pen.minus.png" />
     <Content Include="Images\phone\appbar.draw.pen.png" />
@@ -842,26 +840,11 @@
     <Content Include="Images\phone\appbar.email.gmail.png" />
     <Content Include="Images\phone\appbar.email.hardedge.png" />
     <Content Include="Images\phone\appbar.email.minimal.png" />
-    <Content Include="Images\phone\appbar.email.outlook.png" />
     <Content Include="Images\phone\appbar.email.png" />
-    <Content Include="Images\phone\appbar.email.yahoo.png" />
     <Content Include="Images\phone\appbar.eye.hide.png" />
     <Content Include="Images\phone\appbar.eye.png" />
-    <Content Include="Images\phone\appbar.facebook.connect.png" />
-    <Content Include="Images\phone\appbar.facebook.disconnect.png" />
-    <Content Include="Images\phone\appbar.fan.box.png" />
-    <Content Include="Images\phone\appbar.ferry.png" />
-    <Content Include="Images\phone\appbar.film.live.png" />
-    <Content Include="Images\phone\appbar.film.png" />
-    <Content Include="Images\phone\appbar.film.select.png" />
     <Content Include="Images\phone\appbar.filter.alphabetical.png" />
     <Content Include="Images\phone\appbar.filter.png" />
-    <Content Include="Images\phone\appbar.finder.png" />
-    <Content Include="Images\phone\appbar.fingerprint.png" />
-    <Content Include="Images\phone\appbar.flag.bear.png" />
-    <Content Include="Images\phone\appbar.flag.png" />
-    <Content Include="Images\phone\appbar.flag.texas.png" />
-    <Content Include="Images\phone\appbar.flag.wavy.png" />
     <Content Include="Images\phone\appbar.folder.ellipsis.png" />
     <Content Include="Images\phone\appbar.folder.lock.png" />
     <Content Include="Images\phone\appbar.folder.open.png" />
@@ -869,22 +852,11 @@
     <Content Include="Images\phone\appbar.folder.png" />
     <Content Include="Images\phone\appbar.folder.puzzle.png" />
     <Content Include="Images\phone\appbar.folder.star.png" />
-    <Content Include="Images\phone\appbar.food.apple.png" />
-    <Content Include="Images\phone\appbar.food.png" />
-    <Content Include="Images\phone\appbar.food.silverware.cross.png" />
-    <Content Include="Images\phone\appbar.food.silverware.png" />
-    <Content Include="Images\phone\appbar.foot.png" />
     <Content Include="Images\phone\appbar.forklift.load.png" />
     <Content Include="Images\phone\appbar.forklift.png" />
     <Content Include="Images\phone\appbar.form.basic.png" />
-    <Content Include="Images\phone\appbar.form.editable.png" />
-    <Content Include="Images\phone\appbar.forrst.png" />
-    <Content Include="Images\phone\appbar.forsale.png" />
     <Content Include="Images\phone\appbar.fullscreen.box.png" />
     <Content Include="Images\phone\appbar.fullscreen.png" />
-    <Content Include="Images\phone\appbar.futurama.bender.png" />
-    <Content Include="Images\phone\appbar.futurama.fry.png" />
-    <Content Include="Images\phone\appbar.gas.png" />
     <Content Include="Images\phone\appbar.gauge.0.png" />
     <Content Include="Images\phone\appbar.gauge.100.png" />
     <Content Include="Images\phone\appbar.gauge.25.png" />
@@ -893,25 +865,8 @@
     <Content Include="Images\phone\appbar.gender.both.png" />
     <Content Include="Images\phone\appbar.gender.female.png" />
     <Content Include="Images\phone\appbar.gender.male.png" />
-    <Content Include="Images\phone\appbar.gift.png" />
     <Content Include="Images\phone\appbar.globe.png" />
     <Content Include="Images\phone\appbar.globe.wire.png" />
-    <Content Include="Images\phone\appbar.google.png" />
-    <Content Include="Images\phone\appbar.googleplus.png" />
-    <Content Include="Images\phone\appbar.grade.a.minus.png" />
-    <Content Include="Images\phone\appbar.grade.a.plus.png" />
-    <Content Include="Images\phone\appbar.grade.a.png" />
-    <Content Include="Images\phone\appbar.grade.b.minus.png" />
-    <Content Include="Images\phone\appbar.grade.b.plus.png" />
-    <Content Include="Images\phone\appbar.grade.b.png" />
-    <Content Include="Images\phone\appbar.grade.c.minus.png" />
-    <Content Include="Images\phone\appbar.grade.c.plus.png" />
-    <Content Include="Images\phone\appbar.grade.c.png" />
-    <Content Include="Images\phone\appbar.grade.d.minus.png" />
-    <Content Include="Images\phone\appbar.grade.d.plus.png" />
-    <Content Include="Images\phone\appbar.grade.d.png" />
-    <Content Include="Images\phone\appbar.grade.e.png" />
-    <Content Include="Images\phone\appbar.grade.f.png" />
     <Content Include="Images\phone\appbar.graph.bar.png" />
     <Content Include="Images\phone\appbar.graph.boxplot.png" />
     <Content Include="Images\phone\appbar.graph.histogram.description.png" />
@@ -926,18 +881,6 @@
     <Content Include="Images\phone\appbar.group.delete.png" />
     <Content Include="Images\phone\appbar.group.minus.png" />
     <Content Include="Images\phone\appbar.group.png" />
-    <Content Include="Images\phone\appbar.handicap.in.png" />
-    <Content Include="Images\phone\appbar.handicap.out.png" />
-    <Content Include="Images\phone\appbar.handicap.png" />
-    <Content Include="Images\phone\appbar.hardware.cpu.png" />
-    <Content Include="Images\phone\appbar.hardware.headphones.bluetooth.png" />
-    <Content Include="Images\phone\appbar.hardware.headphones.png" />
-    <Content Include="Images\phone\appbar.hardware.headset.png" />
-    <Content Include="Images\phone\appbar.hardware.mouse.png" />
-    <Content Include="Images\phone\appbar.heart.break.png" />
-    <Content Include="Images\phone\appbar.heart.cross.png" />
-    <Content Include="Images\phone\appbar.heart.outline.png" />
-    <Content Include="Images\phone\appbar.heart.png" />
     <Content Include="Images\phone\appbar.home.garage.arrow.close.png" />
     <Content Include="Images\phone\appbar.home.garage.arrow.open.png" />
     <Content Include="Images\phone\appbar.home.garage.open.png" />
@@ -953,9 +896,6 @@
     <Content Include="Images\phone\appbar.home.variant.leave.png" />
     <Content Include="Images\phone\appbar.home.variant.png" />
     <Content Include="Images\phone\appbar.hourglass.png" />
-    <Content Include="Images\phone\appbar.icecream.bar.png" />
-    <Content Include="Images\phone\appbar.ie.png" />
-    <Content Include="Images\phone\appbar.image.ants.png" />
     <Content Include="Images\phone\appbar.image.export.png" />
     <Content Include="Images\phone\appbar.image.focus.png" />
     <Content Include="Images\phone\appbar.image.gallery.png" />
@@ -1086,31 +1026,11 @@
     <Content Include="Images\phone\appbar.marketplace.old.png" />
     <Content Include="Images\phone\appbar.marketplace.png" />
     <Content Include="Images\phone\appbar.markup.png" />
-    <Content Include="Images\phone\appbar.martini.png" />
-    <Content Include="Images\phone\appbar.marvel.avengers.png" />
-    <Content Include="Images\phone\appbar.marvel.captainamerica.png" />
-    <Content Include="Images\phone\appbar.marvel.ironman.mask.png" />
-    <Content Include="Images\phone\appbar.marvel.ironman.png" />
     <Content Include="Images\phone\appbar.marvel.shield.png" />
     <Content Include="Images\phone\appbar.marvel.shield.variant.png" />
-    <Content Include="Images\phone\appbar.measure.celcius.png" />
-    <Content Include="Images\phone\appbar.measure.centimeter.png" />
-    <Content Include="Images\phone\appbar.measure.farenheit.png" />
-    <Content Include="Images\phone\appbar.measure.foot.png" />
-    <Content Include="Images\phone\appbar.measure.inch.png" />
-    <Content Include="Images\phone\appbar.measure.kilometer.png" />
-    <Content Include="Images\phone\appbar.measure.meter.png" />
-    <Content Include="Images\phone\appbar.measure.mile.png" />
-    <Content Include="Images\phone\appbar.medical.pill.broken.png" />
-    <Content Include="Images\phone\appbar.medical.pill.png" />
     <Content Include="Images\phone\appbar.medical.pulse.png" />
     <Content Include="Images\phone\appbar.message.png" />
-    <Content Include="Images\phone\appbar.message.profanity.png" />
     <Content Include="Images\phone\appbar.message.send.png" />
-    <Content Include="Images\phone\appbar.message.smiley.png" />
-    <Content Include="Images\phone\appbar.microphone.png" />
-    <Content Include="Images\phone\appbar.microsoft.tag.png" />
-    <Content Include="Images\phone\appbar.minecraft.civcraft.png" />
     <Content Include="Images\phone\appbar.minus.png" />
     <Content Include="Images\phone\appbar.money.png" />
     <Content Include="Images\phone\appbar.monitor.add.png" />
@@ -1122,24 +1042,6 @@
     <Content Include="Images\phone\appbar.monitor.png" />
     <Content Include="Images\phone\appbar.monitor.to.png" />
     <Content Include="Images\phone\appbar.mono.png" />
-    <Content Include="Images\phone\appbar.moon.first.quarter.png" />
-    <Content Include="Images\phone\appbar.moon.full.png" />
-    <Content Include="Images\phone\appbar.moon.new.png" />
-    <Content Include="Images\phone\appbar.moon.png" />
-    <Content Include="Images\phone\appbar.moon.sleep.png" />
-    <Content Include="Images\phone\appbar.moon.third.quarter.png" />
-    <Content Include="Images\phone\appbar.moon.waning.crescent.png" />
-    <Content Include="Images\phone\appbar.moon.waning.gibbous.png" />
-    <Content Include="Images\phone\appbar.moon.waxing.crescent.png" />
-    <Content Include="Images\phone\appbar.moon.waxing.gibbous.png" />
-    <Content Include="Images\phone\appbar.movie.clapper.png" />
-    <Content Include="Images\phone\appbar.movie.clapper.select.png" />
-    <Content Include="Images\phone\appbar.movie.clapper.solid.png" />
-    <Content Include="Images\phone\appbar.movie.clapper.solid.select.png" />
-    <Content Include="Images\phone\appbar.music.live.png" />
-    <Content Include="Images\phone\appbar.music.png" />
-    <Content Include="Images\phone\appbar.music.select.png" />
-    <Content Include="Images\phone\appbar.music.wifi.png" />
     <Content Include="Images\phone\appbar.navigate.next.png" />
     <Content Include="Images\phone\appbar.navigate.previous.png" />
     <Content Include="Images\phone\appbar.network.disconnect.png" />
@@ -1149,43 +1051,12 @@
     <Content Include="Images\phone\appbar.new.png" />
     <Content Include="Images\phone\appbar.new.window.png" />
     <Content Include="Images\phone\appbar.newspaper.png" />
-    <Content Include="Images\phone\appbar.nfc.png" />
     <Content Include="Images\phone\appbar.noentry.png" />
     <Content Include="Images\phone\appbar.notification.above.multiple.png" />
     <Content Include="Images\phone\appbar.notification.above.png" />
     <Content Include="Images\phone\appbar.notification.multiple.png" />
     <Content Include="Images\phone\appbar.notification.png" />
     <Content Include="Images\phone\appbar.notification.star.png" />
-    <Content Include="Images\phone\appbar.nyan.png" />
-    <Content Include="Images\phone\appbar.office.365.png" />
-    <Content Include="Images\phone\appbar.office.access.png" />
-    <Content Include="Images\phone\appbar.office.excel.png" />
-    <Content Include="Images\phone\appbar.office.infopath.png" />
-    <Content Include="Images\phone\appbar.office.lync.png" />
-    <Content Include="Images\phone\appbar.office.onenote.png" />
-    <Content Include="Images\phone\appbar.office.outlook.png" />
-    <Content Include="Images\phone\appbar.office.png" />
-    <Content Include="Images\phone\appbar.office.powerpoint.png" />
-    <Content Include="Images\phone\appbar.office.project.png" />
-    <Content Include="Images\phone\appbar.office.publisher.png" />
-    <Content Include="Images\phone\appbar.office.sharepoint.png" />
-    <Content Include="Images\phone\appbar.office.visio.png" />
-    <Content Include="Images\phone\appbar.office.word.png" />
-    <Content Include="Images\phone\appbar.opacity.png" />
-    <Content Include="Images\phone\appbar.os.android.png" />
-    <Content Include="Images\phone\appbar.os.arm.png" />
-    <Content Include="Images\phone\appbar.os.blackberry.png" />
-    <Content Include="Images\phone\appbar.os.chromium.png" />
-    <Content Include="Images\phone\appbar.os.gnome.png" />
-    <Content Include="Images\phone\appbar.os.ios.png" />
-    <Content Include="Images\phone\appbar.os.ubuntu.png" />
-    <Content Include="Images\phone\appbar.os.windows.8.png" />
-    <Content Include="Images\phone\appbar.os.windows.png" />
-    <Content Include="Images\phone\appbar.os.windows.rt.png" />
-    <Content Include="Images\phone\appbar.os.windowsphone.png" />
-    <Content Include="Images\phone\appbar.os.windowsphone.round.png" />
-    <Content Include="Images\phone\appbar.os.x64.png" />
-    <Content Include="Images\phone\appbar.os.x86.png" />
     <Content Include="Images\phone\appbar.outlet.png" />
     <Content Include="Images\phone\appbar.page.0.png" />
     <Content Include="Images\phone\appbar.page.1.png" />
@@ -1327,34 +1198,6 @@
     <Content Include="Images\phone\appbar.save.png" />
     <Content Include="Images\phone\appbar.scale.png" />
     <Content Include="Images\phone\appbar.scale.unbalanced.png" />
-    <Content Include="Images\phone\appbar.scrabble.a.png" />
-    <Content Include="Images\phone\appbar.scrabble.b.png" />
-    <Content Include="Images\phone\appbar.scrabble.c.png" />
-    <Content Include="Images\phone\appbar.scrabble.d.png" />
-    <Content Include="Images\phone\appbar.scrabble.e.png" />
-    <Content Include="Images\phone\appbar.scrabble.f.png" />
-    <Content Include="Images\phone\appbar.scrabble.g.png" />
-    <Content Include="Images\phone\appbar.scrabble.h.png" />
-    <Content Include="Images\phone\appbar.scrabble.i.png" />
-    <Content Include="Images\phone\appbar.scrabble.j.png" />
-    <Content Include="Images\phone\appbar.scrabble.k.png" />
-    <Content Include="Images\phone\appbar.scrabble.l.png" />
-    <Content Include="Images\phone\appbar.scrabble.m.png" />
-    <Content Include="Images\phone\appbar.scrabble.n.png" />
-    <Content Include="Images\phone\appbar.scrabble.o.png" />
-    <Content Include="Images\phone\appbar.scrabble.p.png" />
-    <Content Include="Images\phone\appbar.scrabble.q.png" />
-    <Content Include="Images\phone\appbar.scrabble.r.png" />
-    <Content Include="Images\phone\appbar.scrabble.s.png" />
-    <Content Include="Images\phone\appbar.scrabble.t.png" />
-    <Content Include="Images\phone\appbar.scrabble.u.png" />
-    <Content Include="Images\phone\appbar.scrabble.v.png" />
-    <Content Include="Images\phone\appbar.scrabble.w.png" />
-    <Content Include="Images\phone\appbar.scrabble.x.png" />
-    <Content Include="Images\phone\appbar.scrabble.y.png" />
-    <Content Include="Images\phone\appbar.scrabble.z.png" />
-    <Content Include="Images\phone\appbar.sd.micro.png" />
-    <Content Include="Images\phone\appbar.sd.png" />
     <Content Include="Images\phone\appbar.section.collapse.all.png" />
     <Content Include="Images\phone\appbar.section.collapse.png" />
     <Content Include="Images\phone\appbar.section.expand.all.png" />
@@ -1364,8 +1207,6 @@
     <Content Include="Images\phone\appbar.share.png" />
     <Content Include="Images\phone\appbar.shield.alert.png" />
     <Content Include="Images\phone\appbar.shield.png" />
-    <Content Include="Images\phone\appbar.shopping.png" />
-    <Content Include="Images\phone\appbar.shotglass.png" />
     <Content Include="Images\phone\appbar.shuffle.png" />
     <Content Include="Images\phone\appbar.sidebar.left.collapse.png" />
     <Content Include="Images\phone\appbar.sidebar.left.expand.png" />
@@ -1382,90 +1223,32 @@
     <Content Include="Images\phone\appbar.skydrive.download.png" />
     <Content Include="Images\phone\appbar.skydrive.png" />
     <Content Include="Images\phone\appbar.skydrive.upload.png" />
-    <Content Include="Images\phone\appbar.sleep.png" />
     <Content Include="Images\phone\appbar.slice.png" />
-    <Content Include="Images\phone\appbar.smiley.angry.png" />
-    <Content Include="Images\phone\appbar.smiley.cry.png" />
-    <Content Include="Images\phone\appbar.smiley.frown.png" />
-    <Content Include="Images\phone\appbar.smiley.glasses.png" />
-    <Content Include="Images\phone\appbar.smiley.grin.png" />
-    <Content Include="Images\phone\appbar.smiley.grumpy.png" />
-    <Content Include="Images\phone\appbar.smiley.happy.png" />
-    <Content Include="Images\phone\appbar.smiley.kiki.png" />
-    <Content Include="Images\phone\appbar.smiley.squint.png" />
-    <Content Include="Images\phone\appbar.smiley.tounge.png" />
-    <Content Include="Images\phone\appbar.smiley.what.png" />
-    <Content Include="Images\phone\appbar.snowflake.png" />
     <Content Include="Images\phone\appbar.social.aim.png" />
-    <Content Include="Images\phone\appbar.social.aim.variant.png" />
     <Content Include="Images\phone\appbar.social.amazon.appstore.png" />
     <Content Include="Images\phone\appbar.social.amazon.png" />
-    <Content Include="Images\phone\appbar.social.apple.appstore.png" />
     <Content Include="Images\phone\appbar.social.apple.mobileme.png" />
-    <Content Include="Images\phone\appbar.social.apple.png" />
-    <Content Include="Images\phone\appbar.social.appnet.png" />
-    <Content Include="Images\phone\appbar.social.artcom.png" />
-    <Content Include="Images\phone\appbar.social.arto.png" />
     <Content Include="Images\phone\appbar.social.aws.png" />
-    <Content Include="Images\phone\appbar.social.baidu.png" />
-    <Content Include="Images\phone\appbar.social.basecamp.png" />
-    <Content Include="Images\phone\appbar.social.bebo.png" />
-    <Content Include="Images\phone\appbar.social.behance.png" />
     <Content Include="Images\phone\appbar.social.blogger.png" />
     <Content Include="Images\phone\appbar.social.cloudapp.png" />
-    <Content Include="Images\phone\appbar.social.coding4fun.png" />
     <Content Include="Images\phone\appbar.social.delicious.png" />
     <Content Include="Images\phone\appbar.social.deviantart.png" />
-    <Content Include="Images\phone\appbar.social.digg.png" />
-    <Content Include="Images\phone\appbar.social.digg.variant.png" />
-    <Content Include="Images\phone\appbar.social.disqus.png" />
     <Content Include="Images\phone\appbar.social.dribbble.png" />
     <Content Include="Images\phone\appbar.social.dropbox.download.png" />
     <Content Include="Images\phone\appbar.social.dropbox.png" />
     <Content Include="Images\phone\appbar.social.dropbox.upload.png" />
-    <Content Include="Images\phone\appbar.social.drupal.png" />
-    <Content Include="Images\phone\appbar.social.engadget.png" />
-    <Content Include="Images\phone\appbar.social.etsy.png" />
-    <Content Include="Images\phone\appbar.social.evernote.png" />
-    <Content Include="Images\phone\appbar.social.facebook.heart.break.png" />
-    <Content Include="Images\phone\appbar.social.facebook.heart.png" />
-    <Content Include="Images\phone\appbar.social.facebook.png" />
     <Content Include="Images\phone\appbar.social.facebook.variant.png" />
-    <Content Include="Images\phone\appbar.social.foursquare.png" />
     <Content Include="Images\phone\appbar.social.gdgt.png" />
-    <Content Include="Images\phone\appbar.social.github.octocat.png" />
-    <Content Include="Images\phone\appbar.social.github.octocat.solid.png" />
-    <Content Include="Images\phone\appbar.social.github.png" />
-    <Content Include="Images\phone\appbar.social.grooveshark.png" />
     <Content Include="Images\phone\appbar.social.indiegogo.png" />
     <Content Include="Images\phone\appbar.social.jira.png" />
-    <Content Include="Images\phone\appbar.social.kickstarter.png" />
-    <Content Include="Images\phone\appbar.social.lastfm.png" />
-    <Content Include="Images\phone\appbar.social.linkedin.png" />
-    <Content Include="Images\phone\appbar.social.linkedin.variant.png" />
-    <Content Include="Images\phone\appbar.social.openid.png" />
     <Content Include="Images\phone\appbar.social.picasa.png" />
-    <Content Include="Images\phone\appbar.social.pinterest.png" />
-    <Content Include="Images\phone\appbar.social.playstation.png" />
     <Content Include="Images\phone\appbar.social.rdio.png" />
-    <Content Include="Images\phone\appbar.social.reddit.png" />
     <Content Include="Images\phone\appbar.social.sharethis.png" />
-    <Content Include="Images\phone\appbar.social.skype.png" />
     <Content Include="Images\phone\appbar.social.slashdot.png" />
     <Content Include="Images\phone\appbar.social.soundcloud.png" />
-    <Content Include="Images\phone\appbar.social.spotify.png" />
     <Content Include="Images\phone\appbar.social.stackoverflow.png" />
     <Content Include="Images\phone\appbar.social.theverge.png" />
-    <Content Include="Images\phone\appbar.social.tumblr.png" />
     <Content Include="Images\phone\appbar.social.twitter.retweet.png" />
-    <Content Include="Images\phone\appbar.social.vimeo.png" />
-    <Content Include="Images\phone\appbar.social.wikipedia.png" />
-    <Content Include="Images\phone\appbar.social.wordpress.png" />
-    <Content Include="Images\phone\appbar.social.wordpress.variant.png" />
-    <Content Include="Images\phone\appbar.social.yahoo.png" />
-    <Content Include="Images\phone\appbar.social.ycombinator.png" />
-    <Content Include="Images\phone\appbar.social.yelp.png" />
-    <Content Include="Images\phone\appbar.social.zappos.png" />
     <Content Include="Images\phone\appbar.sort.alphabetical.ascending.png" />
     <Content Include="Images\phone\appbar.sort.alphabetical.descending.png" />
     <Content Include="Images\phone\appbar.sort.alphabetical.png" />
@@ -1473,14 +1256,6 @@
     <Content Include="Images\phone\appbar.sort.numeric.descending.png" />
     <Content Include="Images\phone\appbar.sort.numeric.png" />
     <Content Include="Images\phone\appbar.sort.png" />
-    <Content Include="Images\phone\appbar.sound.0.png" />
-    <Content Include="Images\phone\appbar.sound.1.png" />
-    <Content Include="Images\phone\appbar.sound.2.png" />
-    <Content Include="Images\phone\appbar.sound.3.png" />
-    <Content Include="Images\phone\appbar.sound.left.right.png" />
-    <Content Include="Images\phone\appbar.sound.mute.png" />
-    <Content Include="Images\phone\appbar.sound.stereo.png" />
-    <Content Include="Images\phone\appbar.sound.stereo.stack.png" />
     <Content Include="Images\phone\appbar.source.fork.png" />
     <Content Include="Images\phone\appbar.source.pull.png" />
     <Content Include="Images\phone\appbar.speakerphone.png" />
@@ -1536,38 +1311,11 @@
     <Content Include="Images\phone\appbar.text.size.up.png" />
     <Content Include="Images\phone\appbar.text.strikethrough.png" />
     <Content Include="Images\phone\appbar.text.underline.png" />
-    <Content Include="Images\phone\appbar.thermometer.celcius.png" />
-    <Content Include="Images\phone\appbar.thermometer.digital.png" />
-    <Content Include="Images\phone\appbar.thermometer.fahrenheit.png" />
-    <Content Include="Images\phone\appbar.thermometer.honeywell.png" />
-    <Content Include="Images\phone\appbar.thermometer.kelvin.png" />
-    <Content Include="Images\phone\appbar.thermometer.png" />
-    <Content Include="Images\phone\appbar.thermometer.signs.png" />
-    <Content Include="Images\phone\appbar.thumb.up.add.png" />
-    <Content Include="Images\phone\appbar.thumb.up.delete.png" />
-    <Content Include="Images\phone\appbar.thumb.up.minus.png" />
-    <Content Include="Images\phone\appbar.thumbs.down.png" />
-    <Content Include="Images\phone\appbar.thumbs.up.png" />
-    <Content Include="Images\phone\appbar.ticket.png" />
     <Content Include="Images\phone\appbar.tiles.four.png" />
     <Content Include="Images\phone\appbar.tiles.minus.png" />
     <Content Include="Images\phone\appbar.tiles.nine.png" />
     <Content Include="Images\phone\appbar.tiles.plus.png" />
     <Content Include="Images\phone\appbar.tiles.sixteen.png" />
-    <Content Include="Images\phone\appbar.timer.1.png" />
-    <Content Include="Images\phone\appbar.timer.2.png" />
-    <Content Include="Images\phone\appbar.timer.3.png" />
-    <Content Include="Images\phone\appbar.timer.4.png" />
-    <Content Include="Images\phone\appbar.timer.5.png" />
-    <Content Include="Images\phone\appbar.timer.alert.png" />
-    <Content Include="Images\phone\appbar.timer.check.png" />
-    <Content Include="Images\phone\appbar.timer.forward.png" />
-    <Content Include="Images\phone\appbar.timer.pause.png" />
-    <Content Include="Images\phone\appbar.timer.play.png" />
-    <Content Include="Images\phone\appbar.timer.png" />
-    <Content Include="Images\phone\appbar.timer.record.png" />
-    <Content Include="Images\phone\appbar.timer.rewind.png" />
-    <Content Include="Images\phone\appbar.timer.stop.png" />
     <Content Include="Images\phone\appbar.tools.png" />
     <Content Include="Images\phone\appbar.tournament.bracket.down.png" />
     <Content Include="Images\phone\appbar.tournament.bracket.left.png" />
@@ -1584,31 +1332,10 @@
     <Content Include="Images\phone\appbar.transform.rotate.counterclockwise.png" />
     <Content Include="Images\phone\appbar.transform.rotate.left.png" />
     <Content Include="Images\phone\appbar.transform.rotate.right.png" />
-    <Content Include="Images\phone\appbar.transit.arrive.png" />
-    <Content Include="Images\phone\appbar.transit.bus.png" />
-    <Content Include="Images\phone\appbar.transit.car.accident.png" />
-    <Content Include="Images\phone\appbar.transit.car.png" />
-    <Content Include="Images\phone\appbar.transit.congestion.png" />
     <Content Include="Images\phone\appbar.transit.connection.departure.png" />
     <Content Include="Images\phone\appbar.transit.connection.png" />
     <Content Include="Images\phone\appbar.transit.construction.png" />
-    <Content Include="Images\phone\appbar.transit.depart.png" />
-    <Content Include="Images\phone\appbar.transit.distance.from.png" />
-    <Content Include="Images\phone\appbar.transit.distance.to.png" />
     <Content Include="Images\phone\appbar.transit.hazard.png" />
-    <Content Include="Images\phone\appbar.tree.leaf.png" />
-    <Content Include="Images\phone\appbar.tree.leaf.three.png" />
-    <Content Include="Images\phone\appbar.tree.pine.png" />
-    <Content Include="Images\phone\appbar.tree.png" />
-    <Content Include="Images\phone\appbar.trophy.png" />
-    <Content Include="Images\phone\appbar.truck.png" />
-    <Content Include="Images\phone\appbar.tux.png" />
-    <Content Include="Images\phone\appbar.tv.news.png" />
-    <Content Include="Images\phone\appbar.tv.png" />
-    <Content Include="Images\phone\appbar.tv.remote.png" />
-    <Content Include="Images\phone\appbar.tv.syfy.png" />
-    <Content Include="Images\phone\appbar.twitter.bird.png" />
-    <Content Include="Images\phone\appbar.twitter.png" />
     <Content Include="Images\phone\appbar.undo.curve.png" />
     <Content Include="Images\phone\appbar.undo.png" />
     <Content Include="Images\phone\appbar.undo.point.png" />
@@ -1623,43 +1350,10 @@
     <Content Include="Images\phone\appbar.user.png" />
     <Content Include="Images\phone\appbar.user.tie.png" />
     <Content Include="Images\phone\appbar.uservoice.png" />
-    <Content Include="Images\phone\appbar.vector.circle.png" />
-    <Content Include="Images\phone\appbar.vector.group.png" />
-    <Content Include="Images\phone\appbar.vector.group.removed.png" />
-    <Content Include="Images\phone\appbar.vector.line.curve.png" />
-    <Content Include="Images\phone\appbar.vector.line.png" />
-    <Content Include="Images\phone\appbar.vector.line.spline.png" />
-    <Content Include="Images\phone\appbar.vector.pen.add.png" />
-    <Content Include="Images\phone\appbar.vector.pen.convert.png" />
-    <Content Include="Images\phone\appbar.vector.pen.minus.png" />
-    <Content Include="Images\phone\appbar.vector.pen.png" />
-    <Content Include="Images\phone\appbar.vector.polygon.png" />
-    <Content Include="Images\phone\appbar.vector.rectangle.png" />
-    <Content Include="Images\phone\appbar.vector.star.png" />
-    <Content Include="Images\phone\appbar.video.gallery.png" />
-    <Content Include="Images\phone\appbar.video.highdefinition.png" />
-    <Content Include="Images\phone\appbar.video.png" />
-    <Content Include="Images\phone\appbar.video.send.png" />
-    <Content Include="Images\phone\appbar.video.standarddefinition.png" />
-    <Content Include="Images\phone\appbar.vip.lowercase.png" />
-    <Content Include="Images\phone\appbar.vip.png" />
     <Content Include="Images\phone\appbar.visualstudio.news.png" />
     <Content Include="Images\phone\appbar.visualstudio.png" />
     <Content Include="Images\phone\appbar.warning.circle.png" />
     <Content Include="Images\phone\appbar.warning.png" />
-    <Content Include="Images\phone\appbar.water.droplet.alert.png" />
-    <Content Include="Images\phone\appbar.water.droplet.png" />
-    <Content Include="Images\phone\appbar.water.droplet.reflection.png" />
-    <Content Include="Images\phone\appbar.weather.chance.png" />
-    <Content Include="Images\phone\appbar.weather.overcast.png" />
-    <Content Include="Images\phone\appbar.weather.rain.png" />
-    <Content Include="Images\phone\appbar.weather.snow.png" />
-    <Content Include="Images\phone\appbar.weather.station.png" />
-    <Content Include="Images\phone\appbar.weather.sun.png" />
-    <Content Include="Images\phone\appbar.weather.sun.rise.png" />
-    <Content Include="Images\phone\appbar.weather.sun.set.png" />
-    <Content Include="Images\phone\appbar.weather.symbol.png" />
-    <Content Include="Images\phone\appbar.weather.thunder.png" />
     <Content Include="Images\phone\appbar.webcam.png" />
     <Content Include="Images\phone\appbar.window.casement.closed.png" />
     <Content Include="Images\phone\appbar.window.casement.png" />
@@ -1667,14 +1361,7 @@
     <Content Include="Images\phone\appbar.window.png" />
     <Content Include="Images\phone\appbar.window.simple.png" />
     <Content Include="Images\phone\appbar.windowsphone.png" />
-    <Content Include="Images\phone\appbar.xbox.png" />
-    <Content Include="Images\phone\appbar.youtube.play.png" />
-    <Content Include="Images\phone\appbar.youtube.png" />
     <Content Include="Images\phone\appbar.zune.png" />
-    <Content Include="Images\slide1a.jpg" />
-    <Content Include="Images\slide3.jpg" />
-    <Content Include="Images\slide2.jpg" />
-    <Content Include="Images\slide1.jpg" />
     <Content Include="Images\upload\default.png" />
     <Content Include="Images\upload\doc.png" />
     <Content Include="Images\upload\jpg.png" />
@@ -1817,20 +1504,56 @@
     <Content Include="Views\Teachers\TeacherCreate.cshtml" />
     <Content Include="Views\Teachers\TeacherEdit.cshtml" />
     <Content Include="Views\Teachers\TeacherUploads.cshtml" />
+    <Content Include="Views\Teachers\SkillsCreate.cshtml" />
+    <Content Include="Views\Teachers\Epimorfoseis.cshtml" />
+    <Content Include="Views\Teachers\UploadEpimorfosi.cshtml" />
+    <Content Include="Views\Teachers\SkillsEdit.cshtml" />
+    <Content Include="Views\Aitisis\AitisiCreate.cshtml" />
+    <Content Include="Views\Aitisis\AitisiEdit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AitisiSchoolSelector.cshtml" />
+    <Content Include="Views\Aitisis\AitisisList.cshtml" />
+    <Content Include="Views\Aitisis\AitisiEdit2.cshtml" />
+    <Content Include="Views\Experience\TeachingMain.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormTeaching.cshtml" />
+    <Content Include="Views\Experience\UploadTeaching.cshtml" />
+    <Content Include="Views\Experience\VocationMain.cshtml" />
+    <Content Include="Views\Experience\UploadVocation.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormVocation.cshtml" />
+    <Content Include="Views\Experience\FreelanceMain.cshtml" />
+    <Content Include="Views\Experience\UploadFreelance.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormFreelance.cshtml" />
+    <Content Include="Views\Aitisis\Enstaseis.cshtml" />
+    <Content Include="Views\Aitisis\EnstasiUpload.cshtml" />
+    <Content Include="Views\Aitisis\AitisisResults.cshtml" />
+    <Content Include="Views\Aitisis\AitisiView.cshtml" />
+    <Content Include="Views\Aitisis\AitisisResultsPrint.cshtml" />
+    <Content Include="Views\UserSchools\Login.cshtml" />
+    <Content Include="Views\School\Index.cshtml" />
+    <Content Include="Views\Shared\_SchoolLayout.cshtml" />
+    <Content Include="Views\Admin\TeachersRegistry.cshtml" />
+    <Content Include="Views\Admin\TeacherDataPrint.cshtml" />
+    <Content Include="Views\Admin\TeachersEidikotitaPrint.cshtml" />
+    <Content Include="Views\Admin\AitiseisAudit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormTeaching2.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormVocation2.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormFreelance2.cshtml" />
+    <Content Include="Views\Admin\EditAitisi.cshtml" />
+    <Content Include="Views\Admin\TeacherUploadsAdmin.cshtml" />
+    <Content Include="Views\Admin\EditPersonal.cshtml" />
+    <Content Include="Views\Admin\EditSkills.cshtml" />
+    <Content Include="Views\Admin\EpimorfoseisAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\FilesExprerience\" />
+    <Folder Include="App_Data\Enstaseis\" />
+    <Folder Include="App_Data\FilesEpimorfosi\" />
+    <Folder Include="App_Data\FilesExperience\" />
     <Folder Include="App_Data\FilesPersonal\" />
     <Folder Include="Reports\Pinakes\" />
     <Folder Include="Reports\Statistics\" />
-    <Folder Include="Views\UserSchools\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
@@ -1847,8 +1570,17 @@
     <EmbeddedResource Include="Reports\A2Logo.resx">
       <DependentUpon>A2Logo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitisiResults.resx">
+      <DependentUpon>AitisiResults.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\EidikotitesProkirixis.resx">
       <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\TeacherData.resx">
+      <DependentUpon>TeacherData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\TeachersEidikotita.resx">
+      <DependentUpon>TeachersEidikotita.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Misc\Eidikotites.resx">
       <DependentUpon>Eidikotites.cs</DependentUpon>

@@ -135,6 +135,15 @@ namespace PegasusPlus.Models
 
         [Display(Name = "Βαθμίδα εκπαίδευσης")]
         public string TypeText { get; set; }
+
+        [Display(Name = "Μόρια (έτος ή ώρα)")]
+        public decimal? TypeMoria { get; set; }
+
+        [Display(Name = "Μόρια Όριο")]
+        public int? TypeMoriaMax { get; set; }
+
+        [Display(Name = "Περιγραφή μορίων")]
+        public string TypeMoriaInfo { get; set; }
     }
 
     public class ProkirixiStatusViewModel
@@ -221,6 +230,36 @@ namespace PegasusPlus.Models
         public string IdiotitaText { get; set; }
     }
 
+    public class EpagelmaCategoryViewModel
+    {
+        public int EpagelmaID { get; set; }
+        public string EpagelmaText { get; set; }
+    }
+
+    public class PtyxiaViewModel
+    {
+        public int PtyxioID { get; set; }
+        public string PtyxioText { get; set; }
+    }
+
+    public class SynafeiaViewModel
+    {
+        public int SynafeiaID { get; set; }
+        public string SynafeiaText { get; set; }
+    }
+
+    public class EpimorfosiTypesViewModel
+    {
+        public int EpimorfosiTypeID { get; set; }
+        public string EpimorfosiTypeText { get; set; }
+    }
+
+    public class PtyxiaTypesViewModel
+    {
+        public int DegreeTypeID { get; set; }
+        public string DegreeTypeText { get; set; }
+    }
+
 
     #region REPORTS PARAMETERS
 
@@ -228,6 +267,12 @@ namespace PegasusPlus.Models
     {
         public int? ProkirixiID { get; set; }
         public int? SchoolID { get; set; }
+    }
+
+    public class AitisisParameters
+    {
+        public int? AitisiID { get; set; }
+        public int? ProkirixiID { get; set; }
     }
 
     #endregion

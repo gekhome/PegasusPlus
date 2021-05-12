@@ -54,8 +54,7 @@ namespace PegasusPlus.Controllers.UserControllers
                 serializeModel.FullName = model.FullName;
 
                 string userData = JsonConvert.SerializeObject(serializeModel);
-                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-                    1, user.Username, DateTime.Now, DateTime.Now.AddMinutes(Kerberos.TICKET_TIMEOUT_MINUTES), false, userData);
+                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.Username, DateTime.Now, DateTime.Now.AddMinutes(Kerberos.TICKET_TIMEOUT_MINUTES), false, userData);
                 string encTicket = FormsAuthentication.Encrypt(authTicket);
                 HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                 Response.Cookies.Add(faCookie);

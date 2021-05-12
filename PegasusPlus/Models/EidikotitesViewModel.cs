@@ -1,10 +1,6 @@
-﻿using System;
+﻿using PegasusPlus.DAL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using PegasusPlus.DAL;
 
 namespace PegasusPlus.Models
 {
@@ -36,6 +32,11 @@ namespace PegasusPlus.Models
 
         [Display(Name = "Ομάδα")]
         public int? EidikotitaGroupID { get; set; }
+
+        public string EidikotitaDesc
+        {
+            get { return EidikotitaCode + "-" + EidikotitaName; }
+        }
 
         public virtual SysKlados SysKlados { get; set; }
         public virtual SysKladosEniaios SysKladosEniaios { get; set; }

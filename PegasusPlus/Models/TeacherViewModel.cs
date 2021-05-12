@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using PegasusPlus.BPM;
 using PegasusPlus.DAL;
-using PegasusPlus.BPM;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace PegasusPlus.Models
-{ 
+{
     public class TeacherViewModel
     {
         [Display(Name = "ΑΦΜ")]
@@ -37,35 +33,35 @@ namespace PegasusPlus.Models
         [Display(Name = "Επιλογή αρχείου για ΑΔΤ *")]
         public HttpPostedFileBase FileADT { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση ονόματος")]
         [StringLength(150, ErrorMessage = "Πρέπει να είναι μέχρι 150 χαρακτήρες.")]
         [RegularExpression(@"^[Α-Ω]+[ Α-Ω-_ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
         [Display(Name = "Όνομα *")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση επώνυμου")]
         [StringLength(150, ErrorMessage = "Πρέπει να είναι μέχρι 150 χαρακτήρες.")]
         [RegularExpression(@"^[Α-Ω]+[ Α-Ω-_ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
         [Display(Name = "Επώνυμο *")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση πατρώνυμου")]
         [StringLength(150, ErrorMessage = "Πρέπει να είναι μέχρι 150 χαρακτήρες.")]
         [RegularExpression(@"^[Α-Ω]+[ Α-Ω-_ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
         [Display(Name = "Πατρώνυμο *")]
         public string FatherName { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση μητρώνυμου")]
         [StringLength(150, ErrorMessage = "Πρέπει να είναι μέχρι 150 χαρακτήρες.")]
         [RegularExpression(@"^[Α-Ω]+[ Α-Ω-_ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
         [Display(Name = "Μητρώνυμο *")]
         public string MotherName { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση φύλου")]
         [Display(Name = "Φύλο *")]
         public int? Gender { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση οικογ. κατάστασης")]
         [Display(Name = "Οικογενειακή κατάσταση *")]
         public int? FamilyStatus { get; set; }
 
@@ -73,33 +69,33 @@ namespace PegasusPlus.Models
         [Display(Name = "Αριθμός τέκνων")]
         public int? Children { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση ημερ. γέννησης")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Ημερομηνία γέννησης *")]
         public DateTime? Birthdate { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση νομού")]
         [Display(Name = "Νομός κατοικίας *")]
         public int? Nomos { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση πόλης")]
         [Display(Name = "Πόλη κατοικίας *")]
         public string City { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση διεύθυνσης")]
         [Display(Name = "Ταχυδρομική διεύθυνση *")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση Τ.Κ.")]
         [Display(Name = "Ταχυδρομικός κώδικας *")]
         public string PostCode { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση σταθερού")]
         [Display(Name = "Σταθερό τηλέφωνο *")]
         public string Telephone { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση κινητού")]
         [Display(Name = "Κινητό τηλέφωνο *")]
         public string CellPhone { get; set; }
 
@@ -110,16 +106,16 @@ namespace PegasusPlus.Models
         [Display(Name = "E-Mail *")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση επαγγέλματος")]
         [StringLength(255, ErrorMessage = "Πρέπει να είναι μέχρι 255 χαρακτήρες.")]
         [Display(Name = "Επάγγελμα *")]
         public string Epagelma { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση ιδιότητας")]
         [Display(Name = "Ιδιότητα *")]
         public int? Idiotita { get; set; }
 
-        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση")]
+        [Required(ErrorMessage = "Υποχρεωτική συμπλήρωση ΑΜΚΑ")]
         [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
         [Display(Name = "Α.Μ.Κ.Α. *")]
         public string AMKA { get; set; }
@@ -132,7 +128,7 @@ namespace PegasusPlus.Models
         public HttpPostedFileBase FileAMKA { get; set; }
 
         [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
-        [Display(Name = "Αριθμός μητρώου ασφάλισης *")]
+        [Display(Name = "Αριθμός μητρώου ασφάλισης")]
         public string AMA { get; set; }
 
         [Display(Name = "Αρχείο για ΑΜΑ")]
@@ -143,7 +139,7 @@ namespace PegasusPlus.Models
         public HttpPostedFileBase FileAMA { get; set; }
 
         [StringLength(150, ErrorMessage = "Πρέπει να είναι μέχρι 150 χαρακτήρες.")]
-        [Display(Name = "Ασφάλιση κύριας θέσης *")]
+        [Display(Name = "Ασφάλιση κύριας θέσης")]
         public string InsuranceMain { get; set; }
 
         [Range(1940, 2030, ErrorMessage = "Εισάγετε έγκυρο αριθμό 1940 έως 2030")]
@@ -233,14 +229,11 @@ namespace PegasusPlus.Models
             AMKA_FILENAME = entity.AMKA_FILENAME;
             AMA = entity.AMA;
             AMA_FILENAME = entity.AMA_FILENAME;
-            InsuranceMain = entity.InsuranceMain;
-            InsuranceFirstYear = entity.InsuranceFirstYear;
             SocialTriteknos = entity.SocialTriteknos ?? false;
             SocialPolyteknos = entity.SocialPolyteknos ?? false;
             SocialSingleParent = entity.SocialSingleParent ?? false;
             SocialAmea = entity.SocialAmea ?? false;
             SocialAnergos = entity.SocialAnergos;
-            AnergiaCardExpireDate = entity.AnergiaCardExpireDate;
             SocialTriteknosFilename = entity.SocialTriteknosFilename;
             SocialPolyteknosFilename = entity.SocialPolyteknosFilename;
             SocialSingleParentFilename = entity.SocialSingleParentFilename;
@@ -269,5 +262,33 @@ namespace PegasusPlus.Models
         [Display(Name = "Σχολικό έτος")]
         public string SchoolYearText { get; set; }
     }
+
+    public class TeachersRegistryViewModel
+    {
+        [Display(Name = "ΑΦΜ")]
+        public string AFM { get; set; }
+
+        [Display(Name = "Ονοματεπώνυμο")]
+        public string FullName { get; set; }
+
+        [Display(Name = "Σταθερό")]
+        public string Telephone { get; set; }
+
+        [Display(Name = "Κινητό")]
+        public string CellPhone { get; set; }
+
+        [Display(Name = "E-Mail")]
+        public string Email { get; set; }
+
+        [Display(Name = "Διεύθυνση κατοικίας")]
+        public string FullAddress { get; set; }
+
+        [Display(Name = "Ιδιότητα")]
+        public int? Idiotita { get; set; }
+
+        [Display(Name = "Ηλικία")]
+        public int? Age { get; set; }
+    }
+
 
 }

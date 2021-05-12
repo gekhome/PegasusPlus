@@ -1,0 +1,20 @@
+﻿@using System.Collections
+@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+
+@model object
+
+@(Html.Kendo().DropDownListFor(m => m)
+    .DataValueField("SchoolID")
+    .DataTextField("SchoolName")
+    .OptionLabel("Επιλογή...")
+    .DataSource(source =>
+    {
+        source.Read(read =>
+        {
+            read.Action("FilteredSchools_Read", "Aitisis").Data("filterSchools");
+        })
+        .ServerFiltering(true);
+    })
+)

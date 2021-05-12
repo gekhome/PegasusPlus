@@ -1,0 +1,757 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+@model AitisisViewModel
+
+@{
+    ViewBag.Title = "Επεξεργασία αίτησης";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<style>
+      .control-label {
+          font-family: 'Segoe UI';
+          white-space: pre-line;
+      }
+
+      .page-header {
+          border-bottom: 1px solid #D3D3D3;
+          font-family: 'Segoe UI';
+          font-size: x-large;
+      }
+
+      .k-textbox {
+          display: block;
+          width: 100%;
+          height: 34px;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.428571429;
+          color: #555555;
+          vertical-align: middle;
+          background-color: #ffffff;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      }
+
+          .k-textbox:focus {
+              border-color: #66afe9;
+              outline: 0;
+              -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          }
+
+      input[type=file] {
+          width: 90px;
+          color: transparent;
+      }
+
+      .btn-rmv1,
+      .btn-rmv2,
+      .btn-rmv3,
+      .btn-rmv4,
+      .btn-rmv5,
+      .btn-rmv6,
+      .btn-rmv7,
+      .btn-rmv8,
+      .btn-rmv9,
+      .btn-rmv10 {
+          display: none;
+      }
+
+      .rmv {
+          cursor: pointer;
+          display: inline-block;
+          /*color: #fff;
+    border-radius: 100px;
+    border: 1px solid #fff;*/
+          /*background: rgba(255, 0, 0, 1);
+    margin: -5px -10px;*/
+      }
+</style>
+
+
+@using (Html.BeginForm("AitisiEdit2", "Aitisis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(m => m.AitisisID)
+
+    <div class="page-header">
+        <div style="margin:5px 60px 5px 40px">
+            <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+                <font style="color:#292929;">Επεξεργασία αίτησης εκπαιδευτικού <i style="font-size:medium;margin-left:10px;color:red">(τα πεδία με * είναι υποχρεωτικά)</i></font>
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                @Html.ActionLink("Επιστροφή", "AitisisList", "Aitisis", new { @class = "btn btn-warning", style = "font-size:16px" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                @Html.ActionLink("Αρχεία", "TeacherUploads", "Teachers", new { afm = Model.TeacherAFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                @Html.ActionLink("Εκτύπωση", "AitisiPrint", "Aitisis", new { afm = Model.TeacherAFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                <input id="buttonClientSide" style="font-family:'Segoe UI';font-size:16px" type="submit" value="Αποθήκευση" class="btn btn-success" />
+            </span>
+        </div>
+    </div>
+
+    <div class="body-content mt-3 mb-3 ml-4 mr-4" id="candidate">
+        <div class="row">
+            <div class="col-md-3">
+                ΑΦΜ : <label class="form-control d-inline" style="min-height:34px;min-width:400px; background-color:#EEE" title="@Html.Raw(ViewBag.loggedTeacher.AFM)">
+                    @Html.Raw(ViewBag.loggedTeacher.AFM)
+                </label>
+            </div>
+            <div class="col-md-3">
+                <label class="form-control smartShortText d-inline" style="min-height:34px;width:300px; background-color:#EEE" title="@Html.Raw(ViewBag.loggedTeacher.FirstName) @Html.Raw(ViewBag.loggedTeacher.LastName)">
+                    @Html.Raw(ViewBag.loggedTeacher.FirstName) @Html.Raw(ViewBag.loggedTeacher.LastName)
+                </label>
+            </div>
+            <div class="col-md-3">
+                Α.Π. Αίτησης : &nbsp;<label class="form-control d-inline" style="min-height:34px;min-width:400px; background-color:#EEE" title="@Model.AitisisProtocol">
+                    @Model.AitisisProtocol
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-content mt-2">
+        @(Html.Kendo().PanelBar()
+            .Name("AitisiPanelBar")
+            .Items(items =>
+            {
+                items.Add()
+                .Text("ΕΝΟΤΗΤΑ 4 - ΒΑΣΙΚΕΣ ΣΠΟΥΔΕΣ")
+                .Selected(true)
+                .Expanded(true)
+                .Content(
+                    @<text>
+                        <div class="row col-md-12 ml-4 mb-2">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Klados, new { @class = "col-form-label col-md-8" })
+                                @(Html.Kendo().DropDownListFor(model => model.Klados)
+                                    .Name("Klados")
+                                    .DataTextField("KladosName")
+                                    .DataValueField("KladosID")
+                                    .HtmlAttributes(new { style = "width:200px;" })
+                                    .OptionLabel("Επιλέξτε...")
+                                    .AutoBind(true)
+                                    .DataSource(source =>
+                                    {
+                                        source.Read(read =>
+                                        {
+                                            read.Action("GetKlados", "Aitisis");
+                                        })
+                                        .ServerFiltering(true);
+                                    })
+                                )
+                                @Html.ValidationMessageFor(model => model.Klados, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Eidikotita, new { @class = "col-form-label col-md-8" })
+                                @(Html.Kendo().DropDownListFor(model => model.Eidikotita)
+                                    .Name("Eidikotita")
+                                    .DataTextField("EidikotitaDesc")
+                                    .DataValueField("EidikotitaID")
+                                    .HtmlAttributes(new { style = "width:360px;font-size:14px" })
+                                    .OptionLabel("Επιλέξτε...")
+                                    .AutoBind(false)
+                                    .Enable(false)
+                                    .CascadeFrom("Klados")
+                                    .DataSource(source =>
+                                    {
+                                        source.Read(read =>
+                                        {
+                                            read.Action("GetEidikotites", "Aitisis").Data("filterKlados");
+                                        })
+                                        .ServerFiltering(true);
+                                    })
+                                )
+                                @Html.ValidationMessageFor(model => model.Eidikotita, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.BasicEducation, new { @class = "col-form-label col-md-10" })
+                                @(Html.Kendo().DropDownListFor(model => model.BasicEducation)
+                                    .Name("BasicEducation")
+                                    .DataTextField("EducationText")
+                                    .DataValueField("EducationID")
+                                    .HtmlAttributes(new { style = "width:300px;" })
+                                    .OptionLabel("Επιλέξτε...")
+                                    .AutoBind(true)
+                                    .DataSource(source =>
+                                    {
+                                        source.Read(read =>
+                                        {
+                                            read.Action("GetBasicEducation", "Aitisis");
+                                        })
+                                        .ServerFiltering(true);
+                                    })
+                                )
+                                @Html.ValidationMessageFor(model => model.BasicEducation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row col-md-12 ml-4 mb-2">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioType, new { @class = "col-form-label col-md-8" })
+                                @(Html.Kendo().DropDownListFor(model => model.PtyxioType)
+                                    .Name("PtyxioType")
+                                    .DataTextField("PtyxioText")
+                                    .DataValueField("PtyxioID")
+                                    .HtmlAttributes(new { style = "width:300px;" })
+                                    .OptionLabel("Επιλέξτε...")
+                                    .AutoBind(true)
+                                    .DataSource(source =>
+                                    {
+                                        source.Read(read =>
+                                        {
+                                            read.Action("GetPtyxia", "Aitisis");
+                                        })
+                                        .ServerFiltering(true);
+                                    })
+                                )
+                                @Html.ValidationMessageFor(model => model.PtyxioType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioTitlos, new { @class = "col-form-label col-md-6" })
+                                @Html.EditorFor(model => model.PtyxioTitlos, new { @class = "form-control col-md-4" })
+                                @Html.ValidationMessageFor(model => model.PtyxioTitlos)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioYear, new { @class = "col-form-label col-md-6" })
+                                @(Html.Kendo().NumericTextBox<int>()
+                                    .Name("PtyxioYear")
+                                    .Format("#0")
+                                    .Min(1950)
+                                    .Max(2030)
+                                    .Step(1)
+                                    .Value(Model.PtyxioYear)
+                                    .HtmlAttributes(new { style = "width: 200px" })
+                                )
+                                @Html.ValidationMessageFor(model => model.PtyxioYear, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row col-md-12 ml-4 mb-2">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioGrade, new { @class = "col-form-label col-md-6" })
+                                @(Html.Kendo().NumericTextBox<decimal>()
+                                    .Name("PtyxioGrade")
+                                    .Format("#0.00")
+                                    .Min(5.00m)
+                                    .Max(20.00m)
+                                    .Step(0.10m)
+                                    .Value(Model.PtyxioGrade)
+                                    .HtmlAttributes(new { style = "width: 200px" })
+                                )
+                                @Html.ValidationMessageFor(model => model.PtyxioGrade, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioInstitution, new { @class = "col-form-label col-md-6" })
+                                @Html.EditorFor(model => model.PtyxioInstitution, new { @class = "form-control col-md-4" })
+                                @Html.ValidationMessageFor(model => model.PtyxioInstitution)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioSchool, new { @class = "col-form-label col-md-6" })
+                                @Html.EditorFor(model => model.PtyxioSchool, new { @class = "form-control col-md-4" })
+                                @Html.ValidationMessageFor(model => model.PtyxioSchool)
+                            </div>
+                        </div>
+                        <div class="row col-md-12 ml-4 mb-2">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioTmima, new { @class = "col-form-label col-md-6" })
+                                @Html.EditorFor(model => model.PtyxioTmima, new { @class = "form-control col-md-4" })
+                                @Html.ValidationMessageFor(model => model.PtyxioTmima)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioForeign, new { @class = "col-form-label col-md-12" })
+                                @Html.EditorFor(model => model.PtyxioForeign, new { @class = "form-control col-md-4" })
+                                @Html.ValidationMessageFor(model => model.PtyxioForeign)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioAnagnorisi, new { @class = "col-form-label col-md-12" })
+                                @Html.EditorFor(model => model.PtyxioAnagnorisi, new { @class = "form-control col-md-4" })
+                                @Html.ValidationMessageFor(model => model.PtyxioAnagnorisi)
+                            </div>
+                        </div>
+                        <div class="row col-md-12 ml-4 mb-2">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioFilename, new { @class = "col-form-label col-md-6" })
+                                <label class="form-control col-md-6 smartShortText" style="max-height:20px;background-color:#EEE;min-width:300px" title="@Model.PtyxioFilename">@Model.PtyxioFilename</label>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.FilePtyxio, new { @class = "col-form-label col-md-10" })
+                                <input type='file' id="FilePtyxio" name="FilePtyxio" onchange="pressed1()" style="display:none;">
+                                <label class="btn btn-outline-dark" for="FilePtyxio" id="fileLabelPtyxio" style="cursor:pointer" title="Ανέβασμα αρχείου">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+                                </label>
+                                <label id="filenamePtyxio" style="font-size:12px"></label>
+                                <label class="btn btn-outline-danger btn-rmv1" id="removeFilePtyxio" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 ml-4 mb-3">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.PtyxioAnagnorisiFilename, new { @class = "col-form-label col-md-6" })
+                                <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.PtyxioAnagnorisiFilename">
+                                    @Model.PtyxioAnagnorisiFilename
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.FilePtyxioAnagnorisi, new { @class = "col-form-label col-md-10" })
+                                <input type='file' id="FilePtyxioAnagnorisi" name="FilePtyxioAnagnorisi" onchange="pressed2()" style="display:none;">
+                                <label class="btn btn-outline-dark" for="FilePtyxioAnagnorisi" id="fileLabelPtyxioAnagnorisi" style="cursor:pointer" title="Ανέβασμα αρχείου">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+                                </label>
+                                <label id="filenamePtyxioAnagnorisi" style="font-size:12px"></label>
+                                <label class="btn btn-outline-danger btn-rmv2" id="removeFilePtyxioAnagnorisi" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </text>);
+                items.Add()
+                .Text("ΕΝΟΤΗΤΑ 5 - ΜΕΤΑΠΤΥΧΙΑΚΟ")
+                .Content(
+                    @<text>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscTitlos, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.MscTitlos, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.MscTitlos)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscInstitution, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.MscInstitution, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.MscInstitution)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscYear, new { @class = "col-form-label col-md-6" })
+                            @(Html.Kendo().NumericTextBox<int>()
+                                .Name("MscYear")
+                                .Format("#0")
+                                .Min(1950)
+                                .Max(2030)
+                                .Step(1)
+                                .Value(Model.MscYear)
+                                .HtmlAttributes(new { style = "width: 200px" })
+                            )
+                            @Html.ValidationMessageFor(model => model.MscYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscSynafeia, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.MscSynafeia)
+                                .Name("MscSynafeia")
+                                .DataTextField("SynafeiaText")
+                                .DataValueField("SynafeiaID")
+                                .HtmlAttributes(new { style = "width:300px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetSynafeia", "Aitisis");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.MscSynafeia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscForeign, new { @class = "col-form-label col-md-12" })
+                            @Html.EditorFor(model => model.MscForeign, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.MscForeign)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscAnagnorisi, new { @class = "col-form-label col-md-12" })
+                            @Html.EditorFor(model => model.MscAnagnorisi, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.MscAnagnorisi)
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.MscFilename">@Model.MscFilename</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FileMsc, new { @class = "col-form-label col-md-10" })
+                            <input type='file' id="FileMsc" name="FileMsc" onchange="pressed3()" style="display:none;">
+                            <label class="btn btn-outline-dark" for="FileMsc" id="fileLabelMsc" style="cursor:pointer" title="Ανέβασμα αρχείου">
+                                <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+                            </label>
+                            <label id="filenameMsc" style="font-size:12px"></label>
+                            <label class="btn btn-outline-danger btn-rmv3" id="removeFileMsc" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MscAnagnorisiFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.MscAnagnorisiFilename">
+                                @Model.MscAnagnorisiFilename
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FileMscAnagnorisi, new { @class = "col-form-label col-md-10" })
+                            <input type='file' id="FileMscAnagnorisi" name="FileMscAnagnorisi" onchange="pressed4()" style="display:none;">
+                            <label class="btn btn-outline-dark" for="FileMscAnagnorisi" id="fileLabelMscAnagnorisi" style="cursor:pointer" title="Ανέβασμα αρχείου">
+                                <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+                            </label>
+                            <label id="filenameMscAnagnorisi" style="font-size:12px"></label>
+                            <label class="btn btn-outline-danger btn-rmv4" id="removeFileMscAnagnorisi" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </label>
+                        </div>
+                    </div>
+                    </text>);
+                items.Add()
+                .Text("ΕΝΟΤΗΤΑ 6 - ΔΙΔΑΚΤΟΡΙΚΟ")
+                .Content(
+                    @<text>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdTitlos, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.PhdTitlos, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.PhdTitlos)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdInstitution, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.PhdInstitution, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.PhdInstitution)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdYear, new { @class = "col-form-label col-md-6" })
+                            @(Html.Kendo().NumericTextBox<int>()
+                                .Name("PhdYear")
+                                .Format("#0")
+                                .Min(1950)
+                                .Max(2030)
+                                .Step(1)
+                                .Value(Model.PhdYear)
+                                .HtmlAttributes(new { style = "width: 200px" })
+                            )
+                            @Html.ValidationMessageFor(model => model.PhdYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdSynafeia, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.PhdSynafeia)
+                                .Name("PhdSynafeia")
+                                .DataTextField("SynafeiaText")
+                                .DataValueField("SynafeiaID")
+                                .HtmlAttributes(new { style = "width:300px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetSynafeia", "Aitisis");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.PhdSynafeia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdForeign, new { @class = "col-form-label col-md-12" })
+                            @Html.EditorFor(model => model.PhdForeign, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.PhdForeign)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdAnagnorisi, new { @class = "col-form-label col-md-12" })
+                            @Html.EditorFor(model => model.PhdAnagnorisi, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.PhdAnagnorisi)
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.PhdFilename">@Model.PhdFilename</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FilePhd, new { @class = "col-form-label col-md-10" })
+                            <input type='file' id="FilePhd" name="FilePhd" onchange="pressed5()" style="display:none;">
+                            <label class="btn btn-outline-dark" for="FilePhd" id="fileLabelPhd" style="cursor:pointer" title="Ανέβασμα αρχείου">
+                                <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+                            </label>
+                            <label id="filenamePhd" style="font-size:12px"></label>
+                            <label class="btn btn-outline-danger btn-rmv5" id="removeFilePhd" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PhdAnagnorisiFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.PhdAnagnorisiFilename">
+                                @Model.PhdAnagnorisiFilename
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FilePhdAnagnorisi, new { @class = "col-form-label col-md-10" })
+                            <input type='file' id="FilePhdAnagnorisi" name="FilePhdAnagnorisi" onchange="pressed6()" style="display:none;">
+                            <label class="btn btn-outline-dark" for="FilePhdAnagnorisi" id="fileLabelPhdAnagnorisi" style="cursor:pointer" title="Ανέβασμα αρχείου">
+                                <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
+                            </label>
+                            <label id="filenamePhdAnagnorisi" style="font-size:12px"></label>
+                            <label class="btn btn-outline-danger btn-rmv6" id="removeFilePhdAnagnorisi" style="margin-left:5px;margin-right:5px" title="Αφαίρεση αρχείου">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </label>
+                        </div>
+                    </div>
+                    </text>);
+                items.Add()
+                .Text("ΕΝΟΤΗΤΑ 7 - ΠΕΡΙΦΕΡΕΙΑ, ΣΧΟΛΙΚΗ ΜΟΝΑΔΑ")
+                .Content(
+                    @<text>
+                    <p class="ml-4 mr-4 mt-2 pl-4" style="font-family:'Segoe UI';font-size:large;font-weight:600;">
+                        ΠΡΟΣΟΧΗ! Διαβάστε προσεκτικά.
+                    </p>
+                    <p class="ml-4 mr-4 mb-2 pl-4 pr-4" style="font-family:'Segoe UI';font-size:medium;font-weight:600;">
+                        Το πλαίσιο Περιφερειών δεν εμφανίζει όλες τις Περιφέρειες, αλλά μόνο εκείνες για τις οποίες υπάρχουν
+                        Σχολικές Μονάδες με προκηρυσσόμενη ειδικότητα αυτή που δηλώσατε παραπάνω. Το ίδιο ισχύει και για τις
+                        εμφανιζόμενες Σχολικές Μονάδες. Αν η ειδικότητα που δηλώσατε δεν προκηρύσσεται δεν θα εμφανιστεί καμία
+                        Περιφέρεια ή Σχολική μονάδα, που σημαίνει ότι δεν μπορείτε να υποβάλετε Αίτηση για την ειδικότητα αυτή.
+                    </p>
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.EpagelmaCategory, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.EpagelmaCategory)
+                                .Name("EpagelmaCategory")
+                                .DataTextField("EpagelmaText")
+                                .DataValueField("EpagelmaID")
+                                .HtmlAttributes(new { style = "width:300px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetEpagelmaCategory", "Aitisis");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.EpagelmaCategory, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Periferia, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.Periferia)
+                                .Name("Periferia")
+                                .DataTextField("PeriferiaName")
+                                .DataValueField("PeriferiaID")
+                                .HtmlAttributes(new { style = "width:360px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .CascadeFrom("Eidikotita")
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetCascadePeriferies", "Aitisis").Data("filterPeriferies");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.Periferia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.School, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.School)
+                                .Name("School")
+                                .DataTextField("SchoolName")
+                                .DataValueField("SchoolID")
+                                .HtmlAttributes(new { style = "width:300px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .CascadeFrom("Periferia")
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetCascadeSchools", "Aitisis").Data("filterSchools");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    </text>);
+            })
+        )
+    </div>
+
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible mt-3" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>@Html.ValidationSummary()</strong>
+        </div>
+    }
+}
+
+<script type="text/javascript">
+
+    function filterKlados() {
+        return {
+            kladosId: $("#Klados").data("kendoDropDownList").value()
+        };
+    }
+
+    function filterPeriferies() {
+        return {
+            eidikotitaId: $("#Eidikotita").data("kendoDropDownList").value()
+        };
+    }
+
+    function filterSchools() {
+        return {
+            periferia: $("#Periferia").data("kendoDropDownList").value(),
+            eidikotita: $("#Eidikotita").data("kendoDropDownList").value()
+        };
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    // 1. ΠΕΔΙΟ ΒΑΣΙΚΟ ΠΤΥΧΙΟ
+    function pressed1() {
+        var a = document.getElementById('FilePtyxio');
+        if (a.value == "") {
+            fileLabelPtyxio.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filenamePtyxio.innerHTML = " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv1').addClass('rmv');
+        }
+    };
+
+    $("#removeFilePtyxio").click(function (e) {
+        e.preventDefault();
+        $("#FilePtyxio").val("");
+        fileLabelPtyxio.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filenamePtyxio.innerHTML = "";
+        $('.btn-rmv1').removeClass('rmv');
+    });
+
+    // 2. ΠΕΔΙΟ ΑΝΑΓΝΩΡΙΣΗΣ ΠΤΥΧΙΟΥ ΕΞΩΤΕΡΙΚΟΥ
+    function pressed2() {
+        var a = document.getElementById('FilePtyxioAnagnorisi');
+        if (a.value == "") {
+            fileLabelPtyxioAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filenamePtyxioAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv2').addClass('rmv');
+        }
+    };
+
+    $("#removeFilePtyxioAnagnorisi").click(function (e) {
+        e.preventDefault();
+        $("#FilePtyxioAnagnorisi").val("");
+        fileLabelPtyxioAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filenamePtyxioAnagnorisi.innerHTML = "";
+        $('.btn-rmv2').removeClass('rmv');
+    });
+
+    // 3. ΠΕΔΙΟ ΜΕΤΑΠΤΥΧΙΑΚΟΥ
+    function pressed3() {
+        var a = document.getElementById('FileMsc');
+        if (a.value == "") {
+            fileLabelMsc.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filenameMsc.innerHTML = " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv3').addClass('rmv');
+        }
+    };
+
+    $("#removeFileMsc").click(function (e) {
+        e.preventDefault();
+        $("#FileMsc").val("");
+        fileLabelMsc.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filenameMsc.innerHTML = "";
+        $('.btn-rmv3').removeClass('rmv');
+    });
+
+    // 4. ΠΕΔΙΟ ΑΝΑΓΝΩΡΙΣΗΣ ΜΕΤΑΠΤΥΧΙΑΚΟΥ ΕΞΩΤΕΡΙΚΟΥ
+    function pressed4() {
+        var a = document.getElementById('FileMscAnagnorisi');
+        if (a.value == "") {
+            fileLabelMscAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filenameMscAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv4').addClass('rmv');
+        }
+    };
+
+    $("#removeFileMscAnagnorisi").click(function (e) {
+        e.preventDefault();
+        $("#FileMscAnagnorisi").val("");
+        fileLabelMscAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filenameMscAnagnorisi.innerHTML = "";
+        $('.btn-rmv4').removeClass('rmv');
+    });
+
+    // 5. ΠΕΔΙΟ ΔΙΔΑΚΤΟΡΙΚΟΥ
+    function pressed5() {
+        var a = document.getElementById('FilePhd');
+        if (a.value == "") {
+            fileLabelPhd.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filenamePhd.innerHTML = " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv5').addClass('rmv');
+        }
+    };
+
+    $("#removeFilePhd").click(function (e) {
+        e.preventDefault();
+        $("#FilePhd").val("");
+        fileLabelPhd.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filenamePhd.innerHTML = "";
+        $('.btn-rmv5').removeClass('rmv');
+    });
+
+    // 6. ΠΕΔΙΟ ΑΝΑΓΝΩΡΙΣΗΣ ΔΙΔΑΚΤΟΡΙΚΟΥ ΕΞΩΤΕΡΙΚΟΥ
+    function pressed6() {
+        var a = document.getElementById('FilePhdAnagnorisi');
+        if (a.value == "") {
+            fileLabelPhdAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        }
+        else {
+            var theSplit = a.value.split('\\');
+            filenamePhdAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            $('.btn-rmv6').addClass('rmv');
+        }
+    };
+
+    $("#removeFilePhdAnagnorisi").click(function (e) {
+        e.preventDefault();
+        $("#FilePhdAnagnorisi").val("");
+        fileLabelPhdAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
+        filenamePhdAnagnorisi.innerHTML = "";
+        $('.btn-rmv6').removeClass('rmv');
+    });
+
+</script>

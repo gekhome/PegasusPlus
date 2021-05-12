@@ -46,7 +46,6 @@ namespace PegasusPlus.DAL
         public virtual DbSet<SysSchools> SysSchools { get; set; }
         public virtual DbSet<SysSchoolYears> SysSchoolYears { get; set; }
         public virtual DbSet<SysTaxFree> SysTaxFree { get; set; }
-        public virtual DbSet<SysTeachTypes> SysTeachTypes { get; set; }
         public virtual DbSet<TAXISNET> TAXISNET { get; set; }
         public virtual DbSet<UserAdmins> UserAdmins { get; set; }
         public virtual DbSet<UserSchools> UserSchools { get; set; }
@@ -60,9 +59,36 @@ namespace PegasusPlus.DAL
         public virtual DbSet<SysNomoi> SysNomoi { get; set; }
         public virtual DbSet<SysPeriferiesMajor> SysPeriferiesMajor { get; set; }
         public virtual DbSet<sqlUserTeacherSelect> sqlUserTeacherSelect { get; set; }
-        public virtual DbSet<Teachers> Teachers { get; set; }
         public virtual DbSet<SysFamilyStatus> SysFamilyStatus { get; set; }
         public virtual DbSet<SysIdiotita> SysIdiotita { get; set; }
-        public virtual DbSet<TeachersUploads> TeachersUploads { get; set; }
+        public virtual DbSet<EpagelmaCategory> EpagelmaCategory { get; set; }
+        public virtual DbSet<Teachers> Teachers { get; set; }
+        public virtual DbSet<SysPtyxia> SysPtyxia { get; set; }
+        public virtual DbSet<SysSynafeia> SysSynafeia { get; set; }
+        public virtual DbSet<EpimorfosiTypes> EpimorfosiTypes { get; set; }
+        public virtual DbSet<EpimorfosiFiles> EpimorfosiFiles { get; set; }
+        public virtual DbSet<PtyxiaTypes> PtyxiaTypes { get; set; }
+        public virtual DbSet<TeacherUploads> TeacherUploads { get; set; }
+        public virtual DbSet<Epimorfosis> Epimorfosis { get; set; }
+        public virtual DbSet<sqlPeriferiesSchools> sqlPeriferiesSchools { get; set; }
+        public virtual DbSet<AitisiSchools> AitisiSchools { get; set; }
+        public virtual DbSet<SysTeachTypes> SysTeachTypes { get; set; }
+        public virtual DbSet<sqlAitisiSelector> sqlAitisiSelector { get; set; }
+        public virtual DbSet<UploadsFreelance> UploadsFreelance { get; set; }
+        public virtual DbSet<UploadsTeaching> UploadsTeaching { get; set; }
+        public virtual DbSet<UploadsVocation> UploadsVocation { get; set; }
+        public virtual DbSet<Enstaseis> Enstaseis { get; set; }
+        public virtual DbSet<EnstaseisFiles> EnstaseisFiles { get; set; }
+        public virtual DbSet<sqlTeacherAitiseis> sqlTeacherAitiseis { get; set; }
+        public virtual DbSet<sqlAitisiProsonta> sqlAitisiProsonta { get; set; }
+        public virtual DbSet<WorkFreelance> WorkFreelance { get; set; }
+        public virtual DbSet<WorkTeaching> WorkTeaching { get; set; }
+        public virtual DbSet<WorkVocation> WorkVocation { get; set; }
+        public virtual DbSet<Aitisis> Aitisis { get; set; }
+        public virtual DbSet<qryFinalWork> qryFinalWork { get; set; }
+        public virtual DbSet<qryFinalTeach> qryFinalTeach { get; set; }
+        public virtual DbSet<TeacherSkills> TeacherSkills { get; set; }
+        public virtual DbSet<sqlAitisiData> sqlAitisiData { get; set; }
+        public virtual DbSet<sqlTeachersRegistry> sqlTeachersRegistry { get; set; }
     }
 }

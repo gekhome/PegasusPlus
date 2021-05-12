@@ -1,0 +1,102 @@
+﻿@model PegasusPlus.Models.WorkVocationViewModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    .control-label {
+        font-family: 'Segoe UI';
+        white-space: pre-line;
+    }
+
+    .page-header {
+        border-bottom: 1px solid #D3D3D3;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+    }
+
+    .k-textbox {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+        .k-textbox:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+
+</style>
+
+<div class="form-horizontal" style="margin:10px 10px 10px 10px;min-width:780px">
+    <div class="body-content ml-2 mb-3">
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.DateStart, new { @class = "col-form-label col-md-3" })
+            @Html.Kendo().DatePickerFor(model => model.DateStart).HtmlAttributes(new { @class = "col-md-4", type = "text", style = "background-color:white;min-width:200px" })
+            @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.DateFinal, new { @class = "col-form-label col-md-3" })
+            @Html.Kendo().DatePickerFor(model => model.DateFinal).HtmlAttributes(new { @class = "col-md-4", type = "text", style = "background-color:white;min-width:200px" })
+            @Html.ValidationMessageFor(model => model.DateFinal, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.DaysManual, new { @class = "col-form-label col-md-3", style = "margin-right:14px" })
+            @(Html.Kendo().NumericTextBox<int>()
+            .Name("DaysManual")
+            .Format("#0")
+            .Min(1)
+            .Max(10000)
+            .Step(10)
+            .Value(Model.DaysManual)
+            .HtmlAttributes(new { style = "width: 200px" })
+            )
+            @Html.ValidationMessageFor(model => model.DaysManual, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.Position, new { @class = "col-form-label col-md-3" })
+            @Html.EditorFor(model => model.Position, new { @class = "form-control col-md-4" })
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.Subject, new { @class = "col-form-label col-md-3" })
+            @Html.EditorFor(model => model.Subject, new { @class = "form-control col-md-4" })
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.DocumentProtocol, new { @class = "col-form-label col-md-3" })
+            @Html.EditorFor(model => model.DocumentProtocol, new { @class = "form-control col-md-4" })
+            @Html.ValidationMessageFor(model => model.DocumentProtocol)
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.DocumentForeas, new { @class = "col-form-label col-md-3" })
+            @Html.EditorFor(model => model.DocumentForeas, new { @class = "form-control col-md-4" })
+            @Html.ValidationMessageFor(model => model.DocumentForeas)
+        </div>
+        <div class="col-md-11 mb-3">
+            @Html.LabelFor(model => model.Valid, new { @class = "col-form-label col-md-3" })
+            @Html.EditorFor(model => model.Valid, new { @class = "form-control col-md-4" })
+            @Html.ValidationMessageFor(model => model.Valid)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-11">
+            @Html.HiddenFor(model => model.ExperienceID, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+</div>

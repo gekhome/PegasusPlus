@@ -81,13 +81,13 @@
     <div class="page-header">
         <div style="margin:5px 60px 5px 40px">
             <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
-                <font style="color:#292929;">Προσωπικά στοιχεία εκπαιδευτικού <i style="font-size:medium;margin-left:10px">(τα πεδία με * είναι υποχρεωτικά)</i></font>
+                <font style="color:#292929;">Προσωπικά στοιχεία εκπαιδευτικού <i style="font-size:medium;margin-left:10px;color:red">(τα πεδία με * είναι υποχρεωτικά)</i></font>
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
-                @Html.ActionLink("Επιστροφή", "Index", null, new { @class = "btn btn-warning", style = "font-size:16px" })
+                @Html.ActionLink("Επιστροφή", "Index", "Teachers", new { @class = "btn btn-warning", style = "font-size:16px" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
-                @Html.ActionLink("Τα αρχεία μου", "TeacherUploads", "Teachers", new { afm = Model.AFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
+                @Html.ActionLink(" Αρχεία ", "TeacherUploads", "Teachers", new { afm = Model.AFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
                 @Html.ActionLink("Εκτύπωση", "TeacherPrint", "Teachers", new { afm = Model.AFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
@@ -260,11 +260,11 @@
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.ADT_FILENAME, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.ADT_FILENAME">@Model.ADT_FILENAME</label>
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.ADT_FILENAME">@Model.ADT_FILENAME</label>
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FileADT, new { @class = "col-form-label col-md-10" })
-                            <input type='file' id="FileADT" name="FileADT" onchange="pressedAdt()" style="display:none;" required>
+                            <input type='file' id="FileADT" name="FileADT" onchange="pressedAdt()" style="display:none;">
                             <label class="btn btn-outline-dark" for="FileADT" id="fileLabelADT" style="cursor:pointer" title="Ανέβασμα αρχείου">
                                 <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
                             </label>
@@ -281,11 +281,11 @@
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AFM_FILENAME, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.AFM_FILENAME">@Model.AFM_FILENAME</label>
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.AFM_FILENAME">@Model.AFM_FILENAME</label>
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FileAFM, new { @class = "col-form-label col-md-10" })
-                            <input type='file' id="FileAFM" name="FileAFM" onchange="pressedAfm()" style="display:none;" required>
+                            <input type='file' id="FileAFM" name="FileAFM" onchange="pressedAfm()" style="display:none;">
                             <label class="btn btn-outline-dark" for="FileAFM" id="fileLabelAFM" style="cursor:pointer" title="Ανέβασμα αρχείου">
                                 <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
                             </label>
@@ -303,11 +303,11 @@
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AMKA_FILENAME, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.AMKA_FILENAME">@Model.AMKA_FILENAME</label>
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.AMKA_FILENAME">@Model.AMKA_FILENAME</label>
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FileAMKA, new { @class = "col-form-label col-md-10" })
-                            <input type='file' id="FileAMKA" name="FileAMKA" onchange="pressedAmka()" style="display:none;" required>
+                            <input type='file' id="FileAMKA" name="FileAMKA" onchange="pressedAmka()" style="display:none;">
                             <label class="btn btn-outline-dark" for="FileAMKA" id="fileLabelAMKA" style="cursor:pointer" title="Ανέβασμα αρχείου">
                                 <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
                             </label>
@@ -325,11 +325,11 @@
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AMA_FILENAME, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.AMA_FILENAME">@Model.AMA_FILENAME</label>
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.AMA_FILENAME">@Model.AMA_FILENAME</label>
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FileAMA, new { @class = "col-form-label col-md-10" })
-                            <input type='file' id="FileAMA" name="FileAMA" onchange="pressedAma()" style="display:none;" required>
+                            <input type='file' id="FileAMA" name="FileAMA" onchange="pressedAma()" style="display:none;">
                             <label class="btn btn-outline-dark" for="FileAMA" id="fileLabelAMA" style="cursor:pointer" title="Ανέβασμα αρχείου">
                                 <i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>
                             </label>
@@ -384,7 +384,7 @@
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialTriteknosFilename, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.SocialTriteknosFilename">
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialTriteknosFilename">
                                 @Model.SocialTriteknosFilename
                             </label>
                         </div>
@@ -408,7 +408,7 @@
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialPolyteknosFilename, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.SocialPolyteknosFilename">
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialPolyteknosFilename">
                                 @Model.SocialPolyteknosFilename
                             </label>
                         </div>
@@ -432,7 +432,7 @@
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialSingleParentFilename, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.SocialSingleParentFilename">
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialSingleParentFilename">
                                 @Model.SocialSingleParentFilename
                             </label>
                         </div>
@@ -456,7 +456,7 @@
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialAmeaFilename, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.SocialAmeaFilename">
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialAmeaFilename">
                                 @Model.SocialAmeaFilename
                             </label>
                         </div>
@@ -495,7 +495,7 @@
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialAnergosFilename, new { @class = "col-form-label col-md-6" })
-                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.SocialAnergosFilename">
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialAnergosFilename">
                                 @Model.SocialAnergosFilename
                             </label>
                         </div>

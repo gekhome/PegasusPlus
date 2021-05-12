@@ -14,6 +14,13 @@ namespace PegasusPlus.DAL
     
     public partial class Teachers
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Teachers()
+        {
+            this.Aitisis = new HashSet<Aitisis>();
+            this.TeacherSkills = new HashSet<TeacherSkills>();
+        }
+    
         public string AFM { get; set; }
         public string AFM_FILENAME { get; set; }
         public string DOY { get; set; }
@@ -40,18 +47,20 @@ namespace PegasusPlus.DAL
         public string AMKA_FILENAME { get; set; }
         public string AMA { get; set; }
         public string AMA_FILENAME { get; set; }
-        public string InsuranceMain { get; set; }
-        public Nullable<int> InsuranceFirstYear { get; set; }
         public Nullable<bool> SocialTriteknos { get; set; }
         public Nullable<bool> SocialPolyteknos { get; set; }
         public Nullable<bool> SocialSingleParent { get; set; }
         public Nullable<bool> SocialAmea { get; set; }
         public Nullable<int> SocialAnergos { get; set; }
-        public Nullable<System.DateTime> AnergiaCardExpireDate { get; set; }
         public string SocialTriteknosFilename { get; set; }
         public string SocialPolyteknosFilename { get; set; }
         public string SocialSingleParentFilename { get; set; }
         public string SocialAmeaFilename { get; set; }
         public string SocialAnergosFilename { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aitisis> Aitisis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeacherSkills> TeacherSkills { get; set; }
     }
 }

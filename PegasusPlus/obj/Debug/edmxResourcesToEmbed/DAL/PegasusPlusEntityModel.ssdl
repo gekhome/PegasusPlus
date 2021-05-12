@@ -1,5 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PegasusPlusDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Aitisis">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+    </Key>
+    <Property Name="AitisisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AitisisDate" Type="date" />
+    <Property Name="AitisisProtocol" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProkirixisID" Type="int" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="Klados" Type="int" />
+    <Property Name="Eidikotita" Type="int" />
+    <Property Name="BasicEducation" Type="int" />
+    <Property Name="PtyxioType" Type="int" />
+    <Property Name="PtyxioTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="PtyxioYear" Type="int" />
+    <Property Name="PtyxioGrade" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="PtyxioInstitution" Type="nvarchar" MaxLength="255" />
+    <Property Name="PtyxioSchool" Type="nvarchar" MaxLength="255" />
+    <Property Name="PtyxioTmima" Type="nvarchar" MaxLength="255" />
+    <Property Name="PtyxioForeign" Type="bit" />
+    <Property Name="PtyxioAnagnorisi" Type="bit" />
+    <Property Name="PtyxioFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="PtyxioAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="MscTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="MscYear" Type="int" />
+    <Property Name="MscInstitution" Type="nvarchar" MaxLength="255" />
+    <Property Name="MscSynafeia" Type="int" />
+    <Property Name="MscForeign" Type="bit" />
+    <Property Name="MscAnagnorisi" Type="bit" />
+    <Property Name="MscFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="MscAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhdTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhdYear" Type="int" />
+    <Property Name="PhdInstitution" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhdSynafeia" Type="int" />
+    <Property Name="PhdForeign" Type="bit" />
+    <Property Name="PhdAnagnorisi" Type="bit" />
+    <Property Name="PhdFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhdAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="EpagelmaCategory" Type="int" />
+    <Property Name="Periferia" Type="int" />
+    <Property Name="School" Type="int" />
+    <Property Name="MoriaPtyxio" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaMsc" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaPhd" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaLanguage" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaComputer" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaEpimorfosi" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaCertified" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaTeach" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaWork" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaAnergia" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaSocial" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaTotal" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="OaedPtyxioConfirm" Type="bit" />
+    <Property Name="OaedMscConfirm" Type="bit" />
+    <Property Name="OaedPhdConfirm" Type="bit" />
+    <Property Name="OaedMoriodotisiDate" Type="datetime" />
+    <Property Name="OaedApoklismos" Type="bit" />
+    <Property Name="OaedApoklismosAitia" Type="int" />
+    <Property Name="OaedEpitropi1Text" Type="nvarchar(max)" />
+    <Property Name="OaedEpitropi2Text" Type="nvarchar(max)" />
+    <Property Name="OaedCheckStatus" Type="bit" />
+    <Property Name="OaedEnstasi" Type="bit" />
+  </EntityType>
+  <EntityType Name="AitisiSchools">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AitisiID" Type="int" Nullable="false" />
+    <Property Name="SchoolID" Type="int" Nullable="false" />
+    <Property Name="PeriferiaID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="APP_STATUS">
     <Key>
       <PropertyRef Name="STATUS_ID" />
@@ -8,6 +82,66 @@
     <Property Name="STATUS_VALUE" Type="bit" />
     <Property Name="LOCAL_TEST" Type="bit" />
     <Property Name="STATUS_MESSAGE" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Enstaseis">
+    <Key>
+      <PropertyRef Name="EnstasiID" />
+    </Key>
+    <Property Name="EnstasiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProkirixiID" Type="int" />
+    <Property Name="AitisiID" Type="int" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="SchoolID" Type="int" />
+    <Property Name="EnstasiDate" Type="date" />
+    <Property Name="EnstasiSummary" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="EnstaseisFiles">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
+    <Property Name="EnstasiID" Type="int" />
+  </EntityType>
+  <EntityType Name="EpagelmaCategory">
+    <Key>
+      <PropertyRef Name="EpagelmaID" />
+    </Key>
+    <Property Name="EpagelmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EpagelmaText" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EpimorfosiFiles">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Filename" Type="nvarchar" MaxLength="255" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="Filepath" Type="nvarchar" MaxLength="500" />
+    <Property Name="EpimorfosiID" Type="int" />
+  </EntityType>
+  <EntityType Name="Epimorfosis">
+    <Key>
+      <PropertyRef Name="EpimorfosiID" />
+    </Key>
+    <Property Name="EpimorfosiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EpimorfosiTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="EpimorfosiForeas" Type="nvarchar" MaxLength="255" />
+    <Property Name="EpimorfosiType" Type="int" />
+    <Property Name="EpimorfosiHours" Type="int" />
+    <Property Name="EpimorfosiDateStart" Type="date" />
+    <Property Name="EpimorfosiDateFinal" Type="date" />
+    <Property Name="TeacherAfm" Type="nvarchar" MaxLength="10" />
+    <Property Name="ProkirixiID" Type="int" />
+  </EntityType>
+  <EntityType Name="EpimorfosiTypes">
+    <Key>
+      <PropertyRef Name="EpimorfosiTypeID" />
+    </Key>
+    <Property Name="EpimorfosiTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EpimorfosiTypeText" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Prokirixis">
     <Key>
@@ -34,6 +168,13 @@
     <Property Name="ProkirixiID" Type="int" Nullable="false" />
     <Property Name="SchoolID" Type="int" Nullable="false" />
     <Property Name="EidikotitaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PtyxiaTypes">
+    <Key>
+      <PropertyRef Name="DegreeTypeID" />
+    </Key>
+    <Property Name="DegreeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DegreeTypeText" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="SysAnergia">
     <Key>
@@ -133,7 +274,7 @@
       <PropertyRef Name="LevelID" />
     </Key>
     <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LevelText" Type="nvarchar" MaxLength="10" />
+    <Property Name="LevelText" Type="nvarchar" MaxLength="50" />
     <Property Name="MoriaFirst" Type="decimal" Precision="10" Scale="2" />
     <Property Name="MoriaSecond" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
@@ -181,6 +322,13 @@
     <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StatusText" Type="nvarchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="SysPtyxia">
+    <Key>
+      <PropertyRef Name="PtyxioID" />
+    </Key>
+    <Property Name="PtyxioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PtyxioText" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="SysSchools">
     <Key>
       <PropertyRef Name="SchoolID" />
@@ -201,6 +349,13 @@
     <Property Name="DateStart" Type="date" />
     <Property Name="DateEnd" Type="date" />
   </EntityType>
+  <EntityType Name="SysSynafeia">
+    <Key>
+      <PropertyRef Name="SynafeiaID" />
+    </Key>
+    <Property Name="SynafeiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SynafeiaText" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="SysTaxFree">
     <Key>
       <PropertyRef Name="YearID" />
@@ -216,6 +371,9 @@
     </Key>
     <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TypeText" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeMoria" Type="decimal" Precision="8" Scale="4" />
+    <Property Name="TypeMoriaMax" Type="int" />
+    <Property Name="TypeMoriaInfo" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="TAXISNET">
     <Key>
@@ -255,21 +413,59 @@
     <Property Name="AMKA_FILENAME" Type="nvarchar" MaxLength="255" />
     <Property Name="AMA" Type="nvarchar" MaxLength="50" />
     <Property Name="AMA_FILENAME" Type="nvarchar" MaxLength="255" />
-    <Property Name="InsuranceMain" Type="nvarchar" MaxLength="150" />
-    <Property Name="InsuranceFirstYear" Type="int" />
     <Property Name="SocialTriteknos" Type="bit" />
     <Property Name="SocialPolyteknos" Type="bit" />
     <Property Name="SocialSingleParent" Type="bit" />
     <Property Name="SocialAmea" Type="bit" />
     <Property Name="SocialAnergos" Type="int" />
-    <Property Name="AnergiaCardExpireDate" Type="date" />
     <Property Name="SocialTriteknosFilename" Type="nvarchar" MaxLength="255" />
     <Property Name="SocialPolyteknosFilename" Type="nvarchar" MaxLength="255" />
     <Property Name="SocialSingleParentFilename" Type="nvarchar" MaxLength="255" />
     <Property Name="SocialAmeaFilename" Type="nvarchar" MaxLength="255" />
     <Property Name="SocialAnergosFilename" Type="nvarchar" MaxLength="255" />
   </EntityType>
-  <EntityType Name="TeachersUploads">
+  <EntityType Name="TeacherSkills">
+    <Key>
+      <PropertyRef Name="SkillsID" />
+    </Key>
+    <Property Name="SkillsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ptyxio2Type" Type="int" />
+    <Property Name="Ptyxio2Titlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ptyxio2Year" Type="int" />
+    <Property Name="Ptyxio2Institution" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ptyxio2Foreign" Type="bit" />
+    <Property Name="Ptyxio2Anagnorisi" Type="bit" />
+    <Property Name="Ptyxio2Filename" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ptyxio2AnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="Language1" Type="int" />
+    <Property Name="Language1Level" Type="int" />
+    <Property Name="Language1Titlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="Language1Filename" Type="nvarchar" MaxLength="255" />
+    <Property Name="Language2" Type="int" />
+    <Property Name="Language2Level" Type="int" />
+    <Property Name="Language2Titlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="Language2Filename" Type="nvarchar" MaxLength="255" />
+    <Property Name="ComputerCertificate" Type="int" />
+    <Property Name="ComputerTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="ComputerYear" Type="int" />
+    <Property Name="ComputerFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="Epimorfosi" Type="bit" />
+    <Property Name="EpimorfosiTotalHours" Type="int" />
+    <Property Name="CertifiedTrainer" Type="bit" />
+    <Property Name="CertifiedTrainerAM" Type="nvarchar" MaxLength="50" />
+    <Property Name="CertifiedTrainerFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="N2190Protect" Type="bit" />
+    <Property Name="N2190ProtectFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="OaedPtyxio2Confirm" Type="bit" />
+    <Property Name="OaedLanguage1Confirm" Type="bit" />
+    <Property Name="OaedLanguage2Confirm" Type="bit" />
+    <Property Name="OaedComputerConfirm" Type="bit" />
+    <Property Name="OaedEpimorfosiConfirm" Type="bit" />
+    <Property Name="OaedCertifiedConfirm" Type="bit" />
+    <Property Name="OaedN2190Confirm" Type="bit" />
+  </EntityType>
+  <EntityType Name="TeacherUploads">
     <Key>
       <PropertyRef Name="UploadFileID" />
     </Key>
@@ -279,6 +475,39 @@
     <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UploadsFreelance">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExperienceID" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UploadsTeaching">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExperienceID" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UploadsVocation">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExperienceID" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="UserAdmins">
     <Key>
@@ -310,6 +539,189 @@
     <Property Name="IsActive" Type="bit" />
     <Property Name="CreateDate" Type="date" />
   </EntityType>
+  <EntityType Name="WorkFreelance">
+    <Key>
+      <PropertyRef Name="ExperienceID" />
+    </Key>
+    <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AitisiID" Type="int" />
+    <Property Name="ProkirixiID" Type="int" />
+    <Property Name="DateStart" Type="date" />
+    <Property Name="DateFinal" Type="date" />
+    <Property Name="DaysAuto" Type="int" />
+    <Property Name="DaysManual" Type="int" />
+    <Property Name="Income" Type="real" />
+    <Property Name="IncomeYear" Type="int" />
+    <Property Name="IncomeTaxFree" Type="real" />
+    <Property Name="IncomeCurrency" Type="nvarchar" MaxLength="10" />
+    <Property Name="Moria" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkEvidence" Type="nvarchar" MaxLength="50" />
+    <Property Name="Valid" Type="bit" />
+  </EntityType>
+  <EntityType Name="WorkTeaching">
+    <Key>
+      <PropertyRef Name="ExperienceID" />
+    </Key>
+    <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AitisiID" Type="int" />
+    <Property Name="ProkirixiID" Type="int" />
+    <Property Name="TeachType" Type="int" />
+    <Property Name="SchoolYear" Type="int" />
+    <Property Name="DateStart" Type="date" />
+    <Property Name="DateFinal" Type="date" />
+    <Property Name="HoursWeek" Type="int" />
+    <Property Name="HoursTotal" Type="int" />
+    <Property Name="Moria" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="DocumentProtocol" Type="nvarchar" MaxLength="50" />
+    <Property Name="DocumentForeas" Type="nvarchar" MaxLength="50" />
+    <Property Name="Valid" Type="bit" />
+  </EntityType>
+  <EntityType Name="WorkVocation">
+    <Key>
+      <PropertyRef Name="ExperienceID" />
+    </Key>
+    <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AitisiID" Type="int" />
+    <Property Name="ProkirixiID" Type="int" />
+    <Property Name="DateStart" Type="date" />
+    <Property Name="DateFinal" Type="date" />
+    <Property Name="DaysAuto" Type="int" />
+    <Property Name="DaysManual" Type="int" />
+    <Property Name="Moria" Type="decimal" Precision="8" Scale="3" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="255" />
+    <Property Name="DocumentProtocol" Type="nvarchar" MaxLength="50" />
+    <Property Name="DocumentForeas" Type="nvarchar" MaxLength="50" />
+    <Property Name="Valid" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.qryFinalTeach' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="qryFinalTeach">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="bigint" Nullable="false" />
+    <Property Name="AitisiID" Type="int" />
+    <Property Name="ProkirixiID" Type="int" />
+    <Property Name="MoriaTotal" Type="decimal" Precision="38" Scale="3" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.qryFinalWork' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="qryFinalWork">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="bigint" Nullable="false" />
+    <Property Name="AitisiID" Type="int" />
+    <Property Name="ProkirixiID" Type="int" />
+    <Property Name="MoriaTotal" Type="decimal" Precision="38" Scale="3" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlAitisiData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlAitisiData">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+      <PropertyRef Name="EpimorfosiHours" />
+      <PropertyRef Name="SocialTriteknosText" />
+      <PropertyRef Name="SocialPolyteknosText" />
+      <PropertyRef Name="SocialSingleParentText" />
+      <PropertyRef Name="SocialAmeaText" />
+      <PropertyRef Name="MoriaPtyxio" />
+      <PropertyRef Name="MoriaMsc" />
+      <PropertyRef Name="MoriaPhd" />
+      <PropertyRef Name="MoriaLanguages" />
+      <PropertyRef Name="MoriaComputer" />
+      <PropertyRef Name="MoriaEpimorfosi" />
+      <PropertyRef Name="MoriaCertified" />
+      <PropertyRef Name="MoriaTeach" />
+      <PropertyRef Name="MoriaWork" />
+      <PropertyRef Name="MoriaAnergia" />
+      <PropertyRef Name="MoriaSocial" />
+      <PropertyRef Name="MoriaTotal" />
+    </Key>
+    <Property Name="AitisisID" Type="int" Nullable="false" />
+    <Property Name="ProkirixisID" Type="int" />
+    <Property Name="AitisisProtocol" Type="nvarchar" MaxLength="50" />
+    <Property Name="PeriferiaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="301" />
+    <Property Name="KladosEidikotita" Type="nvarchar" MaxLength="201" />
+    <Property Name="PtyxioTypeText" Type="nvarchar" MaxLength="50" />
+    <Property Name="PtyxioTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="MscTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhdTitlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ptyxio2Titlos" Type="nvarchar" MaxLength="255" />
+    <Property Name="Language1Epipedo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Language2Epipedo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ComputerTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="EpimorfosiHours" Type="int" Nullable="false" />
+    <Property Name="CertifiedTrainerAM" Type="nvarchar" MaxLength="50" />
+    <Property Name="SocialTriteknosText" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="SocialPolyteknosText" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="SocialSingleParentText" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="SocialAmeaText" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="AnergiaDiarkeiaText" Type="nvarchar" MaxLength="20" />
+    <Property Name="EpagelmaText" Type="nvarchar" MaxLength="50" />
+    <Property Name="MoriaPtyxio" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaMsc" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaPhd" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaLanguages" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaComputer" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaEpimorfosi" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaCertified" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaTeach" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaWork" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaAnergia" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaSocial" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+    <Property Name="MoriaTotal" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlAitisiProsonta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlAitisiProsonta">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+    </Key>
+    <Property Name="AitisisID" Type="int" Nullable="false" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="PtyxioType" Type="int" />
+    <Property Name="Ptyxio2Type" Type="int" />
+    <Property Name="MscSynafeia" Type="int" />
+    <Property Name="PhdSynafeia" Type="int" />
+    <Property Name="Language1" Type="int" />
+    <Property Name="Language1Level" Type="int" />
+    <Property Name="Language2" Type="int" />
+    <Property Name="Language2Level" Type="int" />
+    <Property Name="ComputerCertificate" Type="int" />
+    <Property Name="EpimorfosiTotalHours" Type="int" />
+    <Property Name="CertifiedTrainer" Type="bit" />
+    <Property Name="SocialTriteknos" Type="bit" />
+    <Property Name="SocialPolyteknos" Type="bit" />
+    <Property Name="SocialSingleParent" Type="bit" />
+    <Property Name="SocialAmea" Type="bit" />
+    <Property Name="SocialAnergos" Type="int" />
+    <Property Name="OaedPtyxioConfirm" Type="bit" />
+    <Property Name="OaedPtyxio2Confirm" Type="bit" />
+    <Property Name="OaedMscConfirm" Type="bit" />
+    <Property Name="OaedPhdConfirm" Type="bit" />
+    <Property Name="OaedLanguage1Confirm" Type="bit" />
+    <Property Name="OaedLanguage2Confirm" Type="bit" />
+    <Property Name="OaedComputerConfirm" Type="bit" />
+    <Property Name="OaedEpimorfosiConfirm" Type="bit" />
+    <Property Name="OaedCertifiedConfirm" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlAitisiSelector' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlAitisiSelector">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+    </Key>
+    <Property Name="AitisisID" Type="int" Nullable="false" />
+    <Property Name="ProkirixisID" Type="int" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="AitisisInfo" Type="nvarchar" MaxLength="307" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.sqlEidikotitesSelector' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="sqlEidikotitesSelector">
@@ -331,6 +743,17 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlEidikotititesKladosEniaios' d
     <Property Name="EidikotitaPtyxio" Type="nvarchar" MaxLength="201" />
     <Property Name="KladosUnified" Type="int" />
     <Property Name="EidikotitaKladosID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlPeriferiesSchools' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlPeriferiesSchools">
+    <Key>
+      <PropertyRef Name="SchoolID" />
+    </Key>
+    <Property Name="SchoolID" Type="int" Nullable="false" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
+    <Property Name="SchoolPeriferiaID" Type="int" />
+    <Property Name="PeriferiaName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.sqlSchoolsPeriferiakesPefireies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -362,6 +785,48 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeacherAccountInfo' does not 
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeacherAitiseis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlTeacherAitiseis">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+      <PropertyRef Name="SchoolID" />
+      <PropertyRef Name="PeriferiaID" />
+      <PropertyRef Name="PeriferiakiID" />
+    </Key>
+    <Property Name="AitisisID" Type="int" Nullable="false" />
+    <Property Name="AitisisProtocol" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProkirixisID" Type="int" />
+    <Property Name="Protocol" Type="nvarchar" MaxLength="50" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="301" />
+    <Property Name="EidikotitaText" Type="nvarchar" MaxLength="201" />
+    <Property Name="SchoolID" Type="int" Nullable="false" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
+    <Property Name="PeriferiaID" Type="int" Nullable="false" />
+    <Property Name="PeriferiaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PeriferiakiID" Type="int" Nullable="false" />
+    <Property Name="PeriferiakiName" Type="nvarchar" MaxLength="255" />
+    <Property Name="OaedCheckStatus" Type="bit" />
+    <Property Name="OaedEnstasi" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeachersInAitiseis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeachersRegistry' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sqlTeachersRegistry">
+    <Key>
+      <PropertyRef Name="AFM" />
+    </Key>
+    <Property Name="AFM" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="301" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="FullAddress" Type="nvarchar" MaxLength="329" />
+    <Property Name="Idiotita" Type="int" />
+    <Property Name="Age" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserSchool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="sqlUserSchool">
     <Key>
@@ -372,6 +837,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserSchool' does not have a p
     <Property Name="Password" Type="nvarchar" MaxLength="20" />
     <Property Name="SchoolName" Type="nvarchar" MaxLength="60" />
     <Property Name="SchoolEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserSchoolID" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.sqlUserTeacherSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -400,6 +866,42 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     <Property Name="KladosName" Type="nvarchar" MaxLength="10" />
     <Property Name="GroupText" Type="nvarchar" MaxLength="150" />
   </EntityType>
+  <Association Name="FK_Aitisis_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+    <End Role="Aitisis" Type="Self.Aitisis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="AFM" />
+      </Principal>
+      <Dependent Role="Aitisis">
+        <PropertyRef Name="TeacherAFM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnstaseisFiles_Enstaseis">
+    <End Role="Enstaseis" Type="Self.Enstaseis" Multiplicity="0..1" />
+    <End Role="EnstaseisFiles" Type="Self.EnstaseisFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enstaseis">
+        <PropertyRef Name="EnstasiID" />
+      </Principal>
+      <Dependent Role="EnstaseisFiles">
+        <PropertyRef Name="EnstasiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EpimorfosiFiles_Epimorfosi">
+    <End Role="Epimorfosis" Type="Self.Epimorfosis" Multiplicity="0..1" />
+    <End Role="EpimorfosiFiles" Type="Self.EpimorfosiFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Epimorfosis">
+        <PropertyRef Name="EpimorfosiID" />
+      </Principal>
+      <Dependent Role="EpimorfosiFiles">
+        <PropertyRef Name="EpimorfosiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ProkirixisEidikotites_Prokirixis">
     <End Role="Prokirixis" Type="Self.Prokirixis" Multiplicity="1" />
     <End Role="ProkirixisEidikotites" Type="Self.ProkirixisEidikotites" Multiplicity="*" />
@@ -484,10 +986,31 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TeachersSkills_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+    <End Role="TeacherSkills" Type="Self.TeacherSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="AFM" />
+      </Principal>
+      <Dependent Role="TeacherSkills">
+        <PropertyRef Name="TeacherAFM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PegasusPlusDBModelStoreContainer">
+    <EntitySet Name="Aitisis" EntityType="Self.Aitisis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AitisiSchools" EntityType="Self.AitisiSchools" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="APP_STATUS" EntityType="Self.APP_STATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enstaseis" EntityType="Self.Enstaseis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnstaseisFiles" EntityType="Self.EnstaseisFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EpagelmaCategory" EntityType="Self.EpagelmaCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EpimorfosiFiles" EntityType="Self.EpimorfosiFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Epimorfosis" EntityType="Self.Epimorfosis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EpimorfosiTypes" EntityType="Self.EpimorfosiTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prokirixis" EntityType="Self.Prokirixis" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProkirixisEidikotites" EntityType="Self.ProkirixisEidikotites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PtyxiaTypes" EntityType="Self.PtyxiaTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysAnergia" EntityType="Self.SysAnergia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysApoklismoi" EntityType="Self.SysApoklismoi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysBasicEducation" EntityType="Self.SysBasicEducation" Schema="dbo" store:Type="Tables" />
@@ -507,16 +1030,120 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     <EntitySet Name="SysPeriferies" EntityType="Self.SysPeriferies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysPeriferiesMajor" EntityType="Self.SysPeriferiesMajor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysProkirixiStatus" EntityType="Self.SysProkirixiStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysPtyxia" EntityType="Self.SysPtyxia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysSchools" EntityType="Self.SysSchools" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysSchoolYears" EntityType="Self.SysSchoolYears" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysSynafeia" EntityType="Self.SysSynafeia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysTaxFree" EntityType="Self.SysTaxFree" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SysTeachTypes" EntityType="Self.SysTeachTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TAXISNET" EntityType="Self.TAXISNET" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TeachersUploads" EntityType="Self.TeachersUploads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherSkills" EntityType="Self.TeacherSkills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherUploads" EntityType="Self.TeacherUploads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadsFreelance" EntityType="Self.UploadsFreelance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadsTeaching" EntityType="Self.UploadsTeaching" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadsVocation" EntityType="Self.UploadsVocation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAdmins" EntityType="Self.UserAdmins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserSchools" EntityType="Self.UserSchools" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTeachers" EntityType="Self.UserTeachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkFreelance" EntityType="Self.WorkFreelance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkTeaching" EntityType="Self.WorkTeaching" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkVocation" EntityType="Self.WorkVocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="qryFinalTeach" EntityType="Self.qryFinalTeach" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [qryFinalTeach].[RowID] AS [RowID], 
+    [qryFinalTeach].[AitisiID] AS [AitisiID], 
+    [qryFinalTeach].[ProkirixiID] AS [ProkirixiID], 
+    [qryFinalTeach].[MoriaTotal] AS [MoriaTotal]
+    FROM [dbo].[qryFinalTeach] AS [qryFinalTeach]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="qryFinalWork" EntityType="Self.qryFinalWork" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [qryFinalWork].[RowID] AS [RowID], 
+    [qryFinalWork].[AitisiID] AS [AitisiID], 
+    [qryFinalWork].[ProkirixiID] AS [ProkirixiID], 
+    [qryFinalWork].[MoriaTotal] AS [MoriaTotal]
+    FROM [dbo].[qryFinalWork] AS [qryFinalWork]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sqlAitisiData" EntityType="Self.sqlAitisiData" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlAitisiData].[AitisisID] AS [AitisisID], 
+    [sqlAitisiData].[ProkirixisID] AS [ProkirixisID], 
+    [sqlAitisiData].[AitisisProtocol] AS [AitisisProtocol], 
+    [sqlAitisiData].[PeriferiaName] AS [PeriferiaName], 
+    [sqlAitisiData].[SchoolName] AS [SchoolName], 
+    [sqlAitisiData].[TeacherAFM] AS [TeacherAFM], 
+    [sqlAitisiData].[FullName] AS [FullName], 
+    [sqlAitisiData].[KladosEidikotita] AS [KladosEidikotita], 
+    [sqlAitisiData].[PtyxioTypeText] AS [PtyxioTypeText], 
+    [sqlAitisiData].[PtyxioTitlos] AS [PtyxioTitlos], 
+    [sqlAitisiData].[MscTitlos] AS [MscTitlos], 
+    [sqlAitisiData].[PhdTitlos] AS [PhdTitlos], 
+    [sqlAitisiData].[Ptyxio2Titlos] AS [Ptyxio2Titlos], 
+    [sqlAitisiData].[Language1Epipedo] AS [Language1Epipedo], 
+    [sqlAitisiData].[Language2Epipedo] AS [Language2Epipedo], 
+    [sqlAitisiData].[ComputerTitle] AS [ComputerTitle], 
+    [sqlAitisiData].[EpimorfosiHours] AS [EpimorfosiHours], 
+    [sqlAitisiData].[CertifiedTrainerAM] AS [CertifiedTrainerAM], 
+    [sqlAitisiData].[SocialTriteknosText] AS [SocialTriteknosText], 
+    [sqlAitisiData].[SocialPolyteknosText] AS [SocialPolyteknosText], 
+    [sqlAitisiData].[SocialSingleParentText] AS [SocialSingleParentText], 
+    [sqlAitisiData].[SocialAmeaText] AS [SocialAmeaText], 
+    [sqlAitisiData].[AnergiaDiarkeiaText] AS [AnergiaDiarkeiaText], 
+    [sqlAitisiData].[EpagelmaText] AS [EpagelmaText], 
+    [sqlAitisiData].[MoriaPtyxio] AS [MoriaPtyxio], 
+    [sqlAitisiData].[MoriaMsc] AS [MoriaMsc], 
+    [sqlAitisiData].[MoriaPhd] AS [MoriaPhd], 
+    [sqlAitisiData].[MoriaLanguages] AS [MoriaLanguages], 
+    [sqlAitisiData].[MoriaComputer] AS [MoriaComputer], 
+    [sqlAitisiData].[MoriaEpimorfosi] AS [MoriaEpimorfosi], 
+    [sqlAitisiData].[MoriaCertified] AS [MoriaCertified], 
+    [sqlAitisiData].[MoriaTeach] AS [MoriaTeach], 
+    [sqlAitisiData].[MoriaWork] AS [MoriaWork], 
+    [sqlAitisiData].[MoriaAnergia] AS [MoriaAnergia], 
+    [sqlAitisiData].[MoriaSocial] AS [MoriaSocial], 
+    [sqlAitisiData].[MoriaTotal] AS [MoriaTotal]
+    FROM [dbo].[sqlAitisiData] AS [sqlAitisiData]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sqlAitisiProsonta" EntityType="Self.sqlAitisiProsonta" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlAitisiProsonta].[AitisisID] AS [AitisisID], 
+    [sqlAitisiProsonta].[TeacherAFM] AS [TeacherAFM], 
+    [sqlAitisiProsonta].[PtyxioType] AS [PtyxioType], 
+    [sqlAitisiProsonta].[Ptyxio2Type] AS [Ptyxio2Type], 
+    [sqlAitisiProsonta].[MscSynafeia] AS [MscSynafeia], 
+    [sqlAitisiProsonta].[PhdSynafeia] AS [PhdSynafeia], 
+    [sqlAitisiProsonta].[Language1] AS [Language1], 
+    [sqlAitisiProsonta].[Language1Level] AS [Language1Level], 
+    [sqlAitisiProsonta].[Language2] AS [Language2], 
+    [sqlAitisiProsonta].[Language2Level] AS [Language2Level], 
+    [sqlAitisiProsonta].[ComputerCertificate] AS [ComputerCertificate], 
+    [sqlAitisiProsonta].[EpimorfosiTotalHours] AS [EpimorfosiTotalHours], 
+    [sqlAitisiProsonta].[CertifiedTrainer] AS [CertifiedTrainer], 
+    [sqlAitisiProsonta].[SocialTriteknos] AS [SocialTriteknos], 
+    [sqlAitisiProsonta].[SocialPolyteknos] AS [SocialPolyteknos], 
+    [sqlAitisiProsonta].[SocialSingleParent] AS [SocialSingleParent], 
+    [sqlAitisiProsonta].[SocialAmea] AS [SocialAmea], 
+    [sqlAitisiProsonta].[SocialAnergos] AS [SocialAnergos], 
+    [sqlAitisiProsonta].[OaedPtyxioConfirm] AS [OaedPtyxioConfirm], 
+    [sqlAitisiProsonta].[OaedPtyxio2Confirm] AS [OaedPtyxio2Confirm], 
+    [sqlAitisiProsonta].[OaedMscConfirm] AS [OaedMscConfirm], 
+    [sqlAitisiProsonta].[OaedPhdConfirm] AS [OaedPhdConfirm], 
+    [sqlAitisiProsonta].[OaedLanguage1Confirm] AS [OaedLanguage1Confirm], 
+    [sqlAitisiProsonta].[OaedLanguage2Confirm] AS [OaedLanguage2Confirm], 
+    [sqlAitisiProsonta].[OaedComputerConfirm] AS [OaedComputerConfirm], 
+    [sqlAitisiProsonta].[OaedEpimorfosiConfirm] AS [OaedEpimorfosiConfirm], 
+    [sqlAitisiProsonta].[OaedCertifiedConfirm] AS [OaedCertifiedConfirm]
+    FROM [dbo].[sqlAitisiProsonta] AS [sqlAitisiProsonta]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sqlAitisiSelector" EntityType="Self.sqlAitisiSelector" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlAitisiSelector].[AitisisID] AS [AitisisID], 
+    [sqlAitisiSelector].[ProkirixisID] AS [ProkirixisID], 
+    [sqlAitisiSelector].[TeacherAFM] AS [TeacherAFM], 
+    [sqlAitisiSelector].[AitisisInfo] AS [AitisisInfo]
+    FROM [dbo].[sqlAitisiSelector] AS [sqlAitisiSelector]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="sqlEidikotitesSelector" EntityType="Self.sqlEidikotitesSelector" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [sqlEidikotitesSelector].[EidikotitaID] AS [EidikotitaID], 
@@ -532,6 +1159,14 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     [sqlEidikotititesKladosEniaios].[KladosUnified] AS [KladosUnified], 
     [sqlEidikotititesKladosEniaios].[EidikotitaKladosID] AS [EidikotitaKladosID]
     FROM [dbo].[sqlEidikotititesKladosEniaios] AS [sqlEidikotititesKladosEniaios]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sqlPeriferiesSchools" EntityType="Self.sqlPeriferiesSchools" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlPeriferiesSchools].[SchoolID] AS [SchoolID], 
+    [sqlPeriferiesSchools].[SchoolName] AS [SchoolName], 
+    [sqlPeriferiesSchools].[SchoolPeriferiaID] AS [SchoolPeriferiaID], 
+    [sqlPeriferiesSchools].[PeriferiaName] AS [PeriferiaName]
+    FROM [dbo].[sqlPeriferiesSchools] AS [sqlPeriferiesSchools]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="sqlSchoolsPeriferiakesPefireies" EntityType="Self.sqlSchoolsPeriferiakesPefireies" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -555,13 +1190,45 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     [sqlTeacherAccountInfo].[Email] AS [Email]
     FROM [dbo].[sqlTeacherAccountInfo] AS [sqlTeacherAccountInfo]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="sqlTeacherAitiseis" EntityType="Self.sqlTeacherAitiseis" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlTeacherAitiseis].[AitisisID] AS [AitisisID], 
+    [sqlTeacherAitiseis].[AitisisProtocol] AS [AitisisProtocol], 
+    [sqlTeacherAitiseis].[ProkirixisID] AS [ProkirixisID], 
+    [sqlTeacherAitiseis].[Protocol] AS [Protocol], 
+    [sqlTeacherAitiseis].[TeacherAFM] AS [TeacherAFM], 
+    [sqlTeacherAitiseis].[FullName] AS [FullName], 
+    [sqlTeacherAitiseis].[EidikotitaText] AS [EidikotitaText], 
+    [sqlTeacherAitiseis].[SchoolID] AS [SchoolID], 
+    [sqlTeacherAitiseis].[SchoolName] AS [SchoolName], 
+    [sqlTeacherAitiseis].[PeriferiaID] AS [PeriferiaID], 
+    [sqlTeacherAitiseis].[PeriferiaName] AS [PeriferiaName], 
+    [sqlTeacherAitiseis].[PeriferiakiID] AS [PeriferiakiID], 
+    [sqlTeacherAitiseis].[PeriferiakiName] AS [PeriferiakiName], 
+    [sqlTeacherAitiseis].[OaedCheckStatus] AS [OaedCheckStatus], 
+    [sqlTeacherAitiseis].[OaedEnstasi] AS [OaedEnstasi]
+    FROM [dbo].[sqlTeacherAitiseis] AS [sqlTeacherAitiseis]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sqlTeachersRegistry" EntityType="Self.sqlTeachersRegistry" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sqlTeachersRegistry].[AFM] AS [AFM], 
+    [sqlTeachersRegistry].[FullName] AS [FullName], 
+    [sqlTeachersRegistry].[Telephone] AS [Telephone], 
+    [sqlTeachersRegistry].[CellPhone] AS [CellPhone], 
+    [sqlTeachersRegistry].[Email] AS [Email], 
+    [sqlTeachersRegistry].[FullAddress] AS [FullAddress], 
+    [sqlTeachersRegistry].[Idiotita] AS [Idiotita], 
+    [sqlTeachersRegistry].[Age] AS [Age]
+    FROM [dbo].[sqlTeachersRegistry] AS [sqlTeachersRegistry]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="sqlUserSchool" EntityType="Self.sqlUserSchool" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [sqlUserSchool].[UserID] AS [UserID], 
     [sqlUserSchool].[Username] AS [Username], 
     [sqlUserSchool].[Password] AS [Password], 
     [sqlUserSchool].[SchoolName] AS [SchoolName], 
-    [sqlUserSchool].[SchoolEmail] AS [SchoolEmail]
+    [sqlUserSchool].[SchoolEmail] AS [SchoolEmail], 
+    [sqlUserSchool].[UserSchoolID] AS [UserSchoolID]
     FROM [dbo].[sqlUserSchool] AS [sqlUserSchool]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="sqlUserTeacherSelect" EntityType="Self.sqlUserTeacherSelect" store:Type="Views" store:Schema="dbo">
@@ -585,6 +1252,18 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     [viewEidikotites].[GroupText] AS [GroupText]
     FROM [dbo].[viewEidikotites] AS [viewEidikotites]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_Aitisis_Teachers" Association="Self.FK_Aitisis_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Aitisis" EntitySet="Aitisis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnstaseisFiles_Enstaseis" Association="Self.FK_EnstaseisFiles_Enstaseis">
+      <End Role="Enstaseis" EntitySet="Enstaseis" />
+      <End Role="EnstaseisFiles" EntitySet="EnstaseisFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EpimorfosiFiles_Epimorfosi" Association="Self.FK_EpimorfosiFiles_Epimorfosi">
+      <End Role="Epimorfosis" EntitySet="Epimorfosis" />
+      <End Role="EpimorfosiFiles" EntitySet="EpimorfosiFiles" />
+    </AssociationSet>
     <AssociationSet Name="FK_ProkirixisEidikotites_Prokirixis" Association="Self.FK_ProkirixisEidikotites_Prokirixis">
       <End Role="Prokirixis" EntitySet="Prokirixis" />
       <End Role="ProkirixisEidikotites" EntitySet="ProkirixisEidikotites" />
@@ -612,6 +1291,10 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
     <AssociationSet Name="FK_SysSchools_SysPeriferies" Association="Self.FK_SysSchools_SysPeriferies">
       <End Role="SysPeriferies" EntitySet="SysPeriferies" />
       <End Role="SysSchools" EntitySet="SysSchools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeachersSkills_Teachers" Association="Self.FK_TeachersSkills_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="TeacherSkills" EntitySet="TeacherSkills" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

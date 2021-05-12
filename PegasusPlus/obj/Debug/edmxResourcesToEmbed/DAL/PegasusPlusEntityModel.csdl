@@ -127,7 +127,7 @@
       <PropertyRef Name="LevelID" />
     </Key>
     <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="LevelText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LevelText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MoriaFirst" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="MoriaSecond" Type="Decimal" Precision="10" Scale="2" />
   </EntityType>
@@ -192,13 +192,6 @@
     <Property Name="YearText" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
     <Property Name="TaxFree" Type="Single" />
     <Property Name="Nomisma" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="SysTeachTypes">
-    <Key>
-      <PropertyRef Name="TypeID" />
-    </Key>
-    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TypeText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TAXISNET">
     <Key>
@@ -290,6 +283,7 @@
     <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="SchoolEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserSchoolID" Type="Int32" />
   </EntityType>
   <Association Name="FK_ProkirixisEidikotites_Prokirixis">
     <End Role="Prokirixis" Type="Self.Prokirixis" Multiplicity="1" />
@@ -385,7 +379,6 @@
     <EntitySet Name="SysSchools" EntityType="Self.SysSchools" />
     <EntitySet Name="SysSchoolYears" EntityType="Self.SysSchoolYears" />
     <EntitySet Name="SysTaxFree" EntityType="Self.SysTaxFree" />
-    <EntitySet Name="SysTeachTypes" EntityType="Self.SysTeachTypes" />
     <EntitySet Name="TAXISNET" EntityType="Self.TAXISNET" />
     <EntitySet Name="UserAdmins" EntityType="Self.UserAdmins" />
     <EntitySet Name="UserSchools" EntityType="Self.UserSchools" />
@@ -427,10 +420,53 @@
       <End Role="SysNomoi" EntitySet="SysNomoi" />
     </AssociationSet>
     <EntitySet Name="sqlUserTeacherSelect" EntityType="PegasusPlusDBModel.sqlUserTeacherSelect" />
-    <EntitySet Name="Teachers" EntityType="PegasusPlusDBModel.Teachers" />
     <EntitySet Name="SysFamilyStatus" EntityType="PegasusPlusDBModel.SysFamilyStatus" />
     <EntitySet Name="SysIdiotita" EntityType="PegasusPlusDBModel.SysIdiotita" />
-    <EntitySet Name="TeachersUploads" EntityType="PegasusPlusDBModel.TeachersUploads" />
+    <EntitySet Name="EpagelmaCategory" EntityType="PegasusPlusDBModel.EpagelmaCategory" />
+    <EntitySet Name="Teachers" EntityType="PegasusPlusDBModel.Teachers" />
+    <EntitySet Name="SysPtyxia" EntityType="PegasusPlusDBModel.SysPtyxia" />
+    <EntitySet Name="SysSynafeia" EntityType="PegasusPlusDBModel.SysSynafeia" />
+    <EntitySet Name="EpimorfosiTypes" EntityType="PegasusPlusDBModel.EpimorfosiTypes" />
+    <EntitySet Name="EpimorfosiFiles" EntityType="PegasusPlusDBModel.EpimorfosiFiles" />
+    <EntitySet Name="PtyxiaTypes" EntityType="PegasusPlusDBModel.PtyxiaTypes" />
+    <EntitySet Name="TeacherUploads" EntityType="PegasusPlusDBModel.TeacherUploads" />
+    <EntitySet Name="Epimorfosis" EntityType="PegasusPlusDBModel.Epimorfosis" />
+    <AssociationSet Name="FK_EpimorfosiFiles_Epimorfosi" Association="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi">
+      <End Role="Epimorfosis" EntitySet="Epimorfosis" />
+      <End Role="EpimorfosiFiles" EntitySet="EpimorfosiFiles" />
+    </AssociationSet>
+    <EntitySet Name="sqlPeriferiesSchools" EntityType="PegasusPlusDBModel.sqlPeriferiesSchools" />
+    <EntitySet Name="AitisiSchools" EntityType="PegasusPlusDBModel.AitisiSchools" />
+    <EntitySet Name="SysTeachTypes" EntityType="PegasusPlusDBModel.SysTeachTypes" />
+    <EntitySet Name="sqlAitisiSelector" EntityType="PegasusPlusDBModel.sqlAitisiSelector" />
+    <EntitySet Name="UploadsFreelance" EntityType="PegasusPlusDBModel.UploadsFreelance" />
+    <EntitySet Name="UploadsTeaching" EntityType="PegasusPlusDBModel.UploadsTeaching" />
+    <EntitySet Name="UploadsVocation" EntityType="PegasusPlusDBModel.UploadsVocation" />
+    <EntitySet Name="Enstaseis" EntityType="PegasusPlusDBModel.Enstaseis" />
+    <EntitySet Name="EnstaseisFiles" EntityType="PegasusPlusDBModel.EnstaseisFiles" />
+    <AssociationSet Name="FK_EnstaseisFiles_Enstaseis" Association="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis">
+      <End Role="Enstaseis" EntitySet="Enstaseis" />
+      <End Role="EnstaseisFiles" EntitySet="EnstaseisFiles" />
+    </AssociationSet>
+    <EntitySet Name="sqlTeacherAitiseis" EntityType="PegasusPlusDBModel.sqlTeacherAitiseis" />
+    <EntitySet Name="sqlAitisiProsonta" EntityType="PegasusPlusDBModel.sqlAitisiProsonta" />
+    <EntitySet Name="WorkFreelance" EntityType="PegasusPlusDBModel.WorkFreelance" />
+    <EntitySet Name="WorkTeaching" EntityType="PegasusPlusDBModel.WorkTeaching" />
+    <EntitySet Name="WorkVocation" EntityType="PegasusPlusDBModel.WorkVocation" />
+    <EntitySet Name="Aitisis" EntityType="PegasusPlusDBModel.Aitisis" />
+    <AssociationSet Name="FK_Aitisis_Teachers" Association="PegasusPlusDBModel.FK_Aitisis_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Aitisis" EntitySet="Aitisis" />
+    </AssociationSet>
+    <EntitySet Name="qryFinalWork" EntityType="PegasusPlusDBModel.qryFinalWork" />
+    <EntitySet Name="qryFinalTeach" EntityType="PegasusPlusDBModel.qryFinalTeach" />
+    <EntitySet Name="TeacherSkills" EntityType="PegasusPlusDBModel.TeacherSkills" />
+    <AssociationSet Name="FK_TeachersSkills_Teachers" Association="PegasusPlusDBModel.FK_TeachersSkills_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="TeacherSkills" EntitySet="TeacherSkills" />
+    </AssociationSet>
+    <EntitySet Name="sqlAitisiData" EntityType="PegasusPlusDBModel.sqlAitisiData" />
+    <EntitySet Name="sqlTeachersRegistry" EntityType="PegasusPlusDBModel.sqlTeachersRegistry" />
   </EntityContainer>
   <EntityType Name="viewEidikotites">
     <Key>
@@ -484,6 +520,27 @@
     <Property Name="CreateDate" Type="DateTime" Precision="0" />
     <Property Name="FullName" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="SysFamilyStatus">
+    <Key>
+      <PropertyRef Name="FamilyStatusID" />
+    </Key>
+    <Property Name="FamilyStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FamilyStatusText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SysIdiotita">
+    <Key>
+      <PropertyRef Name="IdiotitaID" />
+    </Key>
+    <Property Name="IdiotitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdiotitaText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EpagelmaCategory">
+    <Key>
+      <PropertyRef Name="EpagelmaID" />
+    </Key>
+    <Property Name="EpagelmaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EpagelmaText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="Teachers">
     <Key>
       <PropertyRef Name="AFM" />
@@ -514,35 +571,59 @@
     <Property Name="AMKA_FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="AMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="AMA_FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="InsuranceMain" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="InsuranceFirstYear" Type="Int32" />
     <Property Name="SocialTriteknos" Type="Boolean" />
     <Property Name="SocialPolyteknos" Type="Boolean" />
     <Property Name="SocialSingleParent" Type="Boolean" />
     <Property Name="SocialAmea" Type="Boolean" />
     <Property Name="SocialAnergos" Type="Int32" />
-    <Property Name="AnergiaCardExpireDate" Type="DateTime" Precision="0" />
     <Property Name="SocialTriteknosFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SocialPolyteknosFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SocialSingleParentFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SocialAmeaFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SocialAnergosFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Aitisis" Relationship="PegasusPlusDBModel.FK_Aitisis_Teachers" FromRole="Teachers" ToRole="Aitisis" />
+    <NavigationProperty Name="TeacherSkills" Relationship="PegasusPlusDBModel.FK_TeachersSkills_Teachers" FromRole="Teachers" ToRole="TeacherSkills" />
   </EntityType>
-  <EntityType Name="SysFamilyStatus">
+  <EntityType Name="SysPtyxia">
     <Key>
-      <PropertyRef Name="FamilyStatusID" />
+      <PropertyRef Name="PtyxioID" />
     </Key>
-    <Property Name="FamilyStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FamilyStatusText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PtyxioText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="SysIdiotita">
+  <EntityType Name="SysSynafeia">
     <Key>
-      <PropertyRef Name="IdiotitaID" />
+      <PropertyRef Name="SynafeiaID" />
     </Key>
-    <Property Name="IdiotitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdiotitaText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SynafeiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SynafeiaText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="TeachersUploads">
+  <EntityType Name="EpimorfosiTypes">
+    <Key>
+      <PropertyRef Name="EpimorfosiTypeID" />
+    </Key>
+    <Property Name="EpimorfosiTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EpimorfosiTypeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EpimorfosiFiles">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Filepath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="EpimorfosiID" Type="Int32" />
+    <NavigationProperty Name="Epimorfosis" Relationship="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi" FromRole="EpimorfosiFiles" ToRole="Epimorfosis" />
+  </EntityType>
+  <EntityType Name="PtyxiaTypes">
+    <Key>
+      <PropertyRef Name="DegreeTypeID" />
+    </Key>
+    <Property Name="DegreeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DegreeTypeText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TeacherUploads">
     <Key>
       <PropertyRef Name="UploadFileID" />
     </Key>
@@ -552,5 +633,470 @@
     <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Epimorfosis">
+    <Key>
+      <PropertyRef Name="EpimorfosiID" />
+    </Key>
+    <Property Name="EpimorfosiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EpimorfosiTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EpimorfosiForeas" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EpimorfosiType" Type="Int32" />
+    <Property Name="EpimorfosiHours" Type="Int32" />
+    <Property Name="EpimorfosiDateStart" Type="DateTime" Precision="0" />
+    <Property Name="EpimorfosiDateFinal" Type="DateTime" Precision="0" />
+    <Property Name="TeacherAfm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <NavigationProperty Name="EpimorfosiFiles" Relationship="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi" FromRole="Epimorfosis" ToRole="EpimorfosiFiles" />
+  </EntityType>
+  <Association Name="FK_EpimorfosiFiles_Epimorfosi">
+    <End Type="PegasusPlusDBModel.Epimorfosis" Role="Epimorfosis" Multiplicity="0..1" />
+    <End Type="PegasusPlusDBModel.EpimorfosiFiles" Role="EpimorfosiFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Epimorfosis">
+        <PropertyRef Name="EpimorfosiID" />
+      </Principal>
+      <Dependent Role="EpimorfosiFiles">
+        <PropertyRef Name="EpimorfosiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sqlPeriferiesSchools">
+    <Key>
+      <PropertyRef Name="SchoolID" />
+    </Key>
+    <Property Name="SchoolID" Type="Int32" Nullable="false" />
+    <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolPeriferiaID" Type="Int32" />
+    <Property Name="PeriferiaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AitisiSchools">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AitisiID" Type="Int32" Nullable="false" />
+    <Property Name="SchoolID" Type="Int32" Nullable="false" />
+    <Property Name="PeriferiaID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SysTeachTypes">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeMoria" Type="Decimal" Precision="8" Scale="4" />
+    <Property Name="TypeMoriaMax" Type="Int32" />
+    <Property Name="TypeMoriaInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sqlAitisiSelector">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+    </Key>
+    <Property Name="AitisisID" Type="Int32" Nullable="false" />
+    <Property Name="ProkirixisID" Type="Int32" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AitisisInfo" Type="String" MaxLength="307" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UploadsFreelance">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExperienceID" Type="Int32" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UploadsTeaching">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExperienceID" Type="Int32" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UploadsVocation">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExperienceID" Type="Int32" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Enstaseis">
+    <Key>
+      <PropertyRef Name="EnstasiID" />
+    </Key>
+    <Property Name="EnstasiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <Property Name="AitisiID" Type="Int32" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolID" Type="Int32" />
+    <Property Name="EnstasiDate" Type="DateTime" Precision="0" />
+    <Property Name="EnstasiSummary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EnstaseisFiles" Relationship="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis" FromRole="Enstaseis" ToRole="EnstaseisFiles" />
+  </EntityType>
+  <EntityType Name="EnstaseisFiles">
+    <Key>
+      <PropertyRef Name="UploadFileID" />
+    </Key>
+    <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EnstasiID" Type="Int32" />
+    <NavigationProperty Name="Enstaseis" Relationship="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis" FromRole="EnstaseisFiles" ToRole="Enstaseis" />
+  </EntityType>
+  <Association Name="FK_EnstaseisFiles_Enstaseis">
+    <End Type="PegasusPlusDBModel.Enstaseis" Role="Enstaseis" Multiplicity="0..1" />
+    <End Type="PegasusPlusDBModel.EnstaseisFiles" Role="EnstaseisFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enstaseis">
+        <PropertyRef Name="EnstasiID" />
+      </Principal>
+      <Dependent Role="EnstaseisFiles">
+        <PropertyRef Name="EnstasiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sqlTeacherAitiseis">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+      <PropertyRef Name="SchoolID" />
+      <PropertyRef Name="PeriferiaID" />
+      <PropertyRef Name="PeriferiakiID" />
+    </Key>
+    <Property Name="AitisisID" Type="Int32" Nullable="false" />
+    <Property Name="AitisisProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProkirixisID" Type="Int32" />
+    <Property Name="Protocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
+    <Property Name="EidikotitaText" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolID" Type="Int32" Nullable="false" />
+    <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="PeriferiaID" Type="Int32" Nullable="false" />
+    <Property Name="PeriferiaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PeriferiakiID" Type="Int32" Nullable="false" />
+    <Property Name="PeriferiakiName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OaedCheckStatus" Type="Boolean" />
+    <Property Name="OaedEnstasi" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sqlAitisiProsonta">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+    </Key>
+    <Property Name="AitisisID" Type="Int32" Nullable="false" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioType" Type="Int32" />
+    <Property Name="Ptyxio2Type" Type="Int32" />
+    <Property Name="MscSynafeia" Type="Int32" />
+    <Property Name="PhdSynafeia" Type="Int32" />
+    <Property Name="Language1" Type="Int32" />
+    <Property Name="Language1Level" Type="Int32" />
+    <Property Name="Language2" Type="Int32" />
+    <Property Name="Language2Level" Type="Int32" />
+    <Property Name="ComputerCertificate" Type="Int32" />
+    <Property Name="EpimorfosiTotalHours" Type="Int32" />
+    <Property Name="CertifiedTrainer" Type="Boolean" />
+    <Property Name="SocialTriteknos" Type="Boolean" />
+    <Property Name="SocialPolyteknos" Type="Boolean" />
+    <Property Name="SocialSingleParent" Type="Boolean" />
+    <Property Name="SocialAmea" Type="Boolean" />
+    <Property Name="SocialAnergos" Type="Int32" />
+    <Property Name="OaedPtyxioConfirm" Type="Boolean" />
+    <Property Name="OaedPtyxio2Confirm" Type="Boolean" />
+    <Property Name="OaedMscConfirm" Type="Boolean" />
+    <Property Name="OaedPhdConfirm" Type="Boolean" />
+    <Property Name="OaedLanguage1Confirm" Type="Boolean" />
+    <Property Name="OaedLanguage2Confirm" Type="Boolean" />
+    <Property Name="OaedComputerConfirm" Type="Boolean" />
+    <Property Name="OaedEpimorfosiConfirm" Type="Boolean" />
+    <Property Name="OaedCertifiedConfirm" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="WorkFreelance">
+    <Key>
+      <PropertyRef Name="ExperienceID" />
+    </Key>
+    <Property Name="ExperienceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AitisiID" Type="Int32" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateFinal" Type="DateTime" Precision="0" />
+    <Property Name="DaysAuto" Type="Int32" />
+    <Property Name="DaysManual" Type="Int32" />
+    <Property Name="Income" Type="Single" />
+    <Property Name="IncomeYear" Type="Int32" />
+    <Property Name="IncomeTaxFree" Type="Single" />
+    <Property Name="IncomeCurrency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Moria" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkEvidence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Valid" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="WorkTeaching">
+    <Key>
+      <PropertyRef Name="ExperienceID" />
+    </Key>
+    <Property Name="ExperienceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AitisiID" Type="Int32" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <Property Name="TeachType" Type="Int32" />
+    <Property Name="SchoolYear" Type="Int32" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateFinal" Type="DateTime" Precision="0" />
+    <Property Name="HoursWeek" Type="Int32" />
+    <Property Name="HoursTotal" Type="Int32" />
+    <Property Name="Moria" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="DocumentProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentForeas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Valid" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="WorkVocation">
+    <Key>
+      <PropertyRef Name="ExperienceID" />
+    </Key>
+    <Property Name="ExperienceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AitisiID" Type="Int32" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateFinal" Type="DateTime" Precision="0" />
+    <Property Name="DaysAuto" Type="Int32" />
+    <Property Name="DaysManual" Type="Int32" />
+    <Property Name="Moria" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentForeas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Valid" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Aitisis">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+    </Key>
+    <Property Name="AitisisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AitisisDate" Type="DateTime" Precision="0" />
+    <Property Name="AitisisProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProkirixisID" Type="Int32" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Klados" Type="Int32" />
+    <Property Name="Eidikotita" Type="Int32" />
+    <Property Name="BasicEducation" Type="Int32" />
+    <Property Name="PtyxioType" Type="Int32" />
+    <Property Name="PtyxioTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioYear" Type="Int32" />
+    <Property Name="PtyxioGrade" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="PtyxioInstitution" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioSchool" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioTmima" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioForeign" Type="Boolean" />
+    <Property Name="PtyxioAnagnorisi" Type="Boolean" />
+    <Property Name="PtyxioFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioAnagnorisiFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MscTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MscYear" Type="Int32" />
+    <Property Name="MscInstitution" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MscSynafeia" Type="Int32" />
+    <Property Name="MscForeign" Type="Boolean" />
+    <Property Name="MscAnagnorisi" Type="Boolean" />
+    <Property Name="MscFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MscAnagnorisiFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhdTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhdYear" Type="Int32" />
+    <Property Name="PhdInstitution" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhdSynafeia" Type="Int32" />
+    <Property Name="PhdForeign" Type="Boolean" />
+    <Property Name="PhdAnagnorisi" Type="Boolean" />
+    <Property Name="PhdFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhdAnagnorisiFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EpagelmaCategory" Type="Int32" />
+    <Property Name="Periferia" Type="Int32" />
+    <Property Name="School" Type="Int32" />
+    <Property Name="MoriaPtyxio" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaMsc" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaPhd" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaLanguage" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaComputer" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaEpimorfosi" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaCertified" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaTeach" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaWork" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaAnergia" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaSocial" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="MoriaTotal" Type="Decimal" Precision="8" Scale="3" />
+    <Property Name="OaedPtyxioConfirm" Type="Boolean" />
+    <Property Name="OaedMscConfirm" Type="Boolean" />
+    <Property Name="OaedPhdConfirm" Type="Boolean" />
+    <Property Name="OaedMoriodotisiDate" Type="DateTime" Precision="3" />
+    <Property Name="OaedApoklismos" Type="Boolean" />
+    <Property Name="OaedApoklismosAitia" Type="Int32" />
+    <Property Name="OaedEpitropi1Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OaedEpitropi2Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OaedCheckStatus" Type="Boolean" />
+    <Property Name="OaedEnstasi" Type="Boolean" />
+    <NavigationProperty Name="Teachers" Relationship="PegasusPlusDBModel.FK_Aitisis_Teachers" FromRole="Aitisis" ToRole="Teachers" />
+  </EntityType>
+  <Association Name="FK_Aitisis_Teachers">
+    <End Type="PegasusPlusDBModel.Teachers" Role="Teachers" Multiplicity="0..1" />
+    <End Type="PegasusPlusDBModel.Aitisis" Role="Aitisis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="AFM" />
+      </Principal>
+      <Dependent Role="Aitisis">
+        <PropertyRef Name="TeacherAFM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="qryFinalWork">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int64" Nullable="false" />
+    <Property Name="AitisiID" Type="Int32" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <Property Name="MoriaTotal" Type="Decimal" Precision="38" Scale="3" />
+  </EntityType>
+  <EntityType Name="qryFinalTeach">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int64" Nullable="false" />
+    <Property Name="AitisiID" Type="Int32" />
+    <Property Name="ProkirixiID" Type="Int32" />
+    <Property Name="MoriaTotal" Type="Decimal" Precision="38" Scale="3" />
+  </EntityType>
+  <EntityType Name="TeacherSkills">
+    <Key>
+      <PropertyRef Name="SkillsID" />
+    </Key>
+    <Property Name="SkillsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ptyxio2Type" Type="Int32" />
+    <Property Name="Ptyxio2Titlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ptyxio2Year" Type="Int32" />
+    <Property Name="Ptyxio2Institution" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ptyxio2Foreign" Type="Boolean" />
+    <Property Name="Ptyxio2Anagnorisi" Type="Boolean" />
+    <Property Name="Ptyxio2Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ptyxio2AnagnorisiFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Language1" Type="Int32" />
+    <Property Name="Language1Level" Type="Int32" />
+    <Property Name="Language1Titlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Language1Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Language2" Type="Int32" />
+    <Property Name="Language2Level" Type="Int32" />
+    <Property Name="Language2Titlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Language2Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerCertificate" Type="Int32" />
+    <Property Name="ComputerTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerYear" Type="Int32" />
+    <Property Name="ComputerFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Epimorfosi" Type="Boolean" />
+    <Property Name="EpimorfosiTotalHours" Type="Int32" />
+    <Property Name="CertifiedTrainer" Type="Boolean" />
+    <Property Name="CertifiedTrainerAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CertifiedTrainerFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="N2190Protect" Type="Boolean" />
+    <Property Name="N2190ProtectFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OaedPtyxio2Confirm" Type="Boolean" />
+    <Property Name="OaedLanguage1Confirm" Type="Boolean" />
+    <Property Name="OaedLanguage2Confirm" Type="Boolean" />
+    <Property Name="OaedComputerConfirm" Type="Boolean" />
+    <Property Name="OaedEpimorfosiConfirm" Type="Boolean" />
+    <Property Name="OaedCertifiedConfirm" Type="Boolean" />
+    <Property Name="OaedN2190Confirm" Type="Boolean" />
+    <NavigationProperty Name="Teachers" Relationship="PegasusPlusDBModel.FK_TeachersSkills_Teachers" FromRole="TeacherSkills" ToRole="Teachers" />
+  </EntityType>
+  <Association Name="FK_TeachersSkills_Teachers">
+    <End Type="PegasusPlusDBModel.Teachers" Role="Teachers" Multiplicity="0..1" />
+    <End Type="PegasusPlusDBModel.TeacherSkills" Role="TeacherSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="AFM" />
+      </Principal>
+      <Dependent Role="TeacherSkills">
+        <PropertyRef Name="TeacherAFM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sqlAitisiData">
+    <Key>
+      <PropertyRef Name="AitisisID" />
+      <PropertyRef Name="EpimorfosiHours" />
+      <PropertyRef Name="SocialTriteknosText" />
+      <PropertyRef Name="SocialPolyteknosText" />
+      <PropertyRef Name="SocialSingleParentText" />
+      <PropertyRef Name="SocialAmeaText" />
+      <PropertyRef Name="MoriaPtyxio" />
+      <PropertyRef Name="MoriaMsc" />
+      <PropertyRef Name="MoriaPhd" />
+      <PropertyRef Name="MoriaLanguages" />
+      <PropertyRef Name="MoriaComputer" />
+      <PropertyRef Name="MoriaEpimorfosi" />
+      <PropertyRef Name="MoriaCertified" />
+      <PropertyRef Name="MoriaTeach" />
+      <PropertyRef Name="MoriaWork" />
+      <PropertyRef Name="MoriaAnergia" />
+      <PropertyRef Name="MoriaSocial" />
+      <PropertyRef Name="MoriaTotal" />
+    </Key>
+    <Property Name="AitisisID" Type="Int32" Nullable="false" />
+    <Property Name="AitisisProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PeriferiaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
+    <Property Name="KladosEidikotita" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioTypeText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PtyxioTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MscTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhdTitlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ptyxio2Titlos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Language1Epipedo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Language2Epipedo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EpimorfosiHours" Type="Int32" Nullable="false" />
+    <Property Name="CertifiedTrainerAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SocialTriteknosText" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="SocialPolyteknosText" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="SocialSingleParentText" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="SocialAmeaText" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="AnergiaDiarkeiaText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MoriaPtyxio" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaMsc" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaPhd" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaLanguages" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaComputer" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaEpimorfosi" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaCertified" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaTeach" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaWork" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaAnergia" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaSocial" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="MoriaTotal" Type="Decimal" Nullable="false" Precision="8" Scale="3" />
+    <Property Name="EpagelmaText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProkirixisID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sqlTeachersRegistry">
+    <Key>
+      <PropertyRef Name="AFM" />
+    </Key>
+    <Property Name="AFM" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FullAddress" Type="String" MaxLength="329" FixedLength="false" Unicode="true" />
+    <Property Name="Idiotita" Type="Int32" />
+    <Property Name="Age" Type="Int32" />
   </EntityType>
 </Schema>
