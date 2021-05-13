@@ -171,40 +171,40 @@ namespace PegasusPlus.Models
         public int? School { get; set; }
 
         [Display(Name = "Μόρια πτυχίου")]
-        public decimal? MoriaPtyxio { get; set; }
+        public decimal MoriaPtyxio { get; set; }
 
         [Display(Name = "Μόρια μεταπτυχιακού")]
-        public decimal? MoriaMsc { get; set; }
+        public decimal MoriaMsc { get; set; }
 
         [Display(Name = "Μόρια διδακτορικού")]
-        public decimal? MoriaPhd { get; set; }
+        public decimal MoriaPhd { get; set; }
 
         [Display(Name = "Μόρια ξένης γλώσσας")]
-        public decimal? MoriaLanguage { get; set; }
+        public decimal MoriaLanguage { get; set; }
 
         [Display(Name = "Μόρια γνώσης Η/Υ")]
-        public decimal? MoriaComputer { get; set; }
+        public decimal MoriaComputer { get; set; }
 
         [Display(Name = "Μόρια επιμόρφωσης")]
-        public decimal? MoriaEpimorfosi { get; set; }
+        public decimal MoriaEpimorfosi { get; set; }
 
         [Display(Name = "Μόρια πιστοποίησης")]
-        public decimal? MoriaCertified { get; set; }
+        public decimal MoriaCertified { get; set; }
 
         [Display(Name = "Μόρια διδακτικής εμπειρίας")]
-        public decimal? MoriaTeach { get; set; }
+        public decimal MoriaTeach { get; set; }
 
         [Display(Name = "Μόρια επαγγελματικής")]
-        public decimal? MoriaWork { get; set; }
+        public decimal MoriaWork { get; set; }
 
         [Display(Name = "Μόρια ανεργίας")]
-        public decimal? MoriaAnergia { get; set; }
+        public decimal MoriaAnergia { get; set; }
 
         [Display(Name = "Μόρια κοινωνικά")]
-        public decimal? MoriaSocial { get; set; }
+        public decimal MoriaSocial { get; set; }
 
         [Display(Name = "Μόρια σύνολο")]
-        public decimal? MoriaTotal { get; set; }
+        public decimal MoriaTotal { get; set; }
 
         [Display(Name = "Έγκυρο πτυχίο")]
         public bool OaedPtyxioConfirm { get; set; }

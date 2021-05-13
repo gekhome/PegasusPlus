@@ -172,14 +172,14 @@ namespace PegasusPlus.Models
         [Display(Name = "Ονομα αρχείου")]
         public string FileName { get; set; }
 
-        [Display(Name = "Διαδρομή")]
-        public string FilePath { get; set; }
-
         [Display(Name = "Κατηγορία")]
         public string Category { get; set; }
 
         [Display(Name = "Περιγραφή")]
         public string Description { get; set; }
+
+        [Display(Name = "ΑΦΜ")]
+        public string TeacherAFM { get; set; }
     }
 
     public class UploadsVocationViewModel
@@ -190,14 +190,14 @@ namespace PegasusPlus.Models
         [Display(Name = "Ονομα αρχείου")]
         public string FileName { get; set; }
 
-        [Display(Name = "Διαδρομή")]
-        public string FilePath { get; set; }
-
         [Display(Name = "Κατηγορία")]
         public string Category { get; set; }
 
         [Display(Name = "Περιγραφή")]
         public string Description { get; set; }
+
+        [Display(Name = "ΑΦΜ")]
+        public string TeacherAFM { get; set; }
     }
 
     public class UploadsFreelanceViewModel
@@ -208,14 +208,14 @@ namespace PegasusPlus.Models
         [Display(Name = "Ονομα αρχείου")]
         public string FileName { get; set; }
 
-        [Display(Name = "Διαδρομή")]
-        public string FilePath { get; set; }
-
         [Display(Name = "Κατηγορία")]
         public string Category { get; set; }
 
         [Display(Name = "Περιγραφή")]
         public string Description { get; set; }
+
+        [Display(Name = "ΑΦΜ")]
+        public string TeacherAFM { get; set; }
     }
 
     #endregion

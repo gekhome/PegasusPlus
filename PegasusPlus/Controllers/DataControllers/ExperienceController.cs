@@ -21,7 +21,7 @@ namespace PegasusPlus.Controllers.DataControllers
         private PegasusPlusDBEntities db = new PegasusPlusDBEntities();
         private string Msg;
         private int prokirixiId;
-        private const string UPLOAD_PATH = "~/App_Data/FilesExperience/";
+        private const string UPLOAD_PATH = "~/Uploads/FilesExperience/";
 
         private const string TEACHING_TEXT = "ΔΙΔΑΚΤΙΚΗ ΕΜΠΕΙΡΊΑ";
         private const string VOCATION_TEXT = "ΕΠΑΓΓΕΛΜΑΤΙΚΗ ΕΜΠΕΙΡΙΑ";
@@ -261,10 +261,10 @@ namespace PegasusPlus.Controllers.DataControllers
                         {
                             UploadFileID = d.UploadFileID,
                             FileName = d.FileName,
-                            FilePath = d.FilePath,
                             Description = d.Description,
                             Category = d.Category,
-                            ExperienceID = d.ExperienceID
+                            ExperienceID = d.ExperienceID,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -366,7 +366,7 @@ namespace PegasusPlus.Controllers.DataControllers
                             UploadsTeaching fileDetail = new UploadsTeaching()
                             {
                                 FileName = fileName,
-                                FilePath = physicalPath,
+                                TeacherAFM = loggedTeacher.UserAfm,
                                 Description = "ΒΕΒΑΙΩΣΗ ΔΙΔΑΚΤΙΚΗΣ (" + loggedTeacher.UserAfm + ")",
                                 Category = TEACHING_TEXT,
                                 ExperienceID = expId
@@ -652,10 +652,10 @@ namespace PegasusPlus.Controllers.DataControllers
                         {
                             UploadFileID = d.UploadFileID,
                             FileName = d.FileName,
-                            FilePath = d.FilePath,
                             Description = d.Description,
                             Category = d.Category,
-                            ExperienceID = d.ExperienceID
+                            ExperienceID = d.ExperienceID,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -757,7 +757,7 @@ namespace PegasusPlus.Controllers.DataControllers
                             UploadsVocation fileDetail = new UploadsVocation()
                             {
                                 FileName = fileName,
-                                FilePath = physicalPath,
+                                TeacherAFM = loggedTeacher.UserAfm,
                                 Description = "ΒΕΒΑΙΩΣΗ ΕΠΑΓΓΕΛΜΑΤΙΚΗΣ (" + loggedTeacher.UserAfm + ")",
                                 Category = VOCATION_TEXT,
                                 ExperienceID = expId
@@ -1062,10 +1062,10 @@ namespace PegasusPlus.Controllers.DataControllers
                         {
                             UploadFileID = d.UploadFileID,
                             FileName = d.FileName,
-                            FilePath = d.FilePath,
                             Description = d.Description,
                             Category = d.Category,
-                            ExperienceID = d.ExperienceID
+                            ExperienceID = d.ExperienceID,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -1167,7 +1167,7 @@ namespace PegasusPlus.Controllers.DataControllers
                             UploadsFreelance fileDetail = new UploadsFreelance()
                             {
                                 FileName = fileName,
-                                FilePath = physicalPath,
+                                TeacherAFM = loggedTeacher.UserAfm,
                                 Description = "ΒΕΒΑΙΩΣΗ ΕΠΙΤΗΔΕΥΜΑΤΟΣ (" + loggedTeacher.UserAfm + ")",
                                 Category = FREELANCE_TEXT,
                                 ExperienceID = expId

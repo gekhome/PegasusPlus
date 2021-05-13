@@ -1,0 +1,101 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+@{
+    ViewBag.Title = "Αποτελέσματα αξιολόγησης";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<div class="page-header">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Προβολή αξιολόγησης αιτήσεων</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+            @Html.ActionLink("Επιστροφή", "Index", "Teachers", null, new { @class = "btn btn-warning", style = "font-size:16px" })
+        </span>
+    </div>
+</div>
+
+<div class="body-content mt-3 mb-3 ml-4 mr-4" id="candidate">
+    <div class="row">
+        <div class="col-md-3">
+            ΑΦΜ : <label class="form-control d-inline" style="min-height:34px;min-width:400px; background-color:#EEE" title="@Html.Raw(ViewBag.loggedTeacher.AFM)">
+                @Html.Raw(ViewBag.loggedTeacher.AFM)
+            </label>
+        </div>
+        <div class="col-md-3">
+            <label class="form-control smartShortText d-inline" style="min-height:34px;width:300px; background-color:#EEE" title="@Html.Raw(ViewBag.loggedTeacher.FirstName) @Html.Raw(ViewBag.loggedTeacher.LastName)">
+                @Html.Raw(ViewBag.loggedTeacher.FirstName) @Html.Raw(ViewBag.loggedTeacher.LastName)
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="body-content" style="margin:5px 20px 5px 20px">
+    @(Html.Kendo().Grid<TeacherAitiseisViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(x => x.Protocol).Width(20);
+            columns.Bound(x => x.AitisisProtocol).Width(20);
+            columns.Bound(x => x.EidikotitaText).Width(50);
+            columns.Bound(c => c.SchoolName).Width(30);
+            columns.Bound(c => c.PeriferiaName).Width(40);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisiView", "Aitisis") + "?aitisiId=#=AitisisID#'><span class=\"k-icon k-edit\"></span>Προβολή</a>"
+            ).Width(20);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisisResultsPrint", "Aitisis") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-edit\"></span>Εκτύπωση</a>"
+            ).Width(24);
+        })
+        .Filterable()
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Scrollable(scr => scr.Height(340))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(3))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.AitisisID);
+        })
+        .Read(read => read.Action("TeacherAitiseis_Read", "Aitisis"))
+        .Events(e => e.Error("error_handler"))
+    )
+    )
+</div>
+
+<script type="text/javascript">
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#Grid").data("kendoGrid").dataSource.read();
+        }
+    }
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+</script>
+
+
+
+

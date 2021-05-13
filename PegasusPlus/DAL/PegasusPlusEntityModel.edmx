@@ -106,8 +106,8 @@
           </Key>
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
           <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="EnstasiID" Type="int" />
         </EntityType>
         <EntityType Name="EpagelmaCategory">
@@ -124,8 +124,8 @@
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Filename" Type="nvarchar" MaxLength="255" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
-          <Property Name="Filepath" Type="nvarchar" MaxLength="500" />
           <Property Name="EpimorfosiID" Type="int" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Epimorfosis">
           <Key>
@@ -477,7 +477,6 @@
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="SchoolYearText" Type="nvarchar" MaxLength="10" />
         </EntityType>
@@ -488,9 +487,9 @@
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ExperienceID" Type="int" />
           <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="UploadsTeaching">
           <Key>
@@ -499,9 +498,9 @@
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ExperienceID" Type="int" />
           <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="UploadsVocation">
           <Key>
@@ -510,9 +509,9 @@
           <Property Name="UploadFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ExperienceID" Type="int" />
           <Property Name="FileName" Type="nvarchar" MaxLength="255" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="UserAdmins">
           <Key>
@@ -814,8 +813,6 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeacherAitiseis' does not hav
           <Property Name="OaedCheckStatus" Type="bit" />
           <Property Name="OaedEnstasi" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeachersInAitiseis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PegasusPlusDB.dbo.sqlTeachersRegistry' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="sqlTeachersRegistry">
@@ -1733,27 +1730,13 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <EntitySet Name="SysPtyxia" EntityType="PegasusPlusDBModel.SysPtyxia" />
           <EntitySet Name="SysSynafeia" EntityType="PegasusPlusDBModel.SysSynafeia" />
           <EntitySet Name="EpimorfosiTypes" EntityType="PegasusPlusDBModel.EpimorfosiTypes" />
-          <EntitySet Name="EpimorfosiFiles" EntityType="PegasusPlusDBModel.EpimorfosiFiles" />
           <EntitySet Name="PtyxiaTypes" EntityType="PegasusPlusDBModel.PtyxiaTypes" />
-          <EntitySet Name="TeacherUploads" EntityType="PegasusPlusDBModel.TeacherUploads" />
           <EntitySet Name="Epimorfosis" EntityType="PegasusPlusDBModel.Epimorfosis" />
-          <AssociationSet Name="FK_EpimorfosiFiles_Epimorfosi" Association="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi">
-            <End Role="Epimorfosis" EntitySet="Epimorfosis" />
-            <End Role="EpimorfosiFiles" EntitySet="EpimorfosiFiles" />
-          </AssociationSet>
           <EntitySet Name="sqlPeriferiesSchools" EntityType="PegasusPlusDBModel.sqlPeriferiesSchools" />
           <EntitySet Name="AitisiSchools" EntityType="PegasusPlusDBModel.AitisiSchools" />
           <EntitySet Name="SysTeachTypes" EntityType="PegasusPlusDBModel.SysTeachTypes" />
           <EntitySet Name="sqlAitisiSelector" EntityType="PegasusPlusDBModel.sqlAitisiSelector" />
-          <EntitySet Name="UploadsFreelance" EntityType="PegasusPlusDBModel.UploadsFreelance" />
-          <EntitySet Name="UploadsTeaching" EntityType="PegasusPlusDBModel.UploadsTeaching" />
-          <EntitySet Name="UploadsVocation" EntityType="PegasusPlusDBModel.UploadsVocation" />
           <EntitySet Name="Enstaseis" EntityType="PegasusPlusDBModel.Enstaseis" />
-          <EntitySet Name="EnstaseisFiles" EntityType="PegasusPlusDBModel.EnstaseisFiles" />
-          <AssociationSet Name="FK_EnstaseisFiles_Enstaseis" Association="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis">
-            <End Role="Enstaseis" EntitySet="Enstaseis" />
-            <End Role="EnstaseisFiles" EntitySet="EnstaseisFiles" />
-          </AssociationSet>
           <EntitySet Name="sqlTeacherAitiseis" EntityType="PegasusPlusDBModel.sqlTeacherAitiseis" />
           <EntitySet Name="sqlAitisiProsonta" EntityType="PegasusPlusDBModel.sqlAitisiProsonta" />
           <EntitySet Name="WorkFreelance" EntityType="PegasusPlusDBModel.WorkFreelance" />
@@ -1773,6 +1756,20 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           </AssociationSet>
           <EntitySet Name="sqlAitisiData" EntityType="PegasusPlusDBModel.sqlAitisiData" />
           <EntitySet Name="sqlTeachersRegistry" EntityType="PegasusPlusDBModel.sqlTeachersRegistry" />
+          <EntitySet Name="EpimorfosiFiles" EntityType="PegasusPlusDBModel.EpimorfosiFiles" />
+          <EntitySet Name="TeacherUploads" EntityType="PegasusPlusDBModel.TeacherUploads" />
+          <AssociationSet Name="FK_EpimorfosiFiles_Epimorfosi" Association="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi">
+            <End Role="Epimorfosis" EntitySet="Epimorfosis" />
+            <End Role="EpimorfosiFiles" EntitySet="EpimorfosiFiles" />
+          </AssociationSet>
+          <EntitySet Name="UploadsFreelance" EntityType="PegasusPlusDBModel.UploadsFreelance" />
+          <EntitySet Name="UploadsTeaching" EntityType="PegasusPlusDBModel.UploadsTeaching" />
+          <EntitySet Name="UploadsVocation" EntityType="PegasusPlusDBModel.UploadsVocation" />
+          <EntitySet Name="EnstaseisFiles" EntityType="PegasusPlusDBModel.EnstaseisFiles" />
+          <AssociationSet Name="FK_EnstaseisFiles_Enstaseis" Association="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis">
+            <End Role="Enstaseis" EntitySet="Enstaseis" />
+            <End Role="EnstaseisFiles" EntitySet="EnstaseisFiles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="viewEidikotites">
           <Key>
@@ -1911,34 +1908,12 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="EpimorfosiTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EpimorfosiTypeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="EpimorfosiFiles">
-          <Key>
-            <PropertyRef Name="UploadFileID" />
-          </Key>
-          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Filepath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="EpimorfosiID" Type="Int32" />
-          <NavigationProperty Name="Epimorfosis" Relationship="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi" FromRole="EpimorfosiFiles" ToRole="Epimorfosis" />
-        </EntityType>
         <EntityType Name="PtyxiaTypes">
           <Key>
             <PropertyRef Name="DegreeTypeID" />
           </Key>
           <Property Name="DegreeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DegreeTypeText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="TeacherUploads">
-          <Key>
-            <PropertyRef Name="UploadFileID" />
-          </Key>
-          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Epimorfosis">
           <Key>
@@ -1955,18 +1930,6 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="ProkirixiID" Type="Int32" />
           <NavigationProperty Name="EpimorfosiFiles" Relationship="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi" FromRole="Epimorfosis" ToRole="EpimorfosiFiles" />
         </EntityType>
-        <Association Name="FK_EpimorfosiFiles_Epimorfosi">
-          <End Type="PegasusPlusDBModel.Epimorfosis" Role="Epimorfosis" Multiplicity="0..1" />
-          <End Type="PegasusPlusDBModel.EpimorfosiFiles" Role="EpimorfosiFiles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Epimorfosis">
-              <PropertyRef Name="EpimorfosiID" />
-            </Principal>
-            <Dependent Role="EpimorfosiFiles">
-              <PropertyRef Name="EpimorfosiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="sqlPeriferiesSchools">
           <Key>
             <PropertyRef Name="SchoolID" />
@@ -2004,39 +1967,6 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="AitisisInfo" Type="String" MaxLength="307" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="UploadsFreelance">
-          <Key>
-            <PropertyRef Name="UploadFileID" />
-          </Key>
-          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ExperienceID" Type="Int32" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UploadsTeaching">
-          <Key>
-            <PropertyRef Name="UploadFileID" />
-          </Key>
-          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ExperienceID" Type="Int32" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UploadsVocation">
-          <Key>
-            <PropertyRef Name="UploadFileID" />
-          </Key>
-          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ExperienceID" Type="Int32" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Enstaseis">
           <Key>
             <PropertyRef Name="EnstasiID" />
@@ -2050,29 +1980,6 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="EnstasiSummary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EnstaseisFiles" Relationship="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis" FromRole="Enstaseis" ToRole="EnstaseisFiles" />
         </EntityType>
-        <EntityType Name="EnstaseisFiles">
-          <Key>
-            <PropertyRef Name="UploadFileID" />
-          </Key>
-          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="EnstasiID" Type="Int32" />
-          <NavigationProperty Name="Enstaseis" Relationship="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis" FromRole="EnstaseisFiles" ToRole="Enstaseis" />
-        </EntityType>
-        <Association Name="FK_EnstaseisFiles_Enstaseis">
-          <End Type="PegasusPlusDBModel.Enstaseis" Role="Enstaseis" Multiplicity="0..1" />
-          <End Type="PegasusPlusDBModel.EnstaseisFiles" Role="EnstaseisFiles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Enstaseis">
-              <PropertyRef Name="EnstasiID" />
-            </Principal>
-            <Dependent Role="EnstaseisFiles">
-              <PropertyRef Name="EnstasiID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="sqlTeacherAitiseis">
           <Key>
             <PropertyRef Name="AitisisID" />
@@ -2405,6 +2312,95 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="Idiotita" Type="Int32" />
           <Property Name="Age" Type="Int32" />
         </EntityType>
+        <EntityType Name="EpimorfosiFiles">
+          <Key>
+            <PropertyRef Name="UploadFileID" />
+          </Key>
+          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EpimorfosiID" Type="Int32" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Epimorfosis" Relationship="PegasusPlusDBModel.FK_EpimorfosiFiles_Epimorfosi" FromRole="EpimorfosiFiles" ToRole="Epimorfosis" />
+        </EntityType>
+        <EntityType Name="TeacherUploads">
+          <Key>
+            <PropertyRef Name="UploadFileID" />
+          </Key>
+          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_EpimorfosiFiles_Epimorfosi">
+          <End Type="PegasusPlusDBModel.Epimorfosis" Role="Epimorfosis" Multiplicity="0..1" />
+          <End Type="PegasusPlusDBModel.EpimorfosiFiles" Role="EpimorfosiFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epimorfosis">
+              <PropertyRef Name="EpimorfosiID" />
+            </Principal>
+            <Dependent Role="EpimorfosiFiles">
+              <PropertyRef Name="EpimorfosiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UploadsFreelance">
+          <Key>
+            <PropertyRef Name="UploadFileID" />
+          </Key>
+          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExperienceID" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UploadsTeaching">
+          <Key>
+            <PropertyRef Name="UploadFileID" />
+          </Key>
+          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExperienceID" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UploadsVocation">
+          <Key>
+            <PropertyRef Name="UploadFileID" />
+          </Key>
+          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExperienceID" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EnstaseisFiles">
+          <Key>
+            <PropertyRef Name="UploadFileID" />
+          </Key>
+          <Property Name="UploadFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolYearText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EnstasiID" Type="Int32" />
+          <NavigationProperty Name="Enstaseis" Relationship="PegasusPlusDBModel.FK_EnstaseisFiles_Enstaseis" FromRole="EnstaseisFiles" ToRole="Enstaseis" />
+        </EntityType>
+        <Association Name="FK_EnstaseisFiles_Enstaseis">
+          <End Type="PegasusPlusDBModel.Enstaseis" Role="Enstaseis" Multiplicity="0..1" />
+          <End Type="PegasusPlusDBModel.EnstaseisFiles" Role="EnstaseisFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enstaseis">
+              <PropertyRef Name="EnstasiID" />
+            </Principal>
+            <Dependent Role="EnstaseisFiles">
+              <PropertyRef Name="EnstasiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2845,34 +2841,11 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EpimorfosiFiles">
-            <EntityTypeMapping TypeName="PegasusPlusDBModel.EpimorfosiFiles">
-              <MappingFragment StoreEntitySet="EpimorfosiFiles">
-                <ScalarProperty Name="EpimorfosiID" ColumnName="EpimorfosiID" />
-                <ScalarProperty Name="Filepath" ColumnName="Filepath" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Filename" ColumnName="Filename" />
-                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PtyxiaTypes">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.PtyxiaTypes">
               <MappingFragment StoreEntitySet="PtyxiaTypes">
                 <ScalarProperty Name="DegreeTypeText" ColumnName="DegreeTypeText" />
                 <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TeacherUploads">
-            <EntityTypeMapping TypeName="PegasusPlusDBModel.TeacherUploads">
-              <MappingFragment StoreEntitySet="TeacherUploads">
-                <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
-                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2932,42 +2905,6 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UploadsFreelance">
-            <EntityTypeMapping TypeName="PegasusPlusDBModel.UploadsFreelance">
-              <MappingFragment StoreEntitySet="UploadsFreelance">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="ExperienceID" ColumnName="ExperienceID" />
-                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UploadsTeaching">
-            <EntityTypeMapping TypeName="PegasusPlusDBModel.UploadsTeaching">
-              <MappingFragment StoreEntitySet="UploadsTeaching">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="ExperienceID" ColumnName="ExperienceID" />
-                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UploadsVocation">
-            <EntityTypeMapping TypeName="PegasusPlusDBModel.UploadsVocation">
-              <MappingFragment StoreEntitySet="UploadsVocation">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="ExperienceID" ColumnName="ExperienceID" />
-                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Enstaseis">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.Enstaseis">
               <MappingFragment StoreEntitySet="Enstaseis">
@@ -2978,17 +2915,6 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
                 <ScalarProperty Name="AitisiID" ColumnName="AitisiID" />
                 <ScalarProperty Name="ProkirixiID" ColumnName="ProkirixiID" />
                 <ScalarProperty Name="EnstasiID" ColumnName="EnstasiID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EnstaseisFiles">
-            <EntityTypeMapping TypeName="PegasusPlusDBModel.EnstaseisFiles">
-              <MappingFragment StoreEntitySet="EnstaseisFiles">
-                <ScalarProperty Name="EnstasiID" ColumnName="EnstasiID" />
-                <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3286,6 +3212,75 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="AFM" ColumnName="AFM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EpimorfosiFiles">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.EpimorfosiFiles">
+              <MappingFragment StoreEntitySet="EpimorfosiFiles">
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+                <ScalarProperty Name="EpimorfosiID" ColumnName="EpimorfosiID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherUploads">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.TeacherUploads">
+              <MappingFragment StoreEntitySet="TeacherUploads">
+                <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadsFreelance">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.UploadsFreelance">
+              <MappingFragment StoreEntitySet="UploadsFreelance">
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ExperienceID" ColumnName="ExperienceID" />
+                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadsTeaching">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.UploadsTeaching">
+              <MappingFragment StoreEntitySet="UploadsTeaching">
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ExperienceID" ColumnName="ExperienceID" />
+                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadsVocation">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.UploadsVocation">
+              <MappingFragment StoreEntitySet="UploadsVocation">
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ExperienceID" ColumnName="ExperienceID" />
+                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnstaseisFiles">
+            <EntityTypeMapping TypeName="PegasusPlusDBModel.EnstaseisFiles">
+              <MappingFragment StoreEntitySet="EnstaseisFiles">
+                <ScalarProperty Name="EnstasiID" ColumnName="EnstasiID" />
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
+                <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="UploadFileID" ColumnName="UploadFileID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -66,19 +66,13 @@ namespace PegasusPlus.DAL
         public virtual DbSet<SysPtyxia> SysPtyxia { get; set; }
         public virtual DbSet<SysSynafeia> SysSynafeia { get; set; }
         public virtual DbSet<EpimorfosiTypes> EpimorfosiTypes { get; set; }
-        public virtual DbSet<EpimorfosiFiles> EpimorfosiFiles { get; set; }
         public virtual DbSet<PtyxiaTypes> PtyxiaTypes { get; set; }
-        public virtual DbSet<TeacherUploads> TeacherUploads { get; set; }
         public virtual DbSet<Epimorfosis> Epimorfosis { get; set; }
         public virtual DbSet<sqlPeriferiesSchools> sqlPeriferiesSchools { get; set; }
         public virtual DbSet<AitisiSchools> AitisiSchools { get; set; }
         public virtual DbSet<SysTeachTypes> SysTeachTypes { get; set; }
         public virtual DbSet<sqlAitisiSelector> sqlAitisiSelector { get; set; }
-        public virtual DbSet<UploadsFreelance> UploadsFreelance { get; set; }
-        public virtual DbSet<UploadsTeaching> UploadsTeaching { get; set; }
-        public virtual DbSet<UploadsVocation> UploadsVocation { get; set; }
         public virtual DbSet<Enstaseis> Enstaseis { get; set; }
-        public virtual DbSet<EnstaseisFiles> EnstaseisFiles { get; set; }
         public virtual DbSet<sqlTeacherAitiseis> sqlTeacherAitiseis { get; set; }
         public virtual DbSet<sqlAitisiProsonta> sqlAitisiProsonta { get; set; }
         public virtual DbSet<WorkFreelance> WorkFreelance { get; set; }
@@ -90,5 +84,11 @@ namespace PegasusPlus.DAL
         public virtual DbSet<TeacherSkills> TeacherSkills { get; set; }
         public virtual DbSet<sqlAitisiData> sqlAitisiData { get; set; }
         public virtual DbSet<sqlTeachersRegistry> sqlTeachersRegistry { get; set; }
+        public virtual DbSet<EpimorfosiFiles> EpimorfosiFiles { get; set; }
+        public virtual DbSet<TeacherUploads> TeacherUploads { get; set; }
+        public virtual DbSet<UploadsFreelance> UploadsFreelance { get; set; }
+        public virtual DbSet<UploadsTeaching> UploadsTeaching { get; set; }
+        public virtual DbSet<UploadsVocation> UploadsVocation { get; set; }
+        public virtual DbSet<EnstaseisFiles> EnstaseisFiles { get; set; }
     }
 }

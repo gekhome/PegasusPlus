@@ -845,8 +845,8 @@ namespace PegasusPlus.Reports.Data
             // 
             // table1
             // 
-            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(13.30058479309082D)));
-            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(3.4580867290496826D)));
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(13.300585746765137D)));
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(3.4580869674682617D)));
             this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.776775062084198D)));
             this.table1.Body.SetCellContent(0, 0, this.textBox33);
             this.table1.Body.SetCellContent(0, 1, this.textBox35);
@@ -883,6 +883,7 @@ namespace PegasusPlus.Reports.Data
             // 
             // textBox35
             // 
+            this.textBox35.Format = "{0:N2}";
             this.textBox35.Name = "textBox35";
             this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.4580867290496826D), Telerik.Reporting.Drawing.Unit.Cm(0.77677500247955322D));
             this.textBox35.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;

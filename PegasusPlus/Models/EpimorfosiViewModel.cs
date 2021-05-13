@@ -56,8 +56,8 @@ namespace PegasusPlus.Models
         [Display(Name = "Περιγραφή")]
         public string Description { get; set; }
 
-        [Display(Name = "Διαδρομή")]
-        public string Filepath { get; set; }
+        [Display(Name = "ΑΦΜ Εκπαιδευτή")]
+        public string TeacherAFM { get; set; }
 
         public int? EpimorfosiID { get; set; }
 

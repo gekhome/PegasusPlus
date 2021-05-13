@@ -1,0 +1,94 @@
+﻿@using PegasusPlus.DAL
+@using PegasusPlus.Models
+
+
+@{
+    ViewBag.Title = "Λογαριασμοί Σχολείων";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="page-header" style="margin:5px 30px 5px 50px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+        <font style="color:#292929;float:left;font-family:'Segoe UI'">Λογαριασμοί Σχολείων</font>
+    </span>
+    <span style="margin:5px 10px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">@Html.ActionLink("Επιστροφή", "Index", "Admin", null, new { @class = "btn btn-warning", style = "font-size:14px" })</span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Ανανέωση</button>   
+    <span style="margin:0px 5px 5px 10px;float:right;font-family:'Segoe UI';">@Html.ActionLink("Εκτύπωση", "SchoolAccountsPrint", "Tools", null, new { @class = "btn btn-primary", style = "font-size:14px", target = "_blank" })</span>
+    <span style="margin:0px 5px 5px 10px;float:right;font-family:'Segoe UI';">@Html.ActionLink("Αλλαγή κωδικών", "CreatePasswords", "Tools", null, new { @class = "btn btn-danger", style = "font-size:14px" })</span>
+</div>
+
+<div class="body-content mt-4" style="margin:10px 30px 5px 30px">
+    @(Html.Kendo().Grid<UserSchoolViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Username).Groupable(false).Width(40);
+            columns.Bound(c => c.Password).Groupable(false).Width(30);
+            columns.ForeignKey(c => c.UserSchoolID, (IEnumerable<SysSchools>)ViewData["schools"], "SchoolID", "SchoolName")               
+                .Groupable(false).Title("Σχολική Μονάδα").Width(50);
+            columns.Command(command => command.Destroy()).Width(32);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+            toolBar.Save();
+            toolBar.Pdf();
+            toolBar.Excel();
+        })
+        .HtmlAttributes(new { style = "font-size:16px" })
+        .Editable(editable => editable.Mode(GridEditMode.InCell))
+        .Filterable()
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(420))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .DataSource(datasource => datasource
+            .Ajax()
+            .Batch(true)
+            .PageSize(40)
+            .ServerOperation(false)
+            .Model(model => {
+                model.Id(p => p.UserID);
+                model.Field(p => p.UserSchoolID).DefaultValue(1);
+            })
+            .Create(create => create.Action("School_Create", "Tools"))
+            .Read(read => read.Action("School_Read", "Tools"))
+            .Update(update => update.Action("School_Update", "Tools"))
+            .Destroy(destroy => destroy.Action("School_Destroy", "Tools"))
+            .Events(events => events.Error("error_handler"))
+        )
+    )
+</div>
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#Grid").data("kendoGrid").dataSource.read();
+        }
+    }
+
+</script>
+
+
+
+
+
+

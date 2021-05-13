@@ -16,8 +16,8 @@ namespace PegasusPlus.DAL
     {
         public int UploadFileID { get; set; }
         public string FileName { get; set; }
-        public string FilePath { get; set; }
         public string SchoolYearText { get; set; }
+        public string TeacherAFM { get; set; }
         public Nullable<int> EnstasiID { get; set; }
     
         public virtual Enstaseis Enstaseis { get; set; }

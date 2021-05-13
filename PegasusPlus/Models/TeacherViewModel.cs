@@ -253,9 +253,6 @@ namespace PegasusPlus.Models
         [Display(Name = "Όνομα αρχείου")]
         public string FileName { get; set; }
 
-        [Display(Name = "Επέκταση")]
-        public string FilePath { get; set; }
-
         [Display(Name = "Περιγραφή αρχείου")]
         public string Description { get; set; }
 

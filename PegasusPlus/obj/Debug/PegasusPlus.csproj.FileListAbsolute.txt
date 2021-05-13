@@ -100,3 +100,4 @@ F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiResults.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.TeacherData.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.TeachersEidikotita.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.csprojResolveAssemblyReference.cache

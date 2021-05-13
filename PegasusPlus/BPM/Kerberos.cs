@@ -395,7 +395,7 @@ namespace PegasusPlus.BPM
             {
                 if (ap.MscSynafeia == 1)
                     moria = 4.0m;
-                else
+                else if (ap.MscSynafeia == 2 || ap.MscSynafeia == 3)
                     moria = 2.0m;
             }
 
@@ -410,7 +410,7 @@ namespace PegasusPlus.BPM
             {
                 if (ap.PhdSynafeia == 1)
                     moria = 8.0m;
-                else
+                else if(ap.PhdSynafeia == 2 || ap.PhdSynafeia == 3)
                     moria = 5.0m;
             }
 

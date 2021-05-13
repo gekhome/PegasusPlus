@@ -1,0 +1,68 @@
+﻿@using PegasusPlus.Models
+
+@{
+    ViewBag.Title = "TaxfreeList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header" style="margin:5px 30px 5px 30px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+        <font style="color:#292929;float:left;font-family:'Segoe UI'">Αφορολόγητα εισοδήματα οικονομικών ετών</font>
+    </span>
+    <span style="margin:5px 10px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">@Html.ActionLink("Επιστροφή", "Index", "Admin", null, new { @class = "btn btn-warning", style = "font-size:14px" })</span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Ανανέωση</button>
+    <span style="margin:5px 5px 5px 10px;float:right;font-family:'Segoe UI';font-size:14px">@Html.ActionLink("Εκτύπωση", "TaxFreeIncomePrint", "Tools", null, new { @class = "btn btn-primary", style = "font-size:14px", target = "_blank" })</span>
+</div>
+
+<div class="body-content mt-4" style="margin:10px 30px 5px 30px">
+    <div class="row">
+        @(Html.Kendo().Grid<TaxFreeViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.YearText).Width(30);
+            columns.Bound(m => m.TaxFree).Width(40);
+            columns.Bound(m => m.Nomisma).Width(30);
+            columns.Command(command => command.Destroy()).Width(30);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+            toolBar.Save();
+        })
+        .HtmlAttributes(new { style = "font-size:16px" })
+        .Filterable()
+        .Navigatable()
+        .Editable(editable => editable.Mode(GridEditMode.InCell).CreateAt(GridInsertRowPosition.Top))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(380))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .Batch(true)
+        .PageSize(30)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.YearID);
+        })
+        .Create(create => create.Action("Taxfree_Create", "Tools"))
+        .Read(read => read.Action("Taxfree_Read", "Tools"))
+        .Update(update => update.Action("Taxfree_Update", "Tools"))
+        .Destroy(destroy => destroy.Action("Taxfree_Destroy", "Tools"))
+        ) @* datasource*@
+        )
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+</script>

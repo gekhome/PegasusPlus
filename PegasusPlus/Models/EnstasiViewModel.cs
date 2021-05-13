@@ -43,15 +43,16 @@ namespace PegasusPlus.Models
         [Display(Name = "Όνομα αρχείου")]
         public string FileName { get; set; }
 
-        [Display(Name = "Διαδρομή")]
-        public string FilePath { get; set; }
-
         [Display(Name = "Σχολ. έτος")]
         public string SchoolYearText { get; set; }
 
         public int? EnstasiID { get; set; }
 
+        [Display(Name = "ΑΦΜ")]
+        public string TeacherAFM { get; set; }
+
         public virtual Enstaseis Enstaseis { get; set; }
+
     }
 
 }

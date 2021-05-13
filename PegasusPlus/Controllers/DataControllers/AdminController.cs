@@ -23,8 +23,8 @@ namespace PegasusPlus.Controllers.DataControllers
         private UserAdmins loggedAdmin;
         private int prokirixiId;
 
-        private const string UPLOAD_PATH = "~/App_Data/FilesPersonal/";
-        private const string EPIMORFOSI_PATH = "~/App_Data/FilesEpimorfosi/";
+        private const string UPLOAD_PATH = "~/Uploads/FilesPersonal/";
+        private const string EPIMORFOSI_PATH = "~/Uploads/FilesEpimorfosi/";
 
         Common c = new Common();
         Kerberos k = new Kerberos();
@@ -579,7 +579,19 @@ namespace PegasusPlus.Controllers.DataControllers
                             OaedMoriodotisiDate = d.OaedMoriodotisiDate,
                             OaedMscConfirm = d.OaedMscConfirm ?? false,
                             OaedPhdConfirm = d.OaedPhdConfirm ?? false,
-                            OaedPtyxioConfirm = d.OaedPtyxioConfirm ?? false
+                            OaedPtyxioConfirm = d.OaedPtyxioConfirm ?? false,
+                            MoriaCertified = d.MoriaCertified ?? 0.0m,
+                            MoriaComputer = d.MoriaComputer ?? 0.0m,
+                            MoriaEpimorfosi = d.MoriaEpimorfosi ?? 0.0m,
+                            MoriaLanguage = d.MoriaLanguage ?? 0.0m,
+                            MoriaPtyxio = d.MoriaPtyxio ?? 0.0m,
+                            MoriaMsc = d.MoriaMsc ?? 0.0m,
+                            MoriaPhd = d.MoriaPhd ?? 0.0m,
+                            MoriaTeach = d.MoriaTeach ?? 0.0m,
+                            MoriaWork = d.MoriaWork ?? 0.0m,
+                            MoriaAnergia = d.MoriaAnergia ?? 0.0m,
+                            MoriaSocial = d.MoriaSocial ?? 0.0m,
+                            MoriaTotal = d.MoriaTotal ?? 0.0m
                         }).FirstOrDefault();
 
             return data;
@@ -875,10 +887,9 @@ namespace PegasusPlus.Controllers.DataControllers
                         {
                             UploadFileID = d.UploadFileID,
                             FileName = d.FileName,
-                            FilePath = d.FilePath,
                             Description = d.Description,
                             SchoolYearText = d.SchoolYearText,
-                            TeacherAFM = d.TeacherAFM
+                            TeacherAFM = d.TeacherAFM,
                         }).ToList();
 
             return data;
@@ -1002,8 +1013,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             UploadFileID = d.UploadFileID,
                             Description = d.Description,
                             Filename = d.Filename,
-                            Filepath = d.Filepath,
-                            EpimorfosiID = d.EpimorfosiID
+                            EpimorfosiID = d.EpimorfosiID,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return (data);
@@ -1025,9 +1036,208 @@ namespace PegasusPlus.Controllers.DataControllers
 
         #endregion
 
+
+        #region UPLOADED FILES GRIDS
+
+        public ActionResult TeachingFiles_Read([DataSourceRequest] DataSourceRequest request, int expId = 0)
+        {
+            var data = GetUploadsTeachingFromDB(expId);
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<UploadsTeachingViewModel> GetUploadsTeachingFromDB(int expId = 0)
+        {
+            var data = (from d in db.UploadsTeaching
+                        where d.ExperienceID == expId
+                        orderby d.FileName
+                        select new UploadsTeachingViewModel
+                        {
+                            UploadFileID = d.UploadFileID,
+                            FileName = d.FileName,
+                            Description = d.Description,
+                            Category = d.Category,
+                            ExperienceID = d.ExperienceID,
+                            TeacherAFM = d.TeacherAFM
+                        }).ToList();
+
+            return data;
+        }
+
+        public ActionResult VocationFiles_Read([DataSourceRequest] DataSourceRequest request, int expId = 0)
+        {
+            var data = GetUploadsVocationFromDB(expId);
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<UploadsVocationViewModel> GetUploadsVocationFromDB(int expId = 0)
+        {
+            var data = (from d in db.UploadsVocation
+                        where d.ExperienceID == expId
+                        orderby d.FileName
+                        select new UploadsVocationViewModel
+                        {
+                            UploadFileID = d.UploadFileID,
+                            FileName = d.FileName,
+                            Description = d.Description,
+                            Category = d.Category,
+                            ExperienceID = d.ExperienceID,
+                            TeacherAFM = d.TeacherAFM
+                        }).ToList();
+
+            return data;
+        }
+
+        public ActionResult FreelanceFiles_Read([DataSourceRequest] DataSourceRequest request, int expId = 0)
+        {
+            var data = GetUploadsFreelanceFromDB(expId);
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<UploadsFreelanceViewModel> GetUploadsFreelanceFromDB(int expId = 0)
+        {
+            var data = (from d in db.UploadsFreelance
+                        where d.ExperienceID == expId
+                        orderby d.FileName
+                        select new UploadsFreelanceViewModel
+                        {
+                            UploadFileID = d.UploadFileID,
+                            FileName = d.FileName,
+                            Description = d.Description,
+                            Category = d.Category,
+                            ExperienceID = d.ExperienceID,
+                            TeacherAFM = d.TeacherAFM
+                        }).ToList();
+
+            return data;
+        }
+
+        #endregion
+
         #endregion
 
 
+        #region ΜΟΡΙΟΔΟΤΗΣΗ ΑΙΤΗΣΕΩΝ
+
+        public ActionResult AitiseisMoria()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+            }
+
+            int prokirixiId = c.GetAdminProkirixiID();
+            if (prokirixiId == 0)
+            {
+                return RedirectToAction("Index", "Admin", new { notify = "Δεν βρέθηκε ενεργοποιημένη προκήρυξη για διαχείριση." });
+            }
+
+            int schoolYearId = (int)c.GetAdminProkirixi().SchoolYear;
+            ViewData["prokirixiProtocol"] = c.GetAdminProkirixi().Protocol;
+            ViewData["schoolYearText"] = c.GetSchoolYearText(schoolYearId);
+
+            return View();
+        }
+
+        public ActionResult AitiseisMoria_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var data = GetTeacherAitiseisFromDB();
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<TeacherAitiseisViewModel> GetTeacherAitiseisFromDB()
+        {
+            int prokirixiId = c.GetAdminProkirixiID();
+
+            var data = (from d in db.sqlTeacherAitiseis
+                        where d.ProkirixisID == prokirixiId
+                        orderby d.FullName, d.AitisisProtocol
+                        select new TeacherAitiseisViewModel
+                        {
+                            AitisisID = d.AitisisID,
+                            AitisisProtocol = d.AitisisProtocol,
+                            TeacherAFM = d.TeacherAFM,
+                            FullName = d.FullName,
+                            EidikotitaText = d.EidikotitaText,
+                            OaedCheckStatus = d.OaedCheckStatus ?? false,
+                            OaedEnstasi = d.OaedEnstasi ?? false,
+                            PeriferiaID = d.PeriferiaID,
+                            PeriferiakiID = d.PeriferiakiID,
+                            PeriferiakiName = d.PeriferiakiName,
+                            PeriferiaName = d.PeriferiaName,
+                            ProkirixisID = d.ProkirixisID,
+                            Protocol = d.Protocol,
+                            SchoolID = d.SchoolID,
+                            SchoolName = d.SchoolName
+                        }).ToList();
+
+            return data;
+        }
+
+        public ActionResult SuperNova()
+        {
+            prokirixiId = c.GetAdminProkirixiID();
+            if (prokirixiId == 0)
+            {
+                string msg = "Δεν βρέθηκε ενεργοποιημένη προκήρυξη για διαχείριση.";
+                return RedirectToAction("Index", "Admin", new { notify = msg });
+            }
+
+            var aitiseis = (from d in db.Aitisis where d.ProkirixisID == prokirixiId select d).ToList();
+            if (aitiseis.Count == 0)
+            {
+                string msg = "Δεν βρέθηκαν αιτήσεις γι' αυτή την Προκήρυξη. Η μοριοδότηση ακυρώθηκε.";
+                return RedirectToAction("Index", "Admin", new { notify = msg });
+            }
+
+            foreach (var item in aitiseis)
+            {
+                var ap = (from d in db.sqlAitisiProsonta where d.AitisisID == item.AitisisID select d).FirstOrDefault();
+
+                Aitisis entity = db.Aitisis.Find(item.AitisisID);
+
+                entity.MoriaPtyxio = k.MoriaPtyxio(ap);
+                entity.MoriaMsc = k.MoriaMsc(ap);
+                entity.MoriaPhd = k.MoriaPhd(ap);
+                entity.MoriaLanguage = k.MoriaLanguages(ap);
+                entity.MoriaComputer = k.MoriaComputer(ap);
+                entity.MoriaCertified = k.MoriaCertifiedTrainer(ap);
+                entity.MoriaEpimorfosi = k.MoriaEpimorfosi(ap);
+                entity.MoriaTeach = k.MoriaTeach(ap);
+                entity.MoriaWork = k.MoriaWork(ap);
+                entity.MoriaAnergia = k.MoriaAnergia(ap);
+                entity.MoriaSocial = k.MoriaSocial(ap);
+                entity.MoriaTotal = k.MoriaTotal(ap);
+
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            string message = "Η μοριοδότηση όλων των αιτήσεων της προκήρυξης ολοκληρώθηκε.";
+            return Json(message, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AitisiMoriaView(int aitisiId)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+                return RedirectToAction("TLogin", "UserAdmins");
+            else
+                loggedAdmin = GetLoginAdmin();
+
+            AitisiDataViewModel model = GetAitisiDataFromDB(aitisiId);
+
+            return View(model);
+        }
+
+        #endregion
 
 
         #region ΣΥΝΟΛΙΚΟ ΜΗΤΡΩΟ ΕΚΠΑΙΔΕΥΤΙΚΩΝ
@@ -1122,6 +1332,99 @@ namespace PegasusPlus.Controllers.DataControllers
 
                 return View(parameters);
             }
+        }
+
+        #endregion
+
+
+        #region MORIA CALCULATION AND REPORT
+
+        public AitisiDataViewModel CalculateMoriaAitisi(AitisiDataViewModel a)
+        {
+            var ap = (from d in db.sqlAitisiProsonta where d.AitisisID == a.AitisisID select d).FirstOrDefault();
+            if (ap == null) return a;
+
+            Aitisis entity = db.Aitisis.Find(a.AitisisID);
+
+            entity.MoriaPtyxio = k.MoriaPtyxio(ap);
+            entity.MoriaMsc = k.MoriaMsc(ap);
+            entity.MoriaPhd = k.MoriaPhd(ap);
+            entity.MoriaLanguage = k.MoriaLanguages(ap);
+            entity.MoriaComputer = k.MoriaComputer(ap);
+            entity.MoriaCertified = k.MoriaCertifiedTrainer(ap);
+            entity.MoriaEpimorfosi = k.MoriaEpimorfosi(ap);
+            entity.MoriaTeach = k.MoriaTeach(ap);
+            entity.MoriaWork = k.MoriaWork(ap);
+            entity.MoriaAnergia = k.MoriaAnergia(ap);
+            entity.MoriaSocial = k.MoriaSocial(ap);
+            entity.MoriaTotal = k.MoriaTotal(ap);
+
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+
+            AitisiDataViewModel model = GetAitisiDataFromDB(a.AitisisID);
+            return model;
+        }
+
+        public AitisiDataViewModel GetAitisiDataFromDB(int aitisiId)
+        {
+            var data = (from d in db.sqlAitisiData
+                        where d.AitisisID == aitisiId
+                        select new AitisiDataViewModel
+                        {
+                            AitisisID = d.AitisisID,
+                            ProkirixisID = d.ProkirixisID,
+                            AitisisProtocol = d.AitisisProtocol,
+                            TeacherAFM = d.TeacherAFM,
+                            FullName = d.FullName,
+                            KladosEidikotita = d.KladosEidikotita,
+                            PeriferiaName = d.PeriferiaName,
+                            SchoolName = d.SchoolName,
+                            PtyxioTitlos = d.PtyxioTitlos,
+                            PtyxioTypeText = d.PtyxioTypeText,
+                            MscTitlos = d.MscTitlos,
+                            PhdTitlos = d.PhdTitlos,
+                            Ptyxio2Titlos = d.Ptyxio2Titlos,
+                            Language1Epipedo = d.Language1Epipedo,
+                            Language2Epipedo = d.Language2Epipedo,
+                            ComputerTitle = d.ComputerTitle,
+                            EpimorfosiHours = d.EpimorfosiHours,
+                            CertifiedTrainerAM = d.CertifiedTrainerAM,
+                            SocialAmeaText = d.SocialAmeaText,
+                            SocialPolyteknosText = d.SocialPolyteknosText,
+                            SocialSingleParentText = d.SocialSingleParentText,
+                            SocialTriteknosText = d.SocialTriteknosText,
+                            AnergiaDiarkeiaText = d.AnergiaDiarkeiaText,
+                            EpagelmaText = d.EpagelmaText,
+                            MoriaPtyxio = d.MoriaPtyxio,
+                            MoriaMsc = d.MoriaMsc,
+                            MoriaPhd = d.MoriaPhd,
+                            MoriaLanguages = d.MoriaLanguages,
+                            MoriaComputer = d.MoriaComputer,
+                            MoriaCertified = d.MoriaCertified,
+                            MoriaEpimorfosi = d.MoriaEpimorfosi,
+                            MoriaSocial = d.MoriaSocial,
+                            MoriaAnergia = d.MoriaAnergia,
+                            MoriaTeach = d.MoriaTeach,
+                            MoriaWork = d.MoriaWork,
+                            MoriaTotal = d.MoriaTotal
+                        }).FirstOrDefault();
+
+            return data;
+        }
+
+        public ActionResult AitisiMoriaPrint(int aitisiId)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+                return RedirectToAction("Login", "UserAdmins");
+            else
+                loggedAdmin = GetLoginAdmin();
+
+            AitisisParameters model = new AitisisParameters();
+            model.AitisiID = aitisiId;
+
+            return View(model);
         }
 
         #endregion

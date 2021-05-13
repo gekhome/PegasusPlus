@@ -1396,6 +1396,7 @@
     <Content Include="DAL\PegasusPlusEntityModel.edmx.diagram">
       <DependentUpon>PegasusPlusEntityModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\PegasusPlus.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1542,18 +1543,22 @@
     <Content Include="Views\Admin\EditPersonal.cshtml" />
     <Content Include="Views\Admin\EditSkills.cshtml" />
     <Content Include="Views\Admin\EpimorfoseisAdmin.cshtml" />
+    <Content Include="Views\Admin\AitiseisMoria.cshtml" />
+    <Content Include="Views\Admin\AitisiMoriaView.cshtml" />
+    <Content Include="Views\Admin\AitisiMoriaPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Enstaseis\" />
-    <Folder Include="App_Data\FilesEpimorfosi\" />
-    <Folder Include="App_Data\FilesExperience\" />
-    <Folder Include="App_Data\FilesPersonal\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Reports\Pinakes\" />
     <Folder Include="Reports\Statistics\" />
+    <Folder Include="Uploads\Enstaseis\" />
+    <Folder Include="Uploads\FilesEpimorfosi\" />
+    <Folder Include="Uploads\FilesExperience\" />
+    <Folder Include="Uploads\FilesPersonal\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

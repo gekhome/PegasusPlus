@@ -21,8 +21,8 @@ namespace PegasusPlus.Controllers.DataControllers
         private string Msg;
         private int prokirixiId;
         //private bool ViewAllowed;
-        private const string UPLOAD_PATH = "~/App_Data/FilesPersonal/";
-        private const string EPIMORFOSI_PATH = "~/App_Data/FilesEpimorfosi/";
+        private const string UPLOAD_PATH = "~/Uploads/FilesPersonal/";
+        private const string EPIMORFOSI_PATH = "~/Uploads/FilesEpimorfosi/";
 
         private const string UPLOAD_AFM_TEXT = "ΒΕΒΑΙΩΣΗ ΑΦΜ";
         private const string UPLOAD_ADT_TEXT = "ΒΕΒΑΙΩΣΗ ΑΔΤ";
@@ -460,7 +460,6 @@ namespace PegasusPlus.Controllers.DataControllers
                 TeacherUploads entity = new TeacherUploads()
                 {
                     FileName = filename,
-                    FilePath = filepath,
                     Description = description,
                     TeacherAFM = loggedTeacher.UserAfm,
                     SchoolYearText = c.GetSchoolYearText(schoolyearId)
@@ -1016,7 +1015,6 @@ namespace PegasusPlus.Controllers.DataControllers
                         {
                             UploadFileID = d.UploadFileID,
                             FileName = d.FileName,
-                            FilePath = d.FilePath,
                             Description = d.Description,
                             SchoolYearText = d.SchoolYearText,
                             TeacherAFM = d.TeacherAFM
@@ -1410,8 +1408,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             UploadFileID = d.UploadFileID,
                             Description = d.Description,
                             Filename = d.Filename,
-                            Filepath = d.Filepath,
-                            EpimorfosiID = d.EpimorfosiID
+                            EpimorfosiID = d.EpimorfosiID,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return (data);
@@ -1497,7 +1495,7 @@ namespace PegasusPlus.Controllers.DataControllers
                             EpimorfosiFiles fileDetail = new EpimorfosiFiles()
                             {
                                 Filename = fileName.Length > 255 ? fileName.Substring(0, 255) : fileName,
-                                Filepath = physicalPath,
+                                TeacherAFM = loggedTeacher.UserAfm,
                                 Description = "ΠΙΣΤΟΠΟΙΗΤΙΚΟ ΕΠΙΜΟΡΦΩΣΗΣ (" + loggedTeacher.UserAfm + ")",
                                 EpimorfosiID = epimorfosiId
                             };

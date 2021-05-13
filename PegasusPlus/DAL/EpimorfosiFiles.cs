@@ -17,8 +17,8 @@ namespace PegasusPlus.DAL
         public int UploadFileID { get; set; }
         public string Filename { get; set; }
         public string Description { get; set; }
-        public string Filepath { get; set; }
         public Nullable<int> EpimorfosiID { get; set; }
+        public string TeacherAFM { get; set; }
     
         public virtual Epimorfosis Epimorfosis { get; set; }
     }

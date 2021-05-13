@@ -1,0 +1,248 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+@{
+    ViewBag.Title = "Υποβολή ενστάσεων";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<style>
+    .page-header {
+        border-bottom: 1px solid #D3D3D3;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+        padding-bottom: 8px;
+    }
+
+    .inline-picture {
+        float: left;
+        margin: 30px 30px 20px 30px;
+        text-align: center;
+    }
+
+        .inline-picture img {
+            display: block;
+            margin-bottom: 10px;
+        }
+</style>
+
+<div class="page-header">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Μεταφόρτωση εγγράφων ενστάσεων</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+            @Html.ActionLink("Επιστροφή", "Index", "Teachers", null, new { @class = "btn btn-warning", style = "font-size:16px" })
+        </span>
+        <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px" onclick="RefreshChildGrid()">Ανανέωση</button>
+        <button class="btn btn-primary" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px" onclick="showHelp()">Οδηγίες</button>
+    </div>
+</div>
+
+<div class="body-content" style="margin:10px 30px 5px 30px;font-size:small">
+    @(Html.Kendo().Grid<EnstaseisViewModel>()
+        .Name("Master")
+        .Columns(columns =>
+        {
+            columns.ForeignKey(f => f.AitisiID, (IEnumerable<Aitisis>)ViewData["aitiseis"], "AitisisID", "AitisisProtocol").Width(25).Filterable(false);
+            columns.Bound(c => c.EnstasiDate).Width(20).Filterable(false);
+            columns.Bound(c => c.EnstasiSummary).Width(60);
+            columns.Bound(c => c.TeacherAFM).Width(20);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(34);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("EnstasiUpload", "Aitisis") + "?uploadId=#=EnstasiID#' target = _blank><span class=\"k-icon k-add\"></span>Ανέβασμα</a>"
+            ).Width(20);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
+        .Navigatable()
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(10))
+        .Selectable()
+        .Filterable()
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(260))
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(40)
+        .ServerOperation(true)
+        .Model(model =>
+        {
+            model.Id(p => p.EnstasiID);
+            model.Field(p => p.AitisiID).DefaultValue(ViewData["defaultAitisi"]);
+            model.Field(p => p.TeacherAFM).Editable(false);
+        })
+        .Create(create => create.Action("Enstasi_Create", "Aitisis"))
+        .Read(read => read.Action("Enstasi_Read", "Aitisis"))
+        .Update(update => update.Action("Enstasi_Update", "Aitisis"))
+        .Destroy(destroy => destroy.Action("Enstasi_Destroy", "Aitisis"))
+        .Events(events => events.Error("error_handler1"))
+        )
+        .Events(events => events.Change("change"))
+    )
+</div>
+
+<div class="body-content" style="margin:10px 30px 5px 30px;font-size:small">
+    @(Html.Kendo().Grid<EnstaseisFilesViewModel>()
+        .Name("Child")
+        .AutoBind(false)
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Navigatable()
+        .Filterable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine).CreateAt(GridInsertRowPosition.Top))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .Scrollable(scr => scr.Height(240))
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.UploadFileID).Width(20).Hidden();
+            columns.Bound(c => c.FileName).Width(60).Filterable(false);
+            columns.Bound(c => c.SchoolYearText).Width(20).Filterable(false);
+            columns.Command(command => { command.Destroy(); }).Width(20);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("DownloadEnstasiFile", "Aitisis") + "?file_id=#=UploadFileID#'><span class=\"k-icon k-update\"></span>Προβολή</a>"
+            ).Width(20);
+        })
+        .DataSource(ds => ds
+            .Ajax()
+            .Batch(false)
+            .PageSize(20)
+            .ServerOperation(true)
+            .Model(model =>
+            {
+                model.Id(p => p.UploadFileID);
+            })
+            .Read(read => read.Action("EnstasiFile_Read", "Aitisis").Data("data"))
+            .Destroy(destroy => destroy.Action("EnstasiFile_Destroy", "Aitisis"))
+            .Events(events => events.Error("error_handler2"))
+        )
+    )
+</div>
+
+<div id="modalWindow">
+    <div class="inline-picture">
+        <img src='@Url.Content("~/Images/other/file-upload.jpg")' height="260" width="380" alt="Στοιχεία μεταφόρτωσης" />
+        Στοιχεία μεταφόρτωσης αρχείων
+    </div>
+    <p style="margin-top:10px">
+        Στο πάνω πλέγμα δημιουργούμε μία εγγραφή στην οποία καταχωρούμε μία από τις
+        αιτήσεις που κάνουμε (αν είναι πάνω από μία) και μια σύντομη περιγραφή, π.χ.
+        "Υποβολή ένστασης". Αποθηκεύουμε την εγγραφή.
+    </p>
+    <p>
+        Πατάμε το κουμπί "Ανέβασμα" με το οποίο ανοίγει η καρτέλα μεταφόρτωσης στην οποία
+        επιλέγουμε από τον υπολογιστή μας τα σκαναρισμένα έντυπα. Μπορούμε να επιλέξουμε
+        πολλά έγγραφα ταυτόχρονα για μεταφόρτωση (οδηγίες υπάρχουν στην καρτέλα μεταφόρτωσης).
+    </p>
+    <p>
+        Στη σελίδα αυτή δημιουργούμε <b>μία μόνο</b> εγγραφή με τα στοιχεία που ζητούνται. Σε αυτή
+        συσχετίζονται όλα τα έντυπα που θα επιλέξουμε στην καρτέλα μεταφόρτωσης.
+    </p>
+    <p>
+        <b>Δεν δημιουργούμε μία εγγραφή, στο πάνω πλέγμα, για κάθε έντυπο που ανεβάζουμε!</b>.
+        Αφού γίνει η μεταφόρτωση, τα ανεβασμένα αρχεία εμφανίζονται στο κάτω πλέγμα της σελίδας αυτής.
+        Για την εμφάνιση των ανεβασμένων εγγράφων, στο κάτω πλέγμα, πρέπει να κάνουμε κλικ
+        επάνω στη γραμμή με την περιγραφή του πάνω πλέγματος, οπότε εμφανίζεται χρωματισμένη,
+        δηλαδή επιλεγμένη. Η εικόνα απεικονίζει τον ορθό τρόπο καταχώρησης/μεταφόρτωσης.
+    </p>
+    <div style="margin-left:0px;margin-top:20px;text-align:center;">
+        <button id="close" class="k-button" style="margin-left:5px">Κλείσιμο</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        wnd = $("#modalWindow").kendoWindow({
+            title: "Οδηγίες καταχώρησης",
+            modal: true,
+            visible: false,
+            resizable: false,
+            height: 460,
+            width: 800
+        }).data("kendoWindow");
+
+    });
+
+    function showHelp() {
+        // Open user-dialog window
+        wnd.center().open();
+
+        $("#close").click(function () {
+            wnd.close();
+        });
+
+    }
+
+    function RefreshMasterGrid(e) {
+        var grid = $("#Master").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function RefreshChildGrid(e) {
+        var grid = $("#Child").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function change(e) {
+        var dataItem = this.dataItem(this.select());
+        var enstasiID = dataItem.EnstasiID;
+
+        $("#Child").data("kendoGrid").dataSource.read({ uploadId: enstasiID });
+    }
+
+    function data() {
+        var masterGrid = $("#Master").data("kendoGrid");
+        // get data item for selected row
+        var dataItem = masterGrid.dataItem(masterGrid.select());
+        if (dataItem) {
+            return { uploadId: dataItem.EnstasiID };
+        }
+        else {
+            return { uploadId: 0 };
+        }
+    }
+
+    function error_handler1(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+        }
+        $("#Master").data("kendoGrid").dataSource.read();
+    }
+
+    function error_handler2(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+        }
+        $("#Child").data("kendoGrid").dataSource.read();
+    }
+
+</script>

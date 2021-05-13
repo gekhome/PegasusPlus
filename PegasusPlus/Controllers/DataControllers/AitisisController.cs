@@ -22,8 +22,8 @@ namespace PegasusPlus.Controllers.DataControllers
         private string Msg;
         private int prokirixiId;
         private bool ViewAllowed;
-        private const string UPLOAD_PATH = "~/App_Data/FilesPersonal/";
-        private const string ENSTASEIS_PATH = "~/App_Data/Enstaseis/";
+        private const string UPLOAD_PATH = "~/Uploads/FilesPersonal/";
+        private const string ENSTASEIS_PATH = "~/Uploads/Enstaseis/";
 
         private const string PTYXIO_TEXT = "ΒΑΣΙΚΟ ΠΤΥΧΙΟ";
         private const string PTYXIO_ANAGNORISI_TEXT = "ΑΝΑΓΝΩΡΙΣΗ ΒΑΣΙΚΟΥ ΠΤΥΧΙΟΥ";
@@ -474,7 +474,6 @@ namespace PegasusPlus.Controllers.DataControllers
                 TeacherUploads entity = new TeacherUploads()
                 {
                     FileName = filename,
-                    FilePath = filepath,
                     Description = description,
                     TeacherAFM = loggedTeacher.UserAfm,
                     SchoolYearText = c.GetSchoolYearText(schoolyearId)
@@ -977,7 +976,7 @@ namespace PegasusPlus.Controllers.DataControllers
                             EnstasiID = d.EnstasiID,
                             SchoolYearText = d.SchoolYearText,
                             FileName = d.FileName,
-                            FilePath = d.FilePath
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return (data);
@@ -1081,9 +1080,9 @@ namespace PegasusPlus.Controllers.DataControllers
                             EnstaseisFiles fileDetail = new EnstaseisFiles()
                             {
                                 FileName = fileName,
-                                FilePath = physicalPath,
                                 SchoolYearText = schoolYearText,
-                                EnstasiID = uploadId
+                                EnstasiID = uploadId,
+                                TeacherAFM = loggedTeacher.UserAfm
                             };
                             db.EnstaseisFiles.Add(fileDetail);
                             db.SaveChanges();
@@ -1218,9 +1217,6 @@ namespace PegasusPlus.Controllers.DataControllers
                 loggedTeacher = GetLoginTeacher();
 
             AitisiDataViewModel model = GetAitisiDataFromDB(aitisiId);
-
-            // This is for testing only. It will be removed in the final version
-            model = CalculateMoriaAitisi(model);
 
             return View(model);
         }
