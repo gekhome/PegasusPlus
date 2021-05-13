@@ -428,7 +428,8 @@
         var row = $(e.currentTarget).closest("tr");
         var data = this.dataItem(row);
 
-        var url = "/Uploads/FilesExperience/" + data.TeacherAFM + "/";
+        var currentDomain = '@Url.Content("~")';
+        var url = currentDomain + "Uploads/FilesExperience/" + data.TeacherAFM + "/";
         fileName = data.FileName;
 
         $("#dialog").dialog({

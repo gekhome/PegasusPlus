@@ -178,7 +178,8 @@
         var row = $(e.currentTarget).closest("tr");
         var data = this.dataItem(row);
 
-        var url = "/Uploads/FilesEpimorfosi/" + data.TeacherAFM + "/";
+        var currentDomain = '@Url.Content("~")';
+        var url = currentDomain + "Uploads/FilesEpimorfosi/" + data.TeacherAFM + "/";
 
         fileName = data.Filename;
 

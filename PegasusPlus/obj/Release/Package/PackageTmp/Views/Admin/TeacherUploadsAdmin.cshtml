@@ -103,7 +103,8 @@
         var row = $(e.currentTarget).closest("tr");
         var data = this.dataItem(row);
 
-        var url = "/Uploads/FilesPersonal/" + data.TeacherAFM + "/";
+        var currentDomain = '@Url.Content("~")';
+        var url = currentDomain + "Uploads/FilesPersonal/" + data.TeacherAFM + "/";
 
         fileName = data.FileName;
         $("#dialog").dialog({
