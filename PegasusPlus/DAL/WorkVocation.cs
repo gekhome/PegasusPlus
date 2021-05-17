@@ -27,5 +27,6 @@ namespace PegasusPlus.DAL
         public string DocumentProtocol { get; set; }
         public string DocumentForeas { get; set; }
         public Nullable<bool> Valid { get; set; }
+        public string TeacherAFM { get; set; }
     }
 }

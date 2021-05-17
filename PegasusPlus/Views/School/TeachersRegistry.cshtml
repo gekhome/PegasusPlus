@@ -1,0 +1,64 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+@{
+    ViewBag.Title = "Ευρετήριο εκπαιδευτών";
+    Layout = "~/Views/Shared/_SchoolLayout.cshtml";
+}
+
+<div class="page-header" style="margin:5px 30px 5px 50px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+        <font style="color:#292929;float:left;font-family:'Segoe UI'">Ευρετήριο εκπαιδευτικών</font>
+    </span>
+    <span style="margin:5px 15px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">@Html.ActionLink("Επιστροφή", "Index", "School", null, new { @class = "btn btn-warning", style = "font-size:14px" })</span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Ανανέωση</button>
+</div>
+
+
+<div class="body-content" style="margin:10px 20px 5px 20px">
+    @(Html.Kendo().Grid<TeachersRegistryViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.AFM).Title("Α.Φ.Μ.").Width(15).Groupable(false);
+            columns.Bound(m => m.FullName).Title("Ονοματεπώνυμο").Width(30);
+            columns.Bound(m => m.Telephone).Width(16).Groupable(false);
+            columns.Bound(m => m.CellPhone).Width(16).Groupable(false);
+            columns.Bound(m => m.Email).Width(32).Groupable(false);
+            columns.Bound(m => m.FullAddress).Width(45);
+            columns.Bound(m => m.Age).Width(10);
+            columns.ForeignKey(f => f.Idiotita, (IEnumerable<SysIdiotita>)ViewData["idiotites"], "IdiotitaID", "IdiotitaText").Width(25);
+        })
+        .HtmlAttributes(new { style = "font-size:13px" })
+        .Filterable()
+        .Groupable()
+        .Selectable()
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(500))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(10))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .PageSize(60)
+        .ServerOperation(true)
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.AFM);
+        })
+        .Read("TeachersRegistry_Read", "School")
+    )
+    )
+</div>
+
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+</script>

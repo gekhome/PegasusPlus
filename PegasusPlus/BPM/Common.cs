@@ -358,6 +358,23 @@ namespace PegasusPlus.BPM
                 return qry.ProkirixiID;
         }
 
+        public ProkirixisViewModel GetOpenProkirixi()
+        {
+            var data = (from d in db.Prokirixis
+                        where d.Status == 1
+                        select new ProkirixisViewModel
+                        {
+                            ProkirixiID = d.ProkirixiID,
+                            Fek = d.Fek,
+                            Protocol = d.Protocol,
+                            SchoolYear = d.SchoolYear,
+                            Dioikitis = d.Dioikitis,
+                            DateStart = d.DateStart,
+                            DateEnd = d.DateEnd
+                        }).FirstOrDefault();
+            return (data);
+        }
+
         public ProkirixisViewModel GetAdminProkirixi()
         {
             var data = (from d in db.Prokirixis
@@ -424,6 +441,18 @@ namespace PegasusPlus.BPM
                 return false;
             else
                 return (bool)qry.Enstaseis;
+        }
+
+        public int? GetEidikotitaGroupId(int eidikotita)
+        {
+            int? groupId = null;
+
+            var data = (from d in db.SysEidikotites where d.EidikotitaID == eidikotita select d).FirstOrDefault();
+            if (data != null)
+            {
+                if (data.EidikotitaGroupID != null) groupId = (int)data.EidikotitaGroupID;
+            }
+            return groupId;
         }
 
         #endregion

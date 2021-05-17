@@ -136,6 +136,7 @@ namespace PegasusPlus.Controllers.DataControllers
                     ProkirixisID = c.GetOpenProkirixiID(),
                     Klados = model.Klados,
                     Eidikotita = model.Eidikotita,
+                    EidikotitaGroup = model.Eidikotita.HasValue ? c.GetEidikotitaGroupId((int)model.Eidikotita) : null,
                     BasicEducation = model.BasicEducation,
                     PtyxioType = model.PtyxioType,
                     PtyxioTitlos = model.PtyxioTitlos,
@@ -201,8 +202,8 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.AitisisDate = DateTime.Now.Date;
                 entity.Klados = model.Klados;
                 entity.Eidikotita = model.Eidikotita;
+                entity.EidikotitaGroup = model.Eidikotita.HasValue ? c.GetEidikotitaGroupId((int)model.Eidikotita) : null;
                 entity.EpagelmaCategory = model.EpagelmaCategory;
-
                 entity.BasicEducation = model.BasicEducation;
                 entity.PtyxioType = model.PtyxioType;
                 entity.PtyxioTitlos = model.PtyxioTitlos;
@@ -266,8 +267,8 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.AitisisDate = DateTime.Now.Date;
                 entity.Klados = model.Klados;
                 entity.Eidikotita = model.Eidikotita;
+                entity.EidikotitaGroup = model.Eidikotita.HasValue ? c.GetEidikotitaGroupId((int)model.Eidikotita) : null;
                 entity.EpagelmaCategory = model.EpagelmaCategory;
-
                 entity.BasicEducation = model.BasicEducation;
                 entity.PtyxioType = model.PtyxioType;
                 entity.PtyxioTitlos = model.PtyxioTitlos;
@@ -468,7 +469,7 @@ namespace PegasusPlus.Controllers.DataControllers
             prokirixiId = c.GetOpenProkirixiID();
             int schoolyearId = (int)db.Prokirixis.Find(prokirixiId).SchoolYear;
 
-            var data = (from d in db.TeacherUploads where d.FileName == filename select d).Count();
+            var data = (from d in db.TeacherUploads where d.FileName == filename && d.TeacherAFM == loggedTeacher.UserAfm select d).Count();
             if (data == 0)
             {
                 TeacherUploads entity = new TeacherUploads()

@@ -81,6 +81,8 @@ namespace PegasusPlus.Controllers.DataControllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Teaching_Create([DataSourceRequest] DataSourceRequest request, WorkTeachingViewModel data, int aitisiId = 0)
         {
+            loggedTeacher = GetLoginTeacher();
+
             var newdata = new WorkTeachingViewModel();
 
             if (aitisiId > 0)
@@ -100,7 +102,9 @@ namespace PegasusPlus.Controllers.DataControllers
                         Moria = k.MoriaTeaching(data),
                         DocumentProtocol = data.DocumentProtocol,
                         DocumentForeas = data.DocumentForeas,
-                        Valid = true
+                        Valid = true,
+                        TeacherAFM = loggedTeacher.UserAfm,
+                        SchoolYearText = c.GetSchoolYearText((int)data.SchoolYear)
                     };
                     db.WorkTeaching.Add(entity);
                     db.SaveChanges();
@@ -118,6 +122,9 @@ namespace PegasusPlus.Controllers.DataControllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Teaching_Update([DataSourceRequest] DataSourceRequest request, WorkTeachingViewModel data, int aitisiId = 0)
         {
+            loggedTeacher = GetLoginTeacher();
+            int schoolYearId = (int)c.GetOpenProkirixi().SchoolYear;
+
             var newdata = new WorkTeachingViewModel();
 
             if (aitisiId > 0)
@@ -138,6 +145,8 @@ namespace PegasusPlus.Controllers.DataControllers
                     entity.DocumentForeas = data.DocumentForeas;
                     entity.Moria = k.MoriaTeaching(data);
                     entity.Valid = true;
+                    entity.TeacherAFM = loggedTeacher.UserAfm;
+                    entity.SchoolYearText = c.GetSchoolYearText((int)data.SchoolYear);
 
                     db.Entry(entity).State = EntityState.Modified;
                     db.SaveChanges();
@@ -200,7 +209,7 @@ namespace PegasusPlus.Controllers.DataControllers
         {
             var data = (from d in db.WorkTeaching
                         where d.AitisiID == aitisiId
-                        orderby d.SchoolYear descending, d.TeachType
+                        orderby d.SchoolYearText descending, d.TeachType
                         select new WorkTeachingViewModel
                         {
                             ExperienceID = d.ExperienceID,
@@ -215,7 +224,9 @@ namespace PegasusPlus.Controllers.DataControllers
                             Moria = d.Moria,
                             DocumentProtocol = d.DocumentProtocol,
                             DocumentForeas = d.DocumentForeas,
-                            Valid = d.Valid ?? true
+                            Valid = d.Valid ?? true,
+                            SchoolYearText = d.SchoolYearText,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -472,6 +483,7 @@ namespace PegasusPlus.Controllers.DataControllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Vocation_Create([DataSourceRequest] DataSourceRequest request, WorkVocationViewModel data, int aitisiId = 0)
         {
+            loggedTeacher = GetLoginTeacher();
             var newdata = new WorkVocationViewModel();
 
             if (aitisiId > 0)
@@ -491,7 +503,8 @@ namespace PegasusPlus.Controllers.DataControllers
                         DocumentForeas = data.DocumentForeas,
                         Position = data.Position,
                         Subject = data.Subject,
-                        Valid = true
+                        Valid = true,
+                        TeacherAFM = loggedTeacher.UserAfm
                     };
                     db.WorkVocation.Add(entity);
                     db.SaveChanges();
@@ -509,6 +522,7 @@ namespace PegasusPlus.Controllers.DataControllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Vocation_Update([DataSourceRequest] DataSourceRequest request, WorkVocationViewModel data, int aitisiId = 0)
         {
+            loggedTeacher = GetLoginTeacher();
             var newdata = new WorkVocationViewModel();
 
             if (aitisiId > 0)
@@ -529,6 +543,7 @@ namespace PegasusPlus.Controllers.DataControllers
                     entity.Subject = data.Subject;
                     entity.Moria = k.MoriaVocation(data);
                     entity.Valid = true;
+                    entity.TeacherAFM = loggedTeacher.UserAfm;
 
                     db.Entry(entity).State = EntityState.Modified;
                     db.SaveChanges();
@@ -606,7 +621,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             DocumentForeas = d.DocumentForeas,
                             Position = d.Position,
                             Subject = d.Subject,
-                            Valid = d.Valid ?? true
+                            Valid = d.Valid ?? true,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -864,6 +880,7 @@ namespace PegasusPlus.Controllers.DataControllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Freelance_Create([DataSourceRequest] DataSourceRequest request, WorkFreelanceViewModel data, int aitisiId = 0)
         {
+            loggedTeacher = GetLoginTeacher();
             var newdata = new WorkFreelanceViewModel();
             float _taxfree = 0;
             string _nomisma = "";
@@ -890,7 +907,8 @@ namespace PegasusPlus.Controllers.DataControllers
                         IncomeCurrency = _nomisma,
                         WorkEvidence = data.WorkEvidence,
                         Subject = data.Subject,
-                        Valid = true
+                        Valid = true,
+                        TeacherAFM = loggedTeacher.UserAfm
                     };
                     db.WorkFreelance.Add(entity);
                     db.SaveChanges();
@@ -908,6 +926,7 @@ namespace PegasusPlus.Controllers.DataControllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Freelance_Update([DataSourceRequest] DataSourceRequest request, WorkFreelanceViewModel data, int aitisiId = 0)
         {
+            loggedTeacher = GetLoginTeacher();
             var newdata = new WorkFreelanceViewModel();
             float _taxfree = 0;
             string _nomisma = "";
@@ -935,6 +954,7 @@ namespace PegasusPlus.Controllers.DataControllers
                     entity.Subject = data.Subject;
                     entity.Moria = k.MoriaFreelance(data);
                     entity.Valid = true;
+                    entity.TeacherAFM = loggedTeacher.UserAfm;
 
                     db.Entry(entity).State = EntityState.Modified;
                     db.SaveChanges();
@@ -1016,7 +1036,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             Moria = d.Moria,
                             WorkEvidence = d.WorkEvidence,
                             Subject = d.Subject,
-                            Valid = d.Valid ?? true
+                            Valid = d.Valid ?? true,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;

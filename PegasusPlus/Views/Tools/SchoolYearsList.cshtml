@@ -1,7 +1,7 @@
 ﻿@using PegasusPlus.Models
 
 @{
-    ViewBag.Title = "SchoolYearsList";
+    ViewBag.Title = "Σχολικά έτη";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,7 +9,7 @@
     <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
         <font style="color:#292929;font-family:'Segoe UI'">Σχολικά Έτη</font>
     </span>
-    <span style="margin:0px 10px 5px 5px;float:right;font-family:'Segoe UI';">@Html.ActionLink("Επιστροφή", "Index", "Admin2", null, new { @class = "btn btn-warning", style = "font-size:16px" })</span>
+    <span style="margin:0px 10px 5px 5px;float:right;font-family:'Segoe UI';">@Html.ActionLink("Επιστροφή", "Index", "Admin", null, new { @class = "btn btn-warning", style = "font-size:16px" })</span>
     <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px" onclick="RefreshGrid()">Ανανέωση</button>
 </div>
 

@@ -16,6 +16,7 @@
           <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="Klados" Type="int" />
           <Property Name="Eidikotita" Type="int" />
+          <Property Name="EidikotitaGroup" Type="int" />
           <Property Name="BasicEducation" Type="int" />
           <Property Name="PtyxioType" Type="int" />
           <Property Name="PtyxioTitlos" Type="nvarchar" MaxLength="255" />
@@ -550,6 +551,7 @@
           <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AitisiID" Type="int" />
           <Property Name="ProkirixiID" Type="int" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="DateStart" Type="date" />
           <Property Name="DateFinal" Type="date" />
           <Property Name="DaysAuto" Type="int" />
@@ -570,6 +572,7 @@
           <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AitisiID" Type="int" />
           <Property Name="ProkirixiID" Type="int" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="TeachType" Type="int" />
           <Property Name="SchoolYear" Type="int" />
           <Property Name="DateStart" Type="date" />
@@ -580,6 +583,7 @@
           <Property Name="DocumentProtocol" Type="nvarchar" MaxLength="50" />
           <Property Name="DocumentForeas" Type="nvarchar" MaxLength="50" />
           <Property Name="Valid" Type="bit" />
+          <Property Name="SchoolYearText" Type="nvarchar" MaxLength="9" />
         </EntityType>
         <EntityType Name="WorkVocation">
           <Key>
@@ -588,6 +592,7 @@
           <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AitisiID" Type="int" />
           <Property Name="ProkirixiID" Type="int" />
+          <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
           <Property Name="DateStart" Type="date" />
           <Property Name="DateFinal" Type="date" />
           <Property Name="DaysAuto" Type="int" />
@@ -2054,6 +2059,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="WorkEvidence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Valid" Type="Boolean" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WorkTeaching">
           <Key>
@@ -2072,6 +2078,8 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="DocumentProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DocumentForeas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Valid" Type="Boolean" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolYearText" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WorkVocation">
           <Key>
@@ -2090,6 +2098,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="DocumentProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DocumentForeas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Valid" Type="Boolean" />
+          <Property Name="TeacherAFM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Aitisis">
           <Key>
@@ -2156,6 +2165,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="OaedCheckStatus" Type="Boolean" />
           <Property Name="OaedEnstasi" Type="Boolean" />
           <NavigationProperty Name="Teachers" Relationship="PegasusPlusDBModel.FK_Aitisis_Teachers" FromRole="Aitisis" ToRole="Teachers" />
+          <Property Name="EidikotitaGroup" Type="Int32" />
         </EntityType>
         <Association Name="FK_Aitisis_Teachers">
           <End Type="PegasusPlusDBModel.Teachers" Role="Teachers" Multiplicity="0..1" />
@@ -2975,6 +2985,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <EntitySetMapping Name="WorkFreelance">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.WorkFreelance">
               <MappingFragment StoreEntitySet="WorkFreelance">
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
                 <ScalarProperty Name="Valid" ColumnName="Valid" />
                 <ScalarProperty Name="WorkEvidence" ColumnName="WorkEvidence" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
@@ -2996,6 +3007,8 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <EntitySetMapping Name="WorkTeaching">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.WorkTeaching">
               <MappingFragment StoreEntitySet="WorkTeaching">
+                <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
                 <ScalarProperty Name="Valid" ColumnName="Valid" />
                 <ScalarProperty Name="DocumentForeas" ColumnName="DocumentForeas" />
                 <ScalarProperty Name="DocumentProtocol" ColumnName="DocumentProtocol" />
@@ -3015,6 +3028,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <EntitySetMapping Name="WorkVocation">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.WorkVocation">
               <MappingFragment StoreEntitySet="WorkVocation">
+                <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
                 <ScalarProperty Name="Valid" ColumnName="Valid" />
                 <ScalarProperty Name="DocumentForeas" ColumnName="DocumentForeas" />
                 <ScalarProperty Name="DocumentProtocol" ColumnName="DocumentProtocol" />
@@ -3034,6 +3048,7 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <EntitySetMapping Name="Aitisis">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.Aitisis">
               <MappingFragment StoreEntitySet="Aitisis">
+                <ScalarProperty Name="EidikotitaGroup" ColumnName="EidikotitaGroup" />
                 <ScalarProperty Name="OaedEnstasi" ColumnName="OaedEnstasi" />
                 <ScalarProperty Name="OaedCheckStatus" ColumnName="OaedCheckStatus" />
                 <ScalarProperty Name="OaedEpitropi2Text" ColumnName="OaedEpitropi2Text" />

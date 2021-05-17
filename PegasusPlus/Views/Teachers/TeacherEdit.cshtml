@@ -114,24 +114,24 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FirstName, new { @class = "col-form-label col-md-4" })
                             @Html.EditorFor(model => model.FirstName, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.FirstName)
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.LastName, new { @class = "col-form-label col-md-4" })
                             @Html.EditorFor(model => model.LastName, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.LastName)
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FatherName, new { @class = "col-form-label col-md-4" })
                             @Html.EditorFor(model => model.FatherName, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.FatherName)
+                            @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
                         </div>
                     </div>    
                     <div class="row col-md-12 ml-4 mb-2">
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MotherName, new { @class = "col-form-label col-md-4" })
                             @Html.EditorFor(model => model.MotherName, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.MotherName)
+                            @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Gender, new { @class = "col-form-label col-md-4" })
@@ -155,7 +155,7 @@
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.FamilyStatus, new { @class = "col-form-label col-md-8" })
-                            @(Html.Kendo().DropDownListFor(model => model.Gender)
+                            @(Html.Kendo().DropDownListFor(model => model.FamilyStatus)
                             .Name("FamilyStatus")
                             .DataTextField("FamilyStatusText")
                             .DataValueField("FamilyStatusID")
@@ -218,34 +218,34 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.City, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.City, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.City)
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PostCode, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.PostCode, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.PostCode)
+                            @Html.ValidationMessageFor(model => model.PostCode, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Address, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.Address, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Address)
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-3">
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Telephone, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Telephone, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Telephone)
+                            @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.CellPhone, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.CellPhone, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.CellPhone)
+                            @Html.ValidationMessageFor(model => model.CellPhone, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Email, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Email, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </text>);
@@ -257,7 +257,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.ADT, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.ADT, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.ADT)
+                            @Html.ValidationMessageFor(model => model.ADT, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.ADT_FILENAME, new { @class = "col-form-label col-md-6" })
@@ -300,7 +300,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AMKA, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.AMKA, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.AMKA)
+                            @Html.ValidationMessageFor(model => model.AMKA, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AMKA_FILENAME, new { @class = "col-form-label col-md-6" })
@@ -322,7 +322,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AMA, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.AMA, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.AMA)
+                            @Html.ValidationMessageFor(model => model.AMA, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.AMA_FILENAME, new { @class = "col-form-label col-md-6" })
@@ -344,16 +344,16 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.DOY, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.DOY, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.DOY)
+                            @Html.ValidationMessageFor(model => model.DOY, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Epagelma, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Epagelma, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Epagelma)
+                            @Html.ValidationMessageFor(model => model.Epagelma, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Idiotita, new { @class = "col-form-label col-md-6" })
-                            @(Html.Kendo().DropDownListFor(model => model.Idiotita)
+                            @(Html.Kendo().DropDownListFor(model => model.Idiotita, "", new { @class = "text-danger" })
                                 .Name("Idiotita")
                                 .DataTextField("IdiotitaText")
                                 .DataValueField("IdiotitaID")
@@ -381,7 +381,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.SocialTriteknos, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.SocialTriteknos, new { @class = "form-control col-md-1" })
-                            @Html.ValidationMessageFor(model => model.SocialTriteknos)
+                            @Html.ValidationMessageFor(model => model.SocialTriteknos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialTriteknosFilename, new { @class = "col-form-label col-md-6" })
@@ -405,7 +405,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.SocialPolyteknos, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.SocialPolyteknos, new { @class = "form-control col-md-1" })
-                            @Html.ValidationMessageFor(model => model.SocialPolyteknos)
+                            @Html.ValidationMessageFor(model => model.SocialPolyteknos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialPolyteknosFilename, new { @class = "col-form-label col-md-6" })
@@ -429,7 +429,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.SocialSingleParent, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.SocialSingleParent, new { @class = "form-control col-md-1" })
-                            @Html.ValidationMessageFor(model => model.SocialSingleParent)
+                            @Html.ValidationMessageFor(model => model.SocialSingleParent, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialSingleParentFilename, new { @class = "col-form-label col-md-6" })
@@ -453,7 +453,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.SocialAmea, new { @class = "col-form-label col-md-8" })
                             @Html.EditorFor(model => model.SocialAmea, new { @class = "form-control col-md-1" })
-                            @Html.ValidationMessageFor(model => model.SocialAmea)
+                            @Html.ValidationMessageFor(model => model.SocialAmea, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialAmeaFilename, new { @class = "col-form-label col-md-6" })
@@ -492,7 +492,7 @@
                                     .ServerFiltering(true);
                                 })
                             )
-                            @Html.ValidationMessageFor(model => model.SocialAnergos)
+                            @Html.ValidationMessageFor(model => model.SocialAnergos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.SocialAnergosFilename, new { @class = "col-form-label col-md-6" })

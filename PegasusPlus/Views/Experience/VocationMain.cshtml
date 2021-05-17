@@ -56,7 +56,7 @@
         {
             toolBar.Create();
         })
-        .Editable(edit => edit.Mode(GridEditMode.PopUp).Window(w => w.Width(800).Height(600).Title("Επεξεργασία επαγγελματικής εμπειρίας")).TemplateName("FormVocation"))
+        .Editable(edit => edit.Mode(GridEditMode.PopUp).Window(w => w.Width(800).Height(640).Title("Επεξεργασία επαγγελματικής εμπειρίας")).TemplateName("FormVocation"))
         .HtmlAttributes(new { style = "font-size:14px" })
         .Events(e => e.Edit("onEdited"))
         .Navigatable()

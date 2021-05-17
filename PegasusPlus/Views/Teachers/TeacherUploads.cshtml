@@ -72,7 +72,7 @@
 </div>
 
 @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
@@ -103,10 +103,9 @@
         var row = $(e.currentTarget).closest("tr");
         var data = this.dataItem(row);
 
-        //// NOT USED /////
-        var url = "../App_Data/FilesPersonal/" + data.TeacherAFM + "/";
+        var currentDomain = '@Url.Content("~")';
+        var url = currentDomain + "Uploads/FilesPersonal/" + data.TeacherAFM + "/";
 
-        filePath = data.FilePath;
         fileName = data.FileName;
         $("#dialog").dialog({
             modal: true,
@@ -121,7 +120,7 @@
             open: function () {
                 var object = "<object data=\"{FileName}\" type=\"application/pdf\" width=\"800px\" height=\"600px\"></object>";
                 //object += "</object>";
-                object = object.replace(/{FileName}/g, filePath);
+                object = object.replace(/{FileName}/g, url + fileName);
                 $("#dialog").html(object);
             }
         });

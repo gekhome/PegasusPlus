@@ -88,7 +88,7 @@
                 <font style="color:#292929;">Επεξεργασία αίτησης εκπαιδευτικού <i style="font-size:medium;margin-left:10px;color:red">(τα πεδία με * είναι υποχρεωτικά)</i></font>
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
-                @Html.ActionLink("Επιστροφή", "AitisisList", "Aitisis", new { @class = "btn btn-warning", style = "font-size:16px" })
+                @Html.ActionLink("Επιστροφή", "AitisisList", "Aitisis", null, new { @class = "btn btn-warning", style = "font-size:16px" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
                 @Html.ActionLink("Αρχεία", "TeacherUploads", "Teachers", new { afm = Model.TeacherAFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
@@ -221,7 +221,7 @@
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioTitlos, new { @class = "col-form-label col-md-6" })
                                 @Html.EditorFor(model => model.PtyxioTitlos, new { @class = "form-control col-md-4" })
-                                @Html.ValidationMessageFor(model => model.PtyxioTitlos)
+                                @Html.ValidationMessageFor(model => model.PtyxioTitlos, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioYear, new { @class = "col-form-label col-md-6" })
@@ -254,29 +254,29 @@
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioInstitution, new { @class = "col-form-label col-md-6" })
                                 @Html.EditorFor(model => model.PtyxioInstitution, new { @class = "form-control col-md-4" })
-                                @Html.ValidationMessageFor(model => model.PtyxioInstitution)
+                                @Html.ValidationMessageFor(model => model.PtyxioInstitution, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioSchool, new { @class = "col-form-label col-md-6" })
                                 @Html.EditorFor(model => model.PtyxioSchool, new { @class = "form-control col-md-4" })
-                                @Html.ValidationMessageFor(model => model.PtyxioSchool)
+                                @Html.ValidationMessageFor(model => model.PtyxioSchool, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="row col-md-12 ml-4 mb-2">
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioTmima, new { @class = "col-form-label col-md-6" })
                                 @Html.EditorFor(model => model.PtyxioTmima, new { @class = "form-control col-md-4" })
-                                @Html.ValidationMessageFor(model => model.PtyxioTmima)
+                                @Html.ValidationMessageFor(model => model.PtyxioTmima, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioForeign, new { @class = "col-form-label col-md-12" })
                                 @Html.EditorFor(model => model.PtyxioForeign, new { @class = "form-control col-md-4" })
-                                @Html.ValidationMessageFor(model => model.PtyxioForeign)
+                                @Html.ValidationMessageFor(model => model.PtyxioForeign, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-3">
                                 @Html.LabelFor(model => model.PtyxioAnagnorisi, new { @class = "col-form-label col-md-12" })
                                 @Html.EditorFor(model => model.PtyxioAnagnorisi, new { @class = "form-control col-md-4" })
-                                @Html.ValidationMessageFor(model => model.PtyxioAnagnorisi)
+                                @Html.ValidationMessageFor(model => model.PtyxioAnagnorisi, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="row col-md-12 ml-4 mb-2">
@@ -324,12 +324,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MscTitlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.MscTitlos, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.MscTitlos)
+                            @Html.ValidationMessageFor(model => model.MscTitlos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MscInstitution, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.MscInstitution, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.MscInstitution)
+                            @Html.ValidationMessageFor(model => model.MscInstitution, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MscYear, new { @class = "col-form-label col-md-6" })
@@ -369,12 +369,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MscForeign, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.MscForeign, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.MscForeign)
+                            @Html.ValidationMessageFor(model => model.MscForeign, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MscAnagnorisi, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.MscAnagnorisi, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.MscAnagnorisi)
+                            @Html.ValidationMessageFor(model => model.MscAnagnorisi, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-2">
@@ -422,12 +422,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PhdTitlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.PhdTitlos, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.PhdTitlos)
+                            @Html.ValidationMessageFor(model => model.PhdTitlos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PhdInstitution, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.PhdInstitution, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.PhdInstitution)
+                            @Html.ValidationMessageFor(model => model.PhdInstitution, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PhdYear, new { @class = "col-form-label col-md-6" })
@@ -467,12 +467,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PhdForeign, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.PhdForeign, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.PhdForeign)
+                            @Html.ValidationMessageFor(model => model.PhdForeign, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PhdAnagnorisi, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.PhdAnagnorisi, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.PhdAnagnorisi)
+                            @Html.ValidationMessageFor(model => model.PhdAnagnorisi, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-2">

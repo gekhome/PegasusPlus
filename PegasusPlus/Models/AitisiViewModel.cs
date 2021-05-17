@@ -36,6 +36,9 @@ namespace PegasusPlus.Models
         [Display(Name = "Ειδικότητα *")]
         public int? Eidikotita { get; set; }
 
+        [Display(Name = "Ομάδα ειδικότητας")]
+        public int? EidikotitaGroup { get; set; }
+
         [Display(Name = "Βασική εκπαίδευση (για εμπειροτέχνες)")]
         public int? BasicEducation { get; set; }
 

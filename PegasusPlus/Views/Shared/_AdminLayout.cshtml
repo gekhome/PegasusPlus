@@ -138,32 +138,40 @@
                     children.Add().Text("Ενστάσεις (συνοπτικά)").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("EnstaseisSummary", "Admin").LinkHtmlAttributes(new { target = "_blank" });
                 });
                 items.Add().Text("Πίνακες ανάρτησης").ImageUrl(Url.Content("~/Images/phone/appbar.layer.thick.png")).LinkHtmlAttributes(new { title = "Πίνακες χωρίς ονόματα για ανάρτηση" })
-                .Items(children =>
+                .Items(Children =>
                 {
-                    children.Add().Text("Πίνακας 1A: Ιδιώτες").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("ePinakas1a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 1B: Δημ.υπάλ./συνταξ.").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("ePinakas1b_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 2: Άνεργοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("ePinakas2_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 3: Του Ν.2190").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("ePinakas3_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 4: Αποκλειόμενοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("ePinakas4_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 1A: ΙΔ.Πιστοπ. ΕΟΠΠΕΠ").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas1a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 1B: ΔΥ.Πιστοπ. ΕΟΠΠΕΠ").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas1b_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 2A: ΙΔ.Μη πιστοποιημένοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas2a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 2B: ΔΥ.Μη πιστοποιημένοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas2b_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 3: Άνεργοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas3a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 4: Του Ν.2190").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas4a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 5: Αποκλειόμενοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("xPinakas5a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
                 });
                 items.Add().Text("Πίνακες χρήσης").ImageUrl(Url.Content("~/Images/phone/appbar.list.reorder.down.png")).LinkHtmlAttributes(new { title = "Πίνακες με ονόματα για εσωτερική χρήση" })
-                .Items(children =>
+                .Items(Children =>
                 {
-                    children.Add().Text("Πίνακας 1A: Ιδιώτες").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("iPinakas1a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 1B: Δημ.υπάλ./συνταξ.").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("iPinakas1b_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 2: Άνεργοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("iPinakas2_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 3: Του Ν.2190").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("iPinakas3_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
-                    children.Add().Text("Πίνακας 4: Αποκλειόμενοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
-                        .Action("iPinakas4_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 1A: ΙΔ.Πιστοπ. ΕΟΠΠΕΠ").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas1a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 1B: ΔΥ.Πιστοπ. ΕΟΠΠΕΠ").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas1b_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 2A: ΙΔ.Μη πιστοποιημένοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas2a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 2B: ΔΥ.Μη πιστοποιημένοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas2b_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 3: Άνεργοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas3a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 4: Του Ν.2190").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas4a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακας 5: Αποκλειόμενοι").ImageUrl(Url.Content("~/Images/phone/appbar.list.check.png"))
+                        .Action("uPinakas5a_Print", "Admin").LinkHtmlAttributes(new { target = "_blank" });
                 });
                 items.Add().Text("Μητρώα").ImageUrl(Url.Content("~/Images/phone/appbar.people.multiple.magnify.png"))
                 .Items(Children =>
@@ -173,11 +181,12 @@
                     Children.Add().Text("Συνολικό μητρώο εκπαιδευτών").ImageUrl(Url.Content("~/Images/phone/appbar.control.guide.png")).Action("TeachersRegistry", "Admin");
                     Children.Add().Text("Εκπαιδευτές με αιτήσεις").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("TeacherDataPrint", "Admin")
                         .LinkHtmlAttributes(new { target = "_blank" });
-                    Children.Add().Text("Μητρώο αιτήσεων - Προβολή").ImageUrl(Url.Content("~/Images/phone/appbar.control.guide.png")).Action("AitiseisList", "Admin");
-                    Children.Add().Text("Μητρώο αιτήσεων - Εκτύπωση").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisPrint", "Admin")
+                    Children.Add().Separator(true);
+                    Children.Add().Text("Μητρώο αιτήσεων - Προβολή").ImageUrl(Url.Content("~/Images/phone/appbar.control.guide.png")).Action("AitiseisRegistry", "Admin");
+                    Children.Add().Text("Μητρώο αιτήσεων - Εκτύπωση").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisRegistryPrint", "Admin")
                         .LinkHtmlAttributes(new { target = "_blank" });
                 });
-                items.Add().Text("Στατιστικά").ImageUrl(Url.Content("~/Images/phone/appbar.graph.histogram.description.png"));
+                items.Add().Text("Στατιστικά").ImageUrl(Url.Content("~/Images/phone/appbar.greek.sigma.lowercase.png"));
                 items.Add().Text("Προκηρύξεις").ImageUrl(Url.Content("~/Images/phone/appbar.calendar.year.png"))
                 .Items(Children =>
                 {
@@ -204,7 +213,22 @@
                     Children.Add().Text("Κλάδοι ενοποίησης").ImageUrl(Url.Content("~/Images/phone/appbar.book.png")).Action("KladosUnifiedList", "Tools");
                     Children.Add().Text("Ομάδες Ειδικοτήτων").ImageUrl(Url.Content("~/Images/phone/appbar.book.side.png")).Action("EidikotitesGroupsList", "Tools");
                 });
-                items.Add().Text("Πρόσθετα").ImageUrl(Url.Content("~/Images/phone/appbar.list.gear.png"));
+                items.Add().Text("Πρόσθετα").ImageUrl(Url.Content("~/Images/phone/appbar.list.gear.png"))
+                .Items(Children =>
+                {
+                    Children.Add().Text("Πλήθος αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("SchoolAitiseisPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Αιτήσεις ημερήσια").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisDailyPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πορεία αξιολόγησης").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("ProgressCheckPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Πίνακες για προσλήψεις").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("TeachersProslipsiPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Αιτήσεις με προϋπηρεσίες").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisWithWorkPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Αιτήσεις χωρίς προϋπηρεσίες").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisWithoutWorkPrint", "Admin")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                });
             })
         )
     </div>

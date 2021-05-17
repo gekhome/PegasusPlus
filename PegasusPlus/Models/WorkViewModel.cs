@@ -57,6 +57,10 @@ namespace PegasusPlus.Models
 
         [Display(Name = "Έγκυρη")]
         public bool Valid { get; set; }
+
+        public string TeacherAFM { get; set; }
+        public string SchoolYearText { get; set; }
+
     }
 
     public class WorkVocationViewModel
@@ -105,6 +109,9 @@ namespace PegasusPlus.Models
 
         [Display(Name = "Έγκυρη")]
         public bool Valid { get; set; }
+
+        public string TeacherAFM { get; set; }
+
     }
 
     public class WorkFreelanceViewModel
@@ -160,6 +167,9 @@ namespace PegasusPlus.Models
 
         [Display(Name = "Έγκυρη")]
         public bool Valid { get; set; }
+
+        public string TeacherAFM { get; set; }
+
     }
 
     #region UPLOADAD FILES

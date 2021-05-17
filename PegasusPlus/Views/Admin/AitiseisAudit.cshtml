@@ -167,8 +167,8 @@
                     model.Field(p => p.Moria).Editable(false);
                     model.Field(p => p.DaysAuto).Editable(false);
                 })
-                .Read(read => read.Action("Vocation_Read", "Experience").Data("data"))
-                .Update(update => update.Action("Vocation_Update", "Experience").Data("data"))
+                .Read(read => read.Action("Vocation_Read", "Admin").Data("data"))
+                .Update(update => update.Action("Vocation_Update", "Admin").Data("data"))
                 .Events(events => events.Error("error_handler2"))
                 )
                 .Events(events => events.Change("changeVocation"))
@@ -359,7 +359,7 @@
 <div id="dialog" style="display: none">
 </div>
 
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 
 

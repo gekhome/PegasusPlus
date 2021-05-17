@@ -41,7 +41,7 @@
         .Name("Master")
         .Columns(columns =>
         {
-            columns.ForeignKey(f => f.IncomeYear, (IEnumerable<SysTaxFree>)ViewData["income_years"], "YearID", "YearText").Width(20);
+            columns.ForeignKey(f => f.IncomeYear, (IEnumerable<SysTaxFree>)ViewData["income_years"], "YearID", "YearText").Width(25);
             columns.Bound(c => c.Income).Width(20).Groupable(false);
             columns.Bound(c => c.DateStart).Width(20).Title("Από").Groupable(false);
             columns.Bound(c => c.DateFinal).Width(20).Title("Έως").Groupable(false);

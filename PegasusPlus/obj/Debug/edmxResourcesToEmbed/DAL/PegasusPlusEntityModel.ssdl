@@ -11,6 +11,7 @@
     <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
     <Property Name="Klados" Type="int" />
     <Property Name="Eidikotita" Type="int" />
+    <Property Name="EidikotitaGroup" Type="int" />
     <Property Name="BasicEducation" Type="int" />
     <Property Name="PtyxioType" Type="int" />
     <Property Name="PtyxioTitlos" Type="nvarchar" MaxLength="255" />
@@ -545,6 +546,7 @@
     <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AitisiID" Type="int" />
     <Property Name="ProkirixiID" Type="int" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
     <Property Name="DateStart" Type="date" />
     <Property Name="DateFinal" Type="date" />
     <Property Name="DaysAuto" Type="int" />
@@ -565,6 +567,7 @@
     <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AitisiID" Type="int" />
     <Property Name="ProkirixiID" Type="int" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
     <Property Name="TeachType" Type="int" />
     <Property Name="SchoolYear" Type="int" />
     <Property Name="DateStart" Type="date" />
@@ -575,6 +578,7 @@
     <Property Name="DocumentProtocol" Type="nvarchar" MaxLength="50" />
     <Property Name="DocumentForeas" Type="nvarchar" MaxLength="50" />
     <Property Name="Valid" Type="bit" />
+    <Property Name="SchoolYearText" Type="nvarchar" MaxLength="9" />
   </EntityType>
   <EntityType Name="WorkVocation">
     <Key>
@@ -583,6 +587,7 @@
     <Property Name="ExperienceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AitisiID" Type="int" />
     <Property Name="ProkirixiID" Type="int" />
+    <Property Name="TeacherAFM" Type="nvarchar" MaxLength="10" />
     <Property Name="DateStart" Type="date" />
     <Property Name="DateFinal" Type="date" />
     <Property Name="DaysAuto" Type="int" />

@@ -148,6 +148,7 @@ namespace PegasusPlus.Controllers.DataControllers
                     entity.DocumentForeas = data.DocumentForeas;
                     entity.Moria = k.MoriaTeaching(data);
                     entity.Valid = data.Valid;
+                    entity.SchoolYearText = c.GetSchoolYearText((int)data.SchoolYear);
 
                     db.Entry(entity).State = EntityState.Modified;
                     db.SaveChanges();
@@ -189,7 +190,7 @@ namespace PegasusPlus.Controllers.DataControllers
         {
             var data = (from d in db.WorkTeaching
                         where d.AitisiID == aitisiId
-                        orderby d.SchoolYear descending, d.TeachType
+                        orderby d.SchoolYearText descending, d.TeachType
                         select new WorkTeachingViewModel
                         {
                             ExperienceID = d.ExperienceID,
@@ -204,7 +205,9 @@ namespace PegasusPlus.Controllers.DataControllers
                             Moria = d.Moria,
                             DocumentProtocol = d.DocumentProtocol,
                             DocumentForeas = d.DocumentForeas,
-                            Valid = d.Valid ?? true
+                            Valid = d.Valid ?? true,
+                            SchoolYearText = d.SchoolYearText,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -300,7 +303,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             DocumentForeas = d.DocumentForeas,
                             Position = d.Position,
                             Subject = d.Subject,
-                            Valid = d.Valid ?? true
+                            Valid = d.Valid ?? true,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -407,7 +411,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             Moria = d.Moria,
                             WorkEvidence = d.WorkEvidence,
                             Subject = d.Subject,
-                            Valid = d.Valid ?? true
+                            Valid = d.Valid ?? true,
+                            TeacherAFM = d.TeacherAFM
                         }).ToList();
 
             return data;
@@ -452,8 +457,8 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.AitisisDate = DateTime.Now.Date;
                 entity.Klados = model.Klados;
                 entity.Eidikotita = model.Eidikotita;
+                entity.EidikotitaGroup = model.Eidikotita.HasValue ? c.GetEidikotitaGroupId((int)model.Eidikotita) : null;
                 entity.EpagelmaCategory = model.EpagelmaCategory;
-
                 entity.BasicEducation = model.BasicEducation;
                 entity.PtyxioType = model.PtyxioType;
                 entity.PtyxioTitlos = model.PtyxioTitlos;
@@ -1228,11 +1233,109 @@ namespace PegasusPlus.Controllers.DataControllers
         {
             bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             if (!val1)
-                return RedirectToAction("TLogin", "UserAdmins");
+                return RedirectToAction("Login", "UserAdmins");
             else
                 loggedAdmin = GetLoginAdmin();
 
             AitisiDataViewModel model = GetAitisiDataFromDB(aitisiId);
+            if (model == null)
+            {
+                model = new AitisiDataViewModel();
+                this.AddNotification("Δεν βρέθηκαν δεδομένα για προβολή της αίτησης αυτής.", NotificationType.WARNING);
+            }
+
+            return View(model);
+        }
+
+        #endregion
+
+
+        #region MORIA CALCULATION AND REPORT
+
+        public AitisiDataViewModel CalculateMoriaAitisi(AitisiDataViewModel a)
+        {
+            var ap = (from d in db.sqlAitisiProsonta where d.AitisisID == a.AitisisID select d).FirstOrDefault();
+            if (ap == null) return a;
+
+            Aitisis entity = db.Aitisis.Find(a.AitisisID);
+
+            entity.MoriaPtyxio = k.MoriaPtyxio(ap);
+            entity.MoriaMsc = k.MoriaMsc(ap);
+            entity.MoriaPhd = k.MoriaPhd(ap);
+            entity.MoriaLanguage = k.MoriaLanguages(ap);
+            entity.MoriaComputer = k.MoriaComputer(ap);
+            entity.MoriaCertified = k.MoriaCertifiedTrainer(ap);
+            entity.MoriaEpimorfosi = k.MoriaEpimorfosi(ap);
+            entity.MoriaTeach = k.MoriaTeach(ap);
+            entity.MoriaWork = k.MoriaWork(ap);
+            entity.MoriaAnergia = k.MoriaAnergia(ap);
+            entity.MoriaSocial = k.MoriaSocial(ap);
+            entity.MoriaTotal = k.MoriaTotal(ap);
+
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+
+            AitisiDataViewModel model = GetAitisiDataFromDB(a.AitisisID);
+            return model;
+        }
+
+        public AitisiDataViewModel GetAitisiDataFromDB(int aitisiId)
+        {
+            var data = (from d in db.sqlAitisiData
+                        where d.AitisisID == aitisiId
+                        select new AitisiDataViewModel
+                        {
+                            AitisisID = d.AitisisID,
+                            ProkirixisID = d.ProkirixisID,
+                            AitisisProtocol = d.AitisisProtocol,
+                            TeacherAFM = d.TeacherAFM,
+                            FullName = d.FullName,
+                            KladosEidikotita = d.KladosEidikotita,
+                            PeriferiaName = d.PeriferiaName,
+                            SchoolName = d.SchoolName,
+                            PtyxioTitlos = d.PtyxioTitlos,
+                            PtyxioTypeText = d.PtyxioTypeText,
+                            MscTitlos = d.MscTitlos,
+                            PhdTitlos = d.PhdTitlos,
+                            Ptyxio2Titlos = d.Ptyxio2Titlos,
+                            Language1Epipedo = d.Language1Epipedo,
+                            Language2Epipedo = d.Language2Epipedo,
+                            ComputerTitle = d.ComputerTitle,
+                            EpimorfosiHours = d.EpimorfosiHours,
+                            CertifiedTrainerAM = d.CertifiedTrainerAM,
+                            SocialAmeaText = d.SocialAmeaText,
+                            SocialPolyteknosText = d.SocialPolyteknosText,
+                            SocialSingleParentText = d.SocialSingleParentText,
+                            SocialTriteknosText = d.SocialTriteknosText,
+                            AnergiaDiarkeiaText = d.AnergiaDiarkeiaText,
+                            EpagelmaText = d.EpagelmaText,
+                            MoriaPtyxio = d.MoriaPtyxio,
+                            MoriaMsc = d.MoriaMsc,
+                            MoriaPhd = d.MoriaPhd,
+                            MoriaLanguages = d.MoriaLanguages,
+                            MoriaComputer = d.MoriaComputer,
+                            MoriaCertified = d.MoriaCertified,
+                            MoriaEpimorfosi = d.MoriaEpimorfosi,
+                            MoriaSocial = d.MoriaSocial,
+                            MoriaAnergia = d.MoriaAnergia,
+                            MoriaTeach = d.MoriaTeach,
+                            MoriaWork = d.MoriaWork,
+                            MoriaTotal = d.MoriaTotal
+                        }).FirstOrDefault();
+
+            return data;
+        }
+
+        public ActionResult AitisiMoriaPrint(int aitisiId)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+                return RedirectToAction("Login", "UserAdmins");
+            else
+                loggedAdmin = GetLoginAdmin();
+
+            AitisisParameters model = new AitisisParameters();
+            model.AitisiID = aitisiId;
 
             return View(model);
         }
@@ -1337,98 +1440,219 @@ namespace PegasusPlus.Controllers.DataControllers
         #endregion
 
 
-        #region MORIA CALCULATION AND REPORT
+        #region ΜΗΤΡΩΟ ΑΙΤΗΣΕΩΝ
 
-        public AitisiDataViewModel CalculateMoriaAitisi(AitisiDataViewModel a)
-        {
-            var ap = (from d in db.sqlAitisiProsonta where d.AitisisID == a.AitisisID select d).FirstOrDefault();
-            if (ap == null) return a;
-
-            Aitisis entity = db.Aitisis.Find(a.AitisisID);
-
-            entity.MoriaPtyxio = k.MoriaPtyxio(ap);
-            entity.MoriaMsc = k.MoriaMsc(ap);
-            entity.MoriaPhd = k.MoriaPhd(ap);
-            entity.MoriaLanguage = k.MoriaLanguages(ap);
-            entity.MoriaComputer = k.MoriaComputer(ap);
-            entity.MoriaCertified = k.MoriaCertifiedTrainer(ap);
-            entity.MoriaEpimorfosi = k.MoriaEpimorfosi(ap);
-            entity.MoriaTeach = k.MoriaTeach(ap);
-            entity.MoriaWork = k.MoriaWork(ap);
-            entity.MoriaAnergia = k.MoriaAnergia(ap);
-            entity.MoriaSocial = k.MoriaSocial(ap);
-            entity.MoriaTotal = k.MoriaTotal(ap);
-
-            db.Entry(entity).State = EntityState.Modified;
-            db.SaveChanges();
-
-            AitisiDataViewModel model = GetAitisiDataFromDB(a.AitisisID);
-            return model;
-        }
-
-        public AitisiDataViewModel GetAitisiDataFromDB(int aitisiId)
-        {
-            var data = (from d in db.sqlAitisiData
-                        where d.AitisisID == aitisiId
-                        select new AitisiDataViewModel
-                        {
-                            AitisisID = d.AitisisID,
-                            ProkirixisID = d.ProkirixisID,
-                            AitisisProtocol = d.AitisisProtocol,
-                            TeacherAFM = d.TeacherAFM,
-                            FullName = d.FullName,
-                            KladosEidikotita = d.KladosEidikotita,
-                            PeriferiaName = d.PeriferiaName,
-                            SchoolName = d.SchoolName,
-                            PtyxioTitlos = d.PtyxioTitlos,
-                            PtyxioTypeText = d.PtyxioTypeText,
-                            MscTitlos = d.MscTitlos,
-                            PhdTitlos = d.PhdTitlos,
-                            Ptyxio2Titlos = d.Ptyxio2Titlos,
-                            Language1Epipedo = d.Language1Epipedo,
-                            Language2Epipedo = d.Language2Epipedo,
-                            ComputerTitle = d.ComputerTitle,
-                            EpimorfosiHours = d.EpimorfosiHours,
-                            CertifiedTrainerAM = d.CertifiedTrainerAM,
-                            SocialAmeaText = d.SocialAmeaText,
-                            SocialPolyteknosText = d.SocialPolyteknosText,
-                            SocialSingleParentText = d.SocialSingleParentText,
-                            SocialTriteknosText = d.SocialTriteknosText,
-                            AnergiaDiarkeiaText = d.AnergiaDiarkeiaText,
-                            EpagelmaText = d.EpagelmaText,
-                            MoriaPtyxio = d.MoriaPtyxio,
-                            MoriaMsc = d.MoriaMsc,
-                            MoriaPhd = d.MoriaPhd,
-                            MoriaLanguages = d.MoriaLanguages,
-                            MoriaComputer = d.MoriaComputer,
-                            MoriaCertified = d.MoriaCertified,
-                            MoriaEpimorfosi = d.MoriaEpimorfosi,
-                            MoriaSocial = d.MoriaSocial,
-                            MoriaAnergia = d.MoriaAnergia,
-                            MoriaTeach = d.MoriaTeach,
-                            MoriaWork = d.MoriaWork,
-                            MoriaTotal = d.MoriaTotal
-                        }).FirstOrDefault();
-
-            return data;
-        }
-
-        public ActionResult AitisiMoriaPrint(int aitisiId)
+        public ActionResult AitiseisRegistry()
         {
             bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             if (!val1)
+            {
                 return RedirectToAction("Login", "UserAdmins");
+            }
             else
+            {
                 loggedAdmin = GetLoginAdmin();
+            }
 
-            AitisisParameters model = new AitisisParameters();
-            model.AitisiID = aitisiId;
+            populateTeachTypes();
+            populateSchoolYears();
+            populateIncomeYears();
 
-            return View(model);
+            return View();
+        }
+
+        public ActionResult Aitiseis_ReadGlobal([DataSourceRequest] DataSourceRequest request, int prokirixiId = 0)
+        {
+            List<sqlTeacherAitiseis> data = GetAitiseisListGlobal(prokirixiId);
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<sqlTeacherAitiseis> GetAitiseisListGlobal(int prokirixiId = 0)
+        {
+            List<sqlTeacherAitiseis> results = new List<sqlTeacherAitiseis>();
+
+            if (prokirixiId > 0)
+            {
+                var data = (from a in db.sqlTeacherAitiseis
+                            where a.ProkirixisID == prokirixiId
+                            orderby a.FullName
+                            select a).ToList();
+                results = data;
+            }
+            else
+            {
+                var data = (from a in db.sqlTeacherAitiseis
+                            orderby a.ProkirixisID descending, a.FullName
+                            select a).ToList();
+                results = data;
+            }
+
+            return results;
+        }
+
+        public ActionResult AitisiExperiencePrint(int aitisiId = 0)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.AitisiID = aitisiId;
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult AitiseisRegistryPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult UpdateAitisiEidikotitaGroup()
+        {
+            var data = (from d in db.Aitisis select new { d.AitisisID, d.Eidikotita, d.EidikotitaGroup }).ToList();
+            if (data.Count > 0)
+            {
+                foreach (var aitisi in data)
+                {
+                    Aitisis target = db.Aitisis.Find(aitisi.AitisisID);
+                    target.EidikotitaGroup = c.GetEidikotitaGroupId((int)target.Eidikotita);
+                    db.Entry(target).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                string message = "Η διαδικασία ενημέρωσης ομάδων ειδικοτήτων των αιτήσεων ολοκληρώθηκε.";
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            string message2 = "Δεν βρέθηκαν αιτήσεις για ενημέρωση της ομάδας ειδικότητας.";
+            return Json(message2, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
 
+
+        #region ΠΡΟΣΘΕΤΕΣ ΛΕΙΤΟΥΡΓΙΕΣ
+
+        public ActionResult SchoolAitiseisPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult AitiseisDailyPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult ProgressCheckPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult TeachersProslipsiPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult AitiseisWithWorkPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult AitiseisWithoutWorkPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        #endregion
+        
 
         #region GETTERS AND POPULATORS
 
@@ -1528,6 +1752,20 @@ namespace PegasusPlus.Controllers.DataControllers
             var aitisi = (from d in db.sqlTeacherAitiseis where d.ProkirixisID == prokirixiId orderby d.FullName, d.SchoolName select d).First();
             return (aitisi);
         }
+
+        public JsonResult GetProkirixeis()
+        {
+            var data = (from d in db.Prokirixis
+                        orderby d.DateStart descending
+                        select new ProkirixisViewModel
+                        {
+                            ProkirixiID = d.ProkirixiID,
+                            Protocol = d.Protocol
+                        }).ToList();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
 
         public UserAdmins GetLoginAdmin()
         {

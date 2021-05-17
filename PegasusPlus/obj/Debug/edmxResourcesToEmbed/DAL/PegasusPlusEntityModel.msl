@@ -569,6 +569,7 @@
     <EntitySetMapping Name="WorkFreelance">
       <EntityTypeMapping TypeName="PegasusPlusDBModel.WorkFreelance">
         <MappingFragment StoreEntitySet="WorkFreelance">
+          <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
           <ScalarProperty Name="Valid" ColumnName="Valid" />
           <ScalarProperty Name="WorkEvidence" ColumnName="WorkEvidence" />
           <ScalarProperty Name="Subject" ColumnName="Subject" />
@@ -590,6 +591,8 @@
     <EntitySetMapping Name="WorkTeaching">
       <EntityTypeMapping TypeName="PegasusPlusDBModel.WorkTeaching">
         <MappingFragment StoreEntitySet="WorkTeaching">
+          <ScalarProperty Name="SchoolYearText" ColumnName="SchoolYearText" />
+          <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
           <ScalarProperty Name="Valid" ColumnName="Valid" />
           <ScalarProperty Name="DocumentForeas" ColumnName="DocumentForeas" />
           <ScalarProperty Name="DocumentProtocol" ColumnName="DocumentProtocol" />
@@ -609,6 +612,7 @@
     <EntitySetMapping Name="WorkVocation">
       <EntityTypeMapping TypeName="PegasusPlusDBModel.WorkVocation">
         <MappingFragment StoreEntitySet="WorkVocation">
+          <ScalarProperty Name="TeacherAFM" ColumnName="TeacherAFM" />
           <ScalarProperty Name="Valid" ColumnName="Valid" />
           <ScalarProperty Name="DocumentForeas" ColumnName="DocumentForeas" />
           <ScalarProperty Name="DocumentProtocol" ColumnName="DocumentProtocol" />
@@ -628,6 +632,7 @@
     <EntitySetMapping Name="Aitisis">
       <EntityTypeMapping TypeName="PegasusPlusDBModel.Aitisis">
         <MappingFragment StoreEntitySet="Aitisis">
+          <ScalarProperty Name="EidikotitaGroup" ColumnName="EidikotitaGroup" />
           <ScalarProperty Name="OaedEnstasi" ColumnName="OaedEnstasi" />
           <ScalarProperty Name="OaedCheckStatus" ColumnName="OaedCheckStatus" />
           <ScalarProperty Name="OaedEpitropi2Text" ColumnName="OaedEpitropi2Text" />

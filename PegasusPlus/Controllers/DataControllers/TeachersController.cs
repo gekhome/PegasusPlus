@@ -180,8 +180,8 @@ namespace PegasusPlus.Controllers.DataControllers
                     db.Teachers.Add(entity);
                     db.SaveChanges();
                     this.AddNotification("Η αποθήκευση ολοκληρώθηκε με επιτυχία.", NotificationType.SUCCESS);
-                    TeacherViewModel newData = GetTeacherDataFromDB(loggedTeacher.UserAfm);
-                    return View(newData);
+                    //TeacherViewModel newData = GetTeacherDataFromDB(loggedTeacher.UserAfm);
+                    return RedirectToAction("TeacherEdit", "Teachers");
                 }
                 else
                 {
@@ -454,7 +454,7 @@ namespace PegasusPlus.Controllers.DataControllers
             prokirixiId = c.GetOpenProkirixiID();
             int schoolyearId = (int)db.Prokirixis.Find(prokirixiId).SchoolYear;
 
-            var data = (from d in db.TeacherUploads where d.FileName == filename select d).Count();
+            var data = (from d in db.TeacherUploads where d.FileName == filename && d.TeacherAFM == loggedTeacher.UserAfm select d).Count();
             if (data == 0)
             {
                 TeacherUploads entity = new TeacherUploads()
@@ -574,8 +574,9 @@ namespace PegasusPlus.Controllers.DataControllers
                 db.TeacherSkills.Add(entity);
                 db.SaveChanges();
                 this.AddNotification("Η αποθήκευση ολοκληρώθηκε με επιτυχία.", NotificationType.SUCCESS);
-                TeacherSkillsViewModel newData = GetSkillsModelFromDB(loggedTeacher.UserAfm);
-                return View(newData);
+                //TeacherSkillsViewModel newData = GetSkillsModelFromDB(loggedTeacher.UserAfm);
+                // do this, otherwise each edit creates new record!!!
+                return RedirectToAction("SkillsEdit", "Teachers");
             }
             else
             {

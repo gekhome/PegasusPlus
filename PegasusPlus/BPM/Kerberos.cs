@@ -179,7 +179,7 @@ namespace PegasusPlus.BPM
 
         public bool ValidFileExtension(string extension)
         {
-            string[] extensions = { ".PDF", ".DOC", ".DOCX", ".ODT" };
+            string[] extensions = { ".PDF", ".DOC", ".DOCX", ".ODT", ".JPG" };
 
             List<string> allowed_extensions = new List<string>(extensions);
 
@@ -314,7 +314,7 @@ namespace PegasusPlus.BPM
             else
             {
                 decimal _moria = (N / WORKING_DAYS_YEAR) * WORK_MORIA_YEAR;
-                moria = (decimal)c.Min((float)_moria, (float)WORK_MORIA_YEAR);
+                moria = (decimal)c.Min((float)_moria, (float)WORK_MORIA_MAX);
             }
 
             return moria;
@@ -346,7 +346,7 @@ namespace PegasusPlus.BPM
             DateTime d1 = (DateTime)e.DateStart;
             DateTime d2 = (DateTime)e.DateFinal;
 
-            int days = c.DaysDiff(d1, d2) + 1;
+            int days = c.DaysDiff(d1, d2);
             return days;
         }
 
@@ -355,7 +355,7 @@ namespace PegasusPlus.BPM
             DateTime d1 = (DateTime)e.DateStart;
             DateTime d2 = (DateTime)e.DateFinal;
 
-            int days = c.DaysDiff(d1, d2) + 1;
+            int days = c.DaysDiff(d1, d2);
             return days;
         }
 

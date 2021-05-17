@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44387</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -183,6 +183,7 @@
     <Compile Include="Controllers\DataControllers\AdminController.cs" />
     <Compile Include="Controllers\DataControllers\AitisisController.cs" />
     <Compile Include="Controllers\DataControllers\ExperienceController.cs" />
+    <Compile Include="Controllers\DataControllers\SettingsController.cs" />
     <Compile Include="Controllers\DataControllers\SchoolController.cs" />
     <Compile Include="Controllers\DataControllers\TeachersController.cs" />
     <Compile Include="Controllers\DataControllers\ToolsController.cs" />
@@ -441,11 +442,41 @@
     <Compile Include="Reports\A2Logo.Designer.cs">
       <DependentUpon>A2Logo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Data\AitiseisRegistry.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitiseisRegistry.Designer.cs">
+      <DependentUpon>AitiseisRegistry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiExperience.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiExperience.Designer.cs">
+      <DependentUpon>AitisiExperience.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiFreelance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiFreelance.Designer.cs">
+      <DependentUpon>AitisiFreelance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Data\AitisiResults.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Data\AitisiResults.Designer.cs">
       <DependentUpon>AitisiResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiTeaching.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiTeaching.Designer.cs">
+      <DependentUpon>AitisiTeaching.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiVocation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiVocation.Designer.cs">
+      <DependentUpon>AitisiVocation.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Data\EidikotitesProkirixis.cs">
       <SubType>Component</SubType>
@@ -465,6 +496,24 @@
     <Compile Include="Reports\Data\TeachersEidikotita.Designer.cs">
       <DependentUpon>TeachersEidikotita.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Misc\AitiseisDaily.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\AitiseisDaily.Designer.cs">
+      <DependentUpon>AitiseisDaily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\AitiseisWithoutWork.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\AitiseisWithoutWork.Designer.cs">
+      <DependentUpon>AitiseisWithoutWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\AitiseisWithWork.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\AitiseisWithWork.Designer.cs">
+      <DependentUpon>AitiseisWithWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Misc\Eidikotites.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -477,17 +526,35 @@
     <Compile Include="Reports\Misc\GroupsEidikotites.Designer.cs">
       <DependentUpon>GroupsEidikotites.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Misc\ProgressCheck.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\ProgressCheck.Designer.cs">
+      <DependentUpon>ProgressCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Misc\SchoolAccounts.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Misc\SchoolAccounts.Designer.cs">
       <DependentUpon>SchoolAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Misc\SchoolAitiseis.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\SchoolAitiseis.Designer.cs">
+      <DependentUpon>SchoolAitiseis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Misc\TaxFreeList.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Misc\TaxFreeList.Designer.cs">
       <DependentUpon>TaxFreeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Misc\TeachersProslipsi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Misc\TeachersProslipsi.Designer.cs">
+      <DependentUpon>TeachersProslipsi.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1546,6 +1613,31 @@
     <Content Include="Views\Admin\AitiseisMoria.cshtml" />
     <Content Include="Views\Admin\AitisiMoriaView.cshtml" />
     <Content Include="Views\Admin\AitisiMoriaPrint.cshtml" />
+    <Content Include="Views\Settings\SchoolYearsList.cshtml" />
+    <Content Include="Views\Settings\ApokleismoiList.cshtml" />
+    <Content Include="Views\Settings\TaxfreeList.cshtml" />
+    <Content Include="Views\Settings\TaxFreeIncomePrint.cshtml" />
+    <Content Include="Views\Settings\PeriferiesNomoi.cshtml" />
+    <Content Include="Views\Settings\EidikotitesList.cshtml" />
+    <Content Include="Views\Settings\EidikotitesPrint.cshtml" />
+    <Content Include="Views\Settings\KladosUnifiedList.cshtml" />
+    <Content Include="Views\Settings\EidikotitesGroupsList.cshtml" />
+    <Content Include="Views\Settings\GroupsEidikotitesPrint.cshtml" />
+    <Content Include="Views\Settings\ProkirixisList.cshtml" />
+    <Content Include="Views\Settings\EidikotitesProkirixis.cshtml" />
+    <Content Include="Views\Settings\EidikotitesProkirixiPrint.cshtml" />
+    <Content Include="Views\School\TeachersRegistry.cshtml" />
+    <Content Include="Views\School\TeachersEidikotitaPrint.cshtml" />
+    <Content Include="Views\School\TeacherDataPrint.cshtml" />
+    <Content Include="Views\Admin\AitiseisRegistry.cshtml" />
+    <Content Include="Views\Admin\AitisiExperiencePrint.cshtml" />
+    <Content Include="Views\Admin\AitiseisRegistryPrint.cshtml" />
+    <Content Include="Views\Admin\SchoolAitiseisPrint.cshtml" />
+    <Content Include="Views\Admin\AitiseisDailyPrint.cshtml" />
+    <Content Include="Views\Admin\ProgressCheckPrint.cshtml" />
+    <Content Include="Views\Admin\TeachersProslipsiPrint.cshtml" />
+    <Content Include="Views\Admin\AitiseisWIthWorkPrint.cshtml" />
+    <Content Include="Views\Admin\AitiseisWIthoutWorkPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -1575,8 +1667,23 @@
     <EmbeddedResource Include="Reports\A2Logo.resx">
       <DependentUpon>A2Logo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitiseisRegistry.resx">
+      <DependentUpon>AitiseisRegistry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitisiExperience.resx">
+      <DependentUpon>AitisiExperience.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitisiFreelance.resx">
+      <DependentUpon>AitisiFreelance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\AitisiResults.resx">
       <DependentUpon>AitisiResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitisiTeaching.resx">
+      <DependentUpon>AitisiTeaching.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitisiVocation.resx">
+      <DependentUpon>AitisiVocation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\EidikotitesProkirixis.resx">
       <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
@@ -1587,17 +1694,35 @@
     <EmbeddedResource Include="Reports\Data\TeachersEidikotita.resx">
       <DependentUpon>TeachersEidikotita.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\AitiseisDaily.resx">
+      <DependentUpon>AitiseisDaily.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\AitiseisWithoutWork.resx">
+      <DependentUpon>AitiseisWithoutWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\AitiseisWithWork.resx">
+      <DependentUpon>AitiseisWithWork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Misc\Eidikotites.resx">
       <DependentUpon>Eidikotites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Misc\GroupsEidikotites.resx">
       <DependentUpon>GroupsEidikotites.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\ProgressCheck.resx">
+      <DependentUpon>ProgressCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Misc\SchoolAccounts.resx">
       <DependentUpon>SchoolAccounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\SchoolAitiseis.resx">
+      <DependentUpon>SchoolAitiseis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Misc\TaxFreeList.resx">
       <DependentUpon>TaxFreeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Misc\TeachersProslipsi.resx">
+      <DependentUpon>TeachersProslipsi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -1619,7 +1744,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>20652</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:20652/</IISUrl>
+          <IISUrl>https://localhost:44387/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

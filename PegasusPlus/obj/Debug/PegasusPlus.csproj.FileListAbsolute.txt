@@ -100,4 +100,15 @@ F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiResults.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.TeacherData.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.TeachersEidikotita.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiExperience.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiTeaching.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiVocation.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitisiFreelance.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.AitiseisRegistry.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.SchoolAitiseis.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.AitiseisDaily.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.ProgressCheck.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.TeachersProslipsi.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.AitiseisWithWork.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.AitiseisWithoutWork.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.csprojResolveAssemblyReference.cache

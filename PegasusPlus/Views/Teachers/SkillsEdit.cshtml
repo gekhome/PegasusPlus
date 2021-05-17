@@ -89,7 +89,7 @@
                 @Html.ActionLink(" Αρχεία ", "TeacherUploads", "Teachers", new { afm = Model.TeacherAFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
-                @Html.ActionLink("Επιμορφώσεις", "Epimorfoseis", "Teachers", new { afm = Model.TeacherAFM }, new { @class = "btn btn-primary", style = "font-size:16px" })
+                @Html.ActionLink("Επιμορφώσεις", "Epimorfoseis", "Teachers", new { afm = Model.TeacherAFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
                 <input id="buttonClientSide" style="font-family:'Segoe UI';font-size:16px" type="submit" value="Αποθήκευση" class="btn btn-success" />
@@ -147,12 +147,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Ptyxio2Titlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Ptyxio2Titlos, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Ptyxio2Titlos)
+                            @Html.ValidationMessageFor(model => model.Ptyxio2Titlos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Ptyxio2Institution, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Ptyxio2Institution, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Ptyxio2Institution)
+                            @Html.ValidationMessageFor(model => model.Ptyxio2Institution, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-2">
@@ -172,12 +172,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Ptyxio2Foreign, new { @class = "col-form-label col-md-11" })
                             @Html.EditorFor(model => model.Ptyxio2Foreign, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Ptyxio2Foreign)
+                            @Html.ValidationMessageFor(model => model.Ptyxio2Foreign, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Ptyxio2Anagnorisi, new { @class = "col-form-label col-md-11" })
                             @Html.EditorFor(model => model.Ptyxio2Anagnorisi, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Ptyxio2Anagnorisi)
+                            @Html.ValidationMessageFor(model => model.Ptyxio2Anagnorisi, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-2">
@@ -265,7 +265,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Language1Titlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Language1Titlos, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Language1Titlos)
+                            @Html.ValidationMessageFor(model => model.Language1Titlos, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-3">
@@ -331,7 +331,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Language2Titlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.Language2Titlos, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Language2Titlos)
+                            @Html.ValidationMessageFor(model => model.Language2Titlos, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-3">
@@ -382,7 +382,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.ComputerTitlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.ComputerTitlos, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.ComputerTitlos)
+                            @Html.ValidationMessageFor(model => model.ComputerTitlos, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.ComputerYear, new { @class = "col-form-label col-md-6" })
@@ -426,7 +426,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Epimorfosi, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.Epimorfosi, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.Epimorfosi)
+                            @Html.ValidationMessageFor(model => model.Epimorfosi, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.EpimorfosiTotalHours, new { @class = "col-form-label col-md-6" })
@@ -446,12 +446,12 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.CertifiedTrainer, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.CertifiedTrainer, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.CertifiedTrainer)
+                            @Html.ValidationMessageFor(model => model.CertifiedTrainer, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.CertifiedTrainerAM, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.CertifiedTrainerAM, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.CertifiedTrainerAM)
+                            @Html.ValidationMessageFor(model => model.CertifiedTrainerAM, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row col-md-12 ml-4 mb-3">
@@ -477,7 +477,7 @@
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.N2190Protect, new { @class = "col-form-label col-md-12" })
                             @Html.EditorFor(model => model.N2190Protect, new { @class = "form-control col-md-4" })
-                            @Html.ValidationMessageFor(model => model.N2190Protect)
+                            @Html.ValidationMessageFor(model => model.N2190Protect, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.N2190ProtectFilename, new { @class = "col-form-label col-md-6" })

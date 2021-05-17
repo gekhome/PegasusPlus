@@ -29,5 +29,6 @@ namespace PegasusPlus.DAL
         public string Subject { get; set; }
         public string WorkEvidence { get; set; }
         public Nullable<bool> Valid { get; set; }
+        public string TeacherAFM { get; set; }
     }
 }

@@ -124,12 +124,12 @@
         <div class="col-md-11 mb-3">
             @Html.LabelFor(model => model.DocumentProtocol, new { @class = "col-form-label col-md-3" })
             @Html.EditorFor(model => model.DocumentProtocol, new { @class = "form-control col-md-4" })
-            @Html.ValidationMessageFor(model => model.DocumentProtocol)
+            @Html.ValidationMessageFor(model => model.DocumentProtocol, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-11 mb-3">
             @Html.LabelFor(model => model.DocumentForeas, new { @class = "col-form-label col-md-3" })
             @Html.EditorFor(model => model.DocumentForeas, new { @class = "form-control col-md-4" })
-            @Html.ValidationMessageFor(model => model.DocumentForeas)
+            @Html.ValidationMessageFor(model => model.DocumentForeas, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
