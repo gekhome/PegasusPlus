@@ -179,7 +179,7 @@ namespace PegasusPlus.BPM
 
         public bool ValidFileExtension(string extension)
         {
-            string[] extensions = { ".PDF", ".DOC", ".DOCX", ".ODT", ".JPG" };
+            string[] extensions = { ".PDF", ".JPG" };
 
             List<string> allowed_extensions = new List<string>(extensions);
 
