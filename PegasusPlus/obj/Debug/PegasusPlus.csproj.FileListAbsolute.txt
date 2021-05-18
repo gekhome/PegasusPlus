@@ -111,3 +111,4 @@ F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.TeachersProslipsi.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.AitiseisWithWork.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Misc.AitiseisWithoutWork.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.csprojResolveAssemblyReference.cache

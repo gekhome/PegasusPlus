@@ -19,7 +19,7 @@ namespace PegasusPlus.Models
         public HttpPostedFileBase FileAFM { get; set; }
 
         [StringLength(50, ErrorMessage = "Πρέπει να είναι μέχρι 50 χαρακτήρες.")]
-        [RegularExpression(@"^[ΆΈΊΉΌΎΏΑ-Ω]+[ ΆΈΊΉΌΎΏΑ-Ω.'ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
+        [RegularExpression(@"^[ΆΈΊΉΌΎΏΑ-Ω']+[ ΆΈΊΉΌΎΏΑ-Ω.'ΪΫ]*$", ErrorMessage = "Μόνο κεφαλαία ελληνικά")]
         [Display(Name = "Δ.Ο.Υ. *")]
         public string DOY { get; set; }
 
