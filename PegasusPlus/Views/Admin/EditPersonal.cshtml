@@ -281,7 +281,7 @@
                         </div>
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Idiotita, new { @class = "col-form-label col-md-6" })
-                            @(Html.Kendo().DropDownListFor(model => model.Idiotita, "", new { @class = "text-danger" })
+                            @(Html.Kendo().DropDownListFor(model => model.Idiotita)
                                 .Name("Idiotita")
                                 .DataTextField("IdiotitaText")
                                 .DataValueField("IdiotitaID")

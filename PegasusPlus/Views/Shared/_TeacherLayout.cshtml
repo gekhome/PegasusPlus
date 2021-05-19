@@ -132,10 +132,10 @@
                 {
                     children.Add().Text("1. Προσωπικά στοιχεία").ImageUrl(Url.Content("~/Images/phone/appbar.user.png")).Action("TeacherEdit", "Teachers")
                         .LinkHtmlAttributes(new { title = "Προσωπικά, οικονομικά και εργασιακά στοιχεία" });
-                    children.Add().Text("2. Υποβολή νέας αίτησης").ImageUrl(Url.Content("~/Images/phone/appbar.page.text.png")).Action("AitisiCreate", "Aitisis")
-                        .LinkHtmlAttributes(new { title = "Καταχώρηση και υποβολή νέας αίτησης για την τρέχουσα προκήρυξη" });
-                    children.Add().Text("3. Στοιχεία επιμόρφωσης").ImageUrl(Url.Content("~/Images/phone/appbar.page.copy.png")).Action("SkillsEdit", "Teachers")
+                    children.Add().Text("2. Στοιχεία επιμόρφωσης").ImageUrl(Url.Content("~/Images/phone/appbar.page.copy.png")).Action("SkillsEdit", "Teachers")
                         .LinkHtmlAttributes(new { title = "Ξένες γλώσσες, γνώση Η/Υ, επιμορφώσεις και λοιπά στοιχεία" });
+                    children.Add().Text("3. Υποβολή νέας αίτησης").ImageUrl(Url.Content("~/Images/phone/appbar.page.text.png")).Action("AitisiCreate", "Aitisis")
+                        .LinkHtmlAttributes(new { title = "Καταχώρηση και υποβολή νέας αίτησης για την τρέχουσα προκήρυξη" });
                     children.Add().Text("4. Διαχείριση αιτήσεων").ImageUrl(Url.Content("~/Images/phone/appbar.list.gear.png")).Action("AitisisList", "Aitisis")
                         .LinkHtmlAttributes(new { title = "Επεξεργασία καταχωρημένων αιτήσεων και ΙΕΚ προτίμησης" });
                 });

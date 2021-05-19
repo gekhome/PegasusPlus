@@ -1,0 +1,136 @@
+﻿@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+@{
+    ViewBag.Title = "Μοριοδότηση αιτήσεων";
+    Layout = "~/Views/Shared/_SchoolLayout.cshtml";
+
+    string schoolYear = ViewData["schoolYearText"].ToString();
+    string protocol = ViewData["prokirixiProtocol"].ToString();
+    string displayInfo = schoolYear + " - " + protocol;
+}
+
+
+<div class="page-header">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:18px;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Μοριοδότηση αιτήσεων &nbsp;&nbsp;&nbsp; Προκήρυξη: @displayInfo</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+            @Html.ActionLink("Επιστροφή", "Index", "School", null, new { @class = "btn btn-warning", style = "font-size:15px" })
+        </span>
+        <div style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+            <button class="btn btn-danger" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:15px" onclick="Moriodotisi()" 
+                    title="Μοριοδότησηση όλων των αιτήσεων του σχολείου">Μοριοδότηση
+            </button>
+        </div>
+        <div id="divLoading" style="margin:0px 10px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px; z-index: 30001;display:none">
+            <p id="message-icon" style="margin-right:5px; font-size:13px;color:#00008b;font-weight:500">
+                Μοριοδότηση σε εξέλιξη. Περιμένετε...<img id="ajax-icon" src="~/Images/other/progress4.gif" style="margin-left:5px;width:36px;height:36px">
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="body-content mt-3" style="margin:5px 20px 5px 20px">
+    @(Html.Kendo().Grid<TeacherAitiseisViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+        columns.Bound(x => x.TeacherAFM).Width(20).Groupable(false);
+        columns.Bound(x => x.FullName).Width(30).Groupable(false)
+            .ClientFooterTemplate("Ολικό: #=count#")
+            .ClientGroupFooterTemplate("Σύνολο: #=count#");
+        columns.Bound(x => x.AitisisProtocol).Width(20).Groupable(false);
+        columns.Bound(x => x.EidikotitaText).Width(40);
+        columns.Bound(c => c.SchoolName).Width(30);
+        columns.Bound(c => c.PeriferiaName).Width(40);
+        columns.Bound(c => c.OaedCheckStatus).Width(15).ClientTemplate("<input type='checkbox' #= OaedCheckStatus ? checked='checked' : '' # ></input>");
+        columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisiMoriaView", "School") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-edit\"></span>Προβολή</a>"
+            ).Width(24);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisiMoriaPrint", "School") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-print\"></span>Εκτύπωση</a>"
+            ).Width(24);
+        })
+        .Filterable()
+        .Groupable()
+        .HtmlAttributes(new { style = "font-size:12px" })
+        .Scrollable(scr => scr.Height(500))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(3))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .PageSize(60)
+        .ServerOperation(true)
+        .Model(model =>
+        {
+            model.Id(p => p.AitisisID);
+        })
+        .Read(read => read.Action("AitiseisMoria_Read", "School"))
+        .Events(e => e.Error("error_handler"))
+        .Aggregates(a =>
+        {
+            a.Add(p => p.FullName).Count();
+        })
+    )
+    )
+</div>
+
+<script type="text/javascript">
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#Grid").data("kendoGrid").dataSource.read();
+        }
+    }
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    function Moriodotisi() {
+        text = "Η διαδικασία αυτή εκτελεί την τελική μοριοδότηση όλων των αιτήσεων της σχολικής μονάδας.<br/>";
+        text += "Να γίνει η μαζική μοριοδότηση όλων των αιτήσεων του σχολείου;"
+        MessageBoxConfirm(text, "Mοριοδότηση όλων των αιτήσεων").done(function () {
+            $('#divLoading').show();
+            $.ajax({
+                url: '@Url.Action("BatchMoriodotisi", "School")',
+                type: 'GET',
+                data: "",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#divLoading').hide();
+                    if (data) MessageBoxAlert(data);
+                },
+                error: function () {
+                    MessageBoxAlert("Προέκυψε σφάλμα. Δοκιμάστε πάλι αργότερα.");
+                }
+            });
+        }).fail(function () {
+            return;
+        });
+    }
+
+</script>
+
+
+

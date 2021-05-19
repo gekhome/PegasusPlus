@@ -1,0 +1,399 @@
+﻿@model PegasusPlus.Models.TeacherViewModel
+
+@{
+    ViewBag.Title = "Στοιχεία εκπαιδευτή";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+<style>
+    .control-label {
+        font-family: 'Segoe UI';
+        white-space: pre-line;
+    }
+
+    .page-header {
+        border-bottom: 1px solid #D3D3D3;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+    }
+
+    .k-textbox {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+    .k-textbox:focus {
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+</style>
+
+
+@using (Html.BeginForm("EditPersonal", "School", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="page-header">
+        <div style="margin:5px 60px 5px 40px">
+            <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+                <font style="color:#292929;">Προσωπικά στοιχεία εκπαιδευτικού <i style="font-size:medium;margin-left:10px;color:red">(τα πεδία με * είναι υποχρεωτικά)</i></font>
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                <a class="btn btn-warning" , style="font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Κλείσιμο καρτέλας</a>
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                @Html.ActionLink(" Αρχεία ", "TeacherUploadsSchool", "School", new { afm = Model.AFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                @Html.ActionLink("Εκτύπωση", "TeacherSchoolPrint", "School", new { afm = Model.AFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px">
+                <input id="buttonClientSide" style="font-family:'Segoe UI';font-size:16px" type="submit" value="Αποθήκευση" class="btn btn-success" />
+            </span>
+        </div>
+    </div>
+
+    <div class="body-content mt-3">
+        @(Html.Kendo().PanelBar()
+        .Name("IntroPanelBar")
+        .Items(items =>
+        {
+        items.Add()
+            .Text("1. ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ ")
+            .Selected(true)
+            .Expanded(true)
+            .Content(
+                @<text>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FirstName, new { @class = "col-form-label col-md-4" })
+                            @Html.EditorFor(model => model.FirstName, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.LastName, new { @class = "col-form-label col-md-4" })
+                            @Html.EditorFor(model => model.LastName, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FatherName, new { @class = "col-form-label col-md-4" })
+                            @Html.EditorFor(model => model.FatherName, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>    
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MotherName, new { @class = "col-form-label col-md-4" })
+                            @Html.EditorFor(model => model.MotherName, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Gender, new { @class = "col-form-label col-md-4" })
+                            @(Html.Kendo().DropDownListFor(model => model.Gender)
+                            .Name("Gender")
+                            .DataTextField("GenderText")
+                            .DataValueField("GenderID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetGenders", "Teachers");
+                                })
+                                .ServerFiltering(true);
+                            })
+                            )
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FamilyStatus, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.FamilyStatus)
+                            .Name("FamilyStatus")
+                            .DataTextField("FamilyStatusText")
+                            .DataValueField("FamilyStatusID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetFamilyStatus", "Teachers");
+                                })
+                                .ServerFiltering(true);
+                            })
+                            )
+                            @Html.ValidationMessageFor(model => model.FamilyStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Children, new { @class = "col-form-label col-md-6" })
+                            @(Html.Kendo().NumericTextBox<int>()
+                            .Name("Children")
+                            .Format("#0")
+                            .Min(0)
+                            .Max(20)
+                            .Step(1)
+                            .Value(Model.Children)
+                            .HtmlAttributes(new { style = "width: 200px" })
+                            )
+                            @Html.ValidationMessageFor(model => model.Children, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Birthdate, new { @class = "col-form-label col-md-8" })
+                            @Html.Kendo().DatePickerFor(model => model.Birthdate).HtmlAttributes(new { @class = "col-md-6", type = "text", style = "background-color:white;min-width:280px" })
+                            @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Nomos, new { @class = "col-form-label col-md-6" })
+                            @(Html.Kendo().DropDownListFor(model => model.Nomos)
+                            .Name("Nomos")
+                            .DataTextField("NomosText")
+                            .DataValueField("NomosID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetNomoi", "Teachers");
+                                })
+                                .ServerFiltering(true);
+                            })
+                            )
+                            @Html.ValidationMessageFor(model => model.Nomos, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.City, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.City, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.PostCode, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.PostCode, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.PostCode, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Address, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.Address, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Telephone, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.Telephone, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.CellPhone, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.CellPhone, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.CellPhone, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Email, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.Email, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </text>);
+            items.Add()
+                .Text("2. ΟΙΚΟΝΟΜΙΚΑ ΣΤΟΙΧΕΙΑ")
+                .Content(
+                @<text>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ADT, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.ADT, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.ADT, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ADT_FILENAME, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.ADT_FILENAME">@Model.ADT_FILENAME</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.HiddenFor(model => model.AFM)
+                            @Html.LabelFor(model => model.AFM, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE" title="@Model.AFM">@Model.AFM</label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AFM_FILENAME, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.AFM_FILENAME">@Model.AFM_FILENAME</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AMKA, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.AMKA, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.AMKA, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AMKA_FILENAME, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.AMKA_FILENAME">@Model.AMKA_FILENAME</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AMA, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.AMA, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.AMA, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.AMA_FILENAME, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.AMA_FILENAME">@Model.AMA_FILENAME</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.DOY, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.DOY, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.DOY, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Epagelma, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.Epagelma, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.Epagelma, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Idiotita, new { @class = "col-form-label col-md-6" })
+                            @(Html.Kendo().DropDownListFor(model => model.Idiotita)
+                                .Name("Idiotita")
+                                .DataTextField("IdiotitaText")
+                                .DataValueField("IdiotitaID")
+                                .HtmlAttributes(new { style = "width:300px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetIdiotites", "Teachers");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.Idiotita, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </text>);
+            items.Add()
+                .Text("3. ΚΟΙΝΩΝΙΚΑ ΣΤΟΙΧΕΙΑ")
+                .Content(
+                @<text>
+                    <div  class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialTriteknos, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.SocialTriteknos, new { @class = "form-control col-md-1" })
+                            @Html.ValidationMessageFor(model => model.SocialTriteknos, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.SocialTriteknosFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialTriteknosFilename">
+                                @Model.SocialTriteknosFilename
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialPolyteknos, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.SocialPolyteknos, new { @class = "form-control col-md-1" })
+                            @Html.ValidationMessageFor(model => model.SocialPolyteknos, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.SocialPolyteknosFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialPolyteknosFilename">
+                                @Model.SocialPolyteknosFilename
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialSingleParent, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.SocialSingleParent, new { @class = "form-control col-md-1" })
+                            @Html.ValidationMessageFor(model => model.SocialSingleParent, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.SocialSingleParentFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialSingleParentFilename">
+                                @Model.SocialSingleParentFilename
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialAmea, new { @class = "col-form-label col-md-8" })
+                            @Html.EditorFor(model => model.SocialAmea, new { @class = "form-control col-md-1" })
+                            @Html.ValidationMessageFor(model => model.SocialAmea, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.SocialAmeaFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialAmeaFilename">
+                                @Model.SocialAmeaFilename
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SocialAnergos, new { @class = "col-form-label col-md-8" })
+                            @(Html.Kendo().DropDownListFor(model => model.SocialAnergos)
+                                .Name("SocialAnergos")
+                                .DataTextField("AnergiaText")
+                                .DataValueField("AnergiaID")
+                                .HtmlAttributes(new { style = "width:300px;" })
+                                .OptionLabel("Επιλέξτε...")
+                                .AutoBind(true)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetAnergia", "Teachers");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                            )
+                            @Html.ValidationMessageFor(model => model.SocialAnergos, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.SocialAnergosFilename, new { @class = "col-form-label col-md-6" })
+                            <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.SocialAnergosFilename">
+                                @Model.SocialAnergosFilename
+                            </label>
+                        </div>
+                    </div>
+                </text>);
+            })
+        )
+    </div>
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible mt-3" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>@Html.ValidationSummary()</strong>
+        </div>
+    }
+}

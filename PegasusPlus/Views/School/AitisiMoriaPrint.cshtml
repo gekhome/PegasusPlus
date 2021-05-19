@@ -1,0 +1,62 @@
+﻿@model PegasusPlus.Models.AitisisParameters
+@{
+    ViewBag.Title = "Μόρια αίτησης";
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";
+}
+
+@section styles
+{
+    @*<link href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.bootstrap.min.css" rel="stylesheet" />*@
+
+    <link href="https://kendo.cdn.telerik.com/2016.1.112/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2016.1.112/styles/kendo.bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        #reportViewer1 {
+            position: absolute;
+            left: 5px;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            overflow: hidden;
+            font-family: Verdana, Arial;
+        }
+    </style>
+}
+
+@{
+    var typeReportSource = new TypeReportSource()
+    { TypeName = typeof(PegasusPlus.Reports.Data.AitisiResults).AssemblyQualifiedName };
+    if (Model != null) { typeReportSource.Parameters.Add("aitisiID", Model.AitisiID); }
+
+}
+
+<div>
+    @(Html.TelerikReporting().ReportViewer()
+    .Id("reportViewer1")
+    .ServiceUrl(Url.Content("~/api/reports/"))
+    .TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate.html"))
+    .ReportSource(typeReportSource)
+    .ViewMode(ViewMode.PrintPreview)
+    .ScaleMode(ScaleMode.Specific)
+    .ParametersAreaVisible(visible:true)
+    .PersistSession(true)
+    .Scale(1.0)
+    .Deferred()
+    )
+</div>
+
+@section scripts
+{
+    <!--kendo.all.min.js can be used as well kendo.web.min.js and kendo.mobile.min.js-->
+    <!-- Localization javascript here -->
+    <script src="@Url.Content("~/ReportViewer/js/kendo.subset.2015.3.930.min.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/resources.el-GR.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-10.0.16.113.js")"></script>
+
+    @(
+        // All deferred initialization statements will be rendered here
+        Html.TelerikReporting().DeferredScripts()
+    )
+}

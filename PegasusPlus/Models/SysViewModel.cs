@@ -275,5 +275,14 @@ namespace PegasusPlus.Models
         public int? ProkirixiID { get; set; }
     }
 
+    public class ReportParameters
+    {
+        public int? ProkirixiID { get; set; }
+        public int? PeriferiakiID { get; set; }
+
+        public int? SchoolID { get; set; }
+    }
+
+
     #endregion
 }

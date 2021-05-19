@@ -1041,7 +1041,6 @@ namespace PegasusPlus.Controllers.DataControllers
 
         #endregion
 
-
         #region UPLOADED FILES GRIDS
 
         public ActionResult TeachingFiles_Read([DataSourceRequest] DataSourceRequest request, int expId = 0)
@@ -1546,6 +1545,78 @@ namespace PegasusPlus.Controllers.DataControllers
 
         #endregion
 
+
+        #region ΕΚΤΥΠΩΣΕΙΣ
+
+        public ActionResult MultipleAitiseisPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult EnstaseisDetailPost()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult EnstaseisDetailPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult EnstaseisSummary()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        #endregion
 
         #region ΠΡΟΣΘΕΤΕΣ ΛΕΙΤΟΥΡΓΙΕΣ
 

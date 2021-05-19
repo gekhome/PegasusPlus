@@ -1,0 +1,679 @@
+﻿@using PegasusPlus.Models
+@model AitisisViewModel
+
+@{
+    ViewBag.Title = "Επεξεργασία αίτησης";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+<style>
+      .control-label {
+          font-family: 'Segoe UI';
+          white-space: pre-line;
+      }
+
+      .page-header {
+          border-bottom: 1px solid #D3D3D3;
+          font-family: 'Segoe UI';
+          font-size: x-large;
+      }
+
+      .k-textbox {
+          display: block;
+          width: 100%;
+          height: 34px;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.428571429;
+          color: #555555;
+          vertical-align: middle;
+          background-color: #ffffff;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      }
+
+    .k-textbox:focus {
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+</style>
+
+
+@using (Html.BeginForm("EditAitisi", "School", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(m => m.AitisisID)
+    @Html.HiddenFor(m => m.TeacherAFM)
+
+    <div class="page-header">
+        <div style="margin:5px 60px 5px 40px">
+            <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+                <font style="color:#292929;">Επεξεργασία αίτησης εκπαιδευτικού <i style="font-size:medium;margin-left:10px;color:red">(τα πεδία με * είναι υποχρεωτικά)</i></font>
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                <a class="btn btn-warning" , style="font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Κλείσιμο καρτέλας</a>
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                @Html.ActionLink("Αρχεία", "TeacherUploadsSchool", "School", new { afm = Model.TeacherAFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                @Html.ActionLink("Εκτύπωση", "AitisiSchoolPrint", "School", new { afm = Model.TeacherAFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
+            </span>
+            <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+                <input id="buttonClientSide" style="font-family:'Segoe UI';font-size:16px" type="submit" value="Αποθήκευση" class="btn btn-success" />
+            </span>
+        </div>
+    </div>
+
+    <div class="body-content mt-3 mb-3 ml-4 mr-4" id="candidate">
+        <div class="row">
+            <div class="col-md-3">
+                ΑΦΜ : <label class="form-control d-inline" style="min-height:34px;min-width:400px; background-color:#EEE" title="@Html.Raw(ViewBag.TeacherInfo.AFM)">
+                    @Html.Raw(ViewBag.TeacherInfo.AFM)
+                </label>
+            </div>
+            <div class="col-md-3">
+                <label class="form-control smartShortText d-inline" style="min-height:34px;width:300px; background-color:#EEE" title="@Html.Raw(ViewBag.TeacherInfo.FirstName) @Html.Raw(ViewBag.TeacherInfo.LastName)">
+                    @Html.Raw(ViewBag.TeacherInfo.FirstName) @Html.Raw(ViewBag.TeacherInfo.LastName)
+                </label>
+            </div>
+            <div class="col-md-3">
+                Α.Π. Αίτησης : &nbsp;<label class="form-control d-inline" style="min-height:34px;min-width:400px; background-color:#EEE" title="@Model.AitisisProtocol">
+                    @Model.AitisisProtocol
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-content mt-2">
+        @(Html.Kendo().PanelBar()
+            .Name("AitisiPanelBar")
+            .Items(items =>
+            {
+            items.Add()
+            .Text("1. ΒΑΣΙΚΕΣ ΣΠΟΥΔΕΣ")
+            .Selected(true)
+            .Expanded(true)
+            .Content(
+                @<text>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Klados, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.Klados)
+                            .Name("Klados")
+                            .DataTextField("KladosName")
+                            .DataValueField("KladosID")
+                            .HtmlAttributes(new { style = "width:200px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetKlados", "Aitisis");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.Klados, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Eidikotita, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.Eidikotita)
+                            .Name("Eidikotita")
+                            .DataTextField("EidikotitaDesc")
+                            .DataValueField("EidikotitaID")
+                            .HtmlAttributes(new { style = "width:360px;font-size:14px" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(false)
+                            .Enable(false)
+                            .CascadeFrom("Klados")
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetEidikotites", "Aitisis").Data("filterKlados");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.Eidikotita, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.BasicEducation, new { @class = "col-form-label col-md-10" })
+                        @(Html.Kendo().DropDownListFor(model => model.BasicEducation)
+                            .Name("BasicEducation")
+                            .DataTextField("EducationText")
+                            .DataValueField("EducationID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetBasicEducation", "Aitisis");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.BasicEducation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioType, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.PtyxioType)
+                            .Name("PtyxioType")
+                            .DataTextField("PtyxioText")
+                            .DataValueField("PtyxioID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetPtyxia", "Aitisis");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.PtyxioType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioTitlos, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.PtyxioTitlos, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PtyxioTitlos, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioYear, new { @class = "col-form-label col-md-6" })
+                        @(Html.Kendo().NumericTextBox<int>()
+                            .Name("PtyxioYear")
+                            .Format("#0")
+                            .Min(1950)
+                            .Max(2030)
+                            .Step(1)
+                            .Value(Model.PtyxioYear)
+                            .HtmlAttributes(new { style = "width: 200px" })
+                        )
+                        @Html.ValidationMessageFor(model => model.PtyxioYear, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioGrade, new { @class = "col-form-label col-md-6" })
+                        @(Html.Kendo().NumericTextBox<decimal>()
+                            .Name("PtyxioGrade")
+                            .Format("#0.00")
+                            .Min(5.00m)
+                            .Max(20.00m)
+                            .Step(0.10m)
+                            .Value(Model.PtyxioGrade)
+                            .HtmlAttributes(new { style = "width: 200px" })
+                        )
+                        @Html.ValidationMessageFor(model => model.PtyxioGrade, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioInstitution, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.PtyxioInstitution, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PtyxioInstitution, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioSchool, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.PtyxioSchool, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PtyxioSchool, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioTmima, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.PtyxioTmima, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PtyxioTmima, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioForeign, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.PtyxioForeign, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PtyxioForeign, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioAnagnorisi, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.PtyxioAnagnorisi, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PtyxioAnagnorisi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioFilename, new { @class = "col-form-label col-md-6" })
+                        <label class="form-control col-md-6 smartShortText" style="max-height:20px;background-color:#EEE;min-width:300px" title="@Model.PtyxioFilename">@Model.PtyxioFilename</label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PtyxioAnagnorisiFilename, new { @class = "col-form-label col-md-6" })
+                        <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.PtyxioAnagnorisiFilename">
+                            @Model.PtyxioAnagnorisiFilename
+                        </label>
+                    </div>
+                </div>
+                </text>);
+            items.Add()
+            .Text("2. ΜΕΤΑΠΤΥΧΙΑΚΟ")
+            .Content(
+                @<text>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscTitlos, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.MscTitlos, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.MscTitlos, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscInstitution, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.MscInstitution, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.MscInstitution, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscYear, new { @class = "col-form-label col-md-6" })
+                        @(Html.Kendo().NumericTextBox<int>()
+                            .Name("MscYear")
+                            .Format("#0")
+                            .Min(1950)
+                            .Max(2030)
+                            .Step(1)
+                            .Value(Model.MscYear)
+                            .HtmlAttributes(new { style = "width: 200px" })
+                        )
+                        @Html.ValidationMessageFor(model => model.MscYear, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscSynafeia, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.MscSynafeia)
+                            .Name("MscSynafeia")
+                            .DataTextField("SynafeiaText")
+                            .DataValueField("SynafeiaID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetSynafeia", "Aitisis");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.MscSynafeia, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscForeign, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.MscForeign, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.MscForeign, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscAnagnorisi, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.MscAnagnorisi, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.MscAnagnorisi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscFilename, new { @class = "col-form-label col-md-6" })
+                        <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.MscFilename">@Model.MscFilename</label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MscAnagnorisiFilename, new { @class = "col-form-label col-md-6" })
+                        <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.MscAnagnorisiFilename">
+                            @Model.MscAnagnorisiFilename
+                        </label>
+                    </div>
+                </div>
+                </text>);
+            items.Add()
+            .Text("3. ΔΙΔΑΚΤΟΡΙΚΟ")
+            .Content(
+                @<text>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdTitlos, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.PhdTitlos, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PhdTitlos, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdInstitution, new { @class = "col-form-label col-md-6" })
+                        @Html.EditorFor(model => model.PhdInstitution, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PhdInstitution, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdYear, new { @class = "col-form-label col-md-6" })
+                        @(Html.Kendo().NumericTextBox<int>()
+                            .Name("PhdYear")
+                            .Format("#0")
+                            .Min(1950)
+                            .Max(2030)
+                            .Step(1)
+                            .Value(Model.PhdYear)
+                            .HtmlAttributes(new { style = "width: 200px" })
+                        )
+                        @Html.ValidationMessageFor(model => model.PhdYear, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdSynafeia, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.PhdSynafeia)
+                            .Name("PhdSynafeia")
+                            .DataTextField("SynafeiaText")
+                            .DataValueField("SynafeiaID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetSynafeia", "Aitisis");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.PhdSynafeia, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdForeign, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.PhdForeign, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PhdForeign, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdAnagnorisi, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.PhdAnagnorisi, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.PhdAnagnorisi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdFilename, new { @class = "col-form-label col-md-6" })
+                        <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.PhdFilename">@Model.PhdFilename</label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.PhdAnagnorisiFilename, new { @class = "col-form-label col-md-6" })
+                        <label class="form-control col-md-6 smartShortText" style="max-height:20px; background-color:#EEE;min-width:300px" title="@Model.PhdAnagnorisiFilename">
+                            @Model.PhdAnagnorisiFilename
+                        </label>
+                    </div>
+                </div>
+                </text>);
+            items.Add()
+            .Text("4. ΠΕΡΙΦΕΡΕΙΑ, ΣΧΟΛΙΚΗ ΜΟΝΑΔΑ")
+            .Content(
+                @<text>
+                <div class="row col-md-12 ml-4 mb-3">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.EpagelmaCategory, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.EpagelmaCategory)
+                            .Name("EpagelmaCategory")
+                            .DataTextField("EpagelmaText")
+                            .DataValueField("EpagelmaID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetEpagelmaCategory", "Aitisis");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.EpagelmaCategory, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Periferia, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.Periferia)
+                            .Name("Periferia")
+                            .DataTextField("PeriferiaName")
+                            .DataValueField("PeriferiaID")
+                            .HtmlAttributes(new { style = "width:360px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .CascadeFrom("Eidikotita")
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetCascadePeriferies", "Aitisis").Data("filterPeriferies");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.Periferia, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.School, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.School)
+                            .Name("School")
+                            .DataTextField("SchoolName")
+                            .DataValueField("SchoolID")
+                            .HtmlAttributes(new { style = "width:300px;" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .CascadeFrom("Periferia")
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetCascadeSchools", "Aitisis").Data("filterSchools");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </text>);
+            items.Add()
+            .Text("5. ΕΛΕΓΧΟΣ ΕΠΙΤΡΟΠΗΣ")
+            .Content(
+                @<text>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedPtyxioConfirm, new { @class = "col-form-label col-md-8" })
+                        @Html.EditorFor(model => model.OaedPtyxioConfirm, new { @class = "form-control col-md-3" })
+                        @Html.ValidationMessageFor(model => model.OaedPtyxioConfirm, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedMscConfirm, new { @class = "col-form-label col-md-8" })
+                        @Html.EditorFor(model => model.OaedMscConfirm, new { @class = "form-control col-md-3" })
+                        @Html.ValidationMessageFor(model => model.OaedMscConfirm, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedPhdConfirm, new { @class = "col-form-label col-md-8" })
+                        @Html.EditorFor(model => model.OaedPhdConfirm, new { @class = "form-control col-md-3" })
+                        @Html.ValidationMessageFor(model => model.OaedPhdConfirm, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedApoklismos, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.OaedApoklismos, new { @class = "form-control col-md-4" })
+                        @Html.ValidationMessageFor(model => model.OaedApoklismos, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedApoklismosAitia, new { @class = "col-form-label col-md-8" })
+                        @(Html.Kendo().DropDownListFor(model => model.OaedApoklismosAitia)
+                            .Name("OaedApoklismosAitia")
+                            .DataTextField("ApoklismosText")
+                            .DataValueField("ApoklismosID")
+                            .HtmlAttributes(new { style = "width:360px;font-size:14px" })
+                            .OptionLabel("Επιλέξτε...")
+                            .AutoBind(true)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetApoklismos", "School");
+                                })
+                                .ServerFiltering(true);
+                            })
+                        )
+                        @Html.ValidationMessageFor(model => model.OaedApoklismosAitia, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedEnstasi, new { @class = "col-form-label col-md-12" })
+                        @Html.EditorFor(model => model.OaedEnstasi, new { @class = "form-control col-md-3" })
+                        @Html.ValidationMessageFor(model => model.OaedEnstasi, "", new { @class = "text-danger" })
+                    </div>
+                    </div>
+                <hr class="ml-4 mr-4" />
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedEpitropi1Text, new { @class = "col-form-label col-md-12" })
+                        @Html.TextAreaFor(model => model.OaedEpitropi1Text, 6, 80, new { @class="col-md-12", style = "min-width:800px" })
+                        @Html.ValidationMessageFor(model => model.OaedPtyxioConfirm, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedEpitropi2Text, new { @class = "col-form-label col-md-12" })
+                        @Html.TextAreaFor(model => model.OaedEpitropi2Text, 6, 80, new { @class = "col-md-12", style = "min-width:800px" })
+                        @Html.ValidationMessageFor(model => model.OaedEpitropi2Text, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row col-md-12 ml-4 mb-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.OaedCheckStatus, new { @class = "col-form-label col-md-8" })
+                        @Html.EditorFor(model => model.OaedCheckStatus, new { @class = "form-control col-md-3" })
+                        @Html.ValidationMessageFor(model => model.OaedCheckStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </text>);
+            items.Add()
+            .Text("6. ΜΟΡΙΑ ΑΙΤΗΣΗΣ")
+            .Content(
+                @<text>
+                    <div class="row col-md-12 ml-4 mt-2 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaPtyxio, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaPtyxio">
+                                @Math.Round(Model.MoriaPtyxio, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaMsc, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaMsc">
+                                @Math.Round(Model.MoriaMsc, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaPhd, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaPhd">
+                                @Math.Round(Model.MoriaPhd, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mt-2 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaLanguage, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaLanguage">
+                                @Math.Round(Model.MoriaLanguage, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaComputer, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaComputer">
+                                @Math.Round(Model.MoriaComputer, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaEpimorfosi, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaEpimorfosi">
+                                @Math.Round(Model.MoriaEpimorfosi, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mt-2 mb-1">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaTeach, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaTeach">
+                                @Math.Round(Model.MoriaTeach, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaWork, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaWork">
+                                @Math.Round(Model.MoriaWork, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaCertified, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaCertified">
+                                @Math.Round(Model.MoriaCertified, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mt-2 mb-3">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaAnergia, new { @class = "col-form-label col-md-8" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaAnergia">
+                                @Math.Round(Model.MoriaAnergia, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaSocial, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" title="@Model.MoriaWork">
+                                @Math.Round(Model.MoriaSocial, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MoriaTotal, new { @class = "col-form-label col-md-10" })
+                            <label class="form-control display-label col-md-4 smartShortText" style="font-weight:700" title="@Model.MoriaTotal">
+                                @Math.Round(Model.MoriaTotal, 2, MidpointRounding.AwayFromZero)
+                            </label>
+                        </div>
+                    </div>
+                </text>);
+            })
+)
+    </div>
+
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible mt-3" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>@Html.ValidationSummary()</strong>
+        </div>
+    }
+}
+
+<script type="text/javascript">
+
+    function filterKlados() {
+        return {
+            kladosId: $("#Klados").data("kendoDropDownList").value()
+        };
+    }
+
+    function filterPeriferies() {
+        return {
+            eidikotitaId: $("#Eidikotita").data("kendoDropDownList").value()
+        };
+    }
+
+    function filterSchools() {
+        return {
+            periferia: $("#Periferia").data("kendoDropDownList").value(),
+            eidikotita: $("#Eidikotita").data("kendoDropDownList").value()
+        };
+    }
+
+</script>

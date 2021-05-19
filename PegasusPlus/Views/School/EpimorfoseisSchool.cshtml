@@ -1,0 +1,204 @@
+﻿@using PegasusPlus.Models
+
+@{
+    ViewBag.Title = "Επιμορφώσεις";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    string teacher_afm = ViewData["teacherAfm"].ToString();
+}
+
+
+<div class="page-header">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Επιμορφώσεις στο διδακτικό αντικείμενο της θέσης</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+            <a class="btn btn-warning" , style="font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Κλείσιμο καρτέλας</a>
+        </span>
+    </div>
+</div>
+
+<div class="body-content mt-4">
+    @(Html.Kendo().Grid<EpimorfosiViewModel>()
+        .Name("Master")
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.EpimorfosiTitlos).Width(40).Filterable(false);
+            columns.Bound(m => m.EpimorfosiForeas).Width(30);
+            columns.Bound(m => m.EpimorfosiDateStart).Width(20);
+            columns.Bound(m => m.EpimorfosiDateFinal).Width(20);
+            columns.Bound(m => m.EpimorfosiHours).Width(16)
+                .ClientFooterTemplate("Σύνολο: #=sum#")
+                .ClientGroupFooterTemplate("Σύνολο: #=sum#");
+            columns.Command(command => { command.Edit(); }).Width(34);
+        })
+        .Navigatable()
+        .Filterable()
+        .Selectable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine).CreateAt(GridInsertRowPosition.Top))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(340))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .PageSize(40)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.EpimorfosiID);
+        })
+        .Read(read => read.Action("Epimorfosi_Read", "Admin", new { afm = teacher_afm }))
+        .Update(update => update.Action("Epimorfosi_Update", "Admin"))
+        .Events(events => events.Error("error_handler1"))
+        .Aggregates(a =>
+        {
+            a.Add(p => p.EpimorfosiHours).Sum();
+        })
+        )
+        .Events(events => events.Change("change"))
+    )
+</div>
+
+<div class="body-content mt-3">
+    @(Html.Kendo().Grid<EpimorfosiFileViewModel>()
+        .Name("Child")
+        .AutoBind(false)
+        .HtmlAttributes(new { style = "font-size:14px" })
+        .Filterable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine).CreateAt(GridInsertRowPosition.Top))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .Scrollable(scr => scr.Height(260))
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.UploadFileID).Width(20).Hidden();
+            columns.Bound(c => c.TeacherAFM).Width(20);
+            columns.Bound(c => c.Filename).Width(50);
+            columns.Bound(c => c.Description).Width(30);
+            columns.Command(command => { command.Custom("\u13EB" + " Προβολή").Click("showPDF"); }).Width(34);
+            columns.Template(
+                @<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("DownloadEpimorfosiFile", "Admin") + "?file_id=#=UploadFileID#'><span class=\"k-icon k-update\"></span>Κατέβασμα</a>"
+            ).Width(20);
+        })
+        .DataSource(ds => ds
+        .Ajax()
+        .Batch(false)
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.UploadFileID);
+        })
+        .Read(read => read.Action("EpimorfosiFiles_Read", "Admin").Data("data"))
+        .Events(events => events.Error("error_handler2"))
+        )
+    )
+</div>
+
+<div id="dialog" style="display: none">
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+
+    function RefreshMasterGrid(e) {
+        var grid = $("#Master").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function RefreshGrid(e) {
+        var grid = $("#Child").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function change(e) {
+        var dataItem = this.dataItem(this.select());
+        var epimorfosiID = dataItem.EpimorfosiID;
+
+        $("#Child").data("kendoGrid").dataSource.read({ epimorfosiId: epimorfosiID });
+    }
+
+    function data() {
+        var masterGrid = $("#Master").data("kendoGrid");
+        // get data item for selected row
+        var dataItem = masterGrid.dataItem(masterGrid.select());
+        if (dataItem) {
+            return { epimorfosiId: dataItem.EpimorfosiID };
+        }
+        else {
+            return { epimorfosiId: 0 };
+        }
+    }
+
+    function error_handler1(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+        }
+        $("#Master").data("kendoGrid").dataSource.read();
+    }
+
+    function error_handler2(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+        }
+        $("#Child").data("kendoGrid").dataSource.read();
+    }
+
+    function showPDF(e) {
+        e.preventDefault();
+        var grid = this;
+        var row = $(e.currentTarget).closest("tr");
+        var data = this.dataItem(row);
+
+        var currentDomain = '@Url.Content("~")';
+        var url = currentDomain + "Uploads/FilesEpimorfosi/" + data.TeacherAFM + "/";
+
+        fileName = data.Filename;
+
+        $("#dialog").dialog({
+            modal: true,
+            title: fileName,
+            width: 800,
+            height: 600,
+            buttons: {
+                Κλείσιμο: function () {
+                    $(this).dialog('close');
+                }
+            },
+            open: function () {
+                var object = "<object data=\"{FileName}\" type=\"application/pdf\" width=\"800px\" height=\"600px\"></object>";
+                object = object.replace(/{FileName}/g, url + fileName);
+                $("#dialog").html(object);
+            }
+        });
+    }
+
+</script>

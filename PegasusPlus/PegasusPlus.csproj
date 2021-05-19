@@ -484,6 +484,24 @@
     <Compile Include="Reports\Data\EidikotitesProkirixis.Designer.cs">
       <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Data\EnstaseisSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\EnstaseisSummary.Designer.cs">
+      <DependentUpon>EnstaseisSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\EpitropesDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\EpitropesDetail.Designer.cs">
+      <DependentUpon>EpitropesDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\MultipleAitiseis.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\MultipleAitiseis.Designer.cs">
+      <DependentUpon>MultipleAitiseis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Data\TeacherData.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -555,6 +573,12 @@
     </Compile>
     <Compile Include="Reports\Misc\TeachersProslipsi.Designer.cs">
       <DependentUpon>TeachersProslipsi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\EpitropesDetailPost.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\EpitropesDetailPost.Designer.cs">
+      <DependentUpon>EpitropesDetailPost.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1638,6 +1662,26 @@
     <Content Include="Views\Admin\TeachersProslipsiPrint.cshtml" />
     <Content Include="Views\Admin\AitiseisWIthWorkPrint.cshtml" />
     <Content Include="Views\Admin\AitiseisWIthoutWorkPrint.cshtml" />
+    <Content Include="Views\School\AitiseisAudit.cshtml" />
+    <Content Include="Views\School\EditAitisi.cshtml" />
+    <Content Include="Views\School\EditPersonal.cshtml" />
+    <Content Include="Views\School\EditSkills.cshtml" />
+    <Content Include="Views\School\AitiseisMoria.cshtml" />
+    <Content Include="Views\School\TeacherUploadsSchool.cshtml" />
+    <Content Include="Views\School\EpimorfoseisSchool.cshtml" />
+    <Content Include="Views\School\AitisiMoriaView.cshtml" />
+    <Content Include="Views\School\AitisiMoriaPrint.cshtml" />
+    <Content Include="Views\School\AitiseisRegistry.cshtml" />
+    <Content Include="Views\School\AitiseisRegistryPrint.cshtml" />
+    <Content Include="Views\School\AitisiExperiencePrint.cshtml" />
+    <Content Include="Views\Admin\MultipleAitiseisPrint.cshtml" />
+    <Content Include="Views\School\MultipleAitiseisPrint.cshtml" />
+    <Content Include="Views\Admin\EnstaseisDetailPrint.cshtml" />
+    <Content Include="Views\Admin\EnstaseisDetailPost.cshtml" />
+    <Content Include="Views\School\EnstaseisDetailPost.cshtml" />
+    <Content Include="Views\School\EnstaseisDetailPrint.cshtml" />
+    <Content Include="Views\Admin\EnstaseisSummary.cshtml" />
+    <Content Include="Views\School\EnstaseisSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -1688,6 +1732,15 @@
     <EmbeddedResource Include="Reports\Data\EidikotitesProkirixis.resx">
       <DependentUpon>EidikotitesProkirixis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\EnstaseisSummary.resx">
+      <DependentUpon>EnstaseisSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\EpitropesDetail.resx">
+      <DependentUpon>EpitropesDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\MultipleAitiseis.resx">
+      <DependentUpon>MultipleAitiseis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\TeacherData.resx">
       <DependentUpon>TeacherData.cs</DependentUpon>
     </EmbeddedResource>
@@ -1723,6 +1776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Misc\TeachersProslipsi.resx">
       <DependentUpon>TeachersProslipsi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\EpitropesDetailPost.resx">
+      <DependentUpon>EpitropesDetailPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
