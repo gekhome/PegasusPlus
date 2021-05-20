@@ -119,3 +119,4 @@ F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Stat
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statSocialGroups.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statCertified.resources
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statAnergia.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statPtyxioLevel.resources

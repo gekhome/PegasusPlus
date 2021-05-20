@@ -75,6 +75,8 @@ namespace PegasusPlus.DAL
         public Nullable<bool> OaedCheckStatus { get; set; }
         public Nullable<bool> OaedEnstasi { get; set; }
         public Nullable<int> EidikotitaGroup { get; set; }
+        public Nullable<bool> MscExists { get; set; }
+        public Nullable<bool> PhdExists { get; set; }
     
         public virtual Teachers Teachers { get; set; }
     }

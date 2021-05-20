@@ -93,6 +93,9 @@ namespace PegasusPlus.Models
         [Display(Name = "Επιλογή αρχείου για την αναγνώριση")]
         public HttpPostedFileBase FilePtyxioAnagnorisi { get; set; }
 
+        [Display(Name = "Κατοχή μεταπτυχιακού τίτλου σπουδών")]
+        public bool MscExists { get; set; }
+
         [StringLength(255, ErrorMessage = "Πρέπει να είναι μέχρι 255 χαρακτήρες.")]
         [Display(Name = "Τίτλος")]
         public string MscTitlos { get; set; }
@@ -126,6 +129,9 @@ namespace PegasusPlus.Models
         [MaxFileSize(900 * 1024, ErrorMessage = "Μέγιστο επιτρεπόμενο μέγεθος αρχείου {0} bytes")]
         [Display(Name = "Επιλογή αρχείου για την αναγνώριση")]
         public HttpPostedFileBase FileMscAnagnorisi { get; set; }
+
+        [Display(Name = "Κατοχή διδακτορικού τίτλου σπουδών")]
+        public bool PhdExists { get; set; }
 
         [StringLength(255, ErrorMessage = "Πρέπει να είναι μέχρι 255 χαρακτήρες.")]
         [Display(Name = "Τίτλος")]

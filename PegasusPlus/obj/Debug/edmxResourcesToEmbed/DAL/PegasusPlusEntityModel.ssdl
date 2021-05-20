@@ -24,6 +24,7 @@
     <Property Name="PtyxioAnagnorisi" Type="bit" />
     <Property Name="PtyxioFilename" Type="nvarchar" MaxLength="255" />
     <Property Name="PtyxioAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="MscExists" Type="bit" />
     <Property Name="MscTitlos" Type="nvarchar" MaxLength="255" />
     <Property Name="MscYear" Type="int" />
     <Property Name="MscInstitution" Type="nvarchar" MaxLength="255" />
@@ -32,6 +33,7 @@
     <Property Name="MscAnagnorisi" Type="bit" />
     <Property Name="MscFilename" Type="nvarchar" MaxLength="255" />
     <Property Name="MscAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhdExists" Type="bit" />
     <Property Name="PhdTitlos" Type="nvarchar" MaxLength="255" />
     <Property Name="PhdYear" Type="int" />
     <Property Name="PhdInstitution" Type="nvarchar" MaxLength="255" />

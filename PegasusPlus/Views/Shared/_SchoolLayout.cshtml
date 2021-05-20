@@ -201,6 +201,8 @@
                         .LinkHtmlAttributes(new { target = "_blank" });
                     Children.Add().Text("Κατανομή κοινωνική ομάδα").ImageUrl(Url.Content("~/Images/phone/appbar.graph.bar.png")).Action("statSocialGroupsPrint", "School")
                         .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Κατανομή βαθμίδων πτυχίου").ImageUrl(Url.Content("~/Images/phone/appbar.graph.bar.png")).Action("statPtyxioLevelPrint", "School")
+                        .LinkHtmlAttributes(new { target = "_blank" });
                 });
                 items.Add().Text("Προκηρύξεις").ImageUrl(Url.Content("~/Images/phone/appbar.calendar.year.png"))
                 .Items(Children =>

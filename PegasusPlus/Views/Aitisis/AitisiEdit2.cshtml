@@ -321,6 +321,13 @@
                 .Content(
                     @<text>
                     <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.MscExists, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.MscExists, new { @class = "form-control col-md-2" })
+                            @Html.ValidationMessageFor(model => model.MscExists, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row col-md-12 ml-4 mb-2">
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.MscTitlos, new { @class = "col-form-label col-md-6" })
                             @Html.EditorFor(model => model.MscTitlos, new { @class = "form-control col-md-4" })
@@ -418,6 +425,13 @@
                 .Text("ΕΝΟΤΗΤΑ 3 - ΔΙΔΑΚΤΟΡΙΚΟ")
                 .Content(
                     @<text>
+                    <div class="row col-md-12 ml-4 mb-2">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.PhdExists, new { @class = "col-form-label col-md-6" })
+                            @Html.EditorFor(model => model.PhdExists, new { @class = "form-control col-md-2" })
+                            @Html.ValidationMessageFor(model => model.PhdExists, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                     <div class="row col-md-12 ml-4 mb-2">
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.PhdTitlos, new { @class = "col-form-label col-md-6" })

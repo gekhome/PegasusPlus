@@ -49,7 +49,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal container">
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <fieldset>
                 <legend style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Είσοδος διαχειριστή</legend>
 
@@ -68,7 +68,7 @@
                                 @Html.LabelFor(model => model.Username, new { @class = "col-form-label col-md-3" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.Username, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Username)
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </td>
@@ -79,7 +79,7 @@
                                 @Html.LabelFor(model => model.Password, new { @class = "col-form-label col-md-3" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.Password)
-                                    @Html.ValidationMessageFor(model => model.Password)
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <p></p>

@@ -29,6 +29,7 @@
           <Property Name="PtyxioAnagnorisi" Type="bit" />
           <Property Name="PtyxioFilename" Type="nvarchar" MaxLength="255" />
           <Property Name="PtyxioAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+          <Property Name="MscExists" Type="bit" />
           <Property Name="MscTitlos" Type="nvarchar" MaxLength="255" />
           <Property Name="MscYear" Type="int" />
           <Property Name="MscInstitution" Type="nvarchar" MaxLength="255" />
@@ -37,6 +38,7 @@
           <Property Name="MscAnagnorisi" Type="bit" />
           <Property Name="MscFilename" Type="nvarchar" MaxLength="255" />
           <Property Name="MscAnagnorisiFilename" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhdExists" Type="bit" />
           <Property Name="PhdTitlos" Type="nvarchar" MaxLength="255" />
           <Property Name="PhdYear" Type="int" />
           <Property Name="PhdInstitution" Type="nvarchar" MaxLength="255" />
@@ -2166,6 +2168,8 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <Property Name="OaedEnstasi" Type="Boolean" />
           <NavigationProperty Name="Teachers" Relationship="PegasusPlusDBModel.FK_Aitisis_Teachers" FromRole="Aitisis" ToRole="Teachers" />
           <Property Name="EidikotitaGroup" Type="Int32" />
+          <Property Name="MscExists" Type="Boolean" />
+          <Property Name="PhdExists" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Aitisis_Teachers">
           <End Type="PegasusPlusDBModel.Teachers" Role="Teachers" Multiplicity="0..1" />
@@ -3048,6 +3052,8 @@ warning 6002: The table/view 'PegasusPlusDB.dbo.viewEidikotites' does not have a
           <EntitySetMapping Name="Aitisis">
             <EntityTypeMapping TypeName="PegasusPlusDBModel.Aitisis">
               <MappingFragment StoreEntitySet="Aitisis">
+                <ScalarProperty Name="PhdExists" ColumnName="PhdExists" />
+                <ScalarProperty Name="MscExists" ColumnName="MscExists" />
                 <ScalarProperty Name="EidikotitaGroup" ColumnName="EidikotitaGroup" />
                 <ScalarProperty Name="OaedEnstasi" ColumnName="OaedEnstasi" />
                 <ScalarProperty Name="OaedCheckStatus" ColumnName="OaedCheckStatus" />

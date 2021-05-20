@@ -632,6 +632,8 @@
     <EntitySetMapping Name="Aitisis">
       <EntityTypeMapping TypeName="PegasusPlusDBModel.Aitisis">
         <MappingFragment StoreEntitySet="Aitisis">
+          <ScalarProperty Name="PhdExists" ColumnName="PhdExists" />
+          <ScalarProperty Name="MscExists" ColumnName="MscExists" />
           <ScalarProperty Name="EidikotitaGroup" ColumnName="EidikotitaGroup" />
           <ScalarProperty Name="OaedEnstasi" ColumnName="OaedEnstasi" />
           <ScalarProperty Name="OaedCheckStatus" ColumnName="OaedCheckStatus" />

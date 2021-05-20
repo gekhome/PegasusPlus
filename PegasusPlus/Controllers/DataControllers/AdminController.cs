@@ -469,12 +469,14 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.PtyxioYear = model.PtyxioYear;
                 entity.PtyxioForeign = model.PtyxioForeign;
                 entity.PtyxioAnagnorisi = model.PtyxioAnagnorisi;
+                entity.MscExists = model.MscExists;
                 entity.MscTitlos = model.MscTitlos;
                 entity.MscInstitution = model.MscInstitution;
                 entity.MscYear = model.MscYear;
                 entity.MscSynafeia = model.MscSynafeia;
                 entity.MscForeign = model.MscForeign;
                 entity.MscAnagnorisi = model.MscAnagnorisi;
+                entity.PhdExists = model.PhdExists;
                 entity.PhdTitlos = model.PhdTitlos;
                 entity.PhdInstitution = model.PhdInstitution;
                 entity.PhdYear = model.PhdYear;
@@ -575,6 +577,8 @@ namespace PegasusPlus.Controllers.DataControllers
                             EpagelmaCategory = d.EpagelmaCategory,
                             Periferia = d.Periferia,
                             School = d.School,
+                            MscExists = d.MscExists ?? false,
+                            PhdExists = d.PhdExists ?? false,
                             OaedApoklismos = d.OaedApoklismos ?? false,
                             OaedApoklismosAitia = d.OaedApoklismosAitia,
                             OaedCheckStatus = d.OaedCheckStatus ?? false,
@@ -1671,6 +1675,23 @@ namespace PegasusPlus.Controllers.DataControllers
         }
 
         public ActionResult statSocialGroupsPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult statPtyxioLevelPrint()
         {
             bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             if (!val1)

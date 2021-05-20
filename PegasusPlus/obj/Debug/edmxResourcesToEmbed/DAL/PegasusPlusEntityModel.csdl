@@ -858,6 +858,8 @@
     <Property Name="OaedEnstasi" Type="Boolean" />
     <NavigationProperty Name="Teachers" Relationship="PegasusPlusDBModel.FK_Aitisis_Teachers" FromRole="Aitisis" ToRole="Teachers" />
     <Property Name="EidikotitaGroup" Type="Int32" />
+    <Property Name="MscExists" Type="Boolean" />
+    <Property Name="PhdExists" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Aitisis_Teachers">
     <End Type="PegasusPlusDBModel.Teachers" Role="Teachers" Multiplicity="0..1" />

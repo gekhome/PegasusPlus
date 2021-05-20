@@ -147,12 +147,14 @@ namespace PegasusPlus.Controllers.DataControllers
                     PtyxioYear = model.PtyxioYear,
                     PtyxioForeign = model.PtyxioForeign,
                     PtyxioAnagnorisi = model.PtyxioAnagnorisi,
+                    MscExists = model.MscExists,
                     MscTitlos = model.MscTitlos,
                     MscInstitution = model.MscInstitution,
                     MscYear = model.MscYear,
                     MscSynafeia = model.MscSynafeia,
                     MscForeign = model.MscForeign,
                     MscAnagnorisi = model.MscAnagnorisi,
+                    PhdExists = model.PhdExists,
                     PhdTitlos = model.PhdTitlos,
                     PhdInstitution = model.PhdInstitution,
                     PhdYear = model.PhdYear,
@@ -214,12 +216,14 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.PtyxioYear = model.PtyxioYear;
                 entity.PtyxioForeign = model.PtyxioForeign;
                 entity.PtyxioAnagnorisi = model.PtyxioAnagnorisi;
+                entity.MscExists = model.MscExists;
                 entity.MscTitlos = model.MscTitlos;
                 entity.MscInstitution = model.MscInstitution;
                 entity.MscYear = model.MscYear;
                 entity.MscSynafeia = model.MscSynafeia;
                 entity.MscForeign = model.MscForeign;
                 entity.MscAnagnorisi = model.MscAnagnorisi;
+                entity.PhdExists = model.PhdExists;
                 entity.PhdTitlos = model.PhdTitlos;
                 entity.PhdInstitution = model.PhdInstitution;
                 entity.PhdYear = model.PhdYear;
@@ -279,12 +283,14 @@ namespace PegasusPlus.Controllers.DataControllers
                 entity.PtyxioYear = model.PtyxioYear;
                 entity.PtyxioForeign = model.PtyxioForeign;
                 entity.PtyxioAnagnorisi = model.PtyxioAnagnorisi;
+                entity.MscExists = model.MscExists;
                 entity.MscTitlos = model.MscTitlos;
                 entity.MscInstitution = model.MscInstitution;
                 entity.MscYear = model.MscYear;
                 entity.MscSynafeia = model.MscSynafeia;
                 entity.MscForeign = model.MscForeign;
                 entity.MscAnagnorisi = model.MscAnagnorisi;
+                entity.PhdExists = model.PhdExists;
                 entity.PhdTitlos = model.PhdTitlos;
                 entity.PhdInstitution = model.PhdInstitution;
                 entity.PhdYear = model.PhdYear;
@@ -362,7 +368,9 @@ namespace PegasusPlus.Controllers.DataControllers
                             PhdAnagnorisiFilename = d.PhdAnagnorisiFilename,
                             EpagelmaCategory = d.EpagelmaCategory,
                             Periferia = d.Periferia,
-                            School = d.School
+                            School = d.School,
+                            MscExists = d.MscExists ?? false,
+                            PhdExists = d.PhdExists ?? false
                         }).FirstOrDefault();
 
             return data;
