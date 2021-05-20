@@ -1616,6 +1616,79 @@ namespace PegasusPlus.Controllers.DataControllers
             }
         }
 
+
+        #region ΣΤΑΤΙΣΤΙΚΕΣ ΕΚΘΕΣΕΙΣ
+
+        public ActionResult statGendersPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult statAnergiaPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult statCertifiedPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        public ActionResult statSocialGroupsPrint()
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserAdmins");
+            }
+            else
+            {
+                loggedAdmin = GetLoginAdmin();
+                ReportParameters parameters = new ReportParameters();
+                parameters.ProkirixiID = c.GetAdminProkirixiID();
+
+                return View(parameters);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region ΠΡΟΣΘΕΤΕΣ ΛΕΙΤΟΥΡΓΙΕΣ

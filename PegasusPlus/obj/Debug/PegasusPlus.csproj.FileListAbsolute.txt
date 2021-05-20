@@ -115,3 +115,7 @@ F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.dll.licenses
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.dll
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.pdb
 F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Data.EnstaseisSummary.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statGenders.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statSocialGroups.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statCertified.resources
+F:\VISUAL STUDIO 2015\PegasusPlus\PegasusPlus\obj\Debug\PegasusPlus.Reports.Statistics.statAnergia.resources

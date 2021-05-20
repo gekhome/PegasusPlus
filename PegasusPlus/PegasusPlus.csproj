@@ -580,6 +580,30 @@
     <Compile Include="Reports\Data\EpitropesDetailPost.Designer.cs">
       <DependentUpon>EpitropesDetailPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistics\statAnergia.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistics\statAnergia.Designer.cs">
+      <DependentUpon>statAnergia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistics\statCertified.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistics\statCertified.Designer.cs">
+      <DependentUpon>statCertified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistics\statGenders.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistics\statGenders.Designer.cs">
+      <DependentUpon>statGenders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistics\statSocialGroups.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistics\statSocialGroups.Designer.cs">
+      <DependentUpon>statSocialGroups.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Clock\coolclock.js" />
@@ -1682,6 +1706,14 @@
     <Content Include="Views\School\EnstaseisDetailPrint.cshtml" />
     <Content Include="Views\Admin\EnstaseisSummary.cshtml" />
     <Content Include="Views\School\EnstaseisSummary.cshtml" />
+    <Content Include="Views\Admin\statGendersPrint.cshtml" />
+    <Content Include="Views\Admin\statAnergiaPrint.cshtml" />
+    <Content Include="Views\Admin\statCertifiedPrint.cshtml" />
+    <Content Include="Views\Admin\statSocialGroupsPrint.cshtml" />
+    <Content Include="Views\School\statAnergiaPrint.cshtml" />
+    <Content Include="Views\School\statCertifiedPrint.cshtml" />
+    <Content Include="Views\School\statGendersPrint.cshtml" />
+    <Content Include="Views\School\statSocialGroupsPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -1690,7 +1722,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Reports\Pinakes\" />
-    <Folder Include="Reports\Statistics\" />
     <Folder Include="Uploads\Enstaseis\" />
     <Folder Include="Uploads\FilesEpimorfosi\" />
     <Folder Include="Uploads\FilesExperience\" />
@@ -1779,6 +1810,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\EpitropesDetailPost.resx">
       <DependentUpon>EpitropesDetailPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistics\statAnergia.resx">
+      <DependentUpon>statAnergia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistics\statCertified.resx">
+      <DependentUpon>statCertified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistics\statGenders.resx">
+      <DependentUpon>statGenders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistics\statSocialGroups.resx">
+      <DependentUpon>statSocialGroups.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

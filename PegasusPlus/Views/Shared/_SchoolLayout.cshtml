@@ -190,7 +190,18 @@
                     Children.Add().Text("Μητρώο αιτήσεων - Εκτύπωση").ImageUrl(Url.Content("~/Images/phone/appbar.printer.text.png")).Action("AitiseisRegistryPrint", "School")
                         .LinkHtmlAttributes(new { target = "_blank" });
                 });
-                items.Add().Text("Στατιστικά").ImageUrl(Url.Content("~/Images/phone/appbar.greek.sigma.lowercase.png"));
+                items.Add().Text("Στατιστικά").ImageUrl(Url.Content("~/Images/phone/appbar.greek.sigma.lowercase.png"))
+                .Items(Children =>
+                {
+                    Children.Add().Text("Κατανομή ανά φύλο").ImageUrl(Url.Content("~/Images/phone/appbar.graph.bar.png")).Action("statGendersPrint", "School")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Κατανομή ανεργίας").ImageUrl(Url.Content("~/Images/phone/appbar.graph.bar.png")).Action("statAnergiaPrint", "School")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Κατανομή πιστοποιημένων").ImageUrl(Url.Content("~/Images/phone/appbar.graph.bar.png")).Action("statCertifiedPrint", "School")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                    Children.Add().Text("Κατανομή κοινωνική ομάδα").ImageUrl(Url.Content("~/Images/phone/appbar.graph.bar.png")).Action("statSocialGroupsPrint", "School")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                });
                 items.Add().Text("Προκηρύξεις").ImageUrl(Url.Content("~/Images/phone/appbar.calendar.year.png"))
                 .Items(Children =>
                 {
