@@ -1,0 +1,177 @@
+﻿@model AitisisViewModel
+@using PegasusPlus.Models
+@using PegasusPlus.DAL
+
+@{
+    ViewBag.Title = "Σχολεία αίτησης";
+    Layout = "~/Views/Shared/_SchoolLayout.cshtml";
+    int aitisiID = Model.AitisisID;
+}
+
+<style>
+    .control-label {
+        font-family: 'Segoe UI';
+        white-space: pre-line;
+    }
+
+    .page-header {
+        border-bottom: 1px solid #D3D3D3;
+        font-family: 'Segoe UI';
+        font-size: x-large;
+    }
+
+    .k-textbox {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+        .k-textbox:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+</style>
+
+
+<div class="page-header">
+    <div style="margin:5px 60px 5px 40px">
+        <span style="font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #696969">
+            <font style="color:#292929;">Επεξεργασία σχολείων αίτησης</font>
+        </span>
+        <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
+            <a class="btn btn-warning" , style="font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Κλείσιμο καρτέλας</a>
+        </span>
+        <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:16px" onclick="RefreshGrid()">Ανανέωση</button>
+    </div>
+</div>
+
+<div  class="body-content" style="margin:10px 20px 5px 20px">
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label">Εκπαιδευτικός:</label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-control" style="max-height:34px; background-color:#EEE" title="@Html.Raw((ViewBag.SelectedAitisiTeacher as TeacherViewModel).LastName)&nbsp;@Html.Raw((ViewBag.SelectedAitisiTeacher as TeacherViewModel).FirstName)">
+                @Html.Raw((ViewBag.SelectedAitisiTeacher as TeacherViewModel).LastName)&nbsp;@Html.Raw((ViewBag.SelectedAitisiTeacher as TeacherViewModel).FirstName)
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label">Πρωτόκολλο αίτησης:</label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-control" style="max-height:34px; background-color:#EEE">@Html.Raw((ViewBag.SelectedAitisiData as AitisisViewModel).AitisisProtocol)</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label">Κλάδος-ειδικότητα αίτησης:</label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-control" style="max-height:34px; background-color:#EEE" title="@Html.Raw((ViewBag.SelectedAitisiEidikotita as EidikotitesSelectorViewModel).EidikotitaDesc)">
+                @Html.Raw((ViewBag.SelectedAitisiEidikotita as EidikotitesSelectorViewModel).EidikotitaDesc)
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="body-content" style="margin:5px 20px 5px 20px">
+    @(Html.Kendo().Grid<AitisiSchoolsViewModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.ForeignKey(x => x.SchoolID, (IEnumerable<SchoolsViewModel>)ViewData["schools"], "SchoolID", "SchoolName").Width(60).EditorTemplateName("AitisiSchoolSelector");
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(40);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+        })
+        .Filterable()
+        .AutoBind(true)
+        .Navigatable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Scrollable(scr => scr.Height(200))
+        .HtmlAttributes(new { style = "display: block;" })
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(3))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .Batch(false)
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.RowID);
+            model.Field(p => p.SchoolID).DefaultValue((int)ViewData["defaultSchool"]);
+        })
+        .Read(read => read.Action("Schools_Read", "School").Data("data"))
+        .Create(create => create.Action("Schools_Create", "School").Data("data"))
+        .Update(update => update.Action("Schools_Update", "School").Data("data"))
+        .Destroy(destroy => destroy.Action("Schools_Destroy", "School"))
+        .Events(events => events.Error("error_handler"))
+        )
+    )
+
+</div>
+
+<script type="text/javascript">
+
+    function filterSchools() {
+        var aitisi_id = @aitisiID;
+        if (aitisi_id) {
+            return { aitisiID: aitisi_id };
+        }
+        else {
+            return { aitisiID: 0 };
+        }
+    }
+
+    function data() {
+        var aitisi_id = @aitisiID;
+        if (aitisi_id) {
+            return { aitisiID: aitisi_id };
+        }
+        else {
+            return { aitisiID: 0 };
+        }
+    }
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#SchoolsGrid").data("kendoGrid").dataSource.read();
+        }
+    }
+
+</script>

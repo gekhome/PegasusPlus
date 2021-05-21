@@ -526,6 +526,11 @@
 
 <script type="text/javascript">
 
+    function getFilename(file) {
+        var theSplit = file.split('\\');
+        return theSplit[theSplit.length - 1];
+    }
+
     // 1. ΠΕΔΙΟ ΑΔΤ
     function pressedAdt() {
         var a = document.getElementById('FileADT');
@@ -533,8 +538,7 @@
             fileLabelADT.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameADT.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameADT.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv1').addClass('rmv');
         }
     };
@@ -555,8 +559,7 @@
             fileLabelAFM.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameAFM.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameAFM.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv2').addClass('rmv');
         }
     };
@@ -577,8 +580,7 @@
             fileLabelAMKA.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameAMKA.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameAMKA.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv3').addClass('rmv');
         }
     };
@@ -599,8 +601,7 @@
             fileLabelAMA.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameAMA.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameAMA.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv4').addClass('rmv');
         }
     };
@@ -631,8 +632,7 @@
             fileLabelTriteknos.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameTriteknos.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameTriteknos.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv5').addClass('rmv');
         }
     };
@@ -653,8 +653,7 @@
             fileLabelPolyteknos.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenamePolyteknos.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenamePolyteknos.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv6').addClass('rmv');
         }
     };
@@ -675,8 +674,7 @@
             fileLabelSingleParent.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameSingleParent.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameSingleParent.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv7').addClass('rmv');
         }
     };
@@ -697,8 +695,7 @@
             fileLabelAmea.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameAmea.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameAmea.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv8').addClass('rmv');
         }
     };
@@ -719,8 +716,7 @@
             fileLabelAnergia.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameAnergia.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameAnergia.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv9').addClass('rmv');
         }
     };

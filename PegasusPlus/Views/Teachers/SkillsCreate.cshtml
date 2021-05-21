@@ -513,6 +513,11 @@
 
 <script type="text/javascript">
 
+    function getFilename(file) {
+        var theSplit = file.split('\\');
+        return theSplit[theSplit.length - 1];
+    }
+
     // 1. ΠΕΔΙΟ ΔΕΥΤΕΡΟ ΠΤΥΧΙΟ
     function pressed1() {
         var a = document.getElementById('FilePtyxio2');
@@ -520,8 +525,7 @@
             fileLabelPtyxio2.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenamePtyxio2.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenamePtyxio2.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv1').addClass('rmv');
         }
     };
@@ -541,8 +545,7 @@
             fileLabelAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameAnagnorisi.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv2').addClass('rmv');
         }
     };
@@ -562,8 +565,7 @@
             fileLabelLanguage1.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameLanguage1.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameLanguage1.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv3').addClass('rmv');
         }
     };
@@ -583,8 +585,7 @@
             fileLabelLanguage2.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameLanguage2.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameLanguage2.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv4').addClass('rmv');
         }
     };
@@ -604,8 +605,7 @@
             fileLabelComputer.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameComputer.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameComputer.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv5').addClass('rmv');
         }
     };
@@ -625,8 +625,7 @@
             fileLabelCertified.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameCertified.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameCertified.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv6').addClass('rmv');
         }
     };
@@ -646,8 +645,7 @@
             fileLabelN2190.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameN2190.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameN2190.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv7').addClass('rmv');
         }
     };

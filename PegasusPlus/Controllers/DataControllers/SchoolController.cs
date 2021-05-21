@@ -125,6 +125,176 @@ namespace PegasusPlus.Controllers.DataControllers
         }
 
 
+        #region ATISIS SCHOOLS
+
+        public ActionResult AitisiSchools(int aitisiId = 0)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                ViewBag.loggedUser = "(χωρίς σύνδεση)";
+                return RedirectToAction("Login", "UserSchools");
+            }
+            else
+            {
+                loggedSchool = GetLoginSchool();
+            }
+
+            var selectedAitisi = (from a in db.Aitisis
+                                  where a.AitisisID == aitisiId
+                                  select new AitisisViewModel
+                                  {
+                                      AitisisID = a.AitisisID,
+                                      AitisisProtocol = a.AitisisProtocol,
+                                      TeacherAFM = a.TeacherAFM,
+                                      AitisisDate = a.AitisisDate,
+                                      Periferia = a.Periferia,
+                                      Eidikotita = a.Eidikotita,
+                                      Klados = a.Klados
+                                  }).FirstOrDefault();
+
+            populateViewBagWithAitisi(selectedAitisi);
+            populateSchools();
+
+            return View(selectedAitisi);
+        }
+
+        #region SCHOOLS CHILD GRID
+
+        public ActionResult Schools_Read([DataSourceRequest] DataSourceRequest request, int aitisiID = 0)
+        {
+            var data = GetAitisiSchoolsFromDB(aitisiID);
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Schools_Create([DataSourceRequest] DataSourceRequest request, AitisiSchoolsViewModel data, int aitisiID = 0)
+        {
+            var newdata = new AitisiSchoolsViewModel();
+
+            if (aitisiID == 0)
+                ModelState.AddModelError("", "Πρέπει να επιλέξετε πρώτα μια αίτηση με κλικ επάνω στη γραμμή του πλέγματος.");
+
+            if (data != null && ModelState.IsValid)
+            {
+                var savedSchools = db.AitisiSchools.Where(x => x.AitisiID == aitisiID && x.SchoolID == data.SchoolID).Count();
+                if (savedSchools == 0)
+                {
+                    AitisiSchools entity = new AitisiSchools()
+                    {
+                        AitisiID = aitisiID,
+                        PeriferiaID = (from d in db.Aitisis where d.AitisisID == aitisiID select d.Periferia).FirstOrDefault() ?? 0,
+                        SchoolID = data.SchoolID
+                    };
+                    db.Entry(entity).State = EntityState.Added;
+                    db.AitisiSchools.Add(entity);
+                    db.SaveChanges();
+
+                    data.RowID = entity.RowID;
+                    newdata = RefreshAitisiSchoolsFromDB(data.RowID);
+                }
+            }
+            return Json(new[] { newdata }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Schools_Update([DataSourceRequest] DataSourceRequest request, AitisiSchoolsViewModel data, int aitisiID = 0)
+        {
+            var newdata = new AitisiSchoolsViewModel();
+
+            if (aitisiID == 0)
+                ModelState.AddModelError("", "Πρέπει να επιλέξετε πρώτα μια αίτηση με κλικ επάνω στη γραμμή του πλέγματος.");
+
+            if (data != null && ModelState.IsValid)
+            {
+                AitisiSchools entity = db.AitisiSchools.Find(data.RowID);
+
+                entity.AitisiID = data.AitisiID;
+                entity.SchoolID = data.SchoolID;
+                entity.PeriferiaID = (from d in db.Aitisis where d.AitisisID == aitisiID select d.Periferia).FirstOrDefault() ?? 0;
+
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+
+                newdata = RefreshAitisiSchoolsFromDB(entity.RowID);
+            }
+            return Json(new[] { newdata }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Schools_Destroy([DataSourceRequest] DataSourceRequest request, AitisiSchoolsViewModel data)
+        {
+            if (data != null)
+            {
+                AitisiSchools entitySchool = db.AitisiSchools.Find(data.RowID);
+                db.Entry(entitySchool).State = EntityState.Deleted;
+                db.AitisiSchools.Remove(entitySchool);
+                db.SaveChanges();
+            }
+
+            return Json(new[] { data }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
+        public AitisiSchoolsViewModel RefreshAitisiSchoolsFromDB(int recordId)
+        {
+            var data = (from d in db.AitisiSchools
+                        where d.RowID == recordId
+                        select new AitisiSchoolsViewModel
+                        {
+                            RowID = d.RowID,
+                            AitisiID = d.AitisiID,
+                            SchoolID = d.SchoolID,
+                            PeriferiaID = d.PeriferiaID
+                        }).FirstOrDefault();
+
+            return (data);
+        }
+
+        public List<AitisiSchoolsViewModel> GetAitisiSchoolsFromDB(int aitisiID)
+        {
+            var data = (from d in db.AitisiSchools
+                        where d.AitisiID == aitisiID
+                        orderby d.SchoolID
+                        select new AitisiSchoolsViewModel
+                        {
+                            RowID = d.RowID,
+                            AitisiID = d.AitisiID,
+                            SchoolID = d.SchoolID,
+                            PeriferiaID = d.PeriferiaID
+                        }).ToList();
+
+            return (data);
+        }
+
+        #endregion
+
+        public void populateViewBagWithAitisi(AitisisViewModel selectedAitisi)
+        {
+            ViewBag.SelectedAitisiData = selectedAitisi;
+
+            ViewBag.SelectedAitisiTeacher = (from d in db.Teachers
+                                             where d.AFM == selectedAitisi.TeacherAFM
+                                             select new TeacherViewModel
+                                             {
+                                                 AFM = d.AFM,
+                                                 LastName = d.LastName,
+                                                 FirstName = d.FirstName
+                                             }).FirstOrDefault();
+
+            ViewBag.SelectedAitisiEidikotita = (from e in db.sqlEidikotitesSelector
+                                                where e.EidikotitaID == selectedAitisi.Eidikotita
+                                                select new EidikotitesSelectorViewModel
+                                                {
+                                                    EidikotitaID = e.EidikotitaID,
+                                                    EidikotitaDesc = e.EidikotitaDesc,
+                                                }).FirstOrDefault();
+            return;
+        }
+
+        #endregion
+
+
         #region TEACHING GRID (CHILD 1)
 
         public ActionResult Teaching_Read([DataSourceRequest] DataSourceRequest request, int aitisiId)
@@ -1543,6 +1713,7 @@ namespace PegasusPlus.Controllers.DataControllers
 
         #endregion
 
+
         #region ΕΚΤΥΠΩΣΕΙΣ
 
         public ActionResult MultipleAitiseisPrint()
@@ -1708,7 +1879,23 @@ namespace PegasusPlus.Controllers.DataControllers
 
         #endregion
 
-        #region GETTERS
+
+        #region GETTERS AND POPULATORS
+
+        public void populateSchools()
+        {
+            var data = (from d in db.SysSchools
+                        orderby d.SchoolName
+                        select new SchoolsViewModel
+                        {
+                            SchoolID = d.SchoolID,
+                            SchoolName = d.SchoolName,
+                            SchoolPeriferiaID = d.SchoolPeriferiaID
+                        }).ToList();
+
+            ViewData["schools"] = data;
+            ViewData["defaultSchool"] = data.First().SchoolID;
+        }
 
         public void populateIdiotita()
         {

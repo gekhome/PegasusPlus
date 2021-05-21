@@ -14,7 +14,7 @@
 <div class="page-header">
     <div style="margin:5px 60px 5px 40px">
         <span style="font-family:'Segoe UI';font-size:18px;text-shadow:1px 1px #696969">
-            <font style="color:#292929;">Μοριοδότηση αιτήσεων &nbsp;&nbsp;&nbsp; Προκήρυξη: @displayInfo</font>
+            <font style="color:#292929;">Μοριοδότηση αιτήσεων και σχολεία επιλογής &nbsp;&nbsp;&nbsp; Προκήρυξη: @displayInfo</font>
         </span>
         <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
             @Html.ActionLink("Επιστροφή", "Index", "Admin", null, new { @class = "btn btn-warning", style = "font-size:15px" })
@@ -34,7 +34,7 @@
 
 <div class="body-content mt-3" style="margin:5px 20px 5px 20px">
     @(Html.Kendo().Grid<TeacherAitiseisViewModel>()
-        .Name("Grid")
+        .Name("Master")
         .Columns(columns =>
         {
         columns.Bound(x => x.TeacherAFM).Width(20).Groupable(false);
@@ -56,9 +56,10 @@
             ).Width(24);
         })
         .Filterable()
+        .Selectable()
         .Groupable()
         .HtmlAttributes(new { style = "font-size:12px" })
-        .Scrollable(scr => scr.Height(500))
+        .Scrollable(scr => scr.Height(480))
         .Pageable(pageable => pageable
         .Refresh(true)
         .PageSizes(true)
@@ -72,18 +73,95 @@
             model.Id(p => p.AitisisID);
         })
         .Read(read => read.Action("AitiseisMoria_Read", "Admin"))
-        .Events(e => e.Error("error_handler"))
+        .Events(e => e.Error("error_handler1"))
         .Aggregates(a =>
         {
             a.Add(p => p.FullName).Count();
         })
-    )
+        )
+        .Events(events => events.Change("change"))
     )
 </div>
 
+<div class="body-content mt-3" style="margin:5px 20px 5px 20px">
+    @(Html.Kendo().Grid<AitisiSchoolsViewModel>()
+        .Name("Child")
+        .Columns(columns =>
+        {
+            columns.ForeignKey(x => x.SchoolID, (IEnumerable<SchoolsViewModel>)ViewData["schools"], "SchoolID", "SchoolName").Width(60).EditorTemplateName("AitisiSchoolSelector");
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(40);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+        })
+        .Filterable()
+        .AutoBind(false)
+        .Navigatable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Scrollable(scr => scr.Height(220))
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(3))
+        .DataSource(datasource => datasource
+        .Ajax()
+        .Batch(false)
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.RowID);
+            model.Field(p => p.SchoolID).DefaultValue((int)ViewData["defaultSchool"]);
+        })
+        .Read(read => read.Action("Schools_Read", "Admin").Data("data"))
+        .Create(create => create.Action("Schools_Create", "Admin").Data("data"))
+        .Update(update => update.Action("Schools_Update", "Admin").Data("data"))
+        .Destroy(destroy => destroy.Action("Schools_Destroy", "Admin"))
+        .Events(events => events.Error("error_handler2"))
+        )
+    )
+
+</div>
+
+
+
 <script type="text/javascript">
 
-    function error_handler(e) {
+    function filterSchools() {
+        var masterGrid = $("#Master").data("kendoGrid");
+        // get data item for selected row
+        var dataItem = masterGrid.dataItem(masterGrid.select());
+        if (dataItem) {
+            return { aitisiID: dataItem.AitisisID };
+        }
+        else {
+            return { aitisiID: 0 };
+        }
+    }
+
+    function data() {
+        var masterGrid = $("#Master").data("kendoGrid");
+        // get data item for selected row
+        var dataItem = masterGrid.dataItem(masterGrid.select());
+        if (dataItem) {
+            return { aitisiID: dataItem.AitisisID };
+        }
+        else {
+            return { aitisiID: 0 };
+        }
+    }
+
+    function change(e) {
+        var dataItem = this.dataItem(this.select());
+        var aitisiId = dataItem.AitisisID;
+
+        $("#Child").data("kendoGrid").dataSource.read({ aitisiID: aitisiId });
+    }
+
+
+    function error_handler1(e) {
         if (e.errors) {
             var message = "";
             $.each(e.errors, function (key, value) {
@@ -94,12 +172,27 @@
                 }
             });
             MessageBoxAlert(message, "Σφάλμα");
-            $("#Grid").data("kendoGrid").dataSource.read();
+            $("#Master").data("kendoGrid").dataSource.read();
+        }
+    }
+
+    function error_handler2(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "<br/>";
+                    });
+                }
+            });
+            MessageBoxAlert(message, "Σφάλμα");
+            $("#Child").data("kendoGrid").dataSource.read();
         }
     }
 
     function RefreshGrid(e) {
-        var grid = $("#Grid").data("kendoGrid");
+        var grid = $("#Master").data("kendoGrid");
         grid.dataSource.read();
     }
 

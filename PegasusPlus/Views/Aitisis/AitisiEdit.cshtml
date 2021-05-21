@@ -642,6 +642,11 @@
 
 <script type="text/javascript">
 
+    function getFilename(file) {
+        var theSplit = file.split('\\');
+        return theSplit[theSplit.length - 1];
+    }
+
     // 1. ΠΕΔΙΟ ΒΑΣΙΚΟ ΠΤΥΧΙΟ
     function pressed1() {
         var a = document.getElementById('FilePtyxio');
@@ -649,8 +654,7 @@
             fileLabelPtyxio.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenamePtyxio.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenamePtyxio.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv1').addClass('rmv');
         }
     };
@@ -670,8 +674,7 @@
             fileLabelPtyxioAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenamePtyxioAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenamePtyxioAnagnorisi.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv2').addClass('rmv');
         }
     };
@@ -691,8 +694,7 @@
             fileLabelMsc.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameMsc.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameMsc.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv3').addClass('rmv');
         }
     };
@@ -712,8 +714,7 @@
             fileLabelMscAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenameMscAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenameMscAnagnorisi.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv4').addClass('rmv');
         }
     };
@@ -733,8 +734,7 @@
             fileLabelPhd.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenamePhd.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenamePhd.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv5').addClass('rmv');
         }
     };
@@ -754,8 +754,7 @@
             fileLabelPhdAnagnorisi.innerHTML = '<i class="fa fa-cloud-upload" aria-hidden="true" style="font-size:18px"></i>';
         }
         else {
-            var theSplit = a.value.split('\\');
-            filenamePhdAnagnorisi.innerHTML = " " + theSplit[theSplit.length - 1];
+            filenamePhdAnagnorisi.innerHTML = " " + getFilename(a.value);
             $('.btn-rmv6').addClass('rmv');
         }
     };

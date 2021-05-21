@@ -31,7 +31,6 @@
                 .ClientFooterTemplate("Ολικό πλήθος: #=count#")
                 .ClientGroupFooterTemplate("Πλήθος: #=count#");
             columns.Bound(c => c.EidikotitaText).Title("Κλάδος-Ειδικότητα").Width(60);
-            columns.Bound(c => c.SchoolName).Title("Σχολείο").Width(30);
             columns.Template(@<text></text>)
             .ClientTemplate(
             "<a class=\"k-button k-button-icontext\" href='" + Url.Action("EditAitisi", "School") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-edit\"></span>Αίτηση</a>"
@@ -43,6 +42,10 @@
             columns.Template(@<text></text>)
             .ClientTemplate(
             "<a class=\"k-button k-button-icontext\" href='" + Url.Action("EditSkills", "School") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-edit\"></span>Προσόντα</a>"
+            ).Width(25);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisiSchools", "School") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-edit\"></span>Σχολεία</a>"
             ).Width(25);
         })
         .HtmlAttributes(new { style = "font-size:13px" })
@@ -70,7 +73,7 @@
         .Read(read => read.Action("AitiseisAudit_Read", "School"))
     )
     .Events(events => events.Change("change"))
-    )
+)
 </div>
 
 <div class="body-content" style="margin:10px 20px 5px 20px">
