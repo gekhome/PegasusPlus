@@ -313,6 +313,24 @@ namespace PegasusPlus.Controllers.DataControllers
             return data;
         }
 
+        public ActionResult TeacherInfoPrint(string afm = null)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("TaxisNetLogin", "UserTeachers");
+            }
+            else
+            {
+                loggedTeacher = GetLoginTeacher();
+                ReportParameters parameters = new ReportParameters();
+                parameters.Afm = afm;
+
+                return View(parameters);
+            }
+        }
+
+
         #endregion
 
 

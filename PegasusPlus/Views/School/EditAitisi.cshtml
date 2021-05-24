@@ -66,7 +66,7 @@
                 @Html.ActionLink("Αρχεία", "TeacherUploadsSchool", "School", new { afm = Model.TeacherAFM }, new { @class = "btn btn-info", style = "font-size:16px", target = "_blank" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
-                @Html.ActionLink("Εκτύπωση", "AitisiSchoolPrint", "School", new { afm = Model.TeacherAFM }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
+                @Html.ActionLink("Εκτύπωση", "AitisiPrint", "School", new { aitisiId = Model.AitisisID }, new { @class = "btn btn-primary", style = "font-size:16px", target = "_blank" })
             </span>
             <span style="margin:0px 5px 5px 5px;float:right;font-family:'Segoe UI';">
                 <input id="buttonClientSide" style="font-family:'Segoe UI';font-size:16px" type="submit" value="Αποθήκευση" class="btn btn-success" />

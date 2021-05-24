@@ -281,6 +281,9 @@ namespace PegasusPlus.Models
         public int? PeriferiakiID { get; set; }
 
         public int? SchoolID { get; set; }
+
+        public string Afm { get; set; }
+
     }
 
 

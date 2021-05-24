@@ -261,6 +261,9 @@ namespace PegasusPlus.Models
         [Display(Name = "Ειδικότητα")]
         public int? Eidikotita { get; set; }
 
+        [Display(Name = "Σχολείο αίτησης")]
+        public int? School { get; set; }
+
         [Display(Name = "Περιφέρεια")]
         public int? Periferia { get; set; }
 

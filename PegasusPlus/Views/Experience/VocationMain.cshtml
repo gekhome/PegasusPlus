@@ -44,7 +44,7 @@
         columns.Bound(c => c.DateStart).Width(20).Title("Από").Groupable(false);
         columns.Bound(c => c.DateFinal).Width(20).Title("Έως").Groupable(false);
         columns.Bound(c => c.DaysAuto).Width(20).Groupable(false).HtmlAttributes(new { title = "Αυτόματος υπολογισμός βάσει έτους πλήρους απασχόλησης" });
-        columns.Bound(c => c.DaysManual).Width(20).Groupable(false).HtmlAttributes(new { title = "Παρακάμπτει τον αυτόματο υπολογισμός ημερών απασχόλησης" });
+        columns.Bound(c => c.DaysManual).Width(20).Groupable(false).HtmlAttributes(new { title = "Παρακάμπτει τον αυτόματο υπολογισμό ημερών απασχόλησης" });
         columns.Bound(c => c.Moria).Width(20).Groupable(false);
         columns.Command(command => { command.Edit(); command.Destroy(); }).Width(40);
         columns.Template(@<text></text>)

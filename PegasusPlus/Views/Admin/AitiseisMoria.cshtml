@@ -52,7 +52,7 @@
             ).Width(24);
             columns.Template(@<text></text>)
             .ClientTemplate(
-            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisiMoriaPrint", "Admin") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-print\"></span>Εκτύπωση</a>"
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("AitisiMoriaPrint", "Admin") + "?aitisiId=#=AitisisID#' target = _blank><span class=\"k-icon k-justifyFull\"></span>Εκτύπωση</a>"
             ).Width(24);
         })
         .Filterable()
@@ -203,7 +203,7 @@
     function Moriodotisi() {
         text = "Η διαδικασία αυτή εκτελεί την τελική μοριοδότηση όλων των αιτήσεων της τρέχουσας προκήρυξης.<br/>";
         text += "Να γίνει η μαζική μοριοδότηση όλων των αιτήσεων;"
-        MessageBoxConfirm(text, "Ολική μοριοδότηση (Supernova)").done(function () {
+        MessageBoxConfirm(text, "Μοριοδότηση όλων των αιτήσεων της προκήρυξης").done(function () {
             $('#divLoading').show();
             $.ajax({
                 url: '@Url.Action("Supernova", "Admin")',

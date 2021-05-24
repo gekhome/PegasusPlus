@@ -376,6 +376,23 @@ namespace PegasusPlus.Controllers.DataControllers
             return data;
         }
 
+        public ActionResult AitisiPrint(int aitisiId = 0)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("TaxisNetLogin", "UserTeachers");
+            }
+            else
+            {
+                loggedTeacher = GetLoginTeacher();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.AitisiID = aitisiId;
+
+                return View(parameters);
+            }
+        }
+
         #endregion
 
 
@@ -620,8 +637,9 @@ namespace PegasusPlus.Controllers.DataControllers
                             AitisisID = d.AitisisID,
                             AitisisProtocol = d.AitisisProtocol,
                             Eidikotita = d.Eidikotita,
+                            School = d.School,
                             Periferia = d.Periferia,
-                            ProkirixisID = d.ProkirixisID
+                            ProkirixisID = d.ProkirixisID,
                         }).ToList();
 
             return data;

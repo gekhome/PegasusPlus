@@ -448,6 +448,12 @@
     <Compile Include="Reports\Data\AitiseisRegistry.Designer.cs">
       <DependentUpon>AitiseisRegistry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Data\AitisiDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\AitisiDocument.Designer.cs">
+      <DependentUpon>AitisiDocument.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Data\AitisiExperience.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -507,6 +513,12 @@
     </Compile>
     <Compile Include="Reports\Data\TeacherData.Designer.cs">
       <DependentUpon>TeacherData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Data\TeacherPersonalData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Data\TeacherPersonalData.Designer.cs">
+      <DependentUpon>TeacherPersonalData.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Data\TeachersEidikotita.cs">
       <SubType>Component</SubType>
@@ -1553,7 +1565,9 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1723,6 +1737,10 @@
     <Content Include="Views\Admin\statPtyxioLevelPrint.cshtml" />
     <Content Include="Views\School\statPtyxioLevelPrint.cshtml" />
     <Content Include="Views\School\AitisiSchools.cshtml" />
+    <Content Include="Views\Teachers\TeacherInfoPrint.cshtml" />
+    <Content Include="Views\Aitisis\AitisiPrint.cshtml" />
+    <Content Include="Views\Admin\AitisiPrint.cshtml" />
+    <Content Include="Views\School\AitisiPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -1755,6 +1773,9 @@
     <EmbeddedResource Include="Reports\Data\AitiseisRegistry.resx">
       <DependentUpon>AitiseisRegistry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\AitisiDocument.resx">
+      <DependentUpon>AitisiDocument.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\AitisiExperience.resx">
       <DependentUpon>AitisiExperience.cs</DependentUpon>
     </EmbeddedResource>
@@ -1784,6 +1805,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\TeacherData.resx">
       <DependentUpon>TeacherData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Data\TeacherPersonalData.resx">
+      <DependentUpon>TeacherPersonalData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Data\TeachersEidikotita.resx">
       <DependentUpon>TeachersEidikotita.cs</DependentUpon>

@@ -124,6 +124,23 @@ namespace PegasusPlus.Controllers.DataControllers
             else return true;
         }
 
+        public ActionResult AitisiPrint(int aitisiId = 0)
+        {
+            bool val1 = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!val1)
+            {
+                return RedirectToAction("Login", "UserSchools");
+            }
+            else
+            {
+                loggedSchool = GetLoginSchool();
+                AitisisParameters parameters = new AitisisParameters();
+                parameters.AitisiID = aitisiId;
+
+                return View(parameters);
+            }
+        }
+
 
         #region ATISIS SCHOOLS
 

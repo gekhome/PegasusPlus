@@ -38,8 +38,9 @@
         .Columns(columns =>
         {
             columns.Bound(x => x.AitisisProtocol).Width(30);
-            columns.ForeignKey(x => x.Eidikotita, (IEnumerable<EidikotitesViewModel>)ViewData["eidikotites"], "EidikotitaID", "EidikotitaDesc").Width(60);
-            columns.ForeignKey(x => x.Periferia, (IEnumerable<PeriferiesViewModel>)ViewData["periferies"], "PeriferiaID", "PeriferiaName").Width(60);
+            columns.ForeignKey(x => x.Eidikotita, (IEnumerable<EidikotitesViewModel>)ViewData["eidikotites"], "EidikotitaID", "EidikotitaDesc").Width(50);
+            columns.ForeignKey(x => x.School, (IEnumerable<SchoolsViewModel>)ViewData["schools"], "SchoolID", "SchoolName").Width(30);
+            columns.ForeignKey(x => x.Periferia, (IEnumerable<PeriferiesViewModel>)ViewData["periferies"], "PeriferiaID", "PeriferiaName").Width(50);
             columns.Command(command => { command.Destroy(); }).Width(20);
             columns.Template(@<text></text>)
             .ClientTemplate(
@@ -49,7 +50,7 @@
         .Filterable()
         .Selectable()
         .Scrollable(scr => scr.Height(220))
-        .HtmlAttributes(new { style = "display: block;" })
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
         .Pageable(pageable => pageable
         .Refresh(true)
         .PageSizes(true)
